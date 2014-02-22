@@ -1,19 +1,5 @@
 ; -*- Encoding: utf-8 -*-
 
-                                        ; Default Startup Directory
-(cd "~/git/SilverJet/Apps/SolarJet/Project/qt/")
-
-; emacs persistance directory
-(if (not (boundp 'emacs-persistance-dir))
-    (setq emacs-persistance-dir "/home/simon/.emacs.d"))
-
-
-
-
-;;;;;;;;;;EXTERNAL PLUGINS
-(add-to-list 'load-path "~/.emacs.d/Plugins/")
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
-
 ;;;;;;;;;;Undo-Tree
 (require 'undo-tree)
 (global-undo-tree-mode)

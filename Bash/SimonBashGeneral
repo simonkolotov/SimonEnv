@@ -1,0 +1,15 @@
+# .bashrc
+
+#Expand Env. Vars
+shopt -s direxpand # enable
+#shopt -u direxpand # disable
+
+
+# Remove long Prompt
+PS1=">"
+
+# Command History
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+bind '"\eOA": history-search-backward'
+bind '"\eOB": history-search-forward'
