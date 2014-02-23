@@ -2,6 +2,7 @@
 
 ;;;;;;;;;;EXTERNAL PLUGINS
 (add-to-list 'load-path "/home/simon/github/SimonEnv/Emacs/Plugins/")
+(add-to-list 'load-path "/home/simon/github/SimonEnv/Emacs/Plugins/magit")
 
 ;;;;;;;;;;Undo-Tree
 (require 'undo-tree)
