@@ -184,6 +184,9 @@
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
 
+                                        ; use python-mode for .run files
+(add-to-list 'auto-mode-alist '("\\.run\\'" . python-mode))
+
                                         ; use IPython
 (setq-default py-shell-name "ipython")
 (setq-default py-which-bufname "IPython")
