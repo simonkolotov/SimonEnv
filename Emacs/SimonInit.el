@@ -150,9 +150,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; auto-complete
-(add-to-list 'load-path "~/.emacs.d/Plugins/autocomplete")
+(add-to-list 'load-path "~/github/SimonEnv/Emacs/Plugins/autocomplete")
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/autocomplete/ac-dict")
+(add-to-list 'ac-dictionary-directories "~/github/SimonEnv/Emacs/autocomplete/ac-dict")
 (ac-config-default)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
