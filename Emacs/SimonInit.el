@@ -246,8 +246,8 @@
  '(show-paren-mode t))
 ;;'(cua-mode t nil (cua-base))       
 
-                                        ; Start In Window sized 124x40
-(if (window-system) (set-frame-size (selected-frame) 125 40))
+                                        ; Start In Window sized 124x40 (for netbook - 101x23)
+(if (window-system) (set-frame-size (selected-frame) 124 40))
 
 ;; Start In Full Screen Mode
                                         ;(initial-frame-alist (quote ((fullscreen . maximized)))))
