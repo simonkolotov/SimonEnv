@@ -160,7 +160,7 @@
 (savehist-mode t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Fill-Column Indicator
-(add-to-list 'load-path "~/.emacs.d/Plugins/fill-column-indicator-1.83")
+(add-to-list 'load-path "~/github/SimonEnv/Emacs/Plugins/fill-column-indicator-1.83")
 (require 'fill-column-indicator)
 (define-globalized-minor-mode
   global-fci-mode fci-mode (lambda () (fci-mode 1)))
@@ -180,7 +180,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; python-mode
-(setq py-install-directory "/home/simon/.emacs.d/Plugins/python-mode.el-6.1.2")
+(setq py-install-directory "/home/simon/github/SimonEnv/Emacs/Plugins/python-mode.el-6.1.2")
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
 
