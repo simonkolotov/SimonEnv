@@ -170,9 +170,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; auto-complete
-(add-to-list 'load-path "~/.emacs.d/Plugins/autocomplete")
+(add-to-list 'load-path "~/github/SimonEnv/Emacs/Plugins/autocomplete")
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/autocomplete/ac-dict")
+(add-to-list 'ac-dictionary-directories "~/github/SimonEnv/Emacs/autocomplete/ac-dict")
 (ac-config-default)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -180,7 +180,7 @@
 (savehist-mode t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Fill-Column Indicator
-(add-to-list 'load-path "~/.emacs.d/Plugins/fill-column-indicator-1.83")
+(add-to-list 'load-path "~/github/SimonEnv/Emacs/Plugins/fill-column-indicator-1.83")
 (require 'fill-column-indicator)
 (define-globalized-minor-mode
   global-fci-mode fci-mode (lambda () (fci-mode 1)))
@@ -200,7 +200,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; python-mode
-(setq py-install-directory "/home/simon/.emacs.d/Plugins/python-mode.el-6.1.2")
+(setq py-install-directory "/home/simon/github/SimonEnv/Emacs/Plugins/python-mode.el-6.1.2")
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
 
@@ -267,8 +267,8 @@
  '(show-paren-mode t))
 ;;'(cua-mode t nil (cua-base))       
 
-                                        ; Start In Window sized 124x40
-(if (window-system) (set-frame-size (selected-frame) 125 40))
+                                        ; Start In Window sized 124x40 (for netbook - 101x23)
+(if (window-system) (set-frame-size (selected-frame) 124 40))
 
 ;; Start In Full Screen Mode
                                         ;(initial-frame-alist (quote ((fullscreen . maximized)))))
