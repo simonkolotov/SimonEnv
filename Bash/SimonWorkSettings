@@ -13,11 +13,14 @@ export SILVERJET=/home/simon/git/SilverJet/Apps/SolarJet/Project/qt/
 export XJETSRV=/mnt/xjetsrv/public/
 export SWGROUP=/mnt/xjetsrv/public/Groups/Software/
 
-export AUTOMATICA=/mnt/automatica/d/
-export AUTOMATICA_SOLARJET=/mnt/automatica/d/git/SolarJet/Apps/SolarJet/Project/qt/
+#export AUTOMATICA=/mnt/automatica/d/
+#export AUTOMATICA_SOLARJET=/mnt/automatica/d/git/SolarJet/Apps/SolarJet/Project/qt/
 
-export ALPHA=/mnt/alpha/
-export ALPHA_SOLARJET=/mnt/alpha/git/SolarJet/Apps/SolarJet/Project/qt/
+#export ALPHA=/mnt/alpha/
+#export ALPHA_SOLARJET=/mnt/alpha/git/SolarJet/Apps/SolarJet/Project/qt/
+
+export MODELS=/3D/Models
+export SLICES=/3D/Slices
 
 export DISKONKEY=/mnt/DiskOnKey
 
