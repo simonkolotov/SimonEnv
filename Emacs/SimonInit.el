@@ -3,6 +3,7 @@
 ;;;;;;;;;;EXTERNAL PLUGINS
 (add-to-list 'load-path "/home/simon/github/SimonEnv/Emacs/Plugins/")
 (add-to-list 'load-path "/home/simon/github/SimonEnv/Emacs/Plugins/magit")
+(add-to-list 'load-path "/home/simon/github/SimonEnv/Emacs/Plugins/yasnippet")
 
 ;;;;;;;;;;Undo-Tree
 (require 'undo-tree)
@@ -12,9 +13,26 @@
 ;;;;;;;;;Git for emacs
 (require 'magit)
 
+(global-set-key "\C-ci" 'magit-status)
+(global-set-key "\C-c\C-b" 'magit-blame-mode)
+
 ;;;;;;;;;; ido-mode
 (require 'ido)
 (ido-mode t)
+
+;;;;;;;;;; yas for programming templates
+;(add-to-list 'load-path
+;              (concat emacs-git "yasnippet"))
+(require 'yasnippet)
+(yas-global-mode 1)
+(setq yas-snippet-dirs (list "/home/simon/github/SimonEnv/Emacs/Plugins/yasnippet/snippets"
+                             "/home/simon/github/SimonEnv/Emacs/Plugins/snippets"))
+
+(yas-reload-all)
+
+;;;;;;;;;;Toolbars
+(menu-bar-mode 't)
+(tool-bar-mode 'nil)  
 
 ;;;;;;;;;;KEYBOARD SHORTCUTS
                                         ; Undo-Redo
@@ -26,6 +44,8 @@
 (global-set-key (kbd "C-<f4>") 'kill-this-buffer) ; Close Buffer (Microsoft style)
 
 (define-key global-map (kbd "RET") 'newline-and-indent) ; For programming language modes
+
+(global-set-key (kbd "M-g") 'goto-line) ; Goto-line
 
 (global-set-key (kbd "C-<f9>") 'compile) ; Compile
 
@@ -230,6 +250,7 @@
 (add-hook 'c-mode-common-hook
   (lambda() 
     (local-set-key  (kbd "C-c h") 'ff-find-other-file)))
+
 
                                         ; Overwrite Selection
 (delete-selection-mode t)
