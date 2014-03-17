@@ -91,6 +91,12 @@
 (global-set-key (kbd "<M-down>") (lambda () (interactive) (scroll-up 1)))
 (global-set-key (kbd "<M-kp-down>") (lambda () (interactive) (scroll-up 1)))
 
+(global-set-key (kbd "<C-up>")   (lambda () (interactive) (scroll-other-window-down -1)))
+(global-set-key (kbd "<C-kp-up>")   (lambda () (interactive) (scroll-other-window-down -1)))
+(global-set-key (kbd "<C-down>") (lambda () (interactive) (scroll-other-window-down 1)))
+(global-set-key (kbd "<C-kp-down>") (lambda () (interactive) (scroll-other-window-down 1)))
+
+
                                         ; Change C-arrows to be the same as M-f/b
 (global-set-key (kbd "C-<right>")   'forward-word)
 (global-set-key (kbd "C-<kp-right>")   'forward-word)
