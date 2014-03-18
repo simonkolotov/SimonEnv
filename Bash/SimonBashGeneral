@@ -7,10 +7,10 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then
   
   
   # Replace Prompt
-  if [-n $SSH_CLIENT]; then
-      PS1=">"
-  else
+  if [ $SSH_CLIENT ]; then
       PS1="|\h|>"
+  else
+      PS1=">"
   fi
   
   # Command History
