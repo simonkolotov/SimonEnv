@@ -1,15 +1,21 @@
 # .bashrc
 
-#Expand Env. Vars
-shopt -s direxpand # enable
-#shopt -u direxpand # disable
-
-
-# Remove long Prompt
-PS1=">"
-
-# Command History
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-bind '"\eOA": history-search-backward'
-bind '"\eOB": history-search-forward'
+if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then
+  #Expand Env. Vars
+  shopt -s direxpand # enable
+  #shopt -u direxpand # disable
+  
+  
+  # Replace Prompt
+  if [-n $SSH_CLIENT]; then
+      PS1=">"
+  else
+      PS1="|\h|>"
+  fi
+  
+  # Command History
+  bind '"\e[A": history-search-backward'
+  bind '"\e[B": history-search-forward'
+  bind '"\eOA": history-search-backward'
+  bind '"\eOB": history-search-forward'
+fi
