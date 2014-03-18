@@ -1,15 +1,19 @@
 # .bashrc
 
-#Expand Env. Vars
-shopt -s direxpand # enable
-#shopt -u direxpand # disable
+#This is relevant only on interactive sessions
+if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then  
+  #Expand Env. Vars
+  shopt -s direxpand # enable
+  #shopt -u direxpand # disable
 
 
-# Remove long Prompt
-PS1=">"
+  # Remove long Prompt
+  PS1=">"
 
-# Command History
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-bind '"\eOA": history-search-backward'
-bind '"\eOB": history-search-forward'
+  # Command History
+  bind '"\e[A": history-search-backward'
+  bind '"\e[B": history-search-forward'
+  bind '"\eOA": history-search-backward'
+  bind '"\eOB": history-search-forward'
+
+fi
