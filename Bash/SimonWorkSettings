@@ -19,8 +19,8 @@ export SWGROUP=/mnt/xjetsrv/public/Groups/Software/
 #export ALPHA=/mnt/alpha/
 #export ALPHA_SOLARJET=/mnt/alpha/git/SolarJet/Apps/SolarJet/Project/qt/
 
-export MODELS=/3D/Models
-export SLICES=/3D/Slices
+export MODELS=/home/simon/3D/Models
+export SLICES=/home/simon/3D/Slices
 
 export DISKONKEY=/mnt/DiskOnKey
 
