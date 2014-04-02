@@ -23,5 +23,6 @@ export MODELS=/home/simon/3D/Models
 export SLICES=/home/simon/3D/Slices
 
 export DISKONKEY=/mnt/DiskOnKey
+export DISKONKEY2=/mnt/DiskOnKey2  
 
 export INCOMING=/home/simon/Incoming/

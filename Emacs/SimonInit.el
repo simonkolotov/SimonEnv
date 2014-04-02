@@ -110,6 +110,12 @@
 
 (global-set-key (kbd "<C-kp-delete>")   'kill-word)
 
+
+                                        ; Set M-arrows to be the same as C-arrows, but by full words
+(global-set-key (kbd "M-<kp-right>")   'right-word)
+(global-set-key (kbd "M-<kp-left>")   'left-word)
+
+
                                         ; Command History Completion
 (define-key minibuffer-local-map (kbd "M-p") 'previous-complete-history-element)
 (define-key minibuffer-local-map (kbd "M-n") 'next-complete-history-element)
@@ -335,10 +341,42 @@
 
 ))
 
+
+(defun update-indent-mode ()
+  (setq c-basic-offset my-indent)
+  (c-set-offset 'substatement my-substatement)
+  (c-set-offset 'substatement-open my-substatement-open)
+  (c-set-offset 'access-label my-access-label)
+  (c-set-offset 'topmost-intro my-topmost-intro))
+
+
+
+(defun xjet-indent-mode ()
+  "Set indent tabs to the xjet indent mode"
+  (interactive)
+  ;; C++-python
+  (setq my-indent 2)
+  (setq my-substatement 2)
+  (setq my-substatement-open 0)
+  (setq my-access-label 0)
+  (setq my-topmost-intro 0)
+  (update-indent-mode)
+
+  ;; Python
+  (setq py-indent-offset 2)
+  )
+
+(add-hook 'c++-mode-hook
+(lambda ()
+(xjet-indent-mode())))
+  
 (add-hook 'c-mode-hook
 (lambda ()
 (setq indent-tabs-mode nil)
 (setq tab-width 2)
+
+
+  
 
                                         ;(setq indent-line-function (quote insert-tab))
 
@@ -396,6 +434,13 @@
   (unless (and buffer-file-name
                (file-writable-p buffer-file-name))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+
+                                        ; Allow sudo in shell command  !!!
+;(defun sudo-shell-command (command)
+;  (shell-command (concat "echo " (read-passwd "Password: ") " | sudo -S " command)))
+
+;(global-set-key (kbd "C-M-!") 'sudo-shell-command(command))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Show full(er) buffer name in status bar

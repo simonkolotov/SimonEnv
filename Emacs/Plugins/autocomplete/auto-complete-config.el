@@ -419,6 +419,7 @@
   (autoload 'pymacs-exec "pymacs" nil t)
   (autoload 'pymacs-load "pymacs" nil t)
   (add-hook 'python-mode-hook 'ac-ropemacs-setup)
+  (add-hook 'c++-mode-hook 'ac-ropemacs-setup)
   t)
 
 (defvar ac-ropemacs-completions-cache nil)
