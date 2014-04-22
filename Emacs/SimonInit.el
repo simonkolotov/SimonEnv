@@ -57,6 +57,11 @@
 
 (yas-reload-all)
 
+
+;; Lexical completion with M-RET
+(define-key yas-minor-mode-map (kbd "M-<return>")     'dabbrev-expand)
+(define-key yas-minor-mode-map (kbd "M-<kp-enter>")     'dabbrev-expand)
+
 ;;;;;;;;;;Toolbars
 (menu-bar-mode 't)
 (tool-bar-mode 'nil)  
@@ -444,7 +449,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Show full(er) buffer name in status bar
+(if (boundp 'InitialBufferName) () (setq InitialBufferName mode-line-buffer-identification))
 (setq-default mode-line-buffer-identification
-              (cons
-               '(:eval (replace-regexp-in-string "^.*/\\(.*\\)/" "\\1/" default-directory))
-               mode-line-buffer-identification))
+              (cons 'default-directory
+               ;'(:eval (replace-regexp-in-string "^.*/\\(.*\\)/" "\\1/" default-directory))
+               InitialBufferName))
