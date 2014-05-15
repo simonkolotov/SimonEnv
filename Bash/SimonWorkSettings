@@ -7,22 +7,25 @@ export PATH=$PATH:/usr/local/halcon/bin/x64-linux2.4-gcc40
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages:/home/simon/Experiments/Scripts:/home/simon/Lib:/home/simon/git/SilverJet/Apps/SolarJet/Project/qt/Lib
 
 #Shortcuts
-export SOLARJET=/home/simon/git/SolarJet/Apps/SolarJet/Project/qt/
-export SILVERJET=/home/simon/git/SilverJet/Apps/SolarJet/Project/qt/
+export SOLARJET=/home/simon/git/SolarJet/Apps/SolarJet/Project/qt
+export SILVERJET=/home/simon/git/SilverJet/Apps/SolarJet/Project/qt
 
-export XJETSRV=/mnt/xjetsrv/public/
-export SWGROUP=/mnt/xjetsrv/public/Groups/Software/
+export XJETSRV=/mnt/xjetsrv/public
+export SWGROUP=/mnt/xjetsrv/public/Groups/Software
 
-#export AUTOMATICA=/mnt/automatica/d/
-#export AUTOMATICA_SOLARJET=/mnt/automatica/d/git/SolarJet/Apps/SolarJet/Project/qt/
+#export AUTOMATICA=/mnt/automatica/d
+#export AUTOMATICA_SOLARJET=/mnt/automatica/d/git/SolarJet/Apps/SolarJet/Project/qt
 
-#export ALPHA=/mnt/alpha/
-#export ALPHA_SOLARJET=/mnt/alpha/git/SolarJet/Apps/SolarJet/Project/qt/
+#export ALPHA=/mnt/alpha
+#export ALPHA_SOLARJET=/mnt/alpha/git/SolarJet/Apps/SolarJet/Project/qt
 
 export MODELS=/home/simon/3D/Models
 export SLICES=/home/simon/3D/Slices
 
+export WMODELS=/mnt/xjetsrv/public/3D/Images/STL-Files
+export WSLICES=/mnt/xjetsrv/public/3D/Images/Samples
+
 export DISKONKEY=/mnt/DiskOnKey
 export DISKONKEY2=/mnt/DiskOnKey2  
 
-export INCOMING=/home/simon/Incoming/
+export INCOMING=/home/simon/Incoming
