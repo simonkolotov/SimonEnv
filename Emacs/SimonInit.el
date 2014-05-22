@@ -1,4 +1,13 @@
 ; -*- Encoding: utf-8 -*-
+;;======================================================================
+;;   emacs (not Xemacs) mode
+;;
+;; To use this file, add lines similar to the following to ~/.emacs:
+;;
+;;  (setq emacs-git "/home/simon/github/SimonEnv/Emacs/")
+;;  (setq default-notes-file "/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/notes.org")
+;;  (load (concat emacs-git "/SimonInit.el"))
+;;----------------------------------------------------------------------
 
 ;;;;;;;;;;EXTERNAL PLUGINS
 (add-to-list 'load-path "/home/simon/github/SimonEnv/Emacs/Plugins/")
@@ -454,3 +463,99 @@
               (cons 'default-directory
                ;'(:eval (replace-regexp-in-string "^.*/\\(.*\\)/" "\\1/" default-directory))
                InitialBufferName))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ; Org Mode
+(setq my-default-family "InconsolataDov")
+(setq my-default-font "Liberation Mono 8")
+
+(load "org-bullets.el")
+
+(require 'org)
+(require 'org-crypt)
+(defun my-org-hook ()
+  (local-set-key [(control c) (control ?.)] 'org-time-stamp)
+  (local-set-key "\M-I" 'org-toggle-inline-images);org-toggle-iimage-in-org)
+  (local-set-key "\C-c\M-c" 'org-screenshot)
+  (local-set-key "\C-c\C-pe" 'org-toggle-emphasis-markers)
+  (local-set-key "\C-c\C-pp" 'org-toggle-pretty-entities)
+  (local-set-key "\C-c\C-pi" 'org-toggle-iimage-inorg)
+  (variable-pitch-mode t)
+  (set-face-attribute 'org-table nil :family my-default-family)
+  (set-face-attribute 'org-checkbox nil :family my-default-family)
+  (set-face-attribute 'org-block nil :family my-default-family)
+  (set-face-attribute 'org-verbatim nil :family my-default-family :foreground "green4")
+  (org-bullets-mode)
+  (setq org-bullets-bullet-list
+        '("▸"
+          "•"
+          "•"
+          "•"
+          "•"
+          "•"
+          "•"
+          ;; ♥ ● ◇ ✚ ✜ ☯ ◆ ♠ ♣ ♦ ☢ ❀ ◆ ◖ ▶
+          ;;; Small
+          ;; ► • ★ ▸
+    ))
+
+  (setq org-hide-emphasis-markers nil)
+  (setq org-confirm-babel-evaluate nil)
+  (xmsi-mode)
+  (org-toggle-pretty-entities)
+  (setq bidi-paragraph-direction nil)
+  (setq org-export-html-postamble nil)
+  (setq org-export-html-validation-link "")
+  ;; Use journal theme if requested
+  (if (>= emacs-major-version 24)
+      (if (string-match "notes.org" (buffer-name) )
+          (progn
+            (disable-theme 'org-default)
+            (load-theme-buffer-local 'org-journal))
+        (load-theme-buffer-local 'org-default)))
+  (setq org-entities-user '(
+    ("models" "\\models" t "&8872;" "[models]" "models" "⊨")
+    ("indf" "{\bf 1}" t "&#120128;" "[indf]" "indf" "𝟙")
+    ("ell" "\\ell" t "&#2113;" "[ell]" "indf" "ℓ")
+    ))
+
+  )
+(add-hook 'org-mode-hook 'my-org-hook)
+
+;; Make all font-lock faces fonts use inconsolata
+(dolist (face '(font-lock-builtin-face 	
+                font-lock-comment-delimiter-face
+                font-lock-comment-face 	
+                font-lock-constant-face
+                font-lock-doc-face 	
+                font-lock-function-name-face
+                font-lock-keyword-face 	
+                font-lock-negation-char-face
+                font-lock-preprocessor-face 	
+                font-lock-regexp-grouping-backslash
+                font-lock-regexp-grouping-construct 	
+                font-lock-string-face
+                font-lock-type-face 	
+                font-lock-variable-name-face
+                font-lock-warning-face))
+  (set-face-attribute face nil :family my-default-family))
+
+
+                                        ; Source Languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((sh . t)
+   (perl . t)
+   (emacs-lisp . t)
+   (python . t)
+   (ditaa . t)
+   (dot . t)
+   (asymptote . t)
+   (plantuml . t)
+   (octave . t)
+   (R . t)
+   (C . t)
+   )) 
+(setq org-plantuml-jar-path
+      (concat emacs-git "/Plugins/plantuml.jar"))
