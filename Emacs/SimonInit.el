@@ -559,3 +559,20 @@
    )) 
 (setq org-plantuml-jar-path
       (concat emacs-git "/Plugins/plantuml.jar"))
+
+
+                                        ; convert lines into checkbox
+(defun org-set-line-checkbox (arg)
+  (interactive "P")
+  (let ((n (or arg 1)))
+    (when (region-active-p)
+      (setq n (count-lines (region-beginning)
+                           (region-end)))
+      (goto-char (region-beginning)))
+    (dotimes (i n)
+      (beginning-of-line)
+      (insert "- [ ] ")
+      (forward-line))
+    (beginning-of-line)))
+
+(global-set-key (kbd "C-c C-M-]") 'org-set-line-checkbox)
