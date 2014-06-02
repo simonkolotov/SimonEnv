@@ -573,7 +573,8 @@
       (beginning-of-line)
       (skip-chars-forward "[:blank:]")
       (insert "- [ ] ")
-      (forward-line))
-    (end-of-line)))
+      (if (> n 1)
+        (forward-line))
+    (end-of-line))))
 
 (global-set-key (kbd "C-M-]") 'org-set-line-checkbox)
