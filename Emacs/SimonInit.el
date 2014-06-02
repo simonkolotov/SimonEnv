@@ -571,8 +571,9 @@
       (goto-char (region-beginning)))
     (dotimes (i n)
       (beginning-of-line)
+      (skip-chars-forward "[:blank:]")
       (insert "- [ ] ")
       (forward-line))
-    (beginning-of-line)))
+    (end-of-line)))
 
-(global-set-key (kbd "C-c C-M-]") 'org-set-line-checkbox)
+(global-set-key (kbd "C-M-]") 'org-set-line-checkbox)
