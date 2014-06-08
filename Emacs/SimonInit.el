@@ -91,6 +91,7 @@
 (global-set-key (kbd "C-<f9>") 'compile) ; Compile
 
 (global-set-key "\M-`" 'next-error) ; Next Error (and also next file in dov-git-grep)
+(global-set-key "\M-~" 'previous-error) ; Previous Error (and also previous file in dov-git-grep)
 
                                         ; C-Tab: Next Buffer
 (global-set-key (kbd "C-<tab>") 'next-buffer)
