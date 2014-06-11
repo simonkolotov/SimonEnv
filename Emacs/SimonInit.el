@@ -469,7 +469,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Org Mode
 (setq my-default-family "InconsolataDov")
-(setq my-default-font "Liberation Mono 8")
+(setq my-default-font "InconsolataDov 11")
 
 (load "org-bullets.el")
 
