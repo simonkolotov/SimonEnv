@@ -4,7 +4,9 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then
   #Expand Env. Vars
   shopt -s direxpand # enable
   #shopt -u direxpand # disable
-  
+
+  shopt -s expand_aliases # enable
+  #shopt -s expand_aliases # disable
   
   # Replace Prompt
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then

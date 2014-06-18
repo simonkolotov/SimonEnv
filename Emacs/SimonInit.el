@@ -7,6 +7,8 @@
 ;;  (setq emacs-git "/home/simon/github/SimonEnv/Emacs/")
 ;;  (setq default-notes-file "/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/notes.org")
 ;;  (load (concat emacs-git "/SimonInit.el"))
+;;
+;;  The default font used is InconsolataDov. copy it from /home/simon/github/SimonEnv/Emacs/ to ~/fonts/
 ;;----------------------------------------------------------------------
 
 ;;;;;;;;;;EXTERNAL PLUGINS
