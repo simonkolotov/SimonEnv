@@ -21,7 +21,9 @@ export WMODELS=/mnt/xjetsrv/public/3D/Images/STL-Files
 export WSLICES=/mnt/xjetsrv/public/3D/Images/Samples
 
 export DISKONKEY=/mnt/DiskOnKey
-export DISKONKEY2=/mnt/DiskOnKey2  
+export DISKONKEY2=/mnt/DiskOnKey2
+
+export DECRYPTED=/mnt/Decrypted
 
 export INCOMING=/home/simon/Incoming
 
