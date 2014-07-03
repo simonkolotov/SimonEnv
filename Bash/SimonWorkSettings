@@ -25,8 +25,13 @@ export DISKONKEY2=/mnt/DiskOnKey2
 
 export DECRYPTED=/home/simon/Decrypted
 alias MountDropBox='encfs ~/Dropbox/Personal/ $DECRYPTED'
-alias UnmountDecrypted='fusermount -u $DECRYPTED'  
+alias MountDiskOnKey='encfs $DISKONKEY/Personal/ $DECRYPTED'    
+alias UnmountDecrypted='fusermount -u $DECRYPTED'
 
+export TRUECRYPT=/media/truecrypt1    
+alias TruecryptMount='truecrypt --mount '
+alias TruecryptUnmount='truecrypt -d $TRUECRYPT'    
+    
 export INCOMING=/home/simon/Incoming
 
 alias HydraRdp='xfreerdp -u machine -f 172.16.10.60'

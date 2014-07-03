@@ -5,9 +5,16 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python
 #Shortcuts
 export DISKONKEY=/mnt/DiskOnKey
 export DISKONKEY2=/mnt/DiskOnKey2
+  
 export DECRYPTED=/home/simon/Decrypted
 alias MountDropBox='encfs $PERSONAL/Dropbox/Personal/ $DECRYPTED'
-alias UnmountDecrypted='fusermount -u $DECRYPTED'  
+alias MountDiskOnKey='encfs $DISKONKEY/Personal/ $DECRYPTED'
+alias UnmountDecrypted='fusermount -u $DECRYPTED'
+
+export TRUECRYPT=/media/truecrypt1    
+alias TruecryptMount='truecrypt --mount '
+alias TruecryptUnmount='truecrypt -d $TRUECRYPT'    
+    
 export DATA=/mnt/Data
 export INCOMING=/mnt/Data/Incoming
 export PERSONAL=/mnt/Data/Personal
