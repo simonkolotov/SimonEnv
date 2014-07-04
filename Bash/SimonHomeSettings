@@ -7,7 +7,7 @@ export DISKONKEY=/mnt/DiskOnKey
 export DISKONKEY2=/mnt/DiskOnKey2
   
 export DECRYPTED=/home/simon/Decrypted
-alias MountDropBox='encfs $PERSONAL/Dropbox/Personal/ $DECRYPTED'
+alias MountDropBox='encfs $PERSONAL/Senya/Dropbox/Personal/ $DECRYPTED'
 alias MountDiskOnKey='encfs $DISKONKEY/Personal/ $DECRYPTED'
 alias UnmountDecrypted='fusermount -u $DECRYPTED'
 
