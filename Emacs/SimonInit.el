@@ -461,13 +461,25 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Show full(er) buffer name in status bar
-(if (boundp 'InitialBufferName) () (setq InitialBufferName mode-line-buffer-identification))
-(setq-default mode-line-buffer-identification
-              (cons 'default-directory
-               ;'(:eval (replace-regexp-in-string "^.*/\\(.*\\)/" "\\1/" default-directory))
-               InitialBufferName))
+;(if (boundp 'InitialBufferName) () (setq InitialBufferName mode-line-buffer-identification))
+;(setq-default mode-line-buffer-identification
+;              (cons 'default-directory
+;               ;'(:eval (replace-regexp-in-string "^.*/\\(.*\\)/" "\\1/" default-directory))
+;               InitialBufferName))
 
+                                        ;Show BufferName and Path in Upper Tab
+;;;;; Disable loading of “default.el” at startup,
+;;;;; in Fedora all it does is fix window title which I rather configure differently
+;;;(setq inhibit-default-init t)
+;;;
+;;;;; SHOW FILE PATH IN FRAME TITLE
+;;;(setq-default frame-title-format "%b (%f)")
+;;;
 
+;;;(setq frame-title-format
+;;;      (list (format "%s %%S: %%j " (system-name))
+;;;        '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Org Mode
 (setq my-default-family "InconsolataDov")

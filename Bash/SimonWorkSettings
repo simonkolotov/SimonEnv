@@ -6,7 +6,8 @@ export LD_LIBRARY_PATH=/home/simon/git/SilverJet/Apps/SolarJet/Project/qt/BinLin
 export PATH=$PATH:/usr/local/halcon/bin/x64-linux2.4-gcc40
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages
 
-export QTDIR=/home/simon/Qt5.2.0/5.2.0/gcc_64/
+export QTDIR=/home/simon/Qt5.2.0/5.2.0/gcc_64
+export QTMAKE=/home/simon/Qt5.2.0/5.2.0/gcc_64/bin/qmake
 
 #Shortcuts
 export SILVERJET=/home/simon/git/SilverJet/Apps/SolarJet/Project/qt
