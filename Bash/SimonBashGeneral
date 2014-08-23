@@ -20,4 +20,25 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then
   bind '"\e[B": history-search-forward'
   bind '"\eOA": history-search-backward'
   bind '"\eOB": history-search-forward'
+
+  #shortcuts
+  export DISKONKEY=/mnt/DiskOnKey
+  export DISKONKEY2=/mnt/DiskOnKey2
+  alias MountDiskOnKey='sudo mount /dev/sdc1 $DISKONKEY'
+  alias UnMountDiskOnKey='sudo umount $DISKONKEY'
+  
+  export DECRYPTED=/home/simon/Decrypted
+  alias MountDropBoxEncrypted='encfs ~/Dropbox/Personal/ $DECRYPTED'
+  alias MountDiskOnKeyEncrypted='encfs $DISKONKEY/Personal/ $DECRYPTED'    
+  alias UnmountDecrypted='fusermount -u $DECRYPTED'
+  
+  export TRUECRYPT=/media/truecrypt1    
+  alias MountTruecrypt='truecrypt --mount /dev/sdc2'
+  alias UnmountTruecrypt='truecrypt -d $TRUECRYPT'
+
+
+  export Galaxy=/home/simon/Galaxy/
+  alias MountGalaxy='simple-mtpfs $GALAXY'
+  alias UnmountGalaxy='fusermount -u $GALAXY'
+    
 fi
