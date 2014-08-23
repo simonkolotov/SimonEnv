@@ -37,7 +37,7 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then
   alias UnmountTruecrypt='truecrypt -d $TRUECRYPT'
 
 
-  export Galaxy=/home/simon/Galaxy/
+  export GALAXY=/home/simon/Galaxy
   alias MountGalaxy='simple-mtpfs $GALAXY'
   alias UnmountGalaxy='fusermount -u $GALAXY'
     
