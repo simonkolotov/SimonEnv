@@ -377,7 +377,7 @@
   (setq my-substatement-open 0)
   (setq my-access-label 0)
   (setq my-topmost-intro 0)
-  (update-indent-mode)
+  (update-indent-mode())
 
   ;; Python
   (setq py-indent-offset 2)
@@ -389,14 +389,10 @@
   
 (add-hook 'c-mode-hook
 (lambda ()
-(setq indent-tabs-mode nil)
-(setq tab-width 2)
-
-
-  
-
+;(setq indent-tabs-mode nil)
+;(setq tab-width 2)
                                         ;(setq indent-line-function (quote insert-tab))
-
+(xjet-indent-mode() )
 ))
 
 

@@ -23,4 +23,5 @@ export WSLICES=/mnt/xjetsrv/public/3D/Images/Samples
 
 export INCOMING=/home/simon/Incoming
 
-alias HydraRdp='xfreerdp -u machine -f 172.16.10.60'
+alias MountHydraRdp='xfreerdp -u machine -f 172.16.10.60'
+alias MountHydraRdesktop='rdesktop Hydra -g 90% -u simon -d XJETDOM -p !234rewq'
