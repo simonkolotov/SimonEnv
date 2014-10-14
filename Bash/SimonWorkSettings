@@ -1,4 +1,7 @@
+#####################################
 # User specific aliases and functions
+#####################################
+    
 export HALCONROOT=/usr/local/halcon
 export HALCONIMAGES=/mnt/xjetsrv/public/Groups/Software/Installs/HALCON/images 
 export PE_HOME=/home/simon/git/SilverJet/
@@ -9,11 +12,29 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python
 export QTDIR=/home/simon/Qt5.2.0/5.2.0/gcc_64
 export QTMAKE=/home/simon/Qt5.2.0/5.2.0/gcc_64/bin/qmake
 
-#Shortcuts
+
+pyqt5-env() {
+  #add pyqt5 to path (it's before pyqt4, so no problems)
+  export PATH=/usr/local/pyqt5/bin:$PATH
+  export PYTHONPATH=/usr/local/pyqt5/lib/python2.7/site-packages:$PYTHONPATH
+}
+
+    
+pyqt4-env() {
+  ##Remove pyqt5 from paths (pyqt4 is already there)
+  export PATH=${PATH//\/usr\/local\/pyqt5\/bin:/}
+  export PYTHONPATH=${PYTHONPATH//\/usr\/local\/pyqt5\/lib\/python2.7\/site-packages:/}
+}
+
+###########
+# Shortcuts
+###########  
+
 export SILVERJET=/home/simon/git/SilverJet/Apps/SolarJet/Project/qt
 
 export XJETSRV=/mnt/xjetsrv/public
 export SWGROUP=/mnt/xjetsrv/public/Groups/Software
+export SIMON=/mnt/xjetsrv/public/Groups/Software/Users/Simon
 
 export MODELS=/home/simon/3D/Models
 export SLICES=/home/simon/3D/Slices
@@ -23,5 +44,7 @@ export WSLICES=/mnt/xjetsrv/public/3D/Images/Samples
 
 export INCOMING=/home/simon/Incoming
 
-alias MountHydraRdp='xfreerdp -u machine -f 172.16.10.60'
-alias MountHydraRdesktop='rdesktop Hydra -g 90% -u simon -d XJETDOM -p !234rewq'
+  
+alias HydraRdp='xfreerdp -u machine -f 172.16.10.60'
+alias HydraRdesktop='rdesktop Hydra -g 90% -u simon -d XJETDOM -p !234rewq'
+  
