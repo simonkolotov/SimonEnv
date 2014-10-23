@@ -11,6 +11,7 @@
 ;;  The default font used is InconsolataDov. copy it from /home/simon/github/SimonEnv/Emacs/ to ~/.fonts/
 ;;----------------------------------------------------------------------
 
+
 ;;;;;;;;;;EXTERNAL PLUGINS
 (add-to-list 'load-path "/home/simon/github/SimonEnv/Emacs/Plugins/")
 (add-to-list 'load-path "/home/simon/github/SimonEnv/Emacs/Plugins/magit")
