@@ -88,7 +88,6 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then
   
   export DISKONKEY=/mnt/DiskOnKey
   export DISKONKEY2=/mnt/DiskOnKey2
-  alias MountDiskOnKey='sudo mount /dev/sdc1 $DISKONKEY'
   alias UnMountDiskOnKey='sudo umount $DISKONKEY'
   
   export DECRYPTED=/home/simon/Decrypted
@@ -100,7 +99,6 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then
   alias PhoneBookAK='openoffice.org /home/simon/Decrypted/Telephones/AK\ telephon_book.doc'
 
   export TRUECRYPT=/media/truecrypt1    
-  alias MountTruecrypt='truecrypt --mount /dev/sdc2'
   alias UnmountTruecrypt='truecrypt -d $TRUECRYPT'
 
   export GALAXY=/home/simon/Galaxy

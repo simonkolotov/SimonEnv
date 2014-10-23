@@ -47,4 +47,7 @@ export INCOMING=/home/simon/Incoming
   
 alias HydraRdp='xfreerdp -u machine -f 172.16.10.60'
 alias HydraRdesktop='rdesktop Hydra -g 90% -u simon -d XJETDOM -p !234rewq'
+
+alias MountDiskOnKey='sudo mount /dev/sdb1 $DISKONKEY'
+alias MountTruecrypt='truecrypt --mount /dev/sdb2'
   

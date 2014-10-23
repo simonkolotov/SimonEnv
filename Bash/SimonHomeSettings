@@ -7,3 +7,6 @@ export DATA=/mnt/Data
 export INCOMING=/mnt/Data/Incoming
 export PERSONAL=/mnt/Data/Personal
 export SEAGATE=/mnt/Seagate
+
+alias MountDiskOnKey='sudo mount /dev/sdc1 $DISKONKEY'
+alias MountTruecrypt='truecrypt --mount /dev/sdc2'  
