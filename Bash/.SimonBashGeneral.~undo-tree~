@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "40af620f847e4f31661a92d4f57e712f0d8886b2"
 [cl-struct-undo-tree [nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil (#1=[nil nil ((2933 . 2983)) nil (21594 19382 612157 667000) 0 nil]) ((2932 . 2935)) nil (21594 19382 612165 946000) 0 nil]) (("
 " . 2887) (undo-tree-id41 . -1) (undo-tree-id42 . -1) (undo-tree-id43 . -1) (undo-tree-id44 . -1)) nil (21594 19382 612184 783000) 0 nil]) (("  alias UnmountTruecrypt='truecrypt -d $TRUECRYPT'" . -2887) (t 21594 19374 479714 735000) (undo-tree-id45 . -50) (undo-tree-id46 . -50) (undo-tree-id47 . -50)) nil (21594 19382 612197 332000) 0 nil]) (("
@@ -14,3 +15,9 @@
 " . 2371)) ((2371 . 2372)) (21594 19187 445053 657000) 0 nil]) (("  alias MountDropBoxEncrypted='encfs ~/Dropbox/Personal/ $DECRYPTED'" . -2371) (undo-tree-id0 . -68) (undo-tree-id1 . -68) (undo-tree-id2 . -68)) ((2371 . 2439)) (21594 19187 445318 608000) 0 nil]) ((" " . -2326) (undo-tree-id3 . -1) (undo-tree-id4 . -1)) nil (21594 19187 741107 157000) 0 nil]) ((" " . -2327) (undo-tree-id5 . -1) (undo-tree-id6 . -1)) nil (21594 19187 445103 277000) 0 nil]) ((" " . -2328) (undo-tree-id7 . -1) (undo-tree-id8 . -1)) nil (21594 19187 445113 515000) 0 nil]) ((2277 . 2279)) nil (21594 19187 445117 780000) 0 nil]) ((2324 . 2325)) nil (21594 19187 445120 877000) 0 nil]) ((nil rear-nonsticky nil 2323 . 2324) (nil fontified t 2300 . 2324) (nil fontified t 2299 . 2300) (nil fontified t 2283 . 2299) (nil fontified t 2277 . 2283) (2277 . 2324)) nil (21594 19187 445142 438000) 0 nil]) ((2276 . 2279) ("  " . 2276) 2278 (undo-tree-id9 . -2) (undo-tree-id10 . -2)) nil (21594 19187 445153 571000) 0 nil]) ((2275 . 2278)) nil (21594 19187 445158 908000) 0 nil]) (("  alias MountDiskOnKey='sudo mount /dev/sdc1 $DISKONKEY'
   alias UnMountDiskOnKey='sudo umount $DISKONKEY'
 " . -2276) (t 21564 56774 307700 287000)) nil (21594 19187 445163 215000) 0 nil]) nil nil (21594 19187 445167 733000) 0 nil] #1# 1860 67 nil]
+=======
+"835e13a43b182866c738d4acdb95d8a67ad1671c"
+[cl-struct-undo-tree [nil ([nil ([nil (#1=[nil nil (("
+" . 2786)) nil (21577 19657 334855 638000) 0 nil]) (("  alias MountTruecrypt='truecrypt --mount /dev/sdc2'" . -2786) (t 21577 19605 43013 382000) (undo-tree-id1 . -52) (undo-tree-id2 . -52) (undo-tree-id3 . -52)) nil (21577 19657 334882 296000) 0 nil]) (("  alias MountDiskOnKey='sudo mount /dev/sdc1 $DISKONKEY'
+" . -2276) (t 21569 23033 76248 846000) (undo-tree-id0 . -57)) nil (21577 19604 998823 500000) 0 nil]) nil nil (21577 19604 998832 191000) 0 nil] #1# 182 3 nil]
+>>>>>>> 6f1aa17e7397d083489155d04dd4660faa33ce42
