@@ -85,26 +85,26 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then
   ##########
   #Shortcuts
   ##########
-  
+
+  export DECRYPTED=/home/simon/Decrypted
+  export GALAXY=/home/simon/Galaxy
+    
   export DISKONKEY=/mnt/DiskOnKey
   export DISKONKEY2=/mnt/DiskOnKey2
-  alias MountDiskOnKey='sudo mount /dev/sdc1 $DISKONKEY'
-  alias UnMountDiskOnKey='sudo umount $DISKONKEY'
-  
+
   export DECRYPTED=/home/simon/Decrypted
-  alias MountDropBoxEncrypted='encfs ~/Dropbox/Personal/ $DECRYPTED'
+  export TRUECRYPT=/media/truecrypt1
+
+  alias MountGalaxy='simple-mtpfs $GALAXY'  
+  alias MountDropBoxEncrypted='encfs $DROPBOX/Personal/ $DECRYPTED'
   alias MountDiskOnKeyEncrypted='encfs $DISKONKEY/Personal/ $DECRYPTED'    
-  alias UnmountDecrypted='fusermount -u $DECRYPTED'
   
-  alias PhoneBook='openoffice.org /home/simon/Decrypted/Telephones/Phonebook.xls'
-  alias PhoneBookAK='openoffice.org /home/simon/Decrypted/Telephones/AK\ telephon_book.doc'
+  alias PhoneBook='openoffice.org $DECRYPTED/Telephones/Phonebook.xls'
+  alias PhoneBookAK='openoffice.org $DECRYPTED/Telephones/AK\ telephon_book.doc'
 
-  export TRUECRYPT=/media/truecrypt1    
-  alias MountTruecrypt='truecrypt --mount /dev/sdc2'
-  alias UnmountTruecrypt='truecrypt -d $TRUECRYPT'
-
-  export GALAXY=/home/simon/Galaxy
-  alias MountGalaxy='simple-mtpfs $GALAXY'
+  alias UnmountDiskOnKey='sudo umount $DISKONKEY'  
+  alias UnmountDecrypted='fusermount -u $DECRYPTED'   
   alias UnmountGalaxy='fusermount -u $GALAXY'
+  alias UnmountTruecrypt='truecrypt -d $TRUECRYPT'  
     
 fi
