@@ -3,6 +3,7 @@
 # --
 int main(int argc, char *argv[])
 {
-    $0
-    return 0;
+  $0
+  exit(0);  
+  return 0;
 }
