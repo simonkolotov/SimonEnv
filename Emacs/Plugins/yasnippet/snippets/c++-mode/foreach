@@ -1,0 +1,7 @@
+# name: for(const auto &Member:Collection)
+# key: foreach
+# --
+for (const ${1:auto} &${2:Member}:${3:Collection})
+  {
+    ${4:}
+  }
