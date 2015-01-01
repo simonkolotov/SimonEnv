@@ -1,0 +1,102 @@
+    int argp = 1;
+
+    // Defaults
+    string ModelFilename{""};
+    float ZResolutionInMM{-1};
+    float StartSliceHeightInMM{-1}, EndSliceHeightInMM{-1};
+    int SlicesNum{-1};
+    bool Verbose{true};  //TODO: Change this
+
+    string WhitelistFilename{""};
+
+    vector <int> Whitelist;
+
+  
+  
+    while(argp < argc && argv[argp][0] == '-')
+    {
+        char *S_ = argv[argp++];
+
+        CASE("-help") {
+          cout <<"CSlicer Debugger Program\n"
+               <<"Syntax:\n"
+               <<"    ClipperTrial -Model ModelFilename [option] ...\n"
+               <<"\n"
+               <<"Options:\n"
+               <<"    -ZRes                    ZResolution         Set default slicing resolution\n"
+               <<"    -StartSlice              StartHeightInMM     Set start Slice Height\n"
+               <<"    -EndSlice                EndHeightInMM       Set end Slice Height\n"
+               <<"    -SlicesNum               NSlices             Set number of slices "
+               << "(overrides ZResolution)\n"
+               <<"    -Whitelist               Fname               Open JSON Whitelist\n"
+               <<"    -Verbose                                     Force verbose output\n";
+            
+            exit(0);
+        }
+
+        CASE("-Model") {
+          ModelFilename = argv[argp++];
+          continue;
+        }
+        
+        CASE("-ZResolutionInMM") {
+          ZResolutionInMM = atof(argv[argp++]);
+          continue;
+        }
+
+        CASE("-StartSliceHeightInMM") {
+          StartSliceHeightInMM = atof(argv[argp++]);
+          continue;
+        }
+
+        CASE("-EndSliceHeightInMM") {
+          EndSliceHeightInMM = atof(argv[argp++]);
+          continue;
+        }
+
+        CASE("-SlicesNum") {
+          SlicesNum = atoi(argv[argp++]);
+          continue;
+        }
+
+        CASE("-WhitelistFilename") {
+          WhitelistFilename = argv[argp++];
+          continue;
+        }
+
+        CASE("-Verbose") {
+          Verbose = true;
+          continue;
+        }
+        
+        Die("Unknown option %s!\n", S_);
+    }
+
+
+    if (ModelFilename == "")
+      Die("Model filename required!\n");
+
+    if (ZResolutionInMM < 0)
+    {
+      cout << "Default Resolution is 5um\n";
+      ZResolutionInMM = 5e-3;
+    }
+        
+    if (StartSliceHeightInMM < 0)
+    {
+      cout << "Default StartSliceHeight is Model Bottom\n";
+      StartSliceHeightInMM = -1;
+    }
+
+
+    if (EndSliceHeightInMM < 0)
+    {
+      cout << "Default EndSliceHeight is Model Top\n";
+      StartSliceHeightInMM = -1;
+    }
+
+    if (SlicesNum < 0)
+    {
+      cout << "Default SlicesNum is By ZResolution\n";
+      SlicesNum = -1;
+    }

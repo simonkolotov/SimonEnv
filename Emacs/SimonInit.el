@@ -13,10 +13,17 @@
 
 
 ;;;;;;;;;;EXTERNAL PLUGINS
-(add-to-list 'load-path "/home/simon/github/SimonEnv/Emacs/Plugins/")
-(add-to-list 'load-path "/home/simon/github/SimonEnv/Emacs/Plugins/magit")
-(add-to-list 'load-path "/home/simon/github/SimonEnv/Emacs/Plugins/yasnippet")
+(add-to-list 'load-path (concat emacs-git "Plugins/"))
+(add-to-list 'load-path (concat emacs-git "Plugins/magit"))
+(add-to-list 'load-path (concat emacs-git "Plugins/yasnippet"))
+(add-to-list 'load-path (concat emacs-git "Plugins/org-mode"))
+(add-to-list 'load-path (concat emacs-git "Plugins/org-mode/lisp"))
+(add-to-list 'load-path (concat emacs-git "Plugins/org-mode/contrib/lisp"))
 
+
+;;;;;;;;;;XSMI for math symbols
+(require 'xmsi-math-symbols-input)
+(xmsi-mode)
 ;;;;;;;;;;Undo-Tree
 (require 'undo-tree)
 (global-undo-tree-mode)
@@ -31,6 +38,8 @@
 ;;;;;;;;;; ido-mode
 (require 'ido)
 (ido-mode t)
+
+
 
 ;;;;;;;;;; yas for programming templates
 ;(add-to-list 'load-path
@@ -484,6 +493,9 @@
 
 (load "org-bullets.el")
 
+; This is a bug work around
+(defun org-element-cache-reset (&optional all) (interactive))
+
 (require 'org)
 (require 'org-crypt)
 (defun my-org-hook ()
@@ -534,6 +546,9 @@
 
   )
 (add-hook 'org-mode-hook 'my-org-hook)
+
+;;export to html-slidy
+(require 'ox-slidy)
 
 ;; Make all font-lock faces fonts use inconsolata
 (dolist (face '(font-lock-builtin-face 	
@@ -590,3 +605,38 @@
     (end-of-line))))
 
 (global-set-key (kbd "C-M-]") 'org-set-line-checkbox)
+
+;;Define programs to open files
+(if (string-match "mingw-nt" system-configuration)
+    (progn
+      (setq org-file-apps
+            (append
+             '(("png" . "c:/progra~2/IrfanView/i_view32.exe %s"))
+             '(("doc" . "\"c:/Program Files (x86)/OpenOffice.org 3/program/soffice.exe\" %s"))
+
+             org-file-apps
+             ))
+      )
+  (progn 
+    (setq org-file-apps
+          (append
+           '(("png" . "eog %s"))
+           '(("pdf" . "evince %s"))
+           '(("svg" . "inkscape %s"))
+           '(("net" . "/usr/local/samiam/runsamiam %s"))
+           '(("xcf" . "gimp %s"))
+           '(("giv" . "giv %s"))
+           '(("doc" . "libreoffice -norestore %s"))
+           '(("odt" . "libreoffice -norestore %s"))
+           '(("gnumeric" . "gnumeric %s"))
+           '(("html" . "firefox %s"))
+           org-file-apps))))
+
+(setq org-src-lang-modes
+      '(("elisp" . emacs-lisp)
+        ("ditaa" . artist)
+        ("asymptote" . asy)
+        ("dot" . fundamental)
+        ("perl" . cperl)
+        ("python" . python)
+        ))
