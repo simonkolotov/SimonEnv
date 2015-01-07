@@ -387,7 +387,7 @@
   (setq my-substatement-open 0)
   (setq my-access-label 0)
   (setq my-topmost-intro 0)
-  (update-indent-mode())
+  (update-indent-mode)
 
   ;; Python
   (setq py-indent-offset 2)
@@ -395,7 +395,7 @@
 
 (add-hook 'c++-mode-hook
 (lambda ()
-(xjet-indent-mode())))
+(xjet-indent-mode)))
   
 (add-hook 'c-mode-hook
 (lambda ()
