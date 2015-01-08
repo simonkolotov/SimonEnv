@@ -266,13 +266,41 @@
 ;(electric-pair-mode f)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Set some auto modes
+(setq auto-mode-alist
+      (append
+       (list (cons "\\.cmake$" 'cmake-mode))
+
+       (list (cons "\\.pro$" 'text-mode))
+       
+       (list (cons "SConstruct" 'python-mode))
+       (list (cons "SConscript" 'python-mode))
+       (list (cons "\\.py$" 'python-mode))
+       (list (cons "\\.run$" 'python-mode))
+       
+       (list (cons "\\.hh$" 'c++-mode))
+       (list (cons "\\.H$" 'c++-mode))
+       (list (cons "\\.cxx$" 'c++-mode))
+
+       (list (cons "\\.json$" 'js2-mode))
+
+       (list (cons "\\.xml$" 'xml-mode)) 
+
+       (list (cons "\\.txt$" 'text-mode))
+       
+       (list (cons "\\.org" 'org-mode))
+       
+       auto-mode-alist))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
                                         ; python-mode
 (setq py-install-directory "/home/simon/github/SimonEnv/Emacs/Plugins/python-mode.el-6.1.2")
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
-
-                                        ; use python-mode for .run files
-(add-to-list 'auto-mode-alist '("\\.run\\'" . python-mode))
 
                                         ; use IPython
 (setq-default py-shell-name "ipython")
