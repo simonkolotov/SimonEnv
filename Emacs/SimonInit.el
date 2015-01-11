@@ -14,6 +14,7 @@
 
 ;;;;;;;;;;EXTERNAL PLUGINS
 (add-to-list 'load-path (concat emacs-git "Plugins/"))
+(add-to-list 'load-path (concat emacs-git "Plugins/git-modes")) ;various modes required for magit
 (add-to-list 'load-path (concat emacs-git "Plugins/magit"))
 (add-to-list 'load-path (concat emacs-git "Plugins/yasnippet"))
 (add-to-list 'load-path (concat emacs-git "Plugins/org-mode"))
