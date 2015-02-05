@@ -96,7 +96,7 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then
   export TRUECRYPT=/media/truecrypt1
 
   alias MountGalaxy='simple-mtpfs $GALAXY'
-  alias MountGalaxyEncrypted='encfs $GALAXY/Personal/ $DECRYPTED'     
+  alias MountGalaxyEncrypted='encfs $GALAXY/Card/Personal/ $DECRYPTED'     
   alias MountDropBoxEncrypted='encfs $DROPBOX/Personal/ $DECRYPTED'
   alias MountDiskOnKeyEncrypted='encfs $DISKONKEY/Personal/ $DECRYPTED'    
   
