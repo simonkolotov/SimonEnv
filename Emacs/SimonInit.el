@@ -114,6 +114,10 @@
 
 
                                         ; Scroll with Alt-Up/Down
+(setq scroll-step 1)
+(setq scroll-conservatively 10000)
+(setq auto-window-vscroll nil)
+
 ; NB: scrolling down = moving the window up...
 (global-set-key (kbd "<M-up>")   (lambda () (interactive) (scroll-down 1)))
 (global-set-key (kbd "<M-kp-up>")   (lambda () (interactive) (scroll-down 1)))
@@ -377,7 +381,8 @@
                                         ; Change TAB to 2 spaces
                                         ;(setq c-basic-indent 2)
 (setq-default tab-width 2)
-(setq python-indent 2)
+(setq python-indent tab-width)
+(setq perl-indent-level tab-width)
                                         ;(setq tab-width 2)
 
 (setq indent-line-function 'insert-tab)
