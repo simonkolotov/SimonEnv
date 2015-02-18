@@ -1,0 +1,9 @@
+# Backup.sh
+
+if [ -f /home/simon/github/SimonEnv/Bash/SimonWorkBackup ]; then
+	source /home/simon/github/SimonEnv/Bash/SimonWorkBackup
+fi
+
+#if [ -f /home/simon/github/SimonEnv/Bash/SimonHomeSettings ]; then
+#	source /home/simon/github/SimonEnv/Bash/SimonHomeSettings
+#fi

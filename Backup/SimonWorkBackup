@@ -1,0 +1,18 @@
+#!/bin/bash
+
+cd /home/simon/git/SilverJet/
+git diff >> ../SilverJetDiff.diff
+
+backupdir=/mnt/xjetsrv/public/Groups/Software/Backup/Users/Simon
+cd $backupdir
+#Move Previous days backup
+mv backup-simon-simonpc.tgz.bak backup-simon-simonpc.tgz.bak.bak
+mv backup-simon-simonpc.tgz backup-simon-simonpc.tgz.bak
+
+#Backup all files
+cd /
+#                    Tar-File                           SilverJet Diff                scripts     desktop shortcuts        Incoming             IPython Notebooks             Learning           Personal              CSlicer           configs             bash history            bash config           bash config undo             emacs config                     Notes                                                           Slicing and Support Document
+tar -czf $backupdir/backup-simon-simonpc.tgz home/simon/git/SilverJetDiff.diff  home/simon/scripts home/simon/Desktop  home/simon/Incoming home/simon/IPythonNotebooks home/simon/Learning  home/simon/Personal home/simon/CSlicer home/simon/.config home/simon/.bash_history home/simon/.bashrc home/simon/..bashrc.~undo-tree~ home/simon/.emacs /mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes /mnt/xjetsrv/public/Groups/Software/Users/Simon/SlicingAndSupport
+
+#remove the diff file (otherwise it gets concatenated...)
+rm /home/simon/git/SilverJetDiff.diff

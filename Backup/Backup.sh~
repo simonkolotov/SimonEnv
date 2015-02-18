@@ -1,0 +1,9 @@
+# copy this file to ~/scripts/Backup.sh
+
+if [ -f /home/simon/github/SimonEnv/Bash/SimonWorkBackup ]; then
+	  source /home/simon/github/SimonEnv/Bash/SimonWorkBackup
+fi
+
+#if [ -f /home/simon/github/SimonEnv/Bash/SimonHomeBackup ]; then
+#	source /home/simon/github/SimonEnv/Bash/SimonHomeBackup
+#fi

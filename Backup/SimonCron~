@@ -1,0 +1,10 @@
+#as root Copy this file to /var/spools/cron/simon
+
+#--------------------------------------------      
+    
+# run five minutes after midnight, monday to friday
+
+# Minute   Hour   Day of Month       Month          Day of Week        Command    
+# (0-59)  (0-23)     (1-31)    (1-12 or Jan-Dec)  (0-6 or Sun-Sat)                
+    5        0         *              *                0-5            /home/simon/scripts/backup.sh
+#

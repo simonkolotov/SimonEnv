@@ -1,4 +1,4 @@
 SimonEnv
 ========
 
-Emacs and Bash environment
+SSH, Backup, Emacs and Bash backup and transferral utility
