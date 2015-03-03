@@ -4,8 +4,8 @@
     
 export HALCONROOT=/usr/local/halcon
 export HALCONIMAGES=/mnt/xjetsrv/public/Groups/Software/Installs/HALCON/images 
-export PE_HOME=/home/simon/git/SilverJet/
-export LD_LIBRARY_PATH=/home/simon/git/SilverJet/Apps/SolarJet/Project/qt/BinLinux:/usr/local/halcon/lib/x64-linux2.4-gcc40/:/usr/local/lib
+export PE_HOME=/home/simon/git/MetalJet/
+export LD_LIBRARY_PATH=/home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt/BinLinux:/usr/local/halcon/lib/x64-linux2.4-gcc40/:/usr/local/lib
 export PATH=$PATH:/usr/local/halcon/bin/x64-linux2.4-gcc40
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages
 
@@ -31,7 +31,7 @@ pyqt4-env() {
 # Shortcuts
 ###########  
 
-export SILVERJET=/home/simon/git/SilverJet/Apps/SolarJet/Project/qt
+export METALJET=/home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt/
 
 export XJETSRV=/mnt/xjetsrv/public
 export SWGROUP=/mnt/xjetsrv/public/Groups/Software
