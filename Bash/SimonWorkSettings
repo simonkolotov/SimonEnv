@@ -49,5 +49,5 @@ export DROPBOX=/home/simon/Dropbox/
 alias HydraRdp='xfreerdp -u machine -f 172.16.10.60'
 alias HydraRdesktop='rdesktop Hydra -g 1640x980 -u simon -d XJETDOM -p Senya84K'
 
-alias MountDiskOnKey='sudo mount /dev/sdb2 $DISKONKEY'
-alias MountTruecrypt='truecrypt --mount /dev/sdb1'
+alias MountDiskOnKey='sudo mount /dev/sdb1 $DISKONKEY'
+alias MountTruecrypt='truecrypt --mount /dev/sdb2'

@@ -540,6 +540,7 @@
   (local-set-key "\C-c\C-pe" 'org-toggle-emphasis-markers)
   (local-set-key "\C-c\C-pp" 'org-toggle-pretty-entities)
   (local-set-key "\C-c\C-pi" 'org-toggle-iimage-inorg)
+  (setq org-export-with-sub-superscripts "{}")
   (variable-pitch-mode t)
   (set-face-attribute 'org-table nil :family my-default-family)
   (set-face-attribute 'org-checkbox nil :family my-default-family)
