@@ -1,0 +1,49 @@
+* <2014-03-18 Tue>
+** Setting up ssh
+*** yum install openssh-server
+*** on source computer:
+#+BEGIN_SRC bash
+    ssh-keygen
+
+    cat .ssh/id_rsa.pub
+#+END_SRC
+*** on destination computer:
+#+BEGIN_SRC bash
+    cat >> .ssh/authorised_keys
+#+END_SRC
+    copy the cat at source computer to the file
+
+    C-d to close
+
+*** on source computer:
+    emacs .ssh/config
+
+    paste into the file (e.g.):
+#+BEGIN_SRC bash
+    Host *
+      ForwardX11 yes
+      GSSAPIAuthentication=no
+      ForwardX11Trusted yes
+
+    Host simonk
+      Hostname 172.16.10.122
+#+END_SRC
+
+    change ownership:
+#+BEGIN_SRC bash
+    chmod -ogrw .ssh/config (remove permission to read and write from Others and Group)
+#+END_SRC
+
+*** port forwarding:
+    To go immediately to the desired computer (by 1 step rather than ssh on ssh):
+    add the following to the config file:
+
+    Host tongariro
+    ProxyCommand ssh  dovg nc 172.16.10.122 22 (?)
+      
+
+** copying ssh settings from old location to new
+*** copy .ssh dir
+*** chown -R simon .ssh (change ownership to me)
+*** chmod -og-rwx .ssh (remove permission to read write or execute from Others and Group)
+
