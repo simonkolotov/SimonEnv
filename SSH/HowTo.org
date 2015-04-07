@@ -25,8 +25,14 @@
       GSSAPIAuthentication=no
       ForwardX11Trusted yes
 
-    Host simonk
-      Hostname 172.16.10.122
+Host XJetDovg
+  Hostname 212.29.197.133
+
+Host XJetSimonK
+  ProxyCommand ssh XJetDovg nc 172.16.10.122 22
+
+Host swteam
+  ProxyCommand ssh XJetDovg nc 172.16.10.84 22
 #+END_SRC
 
     change ownership:
