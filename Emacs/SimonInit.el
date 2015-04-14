@@ -21,6 +21,17 @@
 (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/contrib/lisp"))
 
 
+;;;;;;;;;;Env Vars for MetalJet compilation
+(setenv "QMAKE" "qmake-qt5")
+(setenv "QTDIR" "/usr")
+(setenv "XJETQTVERSION" "QT5")
+
+(setenv "PE_HOME" "/home/simon/git/MetalJet")
+(setenv "METALJET" "$PE_HOME/XjetApps/MetalJet/Apps/Project/qt/" t)
+(setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages")
+(setenv "LD_LIBRARY_PATH" "$METALJET/BinLinux/:/usr/local/lib" t)
+
+
 ;;;;;;;;;;XSMI for math symbols
 (require 'xmsi-math-symbols-input)
 (xmsi-mode)
