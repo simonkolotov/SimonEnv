@@ -11,6 +11,56 @@
 ;;  The default font used is InconsolataDov. copy it from /home/simon/github/SimonEnv/Emacs/ to ~/.fonts/
 ;;----------------------------------------------------------------------
 
+;;Win vs Linux
+(if (string-match "mingw-nt" system-configuration)
+    (progn
+      (if (not (boundp 'emacs-git))
+          (setq emacs-git "C:/Simon/github/SimonEnv/Emacs/"))
+      (if (not (boundp 'emacs-persistance-dir))
+          (setq emacs-persistance-dir "C:/Documents and Settings/simon/Application Data/.emacs.d"))
+      
+                                        ;      (set-default-font "-*-Lucida Console-*-*-*-*-15-*-*-*-*-*-*")
+      (set-default-font "-*-DejaVu Sans Mono-normal-r-normal-normal-14-*-*-*-*-*-iso10646-1")
+      (setq browse-url-generic-program "c:/Program Files (x86)/Mozilla Firefox/firefox.exe")
+      (setq my-default-family "DejaVu Sans Mono")
+
+      ;; don't use Hebrew locale!
+      (setq system-time-locale "C")
+      
+      ;; Load windows utilities (?)
+;      (load (concat emacs-git "win-utils.el")))
+      )
+  (progn
+;    (setq my-default-family "Liberation Mono")
+    (setq my-default-family "InconsolataDov")
+    (setq my-default-font "InconsolataDov")
+    (setq browse-url-generic-program "google-chrome")
+    (if (not (boundp 'emacs-git))
+        (setq emacs-git "/home/simon/github/SimonEnv/Emacs/"))
+    (if (not (boundp 'emacs-persistance-dir))
+        (setq emacs-persistance-dir "/home/simon/.emacs.d"))
+    (if (not (boundp 'my-default-font))
+        (setq my-default-font "Liberation Mono 8"))
+
+    (condition-case err
+        (set-default-font my-default-font)
+                                        ;    (set-default-font "Consolas 12") 
+                                        ;     (set-default-font "lucidasanstypewriter-bold-14")
+                                        ;     (set-default-font "lucidasanstypewriter-bold-12")
+                                        ;       (set-default-font "Bitstream Vera Sans Mono-11")
+
+      (error "No such font, but who cares"))
+    
+      ;; Use Miriam mono font for Hebrew
+    (set-fontset-font "fontset-default" '(#x5d0 . #x5ff) "Miriam Mono CLM:bold")
+    (set-face-font 'default "fontset-default")
+    (setq load-path (append (list
+                             "/usr/local/share/emacs/site-lisp"
+                             ) load-path))
+
+    )
+  )
+
 ;;;;;;;;;;EXTERNAL PLUGINS
 (add-to-list 'load-path (concat emacs-git "Plugins/"))
 (add-to-list 'load-path (concat emacs-git "Plugins/git-modes")) ;various modes required for magit
@@ -23,8 +73,8 @@
 (add-to-list 'load-path (concat emacs-git "Plugins/autocomplete"))
 (add-to-list 'load-path (concat emacs-git "Plugins/fill-column-indicator-1.83"))
 
-;;;;;;;;;;Env Vars for MetalJet compilation
-;;TODO: Windows vs Linux
+        
+;;;;;;;;;;Env Vars for MetalJet compilation        
 (setenv "QMAKE" "qmake-qt5")
 (setenv "QTDIR" "/usr")
 (setenv "XJETQTVERSION" "QT5")
