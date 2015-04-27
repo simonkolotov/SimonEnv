@@ -16,10 +16,12 @@
 (add-to-list 'load-path (concat emacs-git "Plugins/git-modes")) ;various modes required for magit
 (add-to-list 'load-path (concat emacs-git "Plugins/magit"))
 (add-to-list 'load-path (concat emacs-git "Plugins/yasnippet"))
+(add-to-list 'load-path (concat emacs-git "Plugins/ein"))
 (add-to-list 'load-path (concat emacs-git "Plugins/org-mode"))
 (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/lisp"))
 (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/contrib/lisp"))
-
+(add-to-list 'load-path (concat emacs-git "Plugins/autocomplete"))
+(add-to-list 'load-path (concat emacs-git "Plugins/fill-column-indicator-1.83"))
 
 ;;;;;;;;;;Env Vars for MetalJet compilation
 (setenv "QMAKE" "qmake-qt5")
@@ -31,7 +33,8 @@
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages")
 (setenv "LD_LIBRARY_PATH" "$METALJET/BinLinux/:/usr/local/lib" t)
 
-
+;;;;;;;;;;ein for IPython Notebooks in emacs
+(require 'ein-ipynb-mode)
 ;;;;;;;;;;XSMI for math symbols
 (require 'xmsi-math-symbols-input)
 (xmsi-mode)
@@ -252,9 +255,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; auto-complete
-(add-to-list 'load-path "~/github/SimonEnv/Emacs/Plugins/autocomplete")
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/github/SimonEnv/Emacs/autocomplete/ac-dict")
+(add-to-list 'ac-dictionary-directories (concat emacs-git "autocomplete/ac-dict"))
 (ac-config-default)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -262,7 +264,6 @@
 (savehist-mode t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Fill-Column Indicator
-(add-to-list 'load-path "~/github/SimonEnv/Emacs/Plugins/fill-column-indicator-1.83")
 (require 'fill-column-indicator)
 (define-globalized-minor-mode
   global-fci-mode fci-mode (lambda () (fci-mode 1)))
