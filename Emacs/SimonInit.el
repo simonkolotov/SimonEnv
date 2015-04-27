@@ -24,6 +24,7 @@
 (add-to-list 'load-path (concat emacs-git "Plugins/fill-column-indicator-1.83"))
 
 ;;;;;;;;;;Env Vars for MetalJet compilation
+;;TODO: Windows vs Linux
 (setenv "QMAKE" "qmake-qt5")
 (setenv "QTDIR" "/usr")
 (setenv "XJETQTVERSION" "QT5")
@@ -314,7 +315,7 @@
 
 
                                         ; python-mode
-(setq py-install-directory "/home/simon/github/SimonEnv/Emacs/Plugins/python-mode.el-6.1.2")
+(setq py-install-directory (concat emacs-git "Plugins/python-mode.el-6.1.2"))
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
 
