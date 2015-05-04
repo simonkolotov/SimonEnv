@@ -39,8 +39,6 @@
         (setq emacs-git "/home/simon/github/SimonEnv/Emacs/"))
     (if (not (boundp 'emacs-persistance-dir))
         (setq emacs-persistance-dir "/home/simon/.emacs.d"))
-    (if (not (boundp 'my-default-font))
-        (setq my-default-font "Liberation Mono 8"))
 
     (condition-case err
         (set-default-font my-default-font)
