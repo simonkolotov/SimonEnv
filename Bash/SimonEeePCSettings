@@ -1,0 +1,11 @@
+#User and local settings
+export LD_LIBRARY_PATH=/usr/local/lib
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages:
+
+#Shortcuts
+export INCOMING=/home/simon/Incoming
+export DROPBOX=/home/simon/Dropbox/
+
+alias MountDiskOnKey='sudo mount /dev/sdc1 $DISKONKEY'
+alias MountTruecrypt='truecrypt --mount /dev/sdc2'
+  

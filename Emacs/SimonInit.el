@@ -6,6 +6,7 @@
 ;;
 ;;  (setq emacs-git "/home/simon/github/SimonEnv/Emacs/")
 ;;  (setq default-notes-file "/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/notes.org")
+;;  (setq my-emacs-env-type "EeePC") ; Or "GeneralPC" or "RDesktop"
 ;;  (load (concat emacs-git "/SimonInit.el"))
 ;;
 ;;  The default font used is InconsolataDov. copy it from /home/simon/github/SimonEnv/Emacs/ to ~/.fonts/
@@ -83,7 +84,7 @@
 (setenv "LD_LIBRARY_PATH" "$METALJET/BinLinux/:/usr/local/lib" t)
 
 ;;;;;;;;;;ein for IPython Notebooks in emacs
-(require 'ein-ipynb-mode)
+;(require 'ein-ipynb-mode)
 ;;;;;;;;;;XSMI for math symbols
 (require 'xmsi-math-symbols-input)
 (xmsi-mode)
@@ -424,12 +425,25 @@
  '(column-number-mode t)
  '(inhibit-startup-screen t)
  '(safe-local-variable-values (quote ((Encoding . utf-8))))
- '(show-paren-mode t))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 ;;'(cua-mode t nil (cua-base))       
 
                                         ; Start In Window sized 125x60 for work
                                         ;    (for netbook - 101x23)
-(if (window-system) (set-frame-size (selected-frame) 125 60))
+(if (not (boundp 'my-emacs-env-type))(setq my-emacs-env-type "GeneralPC"))
+(if (window-system)
+    (cond
+     ((string-match my-emacs-env-type "GeneralPC") 
+        (set-frame-size (selected-frame) 125 60))
+     ((string-match my-emacs-env-type "EeePC") 
+        (set-frame-size (selected-frame) 110 27))
+     ((string-match my-emacs-env-type "RDesktop") 
+        (set-frame-size (selected-frame) 110 60))
+     (t
+        (set-frame-size (selected-frame) 50 10))
+    )
+  )
 
 ;; Start In Full Screen Mode
                                         ;(initial-frame-alist (quote ((fullscreen . maximized)))))
