@@ -1,11 +1,2 @@
-"77f57fa79ad2a4dc4b76d759da2e612c42157918"
-[cl-struct-undo-tree [nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil (#1=[nil nil ((" " . 249) (undo-tree-id6 . -1)) nil (21832 22006 168397 527000) 0 nil]) ((" " . 249)) nil (21832 22006 168433 844000) 0 nil]) ((" " . 249) (undo-tree-id7 . -1) (undo-tree-id8 . -1)) nil (21832 22006 168493 978000) 0 nil]) ((" " . 249)) nil (21832 22006 168521 705000) 0 nil] [nil ([nil nil (("
-" . -247)) ((247 . 248)) (21832 22004 64700 678000) 0 nil]) (("
-" . -248)) ((248 . 249)) (21832 22004 65187 52000) 0 nil]) ((251 . 253)) nil (21832 22004 268564 337000) 0 nil]) (("
-" . 251)) nil (21832 22004 64744 119000) 0 nil]) ((248 . 251) ("  " . 248) 250) nil (21832 22004 64757 878000) 0 nil]) ((247 . 250)) nil (21832 22004 64769 681000) 0 nil]) ((175 . 247)) nil (21832 22004 64779 389000) 0 nil]) (("#export DATA=/mnt/Data
-export INCOMING=/home/simon/Incoming
-#export PERSONAL=/mnt/Data/Personal
-#export SEAGATE=/mnt/Seagate
-
-export DROPBOX=$PERSONAL/Senya/Dropbox/
-" . -175) 301 (undo-tree-id0 . -151) (undo-tree-id1 . -40) (undo-tree-id2 . -40) (undo-tree-id3 . -141) (undo-tree-id4 . -151) (undo-tree-id5 . -141)) nil (21832 22004 64860 614000) 0 nil]) ((271 . 272)) nil (21832 22004 64877 27000) 0 nil]) ((235 . 236)) nil (21832 22004 64886 875000) 0 nil]) ((215 . 225)) nil (21832 22004 64896 653000) 0 nil]) (("mnt/Data" . -215) 218) nil (21832 22004 64908 37000) 0 nil]) ((175 . 176) (t 21832 21921 19693 566000)) nil (21832 22004 64920 608000) 0 nil]) nil nil (21832 21920 901387 369000) 0 nil] #1# 447 17 nil]
+"1b46c21a8e29d569d5e674b5a7916f116a3f96da"
+[cl-struct-undo-tree [nil ([nil ([nil ([nil (#1=[nil nil ((289 . 290)) nil (21832 52559 207074 950000) 0 nil]) (("c" . -289)) nil (21832 52559 207167 559000) 0 nil]) ((351 . 352)) nil (21832 52559 207196 193000) 0 nil]) (("c" . -351) (t 21832 22068 846610 111000)) nil (21832 52559 207224 409000) 0 nil]) nil nil (21832 52559 207245 711000) 0 nil] #1# 42 4 nil]
