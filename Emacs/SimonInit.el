@@ -429,8 +429,7 @@
  '(tool-bar-mode nil))
 ;;'(cua-mode t nil (cua-base))       
 
-                                        ; Start In Window sized 125x60 for work
-                                        ;    (for netbook - 101x23)
+                                        ; Set Window size by environment type
 (if (not (boundp 'my-emacs-env-type))(setq my-emacs-env-type "GeneralPC"))
 (if (window-system)
     (cond
@@ -439,7 +438,7 @@
      ((string-match my-emacs-env-type "EeePC") 
         (set-frame-size (selected-frame) 110 27))
      ((string-match my-emacs-env-type "RDesktop") 
-        (set-frame-size (selected-frame) 110 60))
+        (set-frame-size (selected-frame) 110 40))
      (t
         (set-frame-size (selected-frame) 50 10))
     )
