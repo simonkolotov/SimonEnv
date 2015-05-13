@@ -32,9 +32,17 @@
 ;      (load (concat emacs-git "win-utils.el")))
       )
   (progn
-;    (setq my-default-family "Liberation Mono")
-    (setq my-default-family "InconsolataDov")
-    (setq my-default-font "InconsolataDov")
+                                        ;    (setq my-default-family "Liberation Mono")
+
+    (add-to-list 'default-frame-alist '(font .   "InconsolataDov 11"))
+    (set-face-attribute 'default t :font  "InconsolataDov 11" )
+
+    (set-face-attribute 'default nil :font  "InconsolataDov 11" )
+    (set-frame-font   "InconsolataDov 11" nil t)
+    
+    
+    (setq my-default-family "InconsolataDov 11")
+    (setq my-default-font "InconsolataDov 11")
     (setq browse-url-generic-program "google-chrome")
     (if (not (boundp 'emacs-git))
         (setq emacs-git "/home/simon/github/SimonEnv/Emacs/"))
