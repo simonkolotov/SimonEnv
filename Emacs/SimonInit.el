@@ -444,7 +444,7 @@
      ((string-match my-emacs-env-type "GeneralPC") 
         (set-frame-size (selected-frame) 125 60))
      ((string-match my-emacs-env-type "EeePC") 
-        (set-frame-size (selected-frame) 110 27))
+        (set-frame-size (selected-frame) 107 24))
      ((string-match my-emacs-env-type "RDesktop") 
         (set-frame-size (selected-frame) 110 40))
      (t
