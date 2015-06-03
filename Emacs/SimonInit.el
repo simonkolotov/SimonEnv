@@ -364,9 +364,25 @@
        (list (cons "\\.txt$" 'text-mode))
        
        (list (cons "\\.org" 'org-mode))
+
+       (list (cons "\\.init" 'lisp-mode))
+       (list (cons "\\.emacs" 'lisp-mode))
+       (list (cons "\\.el" 'lisp-mode))              
        
        auto-mode-alist))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;Text mode indent
+    
+(defun newline-and-indent-relative()
+  "Do a newline and a relative indent."
+  (interactive)
+  (newline)
+  (indent-relative-maybe))
+
+    
+(define-key text-mode-map [return] 'newline-and-indent-relative)
+(define-key text-mode-map "\C-m" 'newline-and-indent-relative)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -438,6 +454,9 @@
 ;;'(cua-mode t nil (cua-base))       
 
                                         ; Set Window size by environment type
+   ;; Start In Full Screen Mode
+     ;(initial-frame-alist (quote ((fullscreen . maximized)))))
+    
 (if (not (boundp 'my-emacs-env-type))(setq my-emacs-env-type "GeneralPC"))
 (if (window-system)
     (cond
@@ -452,13 +471,18 @@
     )
   )
 
-;; Start In Full Screen Mode
-                                        ;(initial-frame-alist (quote ((fullscreen . maximized)))))
-
-
-                                        ; Invert Colors
+;; Invert Colors
+;(if (not (boundp 'my-do-invert-color))(setq my-do-invert-color t))
+;    
+;(if ('my-do-invert-color)
+;    (progn 
+;      (invert-face 'default)
+;      (setq my-do-invert-color nil)
+;    )
+;)
+;
+;; Invert Colors    
 (invert-face 'default)
-
 
                                         ; Change TAB to 2 spaces
                                         ;(setq c-basic-indent 2)
