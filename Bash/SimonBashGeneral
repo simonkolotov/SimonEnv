@@ -80,8 +80,44 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then
     fi
    }
   
-  
 
+#  #################################
+#  #Save and Load tabs configuration
+#  #################################
+#
+#  
+#  function SaveTabs {
+#
+#    if [ -z "$1" ]; then
+#      # display usage if no parameters given
+#      echo "Usage: SaveTabs <path/file_name>"
+#    
+#    gnome-terminal --save-config="$1"
+#
+#    LINES=($(grep -n '\[Terminal' "$1" | cut -d: -f1))
+#
+#      for ((i=0; i<$(grep '\[Terminal' "$1" | wc -l); i++))
+#      do
+#        TITLE=$(xprop -id $WINDOWID WM_NAME | sed -e 's/WM_NAME(STRING) = "//' -e 's/"$//';xdotool key ctrl+Page_Down;)
+#        sed -ri "$((${LINES[$i]}+$i))s/.*/&\nTitle=$TITLE/" "$1" 
+#      done
+#  }
+#      
+#
+#
+#    #ORIGINAL:
+##!/usr/bin/env bash
+#
+#gnome-terminal --save-config=/tmp/test
+#
+#LINES=($(grep -n '\[Terminal' /tmp/test | cut -d: -f1))
+#for ((i=0; i<$(grep '\[Terminal' /tmp/test | wc -l); i++))
+#do
+#    TITLE=$(xprop -id $WINDOWID WM_NAME | sed -e 's/WM_NAME(STRING) = "//' -e 's/"$//';xdotool key ctrl+Page_Down;)
+#    sed -ri "$((${LINES[$i]}+$i))s/.*/&\nTitle=$TITLE/" /tmp/test 
+#done    
+
+    
   ##########
   #Shortcuts
   ##########
