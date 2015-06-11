@@ -80,6 +80,11 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then
     fi
    }
   
+  ##########################
+  #Export X server with sudo
+  ##########################
+
+  export XAUTHORITY=~/.Xauthority
 
 #  #################################
 #  #Save and Load tabs configuration
