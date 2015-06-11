@@ -471,18 +471,15 @@
     )
   )
 
-;; Invert Colors
-;(if (not (boundp 'my-do-invert-color))(setq my-do-invert-color t))
-;    
-;(if ('my-do-invert-color)
-;    (progn 
-;      (invert-face 'default)
-;      (setq my-do-invert-color nil)
-;    )
-;)
-;
-;; Invert Colors    
-(invert-face 'default)
+; Invert Colors only on the first time emacs is run
+(if (not (boundp 'my-do-invert-color))(setq my-do-invert-color t))
+    
+(if my-do-invert-color
+    (progn 
+      (invert-face 'default)
+      (setq my-do-invert-color nil)
+    )
+)
 
                                         ; Change TAB to 2 spaces
                                         ;(setq c-basic-indent 2)
