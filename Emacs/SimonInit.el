@@ -190,15 +190,15 @@
 (setq auto-window-vscroll nil)
 
 ; NB: scrolling down = moving the window up...
-(global-set-key (kbd "<M-up>")   (lambda () (interactive) (scroll-down 1)))
-(global-set-key (kbd "<M-kp-up>")   (lambda () (interactive) (scroll-down 1)))
-(global-set-key (kbd "<M-down>") (lambda () (interactive) (scroll-up 1)))
-(global-set-key (kbd "<M-kp-down>") (lambda () (interactive) (scroll-up 1)))
+(global-set-key (kbd "<C-up>")   (lambda () (interactive) (scroll-down 1)))
+(global-set-key (kbd "<C-kp-up>")   (lambda () (interactive) (scroll-down 1)))
+(global-set-key (kbd "<C-down>") (lambda () (interactive) (scroll-up 1)))
+(global-set-key (kbd "<C-kp-down>") (lambda () (interactive) (scroll-up 1)))
                                         ; Scroll Other Window with Alt-Up/Down
-(global-set-key (kbd "<C-up>")   (lambda () (interactive) (scroll-other-window-down 1)))
-(global-set-key (kbd "<C-kp-up>")   (lambda () (interactive) (scroll-other-window-down 1)))
-(global-set-key (kbd "<C-down>") (lambda () (interactive) (scroll-other-window-down -1)))
-(global-set-key (kbd "<C-kp-down>") (lambda () (interactive) (scroll-other-window-down -1)))
+(global-set-key (kbd "<M-up>")   (lambda () (interactive) (scroll-other-window-down 1)))
+(global-set-key (kbd "<M-kp-up>")   (lambda () (interactive) (scroll-other-window-down 1)))
+(global-set-key (kbd "<M-down>") (lambda () (interactive) (scroll-other-window-down -1)))
+(global-set-key (kbd "<M-kp-down>") (lambda () (interactive) (scroll-other-window-down -1)))
 
 
                                         ; Change C-arrows to be the same as M-f/b
