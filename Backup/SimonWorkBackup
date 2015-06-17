@@ -1,18 +1,51 @@
 #!/bin/bash
 
-cd /home/simon/git/SilverJet/
-git diff >> ../SilverJetDiff.diff
+cd /home/simon/git/MetalJet/
+git diff >> ../MetalJetDiff.diff
 
-backupdir=/mnt/xjetsrv/public/Groups/Software/Backup/Users/Simon
-cd $backupdir
+BackupDir=/mnt/xjetsrv/public/Groups/Software/Backup/Users/Simon
+cd $BackupDir
 #Move Previous days backup
-mv backup-simon-simonpc.tgz.bak backup-simon-simonpc.tgz.bak.bak
-mv backup-simon-simonpc.tgz backup-simon-simonpc.tgz.bak
+mv backup-simon-simonpc.tgz.bak1 backup-simon-simonpc.tgz.bak2
+mv backup-simon-simonpc.tgz backup-simon-simonpc.tgz.bak1
 
 #Backup all files
 cd /
-#                    Tar-File                           SilverJet Diff                scripts     desktop shortcuts        Incoming             IPython Notebooks             Learning           Personal              CSlicer           configs             bash history            bash config           bash config undo             emacs config                     Notes                                                           Slicing and Support Document
-tar -czf $backupdir/backup-simon-simonpc.tgz home/simon/git/SilverJetDiff.diff  home/simon/scripts home/simon/Desktop  home/simon/Incoming home/simon/IPythonNotebooks home/simon/Learning  home/simon/Personal home/simon/CSlicer home/simon/.config home/simon/.bash_history home/simon/.bashrc home/simon/..bashrc.~undo-tree~ home/simon/.emacs /mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes /mnt/xjetsrv/public/Groups/Software/Users/Simon/SlicingAndSupport
+#                    Tar-File                           SilverJet Diff                scripts     desktop shortcuts        Incoming             IPython Notebooks             Learning           Personal            configs             bash history                         Notes                                  SimonEnv local repo
+tar -czf $BackupDir/backup-simon-simonpc.tgz home/simon/git/MetalJetDiff.diff  home/simon/scripts home/simon/Desktop  home/simon/Incoming home/simon/IPythonNotebooks home/simon/Learning  home/simon/Personal home/simon/.config home/simon/.bash_history /mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes /home/simon/github/SimonEnv
 
 #remove the diff file (otherwise it gets concatenated...)
-rm /home/simon/git/SilverJetDiff.diff
+rm /home/simon/git/MetalJetDiff.diff
+
+MotionDir=/home/simon/.motion
+
+#Motion Detection
+#Move captures from "Today" dir to yesterday's date
+TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
+YesterdayDir="$MotionDir/Tracking/$TimeStamp"
+mkdir -p YesterdayDir
+mv $MotionDir/Tracking/Today/* $YesterdayDir/
+
+#Back up yesterdays motion files
+tar -czf $BackupDir/backup-simon-motion-$TIME_STAMP.tgz $YesterdayDir
+
+#  (From http://stackoverflow.com/questions/13868821/shell-script-delete-folders-older-than-n-days)
+#  Explanation:
+#  
+#  find: the unix command for finding files / directories / links etc.
+#  /path/to/base/dir: the directory to start your search in.
+#  -type d: only find directories
+#  -ctime +10: only consider the ones with modification time older than 10 days
+#  -exec ... \;: for each such result found, do the following command in ...
+#  rm -rf {}: recursively force remove the directory; the {} part is where the find result gets substituted into from the previous part.
+
+#Remove directories older than 14 days on my machine (ctime = modification time)
+find $MotionDir/Tracking -type d -ctime +14 -exec rm -rf {} \;
+
+#Remove directories older than 7 days on my W (ctime = modification time)
+find $BackupDir/backup-simon-motion-* -type d -ctime +7 -exec rm -rf {} \;
+
+#Start Motion (If it wasn't already on)
+if [ ! -f /home/simon/.motion/motion.pid ]; then
+    motion
+fi
