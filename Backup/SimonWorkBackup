@@ -23,11 +23,11 @@ MotionDir=/home/simon/.motion
 #Move captures from "Today" dir to yesterday's date
 TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
 YesterdayDir="$MotionDir/Tracking/$TimeStamp"
-mkdir -p YesterdayDir
+mkdir -p $YesterdayDir
 mv $MotionDir/Tracking/Today/* $YesterdayDir/
 
 #Back up yesterdays motion files
-tar -czf $BackupDir/backup-simon-motion-$TIME_STAMP.tgz $YesterdayDir
+tar -czf $BackupDir/backup-simon-motion-$TimeStamp.tgz $YesterdayDir
 
 #  (From http://stackoverflow.com/questions/13868821/shell-script-delete-folders-older-than-n-days)
 #  Explanation:
