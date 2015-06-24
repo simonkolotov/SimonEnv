@@ -1,33 +1,31 @@
 #!/bin/bash
 
+echo "Starting General Backup"
+
+RemoteBackupDir=/mnt/xjetsrv/public/Groups/Software/Backup/Users/Simon
+LocalBackupDir=/home/simon/Backup
+
+
+TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
+YesterdayArchive=$MotionDir/Tracking/backup-simon-simonpc-$TimeStamp.tgz
+
+#Back up MetalJet diff
+echo "Calculating MetalJet Diff"
 cd /home/simon/git/MetalJet/
 git diff >> ../MetalJetDiff.diff
 
-BackupDir=/mnt/xjetsrv/public/Groups/Software/Backup/Users/Simon
-cd $BackupDir
-#Move Previous days backup
-mv backup-simon-simonpc.tgz.bak1 backup-simon-simonpc.tgz.bak2
-mv backup-simon-simonpc.tgz backup-simon-simonpc.tgz.bak1
-
+echo "Archiving up All Backed-up files"
 #Backup all files
 cd /
-#                    Tar-File                           SilverJet Diff                scripts     desktop shortcuts        Incoming             IPython Notebooks             Learning           Personal            configs             bash history                         Notes                                  SimonEnv local repo
-tar -czf $BackupDir/backup-simon-simonpc.tgz home/simon/git/MetalJetDiff.diff  home/simon/scripts home/simon/Desktop  home/simon/Incoming home/simon/IPythonNotebooks home/simon/Learning  home/simon/Personal home/simon/.config home/simon/.bash_history /mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes /home/simon/github/SimonEnv
+#                    Tar-File                           MetalJet Diff                      scripts     desktop shortcuts        Incoming             IPython Notebooks             Learning           Personal            configs             bash history                         Notes                                  SimonEnv local repo
+tar -czf $LocalBackupDir/backup-simon-simonpc.tgz home/simon/git/MetalJetDiff.diff  home/simon/scripts home/simon/Desktop  home/simon/Incoming home/simon/IPythonNotebooks home/simon/Learning  home/simon/Personal home/simon/.config home/simon/.bash_history /mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes /home/simon/github/SimonEnv
 
 #remove the diff file (otherwise it gets concatenated...)
+echo "Removing MetalJet Diff file"
 rm /home/simon/git/MetalJetDiff.diff
 
-MotionDir=/home/simon/.motion
-
-#Motion Detection
-#Move captures from "Today" dir to yesterday's date
-TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
-YesterdayDir="$MotionDir/Tracking/$TimeStamp"
-mkdir -p $YesterdayDir
-mv $MotionDir/Tracking/Today/* $YesterdayDir/
-
-#Back up yesterdays motion files
-tar -czf $BackupDir/backup-simon-motion-$TimeStamp.tgz $YesterdayDir
+echo "Backing up yesterday's archive on XJetSrv"
+rsync $YesterdayArchive $RemoteBackupDir/
 
 #  (From http://stackoverflow.com/questions/13868821/shell-script-delete-folders-older-than-n-days)
 #  Explanation:
@@ -38,14 +36,10 @@ tar -czf $BackupDir/backup-simon-motion-$TimeStamp.tgz $YesterdayDir
 #  -ctime +10: only consider the ones with modification time older than 10 days
 #  -exec ... \;: for each such result found, do the following command in ...
 #  rm -rf {}: recursively force remove the directory; the {} part is where the find result gets substituted into from the previous part.
+#Remove archives older than 14 days on my machine
+echo "Removing local archives older than 14 days"
+find $LocalBackupDir/*.tgz -type f -ctime +14 -exec rm {} \;
 
-#Remove directories older than 14 days on my machine (ctime = modification time)
-find $MotionDir/Tracking -type d -ctime +14 -exec rm -rf {} \;
-
-#Remove directories older than 7 days on my W (ctime = modification time)
-find $BackupDir/backup-simon-motion-* -type d -ctime +7 -exec rm -rf {} \;
-
-#Start Motion (If it wasn't already on)
-if [ ! -f /home/simon/.motion/motion.pid ]; then
-    motion
-fi
+#Remove archives older than 2 days on XJetSrv
+echo "Removing XJetSrv motion archives older than 7 days"
+find $RemoteBackupDir/backup-simon-simonpc-*.tgz -type f -ctime +2 -exec rm {} \;

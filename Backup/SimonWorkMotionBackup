@@ -1,0 +1,44 @@
+#!/bin/bash
+
+echo "Backing up Motion"
+
+RemoteBackupDir=/mnt/xjetsrv/public/Groups/Software/Backup/Users/Simon
+LocalBackupDir=/home/simon/Backup
+MotionDir=/home/simon/.motion
+
+TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
+YesterdayArchive=$LocalBackupDir/backup-simon-motion-$TimeStamp.tgz
+
+#Back up yesterdays motion files
+echo "Zipping yesterday's files"
+tar -czf $YesterdayArchive $MotionDir/Tracking/Today/*
+
+#echo "Removing yesterday's files from Today's Dir"
+rm $MotionDir/Tracking/Today/*
+
+echo "Backing up yesterday's archive on XJetSrv"
+rsync $YesterdayArchive $RemoteBackupDir/
+
+#  (From http://stackoverflow.com/questions/13868821/shell-script-delete-folders-older-than-n-days)
+#  Explanation:
+#  
+#  find: the unix command for finding files / directories / links etc.
+#  /path/to/base/dir: the directory to start your search in.
+#  -type d: only find directories
+#  -ctime +10: only consider the ones with modification time older than 10 days
+#  -exec ... \;: for each such result found, do the following command in ...
+#  rm -rf {}: recursively force remove the directory; the {} part is where the find result gets substituted into from the previous part.
+
+#Remove archives older than 14 days on my machine
+echo "Removing local motion archives older than 14 days"
+find $LocalBackupDir/*.tgz -type f -ctime +14 -exec rm {} \;
+
+#Remove archives older than 7 days on XJetSrv
+echo "Removing XJetSrv motion archives older than 7 days"
+find $RemoteBackupDir/backup-simon-motion-* -type f -ctime +7 -exec rm {} \;
+
+#Start Motion (If it wasn't already on)
+if [ ! -f /home/simon/.motion/motion.pid ]; then
+    echo "Restarting motion"
+    motion
+fi
