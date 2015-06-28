@@ -18,7 +18,9 @@ git diff >> ../MetalJetDiff.diff
 echo "Archiving up All Backed-up files"
 cd /
 #                    Tar-File                           MetalJet Diff                      scripts     desktop shortcuts        Incoming             IPython Notebooks             Learning           Personal            configs             bash history                         Notes                                  SimonEnv local repo
-tar -czf         $YesterdayArchive                home/simon/git/MetalJetDiff.diff  home/simon/scripts home/simon/Desktop  home/simon/Incoming home/simon/IPythonNotebooks home/simon/Learning  home/simon/Personal home/simon/.config home/simon/.bash_history /mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes /home/simon/github/SimonEnv
+tar -czf         $YesterdayArchive                home/simon/git/MetalJetDiff.diff  home/simon/scripts home/simon/Desktop  home/simon/Incoming home/simon/IPythonNotebooks home/simon/Learning  home/simon/Personal home/simon/.config home/simon/.bash_history /mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes /home/simon/github/SimonEnv \
+# Exclude the following:
+#    --exclude          
 
 #remove the diff file (otherwise it gets concatenated...)
 echo "Removing MetalJet Diff file"
@@ -38,9 +40,9 @@ rsync $YesterdayArchive $RemoteBackupDir/
 #  rm -rf {}: recursively force remove the directory; the {} part is where the find result gets substituted into from the previous part.
 
 #Remove archives older than 14 days on my machine
-echo "Removing local archives older than 14 days"
+echo "Removing local general archives older than 14 days"
 find $LocalBackupDir/*.tgz -type f -ctime +14 -exec rm {} \;
 
 #Remove archives older than 2 days on XJetSrv
-echo "Removing XJetSrv motion archives older than 7 days"
+echo "Removing XJetSrv general archives older than 7 days"
 find $RemoteBackupDir/backup-simon-simonpc-*.tgz -type f -ctime +2 -exec rm {} \;
