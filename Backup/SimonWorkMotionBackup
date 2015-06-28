@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Backing up Motion"
+echo "Starting Motion Backup"
 
 RemoteBackupDir=/mnt/xjetsrv/public/Groups/Software/Backup/Users/Simon
 LocalBackupDir=/home/simon/Backup
@@ -9,11 +9,19 @@ MotionDir=/home/simon/.motion
 TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
 YesterdayArchive=$LocalBackupDir/backup-simon-motion-$TimeStamp.tgz
 
+
+
+
+
+
 #Back up yesterdays motion files
-echo "Zipping yesterday's files"
-tar -czf $YesterdayArchive $MotionDir/Tracking/Today/*
+echo "Archiving yesterday's files"
+cd /
+#                    Tar-File                           Motion Dir
+tar -czf         $YesterdayArchive                $MotionDir/Tracking/Today/*
 
 #echo "Removing yesterday's files from Today's Dir"
+echo "Removing Today's Photos"
 rm $MotionDir/Tracking/Today/*
 
 echo "Backing up yesterday's archive on XJetSrv"

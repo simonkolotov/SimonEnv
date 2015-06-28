@@ -7,18 +7,18 @@ LocalBackupDir=/home/simon/Backup
 
 
 TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
-YesterdayArchive=$MotionDir/Tracking/backup-simon-simonpc-$TimeStamp.tgz
+YesterdayArchive=$LocalBackupDir/backup-simon-simonpc-$TimeStamp.tgz
 
-#Back up MetalJet diff
+#Calculate up MetalJet diff
 echo "Calculating MetalJet Diff"
 cd /home/simon/git/MetalJet/
 git diff >> ../MetalJetDiff.diff
 
+#Back up all files
 echo "Archiving up All Backed-up files"
-#Backup all files
 cd /
 #                    Tar-File                           MetalJet Diff                      scripts     desktop shortcuts        Incoming             IPython Notebooks             Learning           Personal            configs             bash history                         Notes                                  SimonEnv local repo
-tar -czf $LocalBackupDir/backup-simon-simonpc.tgz home/simon/git/MetalJetDiff.diff  home/simon/scripts home/simon/Desktop  home/simon/Incoming home/simon/IPythonNotebooks home/simon/Learning  home/simon/Personal home/simon/.config home/simon/.bash_history /mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes /home/simon/github/SimonEnv
+tar -czf         $YesterdayArchive                home/simon/git/MetalJetDiff.diff  home/simon/scripts home/simon/Desktop  home/simon/Incoming home/simon/IPythonNotebooks home/simon/Learning  home/simon/Personal home/simon/.config home/simon/.bash_history /mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes /home/simon/github/SimonEnv
 
 #remove the diff file (otherwise it gets concatenated...)
 echo "Removing MetalJet Diff file"
@@ -36,6 +36,7 @@ rsync $YesterdayArchive $RemoteBackupDir/
 #  -ctime +10: only consider the ones with modification time older than 10 days
 #  -exec ... \;: for each such result found, do the following command in ...
 #  rm -rf {}: recursively force remove the directory; the {} part is where the find result gets substituted into from the previous part.
+
 #Remove archives older than 14 days on my machine
 echo "Removing local archives older than 14 days"
 find $LocalBackupDir/*.tgz -type f -ctime +14 -exec rm {} \;
