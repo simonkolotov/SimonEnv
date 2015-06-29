@@ -1,6 +1,9 @@
-# copy this file to /home/simon/scripts/Backup.sh
+#!/bin/bash
 
-TimeStamp=$(date +%Y-%m-%d)
+# copy this file to /home/simon/scripts/Backup.sh
+# REMEMBER: The file must be executable!!
+
+TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
 BackupLog=/home/simon/Backup/Backup-$TimeStamp.log
 MotionBackupLog=/home/simon/Backup/MotionBackup-$TimeStamp.log
 
