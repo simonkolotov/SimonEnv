@@ -111,7 +111,7 @@
 (require 'ido)
 (ido-mode t)
 
-
+(require 'js2-mode)
 
 ;;;;;;;;;; yas for programming templates
 ;(add-to-list 'load-path
