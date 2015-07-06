@@ -79,6 +79,7 @@
 (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/contrib/lisp"))
 (add-to-list 'load-path (concat emacs-git "Plugins/autocomplete"))
 (add-to-list 'load-path (concat emacs-git "Plugins/fill-column-indicator-1.83"))
+(add-to-list 'load-path (concat emacs-git "Plugins/matlab-emacs/matlab-emacs"))
 
         
 ;;;;;;;;;;Env Vars for MetalJet compilation        
@@ -90,6 +91,18 @@
 (setenv "METALJET" "$PE_HOME/XjetApps/MetalJet/Apps/Project/qt/" t)
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages")
 (setenv "LD_LIBRARY_PATH" "$METALJET/BinLinux/:/usr/local/lib" t)
+
+;;;;;;;;;;Matlab Mode
+(require 'matlab-load)
+(setq matlab-indent-function-body t)  ; if you want function bodies indented
+(setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
+(defun my-matlab-mode-hook ()
+  (setq fill-column 76))		; where auto-fill should wrap
+(add-hook 'matlab-mode-hook 'my-matlab-mode-hook)
+(defun my-matlab-shell-mode-hook ()
+	'())
+(add-hook 'matlab-shell-mode-hook 'my-matlab-shell-mode-hook)
+
 
 ;;;;;;;;;;ein for IPython Notebooks in emacs
 ;(require 'ein-ipynb-mode)
