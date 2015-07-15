@@ -106,9 +106,11 @@
 
 ;;;;;;;;;;ein for IPython Notebooks in emacs
 ;(require 'ein-ipynb-mode)
+
 ;;;;;;;;;;XSMI for math symbols
 (require 'xmsi-math-symbols-input)
 (xmsi-mode)
+
 ;;;;;;;;;;Undo-Tree
 (require 'undo-tree)
 (global-undo-tree-mode)
@@ -124,15 +126,13 @@
 (require 'ido)
 (ido-mode t)
 
+;;;;;;;;;; js2 mode for json
 (require 'js2-mode)
 
 ;;;;;;;;;; yas for programming templates
-;(add-to-list 'load-path
-;              (concat emacs-git "yasnippet"))
 (require 'yasnippet)
 (yas-global-mode 1)
-(setq yas-snippet-dirs (list "/home/simon/github/SimonEnv/Emacs/Plugins/yasnippet/snippets"
-                             "/home/simon/github/SimonEnv/Emacs/Plugins/snippets"))
+(setq yas-snippet-dirs (list (concat emacs-git "Plugins/yasnippet/snippets")))
 
 ;; Completing point by some yasnippet key
 (defun yas-ido-expand ()
@@ -163,17 +163,48 @@
 
 (yas-reload-all)
 
-
 ;; Lexical completion with M-RET
 (define-key yas-minor-mode-map (kbd "M-<return>")     'dabbrev-expand)
 (define-key yas-minor-mode-map (kbd "M-<kp-enter>")     'dabbrev-expand)
 
+;;;;;;;;;;auto-complete
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories (concat emacs-git "Plugins/autocomplete/ac-dict"))
+(ac-config-default)
+
 ;;;;;;;;;;Toolbars
 (menu-bar-mode 't)
-(tool-bar-mode 'nil)  
+(tool-bar-mode 'nil)
+
+;;;;;;;;;;Misc
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
+ '(column-number-mode t)
+ '(inhibit-startup-screen t)
+ '(safe-local-variable-values (quote ((Encoding . utf-8))))
+ '(show-paren-mode t))
+
+; Overwrite Selection
+ (delete-selection-mode t)
+
+ ; reload changed files
+(global-auto-revert-mode t)
+
+; Don't add newline at end of file
+(setq mode-require-final-newline nil)
+
+;; Show line-number in the mode line
+(line-number-mode 1)
+
+;; Show column-number in the mode line
+(column-number-mode 1)
 
 ;;;;;;;;;;KEYBOARD SHORTCUTS
-                                        ; Undo-Redo
+; Undo-Redo
 (defalias 'redo 'undo-tree-redo)
 (global-set-key (kbd "C-z") 'undo) ; 【Ctrl+z】
 (global-set-key (kbd "C-S-z") 'redo) ; 【Ctrl+Shift+z】;  Mac style
@@ -190,14 +221,16 @@
 (global-set-key "\M-`" 'next-error) ; Next Error (and also next file in dov-git-grep)
 (global-set-key "\M-~" 'previous-error) ; Previous Error (and also previous file in dov-git-grep)
 
-                                        ; C-Tab: Next Buffer
-(global-set-key (kbd "C-<tab>") 'next-buffer)
+(global-set-key (kbd "C-<tab>") 'next-buffer) ; C-Tab: Next Buffer
+(global-set-key (kbd "C-S-<iso-lefttab>") 'previous-buffer) ; C-S-Tab: Previous Buffer
 
-                                        ; C-S-Tab: Previous Buffer
-(global-set-key (kbd "C-S-<iso-lefttab>") 'previous-buffer)
+; Move between Windows
+(global-set-key (kbd "C-x <up>") 'windmove-up)
+(global-set-key (kbd "C-x <down>") 'windmove-down)
+(global-set-key (kbd "C-x <right>") 'windmove-right)
+(global-set-key (kbd "C-x <left>") 'windmove-left)
 
-
-                                        ; Scroll with Alt-Up/Down
+; Scroll with Ctrl+Up/Down
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
 (setq auto-window-vscroll nil)
@@ -214,7 +247,7 @@
 (global-set-key (kbd "<M-kp-down>") (lambda () (interactive) (scroll-other-window-down -1)))
 
 
-                                        ; Change C-arrows to be the same as M-f/b
+; Change C-arrows to be the same as M-f/b
 (global-set-key (kbd "C-<right>")   'forward-word)
 (global-set-key (kbd "C-<kp-right>")   'forward-word)
 
@@ -227,18 +260,27 @@
 (global-set-key (kbd "<C-kp-delete>")   'kill-word)
 
 
-                                        ; Set M-arrows to be the same as C-arrows, but by full words
+; Set M-arrows to be the same as C-arrows, but by full words
 (global-set-key (kbd "M-<kp-right>")   'right-word)
 (global-set-key (kbd "M-<kp-left>")   'left-word)
 
 
-                                        ; Command History Completion
+; Command History Completion
 (define-key minibuffer-local-map (kbd "M-p") 'previous-complete-history-element)
 (define-key minibuffer-local-map (kbd "M-n") 'next-complete-history-element)
 (define-key minibuffer-local-map (kbd "<up>") 'previous-complete-history-element)
 (define-key minibuffer-local-map (kbd "<down>") 'next-complete-history-element)
 
+; set hot-key for modes
+(global-set-key (kbd "C-M-p") 'python-mode)
+(global-set-key (kbd "C-M-t") 'text-mode)
+(global-set-key (kbd "C-M-C") 'c++-mode)
 
+;lines truncation
+(global-set-key (kbd "C-x t") 'toggle-truncate-lines)
+
+;===================================
+;gdb and gud-gdb
 (add-hook 'gud-mode-hook
           '(lambda ()
              (local-set-key [home] ; move to beginning of line, after prompt
@@ -256,7 +298,7 @@
 
              (define-key gud-mode-map [(alt n)] 'gud-next) ; External Buffer Commands
              (define-key gud-mode-map [(alt s)] 'gud-step)
-             (define-key gud-mode-map [(alt u)] 'gud-finish)
+             (define-key gud-mode-map [(alt f)] 'gud-finish)
 
                                   ; Load history file
              ;;;;;WHY DOESN'T THIS WORK?!;;;;;
@@ -270,6 +312,16 @@
              
              ))
 
+
+(defun gdb-keys (map) 
+  "Set key bindings for gdb debugging"
+  (interactive)
+  (define-key map [(alt n)] 'gdb-next)
+  (define-key map [(alt s)] 'gdb-step)
+  (define-key map [(alt f)] 'gdb-finish)
+  (define-key map [(alt h)] 'gdb-cont-to))
+
+;comint (?)
 (defun comint-write-input-ring-all-buffers ()
   (mapc-buffers 'comint-write-input-ring))
 
@@ -306,53 +358,28 @@
             (funcall fn)))
         (buffer-list)))
 
+           
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-(defun gdb-keys (map) 
-  "Set key bindings for gdb debugging"
-  (interactive)
-  (define-key map [(alt n)] 'gdb-next)
-  (define-key map [(alt s)] 'gdb-step)
-  (define-key map [(control c) (control s)] 'gdb-step)
-  (define-key map [(alt u)] 'gdb-finish)
-;;  (define-key map [µ] 'gdb-finish)
-  (define-key map [(alt f)] 'gdb-finish)
-  (define-key map [(alt h)] 'gdb-cont-to)
-  (define-key map [(hebrew_finalkaph)] 'gdb-next)
-  (define-key map [(hebrew_finalpe)] 'gdb-step)
-  (define-key map [(iso-next-group)] nil))
-             
-;;============================================
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                                        ; auto-complete
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories (concat emacs-git "autocomplete/ac-dict"))
-(ac-config-default)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                                        ; Save history between emacs sessions
+;;;;;;;;;;;;;; Save history between emacs sessions
 (savehist-mode t)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                                        ; Fill-Column Indicator
+
+
+;;;;;;;;;;;;;; Fill-Column Indicator
 (require 'fill-column-indicator)
 (define-globalized-minor-mode
   global-fci-mode fci-mode (lambda () (fci-mode 1)))
 (global-fci-mode t)
 (setq-default fill-column 100)
 
-                                        ; Lines Truncation
-(global-set-key (kbd "C-x t") 'toggle-truncate-lines)
-(set-default 'truncate-lines 0)
+; Lines Truncation
+(set-default 'truncate-lines nil)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                                        ; Subword Mode - Jump by camelback
+;;;;;;;;;;;;;;;;; Subword Mode - Jump by camelback
 (global-subword-mode t)
 
-;                                        ; Automatic Parentheses completion  Mode
+;;;;;;;;;;;;;;;;;; Automatic Parentheses completion  Mode
 ;(electric-pair-mode f)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Set some auto modes
 (setq auto-mode-alist
@@ -369,6 +396,8 @@
        (list (cons "\\.hh$" 'c++-mode))
        (list (cons "\\.H$" 'c++-mode))
        (list (cons "\\.cxx$" 'c++-mode))
+       (list (cons "\\.cc$" 'c++-mode))
+       (list (cons "\\.cpp$" 'c++-mode))       
 
        (list (cons "\\.json$" 'js2-mode))
 
@@ -385,8 +414,9 @@
        auto-mode-alist))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;Text mode indent
-    
+
+
+;;;;;;;;;;;;;Text mode indent
 (defun newline-and-indent-relative()
   "Do a newline and a relative indent."
   (interactive)
@@ -397,33 +427,29 @@
 (define-key text-mode-map [return] 'newline-and-indent-relative)
 (define-key text-mode-map "\C-m" 'newline-and-indent-relative)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-                                        ; python-mode
+;;;;;;;;;;;;; python-mode
 (setq py-install-directory (concat emacs-git "Plugins/python-mode.el-6.1.2"))
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
 
-                                        ; use IPython
+; use IPython
 (setq-default py-shell-name "ipython")
 (setq-default py-which-bufname "IPython")
-                                        ; use the wx backend, for both mayavi and matplotlib
+
+; use the wx backend, for both mayavi and matplotlib
 (setq py-python-command-args
       '("--gui=wx" "--pylab=wx" "-colors" "Linux"))
 (setq py-force-py-shell-name-p t)
 
-                                        ; switch to the interpreter after executing code
+; switch to the interpreter after executing code
 (setq py-shell-switch-buffers-on-execute-p t)
 (setq py-switch-buffers-on-execute-p t)
-                                        ; don't split windows
-                                        ;(setq py-split-windows-on-execute-p nil)
-                                        ; try to automagically figure out indentation
+
+; don't split windows
+;(setq py-split-windows-on-execute-p nil)
+
+; try to automagically figure out indentation
 (setq py-smart-indentation t)
-
-                                        ; set hot-key for python mode
-(global-set-key (kbd "C-M-p") 'python-mode)
-
 
 ;(defun annotate-todo ()
 ;  "put fringe marker on TODO: lines in the curent buffer"
@@ -439,37 +465,20 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-                                        ; set hot-key for text mode
-(global-set-key (kbd "C-M-t") 'text-mode)
-
-                                        ; set hot-key for C++ mode
-(global-set-key (kbd "C-M-C") 'c++-mode)
-
+;;;;;;;;;;;;;;;c/c++ mode
 (add-hook 'c-mode-common-hook
   (lambda() 
     (local-set-key  (kbd "C-c h") 'ff-find-other-file)))
 
+;=================================
 
-                                        ; Overwrite Selection
-(delete-selection-mode t)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(blink-cursor-mode nil)
- '(column-number-mode t)
- '(inhibit-startup-screen t)
- '(safe-local-variable-values (quote ((Encoding . utf-8))))
- '(show-paren-mode t)
- '(tool-bar-mode nil))
-;;'(cua-mode t nil (cua-base))       
+;;;;;;;;;;;;;;Window size
 
-                                        ; Set Window size by environment type
-   ;; Start In Full Screen Mode
-     ;(initial-frame-alist (quote ((fullscreen . maximized)))))
-    
+; Start In Full Screen Mode
+;(initial-frame-alist (quote ((fullscreen . maximized)))))
+
+; Set Window size by environment type
 (if (not (boundp 'my-emacs-env-type))(setq my-emacs-env-type "GeneralPC"))
 (if (window-system)
     (cond
@@ -494,30 +503,14 @@
     )
 )
 
-                                        ; Change TAB to 2 spaces
-                                        ;(setq c-basic-indent 2)
-(setq-default tab-width 2)
-(setq python-indent tab-width)
-(setq perl-indent-level tab-width)
-                                        ;(setq tab-width 2)
 
-(setq indent-line-function 'insert-tab)
+; Tabulation etc
+(setq-default tab-width 8)    ;I never use tabs. but if tabs are present - they should be very visible
+(setq python-indent 2)
+(setq perl-indent-level 2)
+(setq c-basic-indent 2)
 (setq standard-indent 2)
 (setq-default indent-tabs-mode nil)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Indentation
-
-
-(add-hook 'python-mode-hook
-(lambda ()
-(setq indent-tabs-mode nil)
-(setq tab-width 2)
-
-                                        ;(setq indent-line-function (quote insert-tab))
-
-))
-
 
 (defun update-indent-mode ()
   (setq c-basic-offset my-indent)
@@ -525,8 +518,6 @@
   (c-set-offset 'substatement-open my-substatement-open)
   (c-set-offset 'access-label my-access-label)
   (c-set-offset 'topmost-intro my-topmost-intro))
-
-
 
 (defun xjet-indent-mode ()
   "Set indent tabs to the xjet indent mode"
@@ -549,27 +540,13 @@
   
 (add-hook 'c-mode-hook
 (lambda ()
-;(setq indent-tabs-mode nil)
-;(setq tab-width 2)
-                                        ;(setq indent-line-function (quote insert-tab))
+;(setq indent-line-function (quote insert-tab))     ;<<<<<<<<<<<<<<<<<<
 (xjet-indent-mode() )
 ))
 
-
-                                        ;(add-hook 'python-mode-hook
-                                        ;          '(lambda ()
-                                        ;             (setq tab-width 2)
-                                        ;             (setq python-indent 2))
-                                        ;             (setq indent-tabs-mode nil))
-
-
-;;;                                        ; BackTab
-;;;(global-set-key [backtab] 'unindent-for-tab-command)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-                                        ; Don't add newline at end of file
-(setq mode-require-final-newline nil)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (custom-set-faces
@@ -579,19 +556,7 @@
  ;; If there is more than one, they won't work right.
  '(cursor ((t (:background "white")))))
 
-                                        ; reload changed files
-(global-auto-revert-mode t)
-
-                                        ; Cua Mode
-                                        ;(cua-mode)
-
-;; Show line-number in the mode line
-(line-number-mode 1)
-
-;; Show column-number in the mode line
-(column-number-mode 1)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ; Advanced Search Functions:
 ;; git grep
 (load "dov-git-grep")
@@ -612,7 +577,7 @@
 ;(defun sudo-shell-command (command)
 ;  (shell-command (concat "echo " (read-passwd "Password: ") " | sudo -S " command)))
 
-;(global-set-key (kbd "C-M-!") 'sudo-shell-command(command))
+;(global-set-gkey (kbd "C-M-!") 'sudo-shell-command(command))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -637,7 +602,9 @@
 ;;;        '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                                        ; Org Mode
+
+
+;;;;;;;;;;;;;;;; Org Mode
 (setq my-default-family "InconsolataDov")
 (setq my-default-font "InconsolataDov 11")
 
@@ -720,7 +687,7 @@
   (set-face-attribute face nil :family my-default-family))
 
 
-                                        ; Source Languages
+; Source Languages
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((sh . t)
@@ -739,7 +706,7 @@
       (concat emacs-git "/Plugins/plantuml.jar"))
 
 
-                                        ; convert lines into checkbox
+; convert lines into checkbox
 (defun org-set-line-checkbox (arg)
   (interactive "P")
   (let ((n (or arg 1)))
