@@ -246,6 +246,13 @@
 (global-set-key (kbd "<M-down>") (lambda () (interactive) (scroll-other-window-down -1)))
 (global-set-key (kbd "<M-kp-down>") (lambda () (interactive) (scroll-other-window-down -1)))
 
+; page-up down works with C- or M- in the same way as the rest
+(global-set-key (kbd "<C-prior>")   'scroll-down-command) ;prior = page-up
+(global-set-key (kbd "<C-kp-prior>")   'scroll-down-command)
+
+(global-set-key (kbd "<C-next>")   'scroll-up-command) ;next = page-down
+(global-set-key (kbd "<C-kp-next>")   'scroll-up-command)
+
 
 ; Change C-arrows to be the same as M-f/b
 (global-set-key (kbd "C-<right>")   'forward-word)
