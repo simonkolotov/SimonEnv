@@ -490,7 +490,7 @@
 (if (window-system)
     (cond
      ((string-match my-emacs-env-type "GeneralPC") 
-        (set-frame-size (selected-frame) 125 60))
+        (set-frame-size (selected-frame) 125 50))
      ((string-match my-emacs-env-type "EeePC") 
         (set-frame-size (selected-frame) 107 24))
      ((string-match my-emacs-env-type "RDesktop") 
