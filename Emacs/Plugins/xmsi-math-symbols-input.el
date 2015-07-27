@@ -444,9 +444,31 @@
 
   (puthash "tm" "™" xmsi-abrvs)
 
-  (puthash "3/4" "¾" xmsi-abrvs)
   (puthash "1/2" "½" xmsi-abrvs)
+  
+  (puthash "1/3" "⅓" xmsi-abrvs)
+  (puthash "2/3" "⅔" xmsi-abrvs)
+  
   (puthash "1/4" "¼" xmsi-abrvs)
+  
+  (puthash "1/5" "⅕" xmsi-abrvs)
+  (puthash "2/5" "⅖" xmsi-abrvs)
+  (puthash "3/5" "⅗" xmsi-abrvs)
+  (puthash "4/5" "⅘" xmsi-abrvs)
+  
+  (puthash "1/6" "⅙" xmsi-abrvs)
+  (puthash "5/6" "⅚" xmsi-abrvs)
+  
+  (puthash "1/7" "⅐" xmsi-abrvs)
+
+  (puthash "1/8" "⅛" xmsi-abrvs)
+  (puthash "3/8" "⅜" xmsi-abrvs)
+  (puthash "5/8" "⅝" xmsi-abrvs)
+  (puthash "7/8" "⅞" xmsi-abrvs)
+
+  (puthash "1/9" "⅑" xmsi-abrvs)
+
+  (puthash "1/10" "⅒" xmsi-abrvs)
 
   (puthash "--" "—" xmsi-abrvs) (puthash "emdash" "—" xmsi-abrvs)
   (puthash "*5" "★" xmsi-abrvs) (puthash "star" "★" xmsi-abrvs)
