@@ -43,6 +43,9 @@ rsync $YesterdayArchive $RemoteBackupDir/
 echo "Removing local general archives older than 14 days"
 find $LocalBackupDir/*.tgz -type f -ctime +14 -exec rm {} \;
 
+echo "Removing local logs older than 14 days"
+find $LocalBackupDir/Backup*.log -type f -ctime +14 -exec rm {} \;
+
 #Remove archives older than 2 days on XJetSrv
 echo "Removing XJetSrv general archives older than 7 days"
 find $RemoteBackupDir/backup-simon-simonpc-*.tgz -type f -ctime +2 -exec rm {} \;
