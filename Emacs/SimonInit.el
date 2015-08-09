@@ -13,51 +13,44 @@
 ;;----------------------------------------------------------------------
 
 ;;Win vs Linux
-(if (string-match "mingw-nt" system-configuration)
+(if (string-match "mingw" system-configuration)
     (progn
       (if (not (boundp 'emacs-git))
-          (setq emacs-git "C:/Simon/github/SimonEnv/Emacs/"))
+          (setq emacs-git "D:/Simon/github/SimonEnv/Emacs/"))
       (if (not (boundp 'emacs-persistance-dir))
           (setq emacs-persistance-dir "C:/Documents and Settings/simon/Application Data/.emacs.d"))
       
-                                        ;      (set-default-font "-*-Lucida Console-*-*-*-*-15-*-*-*-*-*-*")
-      (set-default-font "-*-DejaVu Sans Mono-normal-r-normal-normal-14-*-*-*-*-*-iso10646-1")
-      (setq browse-url-generic-program "c:/Program Files (x86)/Mozilla Firefox/firefox.exe")
-      (setq my-default-family "DejaVu Sans Mono")
-
       ;; don't use Hebrew locale!
       (setq system-time-locale "C")
       
       ;; Load windows utilities (?)
-;      (load (concat emacs-git "win-utils.el")))
+                                        ;      (load (concat emacs-git "win-utils.el")))
+
+      ;; Various settings to use utf-8
+      (setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
+      (set-language-environment 'utf-8)
+      (set-keyboard-coding-system 'utf-8-mac) ; For old Carbon emacs on OS X only
+      (setq locale-coding-system 'utf-8)
+      (set-default-coding-systems 'utf-8)
+      (set-terminal-coding-system 'utf-8)
+      (prefer-coding-system 'utf-8)
+
+      ;; Add M-F4 to closing emacs, as apparently it is not caught by the windows manager
+      (global-set-key (kbd "M-<f4>") 'save-buffers-kill-terminal) ; Close EMACS (Microsoft style)
+
+      ;; Chrome command for windows (assumes C:\Program Files (x86)\Google\Chrome\Application is in path)
+      (if (not (boundp 'my-chrome-command))
+               (setq my-chrome-command "chrome"))
+       
       )
   (progn
-                                        ;    (setq my-default-family "Liberation Mono")
 
-    (add-to-list 'default-frame-alist '(font .   "InconsolataDov 11"))
-    (set-face-attribute 'default t :font  "InconsolataDov 11" )
-
-    (set-face-attribute 'default nil :font  "InconsolataDov 11" )
-    (set-frame-font   "InconsolataDov 11" nil t)
-    
-    
-    (setq my-default-family "InconsolataDov 11")
-    (setq my-default-font "InconsolataDov 11")
     (setq browse-url-generic-program "google-chrome")
     (if (not (boundp 'emacs-git))
         (setq emacs-git "/home/simon/github/SimonEnv/Emacs/"))
     (if (not (boundp 'emacs-persistance-dir))
         (setq emacs-persistance-dir "/home/simon/.emacs.d"))
 
-    (condition-case err
-        (set-default-font my-default-font)
-                                        ;    (set-default-font "Consolas 12") 
-                                        ;     (set-default-font "lucidasanstypewriter-bold-14")
-                                        ;     (set-default-font "lucidasanstypewriter-bold-12")
-                                        ;       (set-default-font "Bitstream Vera Sans Mono-11")
-
-      (error "No such font, but who cares"))
-    
       ;; Use Miriam mono font for Hebrew
     (set-fontset-font "fontset-default" '(#x5d0 . #x5ff) "Miriam Mono CLM:bold")
     (set-face-font 'default "fontset-default")
@@ -65,8 +58,23 @@
                              "/usr/local/share/emacs/site-lisp"
                              ) load-path))
 
+    ;; Chrome command for windows
+    (if (not (boundp 'my-chrome-command))
+             (setq my-chrome-command "google-chrome"))
     )
   )
+
+;;;;;;;;Font
+(add-to-list 'default-frame-alist '(font .   "InconsolataDov 11"))
+(set-face-attribute 'default t :font  "InconsolataDov 11" )
+
+(set-face-attribute 'default nil :font  "InconsolataDov 11" )
+(set-frame-font   "InconsolataDov 11" nil t)
+
+    
+(setq my-default-family "InconsolataDov 11")
+(setq my-default-font "InconsolataDov 11")
+
 
 ;;;;;;;;;;EXTERNAL PLUGINS
 (add-to-list 'load-path (concat emacs-git "Plugins/"))
@@ -754,11 +762,11 @@
            '(("doc" . "libreoffice -norestore %s"))
            '(("odt" . "libreoffice -norestore %s"))
            '(("gnumeric" . "gnumeric %s"))
-           '(("html" . "firefox %s"))
+           '(("html" . (concat my-chrome-command " %s")))
            org-file-apps))))
 
-(setq org-src-lang-modes
-      '(("elisp" . emacs-lisp)
+(setq org-src-lang-modes 
+     '(("elisp" . emacs-lisp)
         ("ditaa" . artist)
         ("asymptote" . asy)
         ("dot" . fundamental)
