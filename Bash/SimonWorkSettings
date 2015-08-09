@@ -48,11 +48,15 @@ export INCOMING=/home/simon/Incoming
 export DROPBOX=/home/simon/Dropbox/
   
 alias HydraRdp='xfreerdp -u machine -f 172.16.10.60'
-alias HydraRdesktop='rdesktop Hydra -g 1640x980 -u simon -d XJETDOM -p Senya84K'
+alias HydraRdesktop='cat /home/simon/.credentials | rdesktop Hydra -g 1640x980 -u simon -d XJETDOM -p -'
 
-alias Machine64BitRdesktop='rdesktop Machine64bit -g 1640x980 -u simon -d XJETDOM -p Senya84K'
+alias Machine64BitRdesktop='cat /home/simon/.credentials | rdesktop Machine64bit -g 1640x980 -u simon -d XJETDOM -p -'
     
-alias YaronRdesktop='rdesktop Yaron -g 1640x980 -u simon -d XJETDOM -p Senya84K'
+alias YaronRdesktop='cat /home/simon/.credentials | rdesktop Yaron -g 1640x980 -u simon -d XJETDOM -p -'
+
+alias SWTest1Rdesktop='cat /home/simon/.credentials | rdesktop swtest1 -g 1640x980 -u simon -d XJETDOM -p -'
+
+alias SWTest2Rdesktop='cat /home/simon/.credentials | rdesktop swtest2 -g 1640x980 -u simon -d XJETDOM -p -'
 
 alias MountDiskOnKey='sudo mount /dev/sdb1 $DISKONKEY'
 alias MountTruecrypt='truecrypt --mount /dev/sdb2'
