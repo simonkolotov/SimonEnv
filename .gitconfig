@@ -1,0 +1,26 @@
+[alias]
+lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+lg = !"git lg1"
+[gui]
+	recentrepo = /home/simon/git/MetalJet
+[diff]
+  tool=bc3
+[difftool]
+  prompt = true
+[difftool "bc3"]
+  cmd = /usr/bin/bcompare "$LOCAL" "$REMOTE"
+[merge]
+    tool = bc3
+[mergetool]
+    prompt = true
+[mergetool "bc3"]
+  cmd = /usr/bin/bcompare "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+
+[user]
+	name = Simon Kolotov
+	email = Simon.Kolotov@xjet3d.com
+[core]
+	editor = emacs
+[push]
+	default = simple

@@ -9,11 +9,6 @@ MotionDir=/home/simon/.motion
 TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
 YesterdayArchive=$LocalBackupDir/backup-simon-motion-$TimeStamp.tgz
 
-
-
-
-
-
 #Back up yesterdays motion files
 echo "Archiving yesterday's files"
 cd /
@@ -40,6 +35,9 @@ rsync $YesterdayArchive $RemoteBackupDir/
 #Remove archives older than 14 days on my machine
 echo "Removing local motion archives older than 14 days"
 find $LocalBackupDir/*.tgz -type f -ctime +14 -exec rm {} \;
+
+echo "Removing local logs older than 14 days"
+find $LocalBackupDir/MotionBackup*.log -type f -ctime +14 -exec rm {} \;
 
 #Remove archives older than 7 days on XJetSrv
 echo "Removing XJetSrv motion archives older than 7 days"
