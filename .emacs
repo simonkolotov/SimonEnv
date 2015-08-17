@@ -1,7 +1,7 @@
 ; -*- Encoding: utf-8 -*-
 
   (setq emacs-git "/home/simon/github/SimonEnv/Emacs/")
-  (setq default-notes-file "/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/notes.org")
+  (setq default-notes-file "/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/NoteBook.org")
   (load (concat emacs-git "SimonInit.el"))
 
 

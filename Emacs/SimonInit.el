@@ -5,7 +5,7 @@
 ;; To use this file, add lines similar to the following to ~/.emacs:
 ;;
 ;;  (setq emacs-git "/home/simon/github/SimonEnv/Emacs/")
-;;  (setq default-notes-file "/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/notes.org")
+;;  (setq default-notes-file "/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/NoteBook.org")
 ;;  (setq my-emacs-env-type "EeePC") ; Or "GeneralPC" or "RDesktop"
 ;;  (load (concat emacs-git "/SimonInit.el"))
 ;;
@@ -211,6 +211,56 @@
 ;; Show column-number in the mode line
 (column-number-mode 1)
 
+;;Open notebook
+(defun open-notes-file ()
+  "Load my personal todo list"
+  (interactive)
+  (find-file default-notes-file)
+  (font-lock-fontify-buffer)
+  (end-of-buffer)
+  )
+
+;; Most Recent Buffers
+(defun find-first-buffer-match (buffers pattern)
+  (dolist (f buffers)
+    (when (string-match pattern (buffer-name f))
+      (return f))))
+
+(defun find-most-recent-pattern-buffer (pattern)
+  "find the most recent code buffer in the history and switch to it"
+  (let ((f (find-first-buffer-match (cdr (buffer-list)) pattern)))
+    (if (not (eq f nil))
+        (switch-to-buffer f)
+      )
+    )
+  )
+
+(defun find-most-recent-python-buffer ()
+  "find the most recent code buffer in the history and switch to it"
+  (interactive)
+  (find-most-recent-pattern-buffer "\\.py"))
+
+(defun find-most-recent-c-buffer ()
+  "find the most recent code buffer in the history and switch to it"
+  (interactive)
+  (find-most-recent-pattern-buffer "\\.\\(cpp\\|h\\|cc\\|hh|hpp\\)$"))
+
+(defun find-most-recent-emacs-buffer ()
+  "find the most recent code buffer in the history and switch to it"
+  (interactive)
+  (find-most-recent-pattern-buffer "\\.el\\$\\|dov.emacs|SimonInit.el"))
+
+(defun find-most-recent-magit-buffer ()
+  "find the most recent code buffer in the history and switch to it"
+  (interactive)
+  (find-most-recent-pattern-buffer "magit"))
+
+(defun find-most-recent-org-buffer ()
+  "find the most recent code buffer in the history and switch to it"
+  (interactive)
+  (find-most-recent-pattern-buffer "\\.org\$"))
+
+
 ;;;;;;;;;;KEYBOARD SHORTCUTS
 ; Undo-Redo
 (defalias 'redo 'undo-tree-redo)
@@ -293,6 +343,26 @@
 
 ;lines truncation
 (global-set-key (kbd "C-x t") 'toggle-truncate-lines)
+
+;Notebook
+(global-set-key [f5] 'open-notes-file)
+
+(global-set-key (kbd "C-S-n") '(lambda () (interactive)
+                                  (switch-to-buffer "NoteBook.org")))
+
+;Shell
+(global-set-key (kbd "C-S-s") '(lambda () (interactive) 
+  (switch-to-buffer (find-most-recent-pattern-buffer "\\*shell"))))
+
+;Reload buffer
+(global-set-key "\C-x\C-r" 'revert-buffer)
+
+;Most Recent Buffers
+(global-set-key (kbd "S-C-c") 'find-most-recent-c-buffer)
+(global-set-key (kbd "S-C-e") 'find-most-recent-emacs-buffer)
+(global-set-key (kbd "S-C-p") 'find-most-recent-python-buffer)
+(global-set-key (kbd "S-C-m") 'find-most-recent-magit-buffer)
+(global-set-key (kbd "S-C-o") 'find-most-recent-org-buffer)
 
 ;===================================
 ;gdb and gud-gdb
