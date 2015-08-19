@@ -17,7 +17,7 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" || $EMACS
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
       PS1="|\h|>"
       
-  elif [ $EMACS == "t" ]; then
+  elif [[ $EMACS == "t" ]]; then
       PS1="|\w|>"
   
   else
