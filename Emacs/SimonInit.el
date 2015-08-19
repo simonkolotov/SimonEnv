@@ -220,6 +220,23 @@
   (end-of-buffer)
   )
 
+;;Open shell
+(defun open-shell ()
+  "Load my personal todo list"
+  (interactive)
+  (shell)
+  )
+
+;; Init File
+(setq default-init-file (concat emacs-git "/SimonInit.el"))
+
+;;Open Init File
+(defun open-init-file ()
+  "Load my personal todo list"
+  (interactive)
+  (find-file default-init-file)
+  )
+
 ;; Most Recent Buffers
 (defun find-first-buffer-match (buffers pattern)
   (dolist (f buffers)
@@ -348,11 +365,18 @@
 (global-set-key [f5] 'open-notes-file)
 
 (global-set-key (kbd "C-S-n") '(lambda () (interactive)
-                                  (switch-to-buffer "NoteBook.org")))
+                                 (switch-to-buffer "NoteBook.org")))
 
 ;Shell
+(global-set-key [f6] 'open-shell)
+
 (global-set-key (kbd "C-S-s") '(lambda () (interactive) 
-  (switch-to-buffer (find-most-recent-pattern-buffer "\\*shell"))))
+                                 (switch-to-buffer (find-most-recent-pattern-buffer "\\*shell"))))
+
+;SimonInit
+(global-set-key (kbd "C->") '(lambda () (interactive) 
+                                 (open-init-file)))
+
 
 ;Reload buffer
 (global-set-key "\C-x\C-r" 'revert-buffer)
@@ -471,7 +495,7 @@
       (append
        (list (cons "\\.cmake$" 'cmake-mode))
 
-       (list (cons "\\.pro$" 'text-mode))
+       (list (cons "\\.pro$" 'makefile-mode))
        
        (list (cons "SConstruct" 'python-mode))
        (list (cons "SConscript" 'python-mode))

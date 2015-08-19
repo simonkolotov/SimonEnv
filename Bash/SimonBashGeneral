@@ -5,7 +5,7 @@
 ############################################
 
   
-if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then
+if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" || $EMACS == "t" ]]; then
   #Expand Env. Vars
   shopt -s direxpand # enable
   #shopt -u direxpand # disable
@@ -16,9 +16,15 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" ]]; then
   # Replace Prompt
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
       PS1="|\h|>"
+      
+  elif [ $EMACS == "t" ]; then
+      PS1="|\w|>"
+  
   else
       PS1=">"
   fi
+
+  PS2="...>"
 
   #################  
   # Command History
