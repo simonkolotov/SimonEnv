@@ -277,6 +277,11 @@
   (interactive)
   (find-most-recent-pattern-buffer "\\.org\$"))
 
+;; qt docs lookup
+(require `info-look)
+(load "qtdoc")
+(setq qtdoc-html-root "http://doc.qt.io/qt-4.8/")
+(load "google-look")
 
 ;;;;;;;;;;KEYBOARD SHORTCUTS
 ; Undo-Redo
@@ -387,6 +392,12 @@
 (global-set-key (kbd "S-C-p") 'find-most-recent-python-buffer)
 (global-set-key (kbd "S-C-m") 'find-most-recent-magit-buffer)
 (global-set-key (kbd "S-C-o") 'find-most-recent-org-buffer)
+
+;Help and documentation
+(global-set-key [(control h) (control q)] 'qtdoc-lookup)
+(global-set-key [(control h) (control g)] 'google-lookup)
+(global-set-key [(control h) (control p)] 'python-lookup)
+(global-set-key [(control h) (control c)] 'cpp-lookup)
 
 ;===================================
 ;gdb and gud-gdb
@@ -502,6 +513,7 @@
        (list (cons "\\.py$" 'python-mode))
        (list (cons "\\.run$" 'python-mode))
        
+       (list (cons "\\.h$" 'c++-mode))
        (list (cons "\\.hh$" 'c++-mode))
        (list (cons "\\.H$" 'c++-mode))
        (list (cons "\\.cxx$" 'c++-mode))
@@ -650,7 +662,7 @@
 (add-hook 'c-mode-hook
 (lambda ()
 ;(setq indent-line-function (quote insert-tab))     ;<<<<<<<<<<<<<<<<<<
-(xjet-indent-mode() )
+;(xjet-indent-mode() )
 ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
