@@ -5,7 +5,8 @@
 ;; To use this file, add lines similar to the following to ~/.emacs:
 ;;
 ;;  (setq emacs-git "/home/simon/github/SimonEnv/Emacs/")
-;;  (setq default-notes-file "/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/NoteBook.org")
+;;  ;(setq default-notes-file "/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/NoteBook.org")
+;;  (setq default-notes-file "/home/simon/github/Notes/NoteBook.org")
 ;;  (setq my-emacs-env-type "EeePC") ; Or "GeneralPC" or "RDesktop"
 ;;  (load (concat emacs-git "/SimonInit.el"))
 ;;

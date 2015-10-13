@@ -5,7 +5,7 @@
 ;; To use this file, add lines similar to the following to ~/.emacs:
 ;;
 ;;  (setq emacs-git "/home/simon/github/SimonEnv/Emacs/")
-;;  (setq default-notes-file "/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/notes.org")
+;;  (setq default-notes-file "/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/NoteBook.org")
 ;;  (setq my-emacs-env-type "EeePC") ; Or "GeneralPC" or "RDesktop"
 ;;  (load (concat emacs-git "/SimonInit.el"))
 ;;
@@ -37,7 +37,11 @@
 
       ;; Add M-F4 to closing emacs, as apparently it is not caught by the windows manager
       (global-set-key (kbd "M-<f4>") 'save-buffers-kill-terminal) ; Close EMACS (Microsoft style)
-      
+
+      ;; Chrome command for windows (assumes C:\Program Files (x86)\Google\Chrome\Application is in path)
+      (if (not (boundp 'my-chrome-command))
+               (setq my-chrome-command "chrome"))
+       
       )
   (progn
 
@@ -54,6 +58,9 @@
                              "/usr/local/share/emacs/site-lisp"
                              ) load-path))
 
+    ;; Chrome command for windows
+    (if (not (boundp 'my-chrome-command))
+             (setq my-chrome-command "google-chrome"))
     )
   )
 
@@ -204,6 +211,78 @@
 ;; Show column-number in the mode line
 (column-number-mode 1)
 
+;;Open notebook
+(defun open-notes-file ()
+  "Load my personal todo list"
+  (interactive)
+  (find-file default-notes-file)
+  (font-lock-fontify-buffer)
+  (end-of-buffer)
+  )
+
+;;Open shell
+(defun open-shell ()
+  "Load my personal todo list"
+  (interactive)
+  (shell)
+  )
+
+;; Init File
+(setq default-init-file (concat emacs-git "/SimonInit.el"))
+
+;;Open Init File
+(defun open-init-file ()
+  "Load my personal todo list"
+  (interactive)
+  (find-file default-init-file)
+  )
+
+;; Most Recent Buffers
+(defun find-first-buffer-match (buffers pattern)
+  (dolist (f buffers)
+    (when (string-match pattern (buffer-name f))
+      (return f))))
+
+(defun find-most-recent-pattern-buffer (pattern)
+  "find the most recent code buffer in the history and switch to it"
+  (let ((f (find-first-buffer-match (cdr (buffer-list)) pattern)))
+    (if (not (eq f nil))
+        (switch-to-buffer f)
+      )
+    )
+  )
+
+(defun find-most-recent-python-buffer ()
+  "find the most recent code buffer in the history and switch to it"
+  (interactive)
+  (find-most-recent-pattern-buffer "\\.py"))
+
+(defun find-most-recent-c-buffer ()
+  "find the most recent code buffer in the history and switch to it"
+  (interactive)
+  (find-most-recent-pattern-buffer "\\.\\(cpp\\|h\\|cc\\|hh|hpp\\)$"))
+
+(defun find-most-recent-emacs-buffer ()
+  "find the most recent code buffer in the history and switch to it"
+  (interactive)
+  (find-most-recent-pattern-buffer "\\.el\\$\\|dov.emacs|SimonInit.el"))
+
+(defun find-most-recent-magit-buffer ()
+  "find the most recent code buffer in the history and switch to it"
+  (interactive)
+  (find-most-recent-pattern-buffer "magit"))
+
+(defun find-most-recent-org-buffer ()
+  "find the most recent code buffer in the history and switch to it"
+  (interactive)
+  (find-most-recent-pattern-buffer "\\.org\$"))
+
+;; qt docs lookup
+(require `info-look)
+(load "qtdoc")
+(setq qtdoc-html-root "http://doc.qt.io/qt-4.8/")
+(load "google-look")
+
 ;;;;;;;;;;KEYBOARD SHORTCUTS
 ; Undo-Redo
 (defalias 'redo 'undo-tree-redo)
@@ -286,6 +365,39 @@
 
 ;lines truncation
 (global-set-key (kbd "C-x t") 'toggle-truncate-lines)
+
+;Notebook
+(global-set-key [f5] 'open-notes-file)
+
+(global-set-key (kbd "C-S-n") '(lambda () (interactive)
+                                 (switch-to-buffer "NoteBook.org")))
+
+;Shell
+(global-set-key [f6] 'open-shell)
+
+(global-set-key (kbd "C-S-s") '(lambda () (interactive) 
+                                 (switch-to-buffer (find-most-recent-pattern-buffer "\\*shell"))))
+
+;SimonInit
+(global-set-key (kbd "C->") '(lambda () (interactive) 
+                                 (open-init-file)))
+
+
+;Reload buffer
+(global-set-key "\C-x\C-r" 'revert-buffer)
+
+;Most Recent Buffers
+(global-set-key (kbd "S-C-c") 'find-most-recent-c-buffer)
+(global-set-key (kbd "S-C-e") 'find-most-recent-emacs-buffer)
+(global-set-key (kbd "S-C-p") 'find-most-recent-python-buffer)
+(global-set-key (kbd "S-C-m") 'find-most-recent-magit-buffer)
+(global-set-key (kbd "S-C-o") 'find-most-recent-org-buffer)
+
+;Help and documentation
+(global-set-key [(control h) (control q)] 'qtdoc-lookup)
+(global-set-key [(control h) (control g)] 'google-lookup)
+(global-set-key [(control h) (control p)] 'python-lookup)
+(global-set-key [(control h) (control c)] 'cpp-lookup)
 
 ;===================================
 ;gdb and gud-gdb
@@ -394,13 +506,14 @@
       (append
        (list (cons "\\.cmake$" 'cmake-mode))
 
-       (list (cons "\\.pro$" 'text-mode))
+       (list (cons "\\.pro$" 'makefile-mode))
        
        (list (cons "SConstruct" 'python-mode))
        (list (cons "SConscript" 'python-mode))
        (list (cons "\\.py$" 'python-mode))
        (list (cons "\\.run$" 'python-mode))
        
+       (list (cons "\\.h$" 'c++-mode))
        (list (cons "\\.hh$" 'c++-mode))
        (list (cons "\\.H$" 'c++-mode))
        (list (cons "\\.cxx$" 'c++-mode))
@@ -549,7 +662,7 @@
 (add-hook 'c-mode-hook
 (lambda ()
 ;(setq indent-line-function (quote insert-tab))     ;<<<<<<<<<<<<<<<<<<
-(xjet-indent-mode() )
+;(xjet-indent-mode() )
 ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -755,11 +868,11 @@
            '(("doc" . "libreoffice -norestore %s"))
            '(("odt" . "libreoffice -norestore %s"))
            '(("gnumeric" . "gnumeric %s"))
-           '(("html" . "firefox %s"))
+           '(("html" . (concat my-chrome-command " %s")))
            org-file-apps))))
 
-(setq org-src-lang-modes
-      '(("elisp" . emacs-lisp)
+(setq org-src-lang-modes 
+     '(("elisp" . emacs-lisp)
         ("ditaa" . artist)
         ("asymptote" . asy)
         ("dot" . fundamental)
