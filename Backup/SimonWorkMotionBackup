@@ -2,7 +2,7 @@
 
 echo "Starting Motion Backup"
 
-RemoteBackupDir=/mnt/xjetsrv/public/Groups/Software/Backup/Users/Simon
+RemoteBackupDir=/mnt/3dfs/public/Groups/Software/Backup/Users/Simon
 LocalBackupDir=/home/simon/Backup
 MotionDir=/home/simon/.motion
 
@@ -19,7 +19,7 @@ tar -czf         $YesterdayArchive                $MotionDir/Tracking/Today/*
 echo "Removing Today's Photos"
 rm $MotionDir/Tracking/Today/*
 
-echo "Backing up yesterday's archive on XJetSrv"
+echo "Backing up yesterday's archive on 3dfs"
 rsync $YesterdayArchive $RemoteBackupDir/
 
 #  (From http://stackoverflow.com/questions/13868821/shell-script-delete-folders-older-than-n-days)
@@ -39,8 +39,8 @@ find $LocalBackupDir/*.tgz -type f -ctime +14 -exec rm {} \;
 echo "Removing local logs older than 14 days"
 find $LocalBackupDir/MotionBackup*.log -type f -ctime +14 -exec rm {} \;
 
-#Remove archives older than 7 days on XJetSrv
-echo "Removing XJetSrv motion archives older than 7 days"
+#Remove archives older than 7 days on 3dfs
+echo "Removing 3dfs motion archives older than 7 days"
 find $RemoteBackupDir/backup-simon-motion-* -type f -ctime +7 -exec rm {} \;
 
 #Start Motion (If it wasn't already on)

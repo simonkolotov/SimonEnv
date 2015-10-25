@@ -3,6 +3,8 @@
 # copy this file to /home/simon/scripts/Backup.sh
 # REMEMBER: The file must be executable!!
 
+echo "Starting Schedulled Backup"
+
 TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
 BackupLog=/home/simon/Backup/Backup-$TimeStamp.log
 MotionBackupLog=/home/simon/Backup/MotionBackup-$TimeStamp.log
