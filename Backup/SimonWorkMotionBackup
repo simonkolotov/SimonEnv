@@ -44,7 +44,4 @@ echo "Removing 3dfs motion archives older than 7 days"
 find $RemoteBackupDir/backup-simon-motion-* -type f -ctime +7 -exec rm {} \;
 
 #Start Motion (If it wasn't already on)
-if [ ! -f /home/simon/.motion/motion.pid ]; then
-    echo "Restarting motion"
-    motion
-fi
+motion
