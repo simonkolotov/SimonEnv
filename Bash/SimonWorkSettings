@@ -32,9 +32,12 @@ pyqt4-env() {
 ###########  
 
 export METALJET=/home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt/
-export METALJET2=/home/simon/git/MetalJet2/XjetApps/MetalJet/Apps/Project/qt/
+export BE=/home/simon/git/MetalJet/XjetApps/BuildEngine/BinLinux
 
-export TDFS=/mnt/3dfs/public
+export METALJET2=/home/simon/git/MetalJet2/XjetApps/MetalJet/Apps/Project/qt/
+export BE2=/home/simon/git/MetalJet/XjetApps/BuildEngine/BinLinux
+
+export W=/mnt/3dfs/public
 export SWGROUP=/mnt/3dfs/public/Groups/Software
 export SIMON=/mnt/3dfs/public/Groups/Software/Users/Simon
 
