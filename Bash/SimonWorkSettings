@@ -35,7 +35,7 @@ export METALJET=/home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt/
 export BE=/home/simon/git/MetalJet/XjetApps/BuildEngine/BinLinux
 
 export METALJET2=/home/simon/git/MetalJet2/XjetApps/MetalJet/Apps/Project/qt/
-export BE2=/home/simon/git/MetalJet/XjetApps/BuildEngine/BinLinux
+export BE2=/home/simon/git/MetalJet2/XjetApps/BuildEngine/BinLinux
 
 export W=/mnt/3dfs/public
 export SWGROUP=/mnt/3dfs/public/Groups/Software

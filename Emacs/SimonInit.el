@@ -4,11 +4,18 @@
 ;;
 ;; To use this file, add lines similar to the following to ~/.emacs:
 ;;
-;;  (setq emacs-git "/home/simon/github/SimonEnv/Emacs/")
-;;  ;(setq default-notes-file "/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/NoteBook.org")
-;;  (setq default-notes-file "/home/simon/github/Notes/NoteBook.org")
-;;  (setq my-emacs-env-type "EeePC") ; Or "GeneralPC" or "RDesktop"
-;;  (load (concat emacs-git "/SimonInit.el"))
+;; ; -*- Encoding: utf-8 -*-
+;; 
+;; (setq emacs-git "/home/simon/github/SimonEnv/Emacs/")
+;; (setq default-notes-file "/home/simon/github/Notes/NoteBook.org")
+;; (setq my-emacs-monitors-num 2) ; Number of monitors attached
+;; 
+;; ; emacs persistance directory
+;; (if (not (boundp 'emacs-persistance-dir))
+;;     (setq emacs-persistance-dir "/home/simon/.emacs.d")
+;; )
+;; 
+;; (load (concat emacs-git "SimonInit.el"))
 ;;
 ;;  The default font used is InconsolataDov. copy it from /home/simon/github/SimonEnv/Emacs/ to ~/.fonts/
 ;;----------------------------------------------------------------------
@@ -90,6 +97,7 @@
 (add-to-list 'load-path (concat emacs-git "Plugins/fill-column-indicator-1.83"))
 (add-to-list 'load-path (concat emacs-git "Plugins/matlab-emacs/matlab-emacs"))
 
+(load "scott.emacs")
         
 ;;;;;;;;;;Env Vars for MetalJet compilation        
 (setenv "QMAKE" "qmake-qt5")
@@ -597,21 +605,30 @@
 
 ;;;;;;;;;;;;;;Window size
 
-; Start In Full Screen Mode
-;(initial-frame-alist (quote ((fullscreen . maximized)))))
+(setq left-two-thirds-screen-pos (list 0.6 my-height-fraction 0 0))    ; 0 from left, 0 from top
+(defun frame-occupy-left-two-thirds-screen ()
+  "Move and resize the frame so it occupies the left half of the screen."
+  (interactive)
+  ;(apply 'frame-move-resize left-half-screen-pos)
+  (apply 'frame-move-resize left-two-thirds-screen-pos))
+
+(setq left-third-screen-pos (list 0.278 my-height-fraction 0 0))    ; 0 from left, 0 from top
+(defun frame-occupy-left-third-screen ()
+  "Move and resize the frame so it occupies the left half of the screen."
+  (interactive)
+  ;(apply 'frame-move-resize left-half-screen-pos)
+  (apply 'frame-move-resize left-third-screen-pos))
 
 ; Set Window size by environment type
-(if (not (boundp 'my-emacs-env-type))(setq my-emacs-env-type "GeneralPC"))
+(if (not (boundp 'my-emacs-monitors-num))(setq my-emacs-monitors-num 1))
 (if (window-system)
     (cond
-     ((string-match my-emacs-env-type "GeneralPC") 
-        (set-frame-size (selected-frame) 125 50))
-     ((string-match my-emacs-env-type "EeePC") 
-        (set-frame-size (selected-frame) 107 24))
-     ((string-match my-emacs-env-type "RDesktop") 
-        (set-frame-size (selected-frame) 110 40))
+     ((= my-emacs-monitors-num 1) 
+        (frame-occupy-left-two-thirds-screen))
+     ((= my-emacs-monitors-num 2)
+      (frame-occupy-left-third-screen))
      (t
-        (set-frame-size (selected-frame) 50 10))
+      (frame-occupy-left-third-screen))
     )
   )
 
@@ -880,3 +897,5 @@
         ("perl" . cperl)
         ("python" . python)
         ))
+
+(eval-buffer)
