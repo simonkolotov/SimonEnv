@@ -395,6 +395,13 @@
 ;Reload buffer
 (global-set-key "\C-x\C-r" 'revert-buffer)
 
+(global-set-key "\M-S-[" 'c-beginning-of-defun)
+(global-set-key "\M-S-]" 'c-end-of-defun)
+
+(global-set-key "\M-[" 'find-matching-keyword)
+
+
+
 ;Most Recent Buffers
 (global-set-key (kbd "S-C-c") 'find-most-recent-c-buffer)
 (global-set-key (kbd "S-C-e") 'find-most-recent-emacs-buffer)
@@ -560,6 +567,7 @@
 ;;;;;;;;;;;;; python-mode
 (setq py-install-directory (concat emacs-git "Plugins/python-mode.el-6.1.2"))
 (add-to-list 'load-path py-install-directory)
+(setq py-outline-minor-mode-p nil)
 (require 'python-mode)
 
 ; use IPython
@@ -897,5 +905,3 @@
         ("perl" . cperl)
         ("python" . python)
         ))
-
-(eval-buffer)
