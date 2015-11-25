@@ -1,2 +1,35 @@
-"b25a364b08d95f465affacaba5927b859adf5bd6"
-[cl-struct-undo-tree [nil ([nil (#1=[nil nil ((166 . 174)) nil (21961 56809 775929 808000) 0 nil] [nil nil ((nil rear-nonsticky nil 178 . 179) (nil fontified nil 178 . 179) (nil fontified nil 171 . 178) (nil fontified nil 166 . 171) (166 . 179)) ((#("(kbd \"C-M-n\")" 0 5 (fontified nil face font-lock-string-face) 5 6 (fontified nil face font-lock-string-face) 6 11 (fontified nil) 11 12 (fontified nil face font-lock-string-face) 12 13 (fontified nil rear-nonsticky nil face font-lock-string-face)) . 166) (undo-tree-id1 . 1) (undo-tree-id2 . -13) (undo-tree-id3 . 13) (undo-tree-id4 . -1) (nil rear-nonsticky t 178 . 179)) (21961 56806 832224 94000) 0 nil]) ((#("notes" 0 5 (fontified t face font-lock-string-face)) . -166) (undo-tree-id0 . -5) 166 (t 21396 30760 615509 402000)) nil (21961 56806 832489 197000) 0 nil]) nil nil (21961 56806 832247 913000) 0 nil] #1# 146 3 nil]
+"d0cf758170cea78d26e642ccc11cffc49863d450"
+[cl-struct-undo-tree [nil ([nil (#1=[nil nil ((nil rear-nonsticky nil 380 . 381) (nil fontified nil 379 . 381) (nil fontified nil 365 . 379) (nil fontified nil 336 . 365) (nil fontified nil 314 . 336) (nil fontified nil 243 . 314) (nil fontified nil 241 . 243) (nil fontified nil 240 . 241) (nil fontified nil 212 . 240) (nil fontified nil 210 . 212) (nil fontified nil 209 . 210) (nil fontified nil 179 . 209) (nil fontified nil 146 . 179) (nil fontified nil 107 . 146) (nil fontified nil 80 . 107) (nil fontified nil 44 . 80) (nil fontified nil 27 . 44) (nil fontified nil 3 . 27) (nil fontified nil 1 . 3) (1 . 381)) nil (22101 30782 545367 680000) 0 nil]) ((#("; -*- Encoding: utf-8 -*-
+
+  (setq emacs-git \"/home/simon/github/SimonEnv/Emacs/\")
+  (setq default-notes-file \"/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/NoteBook.org\")
+  (load (concat emacs-git \"SimonInit.el\"))
+
+
+; emacs persistance directory
+(if (not (boundp 'emacs-persistance-dir))
+    (setq emacs-persistance-dir \"/home/simon/.emacs.d\")
+)
+" 0 2 (fontified t face font-lock-comment-delimiter-face) 2 26 (fontified t face font-lock-comment-face) 26 45 (fontified t) 45 81 (fontified t face font-lock-string-face) 81 110 (fontified t) 110 178 (fontified t face font-lock-string-face) 178 206 (fontified t) 206 220 (fontified t face font-lock-string-face) 220 225 (fontified t) 225 227 (fontified t face font-lock-comment-delimiter-face) 227 255 (fontified t face font-lock-comment-face) 255 256 (fontified t) 256 258 (fontified t face font-lock-keyword-face) 258 329 (fontified t) 329 351 (fontified t face font-lock-string-face) 351 355 (fontified t)) . -1) (undo-tree-id11 . -355) 1 (t 21961 56809 800993 916000)) nil (22101 30782 545387 752000) 0 nil] [nil ([nil nil ((nil rear-nonsticky nil 380 . 381) (nil fontified nil 379 . 381) (nil fontified nil 365 . 379) (nil fontified nil 336 . 365) (nil fontified nil 314 . 336) (nil fontified nil 243 . 314) (nil fontified nil 241 . 243) (nil fontified nil 240 . 241) (nil fontified nil 212 . 240) (nil fontified nil 210 . 212) (nil fontified nil 209 . 210) (nil fontified nil 179 . 209) (nil fontified nil 146 . 179) (nil fontified nil 107 . 146) (nil fontified nil 80 . 107) (nil fontified nil 44 . 80) (nil fontified nil 27 . 44) (nil fontified nil 3 . 27) (nil fontified nil 1 . 3) (1 . 381)) ((#("; -*- Encoding: utf-8 -*-
+
+(setq emacs-git \"/home/simon/github/SimonEnv/Emacs/\")
+(setq default-notes-file \"/home/simon/github/Notes/NoteBook.org\")
+(setq my-emacs-monitors-num 2) ; Number of monitors attached
+
+; emacs persistance directory
+(if (not (boundp 'emacs-persistance-dir))
+    (setq emacs-persistance-dir \"/home/simon/.emacs.d\")
+)
+
+(load (concat emacs-git \"SimonInit.el\"))" 0 2 (fontified nil face font-lock-comment-delimiter-face) 2 26 (fontified nil face font-lock-comment-face) 26 27 (fontified nil) 27 43 (fontified nil) 43 79 (fontified nil face font-lock-string-face) 79 81 (fontified nil) 81 106 (fontified nil) 106 145 (fontified nil face font-lock-string-face) 145 147 (fontified nil) 147 178 (fontified nil) 178 208 (fontified nil face font-lock-comment-face) 208 209 (fontified nil) 209 211 (fontified nil face font-lock-comment-delimiter-face) 211 239 (fontified nil face font-lock-comment-face) 239 240 (fontified nil) 240 242 (fontified nil face font-lock-keyword-face) 242 281 (fontified nil) 281 313 (fontified nil) 313 335 (fontified nil face font-lock-string-face) 335 340 (fontified nil) 340 364 (fontified nil) 364 378 (fontified nil face font-lock-string-face) 378 379 (fontified nil) 379 380 (fontified nil rear-nonsticky nil)) . 1) (undo-tree-id7 . 1) (undo-tree-id8 . -380) (undo-tree-id9 . 40) (undo-tree-id10 . -341) (nil fontified t 3 . 27) (nil fontified t 27 . 28) (nil fontified t 80 . 82) (nil fontified t 146 . 148) (nil fontified t 179 . 209) (nil fontified t 209 . 210) (nil fontified t 212 . 240) (nil fontified t 243 . 282) (nil fontified t 336 . 341) (nil rear-nonsticky t 380 . 381)) (22101 30754 526227 498000) 0 nil]) ((#("; -*- Encoding: utf-8 -*-
+
+  (setq emacs-git \"/home/simon/github/SimonEnv/Emacs/\")
+  (setq default-notes-file \"/mnt/xjetsrv/public/Groups/Software/Users/Simon/Notes/NoteBook.org\")
+  (load (concat emacs-git \"SimonInit.el\"))
+
+
+; emacs persistance directory
+(if (not (boundp 'emacs-persistance-dir))
+    (setq emacs-persistance-dir \"/home/simon/.emacs.d\")
+)
+" 0 2 (fontified t face font-lock-comment-delimiter-face) 2 26 (fontified t face font-lock-comment-face) 26 45 (fontified t) 45 81 (fontified t face font-lock-string-face) 81 110 (fontified t) 110 178 (fontified t face font-lock-string-face) 178 206 (fontified t) 206 220 (fontified t face font-lock-string-face) 220 225 (fontified t) 225 227 (fontified t face font-lock-comment-delimiter-face) 227 255 (fontified t face font-lock-comment-face) 255 256 (fontified t) 256 258 (fontified t face font-lock-keyword-face) 258 329 (fontified t) 329 351 (fontified t face font-lock-string-face) 351 355 (fontified t)) . -1) (undo-tree-id0 . -355) (undo-tree-id1 . -355) (undo-tree-id2 . -355) (undo-tree-id3 . -355) (undo-tree-id4 . -355) (undo-tree-id5 . -355) (undo-tree-id6 . -355) 1 (t 21961 56809 800993 916000)) ((1 . 356)) (22101 30754 527101 208000) 0 nil]) nil nil (22101 30754 878506 691000) 0 nil] #1# 1650 4 nil]
