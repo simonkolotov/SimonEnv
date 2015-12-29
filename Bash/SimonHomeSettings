@@ -3,14 +3,9 @@ export LD_LIBRARY_PATH=/usr/local/lib
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages:
 
 #Shortcuts
-export DATA=/mnt/Data
-export INCOMING=/mnt/Data/Incoming
-export PERSONAL=/mnt/Data/Personal
-export SEAGATE=/mnt/Seagate
-export WD=/mnt/WD    
+export INCOMING=/mnt/HDD/win/D/Incoming
+export PERSONAL=/mnt/HDD/win/D/Personal
 
-export DROPBOX=$PERSONAL/Senya/Dropbox/
+export DROPBOX=$PERSONAL/Senya/Dropbox
 
-alias MountDiskOnKey='sudo mount /dev/sdd1 $DISKONKEY'
-alias MountTruecrypt='truecrypt --mount /dev/sdd2'
-  
+export OLD_HOME=/mnt/HDD/linux/home/simon

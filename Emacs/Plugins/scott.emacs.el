@@ -852,8 +852,8 @@ redefined, 'newname' will behave like the old 'oldname'."
 ; like an editor, but it just sends the buffer to emacs for editing;
 ; when done, we use C-x # to quit editing and let the invoker
 ; of 'emacsclient' proceed (see my c-x # sequence, below)
-(if version-emacs-x
-    (server-start))
+;(if version-emacs-x
+;    (server-start))
 
 ; my C-x # sequence: tell emacsclient to exit, and close the associated emacs buffer!
 (defun my-server-edit ()
