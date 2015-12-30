@@ -26,13 +26,15 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" || $EMACS
 
   PS2="...>"
 
-  #################  
-  # Command History
-  #################    
-  bind '"\e[A": history-search-backward'
-  bind '"\e[B": history-search-forward'
-  bind '"\eOA": history-search-backward'
-  bind '"\eOB": history-search-forward'
+  if [[ $EMACS != "t" ]]; then
+    #################  
+    # Command History
+    #################    
+    bind '"\e[A": history-search-backward'
+    bind '"\e[B": history-search-forward'
+    bind '"\eOA": history-search-backward'
+    bind '"\eOB": history-search-forward'
+  fi
 
   ######################
   #Aliases and Functions
@@ -133,26 +135,24 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" || $EMACS
   #Shortcuts
   ##########
 
-  export DECRYPTED=/home/simon/Decrypted
-  export GALAXY=/home/simon/Galaxy
     
   export DISKONKEY=/mnt/DiskOnKey
   export DISKONKEY2=/mnt/DiskOnKey2
 
-  export DECRYPTED=/home/simon/Decrypted
-  export TRUECRYPT=/media/truecrypt1
+  export NOTEBOOK=/home/simon/Notebook
+  alias MountNotebook='encfs $DROPBOX/Notebook/ $NOTEBOOK'
+  alias UnmountNotebook='fusermount -u $NOTEBOOK'  
 
+  export GALAXY=/home/simon/Galaxy
   alias MountGalaxy='simple-mtpfs $GALAXY'
-  alias MountGalaxyEncrypted='encfs $GALAXY/Card/Personal/ $DECRYPTED'     
-  alias MountDropBoxEncrypted='encfs $DROPBOX/Personal/ $DECRYPTED'
-  alias MountDiskOnKeyEncrypted='encfs $DISKONKEY/Personal/ $DECRYPTED'    
+  alias MountGalaxyEncrypted='encfs $GALAXY/Card/Personal/ $DECRYPTED'
+  alias UnmountGalaxy='fusermount -u $GALAXY'  
   
   alias PhoneBook='openoffice.org $DECRYPTED/Telephones/Phonebook.xls'
   alias PhoneBookAK='openoffice.org $DECRYPTED/Telephones/AK\ telephon_book.doc'
 
-  alias UnmountDiskOnKey='sudo umount $DISKONKEY'  
-  alias UnmountDecrypted='fusermount -u $DECRYPTED'   
-  alias UnmountGalaxy='fusermount -u $GALAXY'
-  alias UnmountTruecrypt='truecrypt -d $TRUECRYPT'  
-    
+  export DECRYPTED=/home/simon/Decrypted
+  alias MountDropBoxEncrypted='encfs $DROPBOX/Personal/ $DECRYPTED'  
+  alias UnmountDecrypted='fusermount -u $DECRYPTED'
+
 fi

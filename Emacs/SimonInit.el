@@ -7,7 +7,8 @@
 ;; ; -*- Encoding: utf-8 -*-
 ;; 
 ;; (setq emacs-git "/home/simon/github/SimonEnv/Emacs/")
-;; (setq default-notes-file "/home/simon/github/Notes/NoteBook.org")
+;; (setq default-work-notes-file "/home/simon/github/Notes/WorkNoteBook.org")
+;; (setq default-personal-notes-file "/home/simon/Notes/NoteBook.org")
 ;; (setq my-emacs-monitors-num 2) ; Number of monitors attached
 ;; 
 ;; ; emacs persistance directory
@@ -221,10 +222,19 @@
 (column-number-mode 1)
 
 ;;Open notebook
-(defun open-notes-file ()
-  "Load my personal todo list"
+(defun open-work-notes-file ()
+  "Load my wrok notebook"
   (interactive)
-  (find-file default-notes-file)
+  (find-file default-work-notes-file)
+  (font-lock-fontify-buffer)
+  (end-of-buffer)
+  )
+
+
+(defun open-personal-notes-file ()
+  "Load my personal notebook"
+  (interactive)
+  (find-file default-personal-notes-file)
   (font-lock-fontify-buffer)
   (end-of-buffer)
   )
@@ -375,11 +385,17 @@
 ;lines truncation
 (global-set-key (kbd "C-x t") 'toggle-truncate-lines)
 
-;Notebook
-(global-set-key [f5] 'open-notes-file)
+;Personal Notebook
+(global-set-key [f4] 'open-personal-notes-file)
 
 (global-set-key (kbd "C-S-n") '(lambda () (interactive)
                                  (switch-to-buffer "NoteBook.org")))
+
+;Work Notebook
+(global-set-key [f5] 'open-work-notes-file)
+
+(global-set-key (kbd "C-S-w") '(lambda () (interactive)
+                                 (switch-to-buffer "WorkNoteBook.org")))
 
 ;Shell
 (global-set-key [f6] 'open-shell)

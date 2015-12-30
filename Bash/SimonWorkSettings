@@ -41,14 +41,13 @@ export W=/mnt/3dfs/public
 export SWGROUP=/mnt/3dfs/public/Groups/Software
 export SIMON=/mnt/3dfs/public/Groups/Software/Users/Simon
 
-export MODELS=/home/simon/3D/Models
-export SLICES=/home/simon/3D/Slices
-
 export WMODELS=/mnt/3dfs/public/3D/Images/STL-Files
 export WSLICES=/mnt/3dfs/public/3D/Images/Samples
 
 export INCOMING=/home/simon/Incoming
-export DROPBOX=/home/simon/Dropbox/
+export DROPBOX=/home/simon/Dropbox
+
+export MARKETSDEV=/mnt/3dfs/public/Markets\ Development
 
 #####################################
 # User specific aliases and functions
