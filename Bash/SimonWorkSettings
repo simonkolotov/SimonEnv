@@ -70,3 +70,6 @@ alias RemoteAccessMachine='/usr/bin/rdesktop -g 1672x976 -u machine -d XJETDOM -
 
 alias MountDiskOnKey='sudo mount /dev/sdb1 $DISKONKEY'
 alias MountTruecrypt='truecrypt --mount /dev/sdb2'
+
+alias STLViewer='export PYTHONPATH=$PYTHONPATH:$METALJET/Lib; python /home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt/PyExternalScripts/ModelViewer.py -m'
+alias TestSlicing='$BE/../Slicer/CL_Slicer/BinLinux/CL_Slicer -z 5 -m'

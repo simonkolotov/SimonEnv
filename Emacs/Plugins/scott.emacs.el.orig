@@ -846,6 +846,7 @@ redefined, 'newname' will behave like the old 'oldname'."
 
 
 
+<<<<<<< HEAD
 
 ; -------------------- emacsclient stuff -----------------------------
 ; this looks like a good idea: lets the 'emacsclient' program act
@@ -856,15 +857,17 @@ redefined, 'newname' will behave like the old 'oldname'."
 ;    (server-start))
 
 ; my C-x # sequence: tell emacsclient to exit, and close the associated emacs buffer!
-;(defun my-server-edit ()
-;  "Tell emacsclient to exit, and close buffer.  See also server-edit."
-;  (interactive)
-;  (let ((curbuf (current-buffer)))
-;    (server-edit)          ; tell emacsclient to exit
-;    (kill-buffer curbuf)   ; close buffer
-;  ))
+(defun my-server-edit ()
+  "Tell emacsclient to exit, and close buffer.  See also server-edit."
+  (interactive)
+  (let ((curbuf (current-buffer)))
+    (server-edit)          ; tell emacsclient to exit
+    (kill-buffer curbuf)   ; close buffer
+  ))
 
 
+=======
+>>>>>>> New aliases in WorkSettings
 ; ------------------- lateral (left/right) cursor movement ----------------
 (defun query-destructive-cursor-movement ()
   "Print whether we're doing destructive moves."
