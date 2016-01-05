@@ -3,11 +3,11 @@ export LD_LIBRARY_PATH=/usr/local/lib
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages:
 
 #Shortcuts
-export INCOMING=/mnt/HDD/win/D/Incoming
-export PERSONAL=/mnt/HDD/win/D/Personal
-
-export DROPBOX=$PERSONAL/Senya/Dropbox
-
+export D=/mnt/HDD/win/D
+export C=/mnt/HDD/win/C
 export OLD_HOME=/mnt/HDD/linux/home/simon
+export INCOMING=$D/Incoming
+export PERSONAL=$DPersonal
+export DROPBOX=$PERSONAL/Senya/Dropbox
 
 export SEAGATE=/run/media/simon/Seagate\ Backup\ Plus\ Drive
