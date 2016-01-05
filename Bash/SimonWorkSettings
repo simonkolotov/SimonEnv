@@ -44,7 +44,6 @@ export SIMON=/mnt/3dfs/public/Groups/Software/Users/Simon
 export WMODELS=/mnt/3dfs/public/3D/Images/STL-Files
 export WSLICES=/mnt/3dfs/public/3D/Images/Samples
 
-export INCOMING=/home/simon/Incoming
 export DROPBOX=/home/simon/Dropbox
 
 export MARKETSDEV=/mnt/3dfs/public/Markets\ Development
