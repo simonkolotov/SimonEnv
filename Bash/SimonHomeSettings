@@ -9,3 +9,5 @@ export PERSONAL=/mnt/HDD/win/D/Personal
 export DROPBOX=$PERSONAL/Senya/Dropbox
 
 export OLD_HOME=/mnt/HDD/linux/home/simon
+
+export SEAGATE=/run/media/simon/Seagate\ Backup\ Plus\ Drive
