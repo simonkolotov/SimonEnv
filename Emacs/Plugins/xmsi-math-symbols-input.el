@@ -441,6 +441,8 @@
 ;; * !		¡
 
   (puthash "currency" "¤" xmsi-abrvs)
+  (puthash "nis" "₪" xmsi-abrvs)
+  (puthash "NIS" "₪" xmsi-abrvs)  
 
   (puthash "tm" "™" xmsi-abrvs)
 
