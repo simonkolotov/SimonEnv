@@ -31,6 +31,9 @@ pyqt4-env() {
 # Shortcuts
 ###########  
 
+export OLD_HOME=/mnt/HDD/linux/home/simon
+export OLD_ROOT=/mnt/HDD/linux/root
+
 export METALJET=/home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt/
 export BE=/home/simon/git/MetalJet/XjetApps/BuildEngine/BinLinux
 
