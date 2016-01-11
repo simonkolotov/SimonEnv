@@ -42,7 +42,7 @@ export BE2=/home/simon/git/MetalJet2/XjetApps/BuildEngine/BinLinux
 
 export W=/mnt/3dfs/public
 export SWGROUP=/mnt/3dfs/public/Groups/Software
-export SIMON=/mnt/3dfs/public/Groups/Software/Users/Simon
+export WSIMON=/mnt/3dfs/public/Groups/Software/Users/Simon
 
 export WMODELS=/mnt/3dfs/public/3D/Images/STL-Files
 export WSLICES=/mnt/3dfs/public/3D/Images/Samples
