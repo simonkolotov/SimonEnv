@@ -1,0 +1,37 @@
+#!/bin/bash
+
+echo "Starting SWTeam Backup"
+
+RemoteBackupDir=/mnt/xjetsrv/public/Groups/Software/Backup/Users/Simon/swteam
+LocalBackupDir=/home/simon/Backup/
+
+WorkNotebookArchiveName=backup-simon-notebook
+TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
+YesterdayArchive=$LocalBackupDir/WorkNotebookArchiveName-$TimeStamp.tgz
+
+#Back up all files
+echo "Archiving up All Backed-up files"
+cd /
+#                    Tar-File                           Notes
+tar -czf         $YesterdayArchive                /home/simon/Repos/Notes
+
+echo "Backing up yesterday's version of NoteBook Repo on XJetSrv"
+rsync $YesterdayArchive $RemoteBackupDir/
+
+#  (From http://stackoverflow.com/questions/13868821/shell-script-delete-folders-older-than-n-days)
+#  Explanation:
+#  
+#  find: the unix command for finding files / directories / links etc.
+#  /path/to/base/dir: the directory to start your search in.
+#  -type d: only find directories
+#  -ctime +10: only consider the ones with modification time older than 10 days
+#  -exec ... \;: for each such result found, do the following command in ...
+#  rm -rf {}: recursively force remove the directory; the {} part is where the find result gets substituted into from the previous part.
+
+#Remove archives older than 4 days on my machine
+echo "Removing local general archives older than 4 days"
+find $LocalBackupDir/*.tgz -type f -ctime +4 -exec rm {} \;
+
+#Remove archives older than 2 days on XJetSrv
+echo "Removing XJetSrv general archives older than 2 days"
+find $RemoteBackupDir/WorkNotebookArchiveName-*.tgz -type f -ctime +2 -exec rm {} \;
