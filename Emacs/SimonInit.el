@@ -107,8 +107,19 @@
 
 (setenv "PE_HOME" "/home/simon/git/MetalJet")
 (setenv "METALJET" "$PE_HOME/XjetApps/MetalJet/Apps/Project/qt/" t)
+(setenv "BE" "$PE_HOME/XjetApps/BuildEngine/BinLinux" t)
+(setenv "OLD_HOME" "/mnt/HDD/linux/home/simon" t)
+(setenv "OLD_ROOT" "/mnt/HDD/linux/root" t)
+(setenv "W" "/mnt/3dfs/public" t)
+(setenv "SWGROUP" "/mnt/3dfs/public/Groups/Software" t)
+(setenv "WSIMON" "/mnt/3dfs/public/Groups/Software/Users/Simon" t)
+(setenv "WMODELS" "/mnt/3dfs/public/3D/Images/STL-Files" t)
+(setenv "WSLICES" "/mnt/3dfs/public/3D/Images/Samples" t)
+(setenv "DROPBOX" "/home/simon/Dropbox" t)
+(setenv "MARKETSDEV" "/mnt/3dfs/public/Markets\ Development" t)
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages")
 (setenv "LD_LIBRARY_PATH" "$METALJET/BinLinux/:/usr/local/lib" t)
+(setenv "PATH" "$PATH:/home/simon/scripts" t)
 
 ;;;;;;;;;;Matlab Mode
 (require 'matlab-load)
@@ -189,6 +200,11 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories (concat emacs-git "Plugins/autocomplete/ac-dict"))
 (ac-config-default)
+
+;;;;;;;;;;lua-mode
+(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
 ;;;;;;;;;;Toolbars
 (menu-bar-mode 't)
@@ -921,3 +937,12 @@
         ("perl" . cperl)
         ("python" . python)
         ))
+
+;;;;;;;;;;;;;;;;;;;;
+
+(defun xjet-python-buffer ()
+  "Send the current (python) buffer to be evaluated in the MetalJet Application"
+  (interactive)
+  (write-region (point-min) (point-max) "/tmp/buffer.py")
+  (shell-command "xjet-python /tmp/buffer.py"))
+(define-key py-mode-map [(control c) (control j)] 'xjet-python-buffer)

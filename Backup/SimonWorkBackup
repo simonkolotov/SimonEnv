@@ -2,12 +2,12 @@
 
 echo "Starting General Backup"
 
-RemoteBackupDir=/mnt/3dfs/public/Groups/Software/Backup/Users/Simon
-LocalBackupDir=/home/simon/Backup
-
+RemoteBackupDir=/mnt/3dfs/public/Groups/Software/Backup/Users/Simon/simonpc
+LocalBackupDir=/mnt/HDD/linux/home/simon/Backup
+SimonPCArchiveName=backup-simon-simonpc
 
 TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
-YesterdayArchive=$LocalBackupDir/backup-simon-simonpc-$TimeStamp.tgz
+YesterdayArchive=$LocalBackupDir/$SimonPCArchiveName-$TimeStamp.tgz
 
 #Calculate up MetalJet diff
 echo "Calculating MetalJet Diff"
@@ -17,8 +17,8 @@ git diff >> ../MetalJetDiff.diff
 #Back up all files
 echo "Archiving up All Backed-up files"
 cd /
-#                    Tar-File                           MetalJet Diff                      scripts     desktop shortcuts        Incoming             IPython Notebooks             Learning           Personal            configs             bash history                         Notes                                  SimonEnv local repo
-tar -czf         $YesterdayArchive                home/simon/git/MetalJetDiff.diff  home/simon/scripts home/simon/Desktop  home/simon/Incoming home/simon/IPythonNotebooks home/simon/Learning  home/simon/Personal home/simon/.config home/simon/.bash_history /mnt/3dfs/public/Groups/Software/Users/Simon/Notes /home/simon/github/SimonEnv \
+#                    Tar-File                           MetalJet Diff                      scripts     desktop shortcuts        Incoming             IPython Notebooks             Learning           Personal            configs             bash history            Notes                 SimonEnv local repo
+tar -czf         $YesterdayArchive                home/simon/git/MetalJetDiff.diff  home/simon/scripts home/simon/Desktop  home/simon/Incoming home/simon/IPythonNotebooks home/simon/Learning  home/simon/Personal home/simon/.config home/simon/.bash_history /home/simon/github/Notes /home/simon/github/SimonEnv \
 # Exclude the following:
 #    --exclude          
 
@@ -44,8 +44,8 @@ echo "Removing local general archives older than 14 days"
 find $LocalBackupDir/*.tgz -type f -ctime +14 -exec rm {} \;
 
 echo "Removing local logs older than 14 days"
-find $LocalBackupDir/Backup*.log -type f -ctime +14 -exec rm {} \;
+find $LocalBackupDir/$SimonPCArchiveName-*.log -type f -ctime +14 -exec rm {} \;
 
 #Remove archives older than 2 days on 3dfs
 echo "Removing 3dfs general archives older than 7 days"
-find $RemoteBackupDir/backup-simon-simonpc-*.tgz -type f -ctime +2 -exec rm {} \;
+find $RemoteBackupDir/$SimonPCArchiveName-*.tgz -type f -ctime +2 -exec rm {} \;

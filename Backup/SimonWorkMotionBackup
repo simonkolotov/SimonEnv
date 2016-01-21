@@ -3,11 +3,12 @@
 echo "Starting Motion Backup"
 
 RemoteBackupDir=/mnt/3dfs/public/Groups/Software/Backup/Users/Simon
-LocalBackupDir=/home/simon/Backup
+LocalBackupDir=/mnt/HDD/linux/home/simon/Backup
 MotionDir=/home/simon/.motion
 
+MotionArchiveName=backup-simon-motion
 TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
-YesterdayArchive=$LocalBackupDir/backup-simon-motion-$TimeStamp.tgz
+YesterdayArchive=$LocalBackupDir/$MotionArchiveName-$TimeStamp.tgz
 
 #Back up yesterdays motion files
 echo "Archiving yesterday's files"
@@ -37,11 +38,11 @@ echo "Removing local motion archives older than 14 days"
 find $LocalBackupDir/*.tgz -type f -ctime +14 -exec rm {} \;
 
 echo "Removing local logs older than 14 days"
-find $LocalBackupDir/MotionBackup*.log -type f -ctime +14 -exec rm {} \;
+find $LocalBackupDir/$MotionArchiveName-*.log -type f -ctime +14 -exec rm {} \;
 
 #Remove archives older than 7 days on 3dfs
 echo "Removing 3dfs motion archives older than 7 days"
-find $RemoteBackupDir/backup-simon-motion-* -type f -ctime +7 -exec rm {} \;
+find $RemoteBackupDir/$MotionArchiveName-* -type f -ctime +7 -exec rm {} \;
 
 #Start Motion (If it wasn't already on)
 motion

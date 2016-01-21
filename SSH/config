@@ -1,5 +1,6 @@
 Host *
   ForwardX11 yes
+  ForwardAgent yes
   GSSAPIAuthentication=no
   ForwardX11Trusted yes
 
@@ -7,7 +8,7 @@ Host XJetDovg
   Hostname 212.29.197.133
 
 Host XJetSimonK
-  ProxyCommand ssh XJetDovg nc 172.16.10.122 22
+  ProxyCommand ssh XJetDovg nc 172.16.10.99 22
 
 Host XJetSWTeam
   ProxyCommand ssh XJetDovg nc 172.16.10.84 22
