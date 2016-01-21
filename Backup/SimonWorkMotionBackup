@@ -2,7 +2,7 @@
 
 echo "Starting Motion Backup"
 
-RemoteBackupDir=/mnt/3dfs/public/Groups/Software/Backup/Users/Simon
+RemoteBackupDir=/mnt/3dfs/public/Groups/Software/Backup/Users/Simon/motion
 LocalBackupDir=/mnt/HDD/linux/home/simon/Backup
 MotionDir=/home/simon/.motion
 
