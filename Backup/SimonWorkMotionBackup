@@ -13,12 +13,15 @@ YesterdayArchive=$LocalBackupDir/$MotionArchiveName-$TimeStamp.tgz
 #Back up yesterdays motion files
 echo "Archiving yesterday's files"
 cd /
-#                    Tar-File                           Motion Dir
-tar -czf         $YesterdayArchive                $MotionDir/Tracking/Today/*
+#This uses find | xargs since the number of files may be larger than a normal command would accept
+#                Motion Dir       create tar file            Tar-File         ###Here goes the result
+find $MotionDir/Tracking/Today/* | xargs tar -czf         $YesterdayArchive                
 
 #echo "Removing yesterday's files from Today's Dir"
 echo "Removing Today's Photos"
-rm $MotionDir/Tracking/Today/*
+#This uses find | xargs since the number of files may be larger than a normal command would accept
+#                Motion Dir       remove all files
+find $MotionDir/Tracking/Today/* | xargs rm
 
 echo "Backing up yesterday's archive on 3dfs"
 rsync $YesterdayArchive $RemoteBackupDir/
