@@ -106,7 +106,9 @@
 (setenv "XJETQTVERSION" "QT5")
 
 (setenv "PE_HOME" "/home/simon/git/MetalJet")
+;(setenv "PE_HOME" "/home/simon/git/MetalJet2"
 (setenv "METALJET" "$PE_HOME/XjetApps/MetalJet/Apps/Project/qt/" t)
+;(setenv "METALJET" "$PE_HOME/XjetApps/MetalJet2/Apps/Project/qt/" t)
 (setenv "BE" "$PE_HOME/XjetApps/BuildEngine/BinLinux" t)
 (setenv "OLD_HOME" "/mnt/HDD/linux/home/simon" t)
 (setenv "OLD_ROOT" "/mnt/HDD/linux/root" t)
@@ -946,3 +948,17 @@
   (write-region (point-min) (point-max) "/tmp/buffer.py")
   (shell-command "xjet-python /tmp/buffer.py"))
 (define-key py-mode-map [(control c) (control j)] 'xjet-python-buffer)
+
+
+; magit-diff-file was written by dov, and requsted to be merged into magit.
+; See: https://github.com/magit/magit/issues/2553
+(defun magit-diff-file (rev-or-range &optional file args)
+  "Show changes between a file from another branch"
+  (interactive (list (magit-diff-read-range-or-commit "File diff for range" nil current-prefix-arg)
+                     (if current-prefix-arg
+                       (read-file-name "File: ")
+                       buffer-file-name))) 
+  (magit-diff-setup rev-or-range nil args
+                    (list (replace-regexp-in-string (magit-toplevel) "" (expand-file-name file)))))
+
+(global-set-key (kbd "C-c-d") 'magit-diff-file)
