@@ -106,7 +106,7 @@
 (setenv "XJETQTVERSION" "QT5")
 
 (setenv "PE_HOME" "/home/simon/git/MetalJet")
-;(setenv "PE_HOME" "/home/simon/git/MetalJet2"
+;(setenv "PE_HOME" "/home/simon/git/MetalJet2")
 (setenv "METALJET" "$PE_HOME/XjetApps/MetalJet/Apps/Project/qt/" t)
 ;(setenv "METALJET" "$PE_HOME/XjetApps/MetalJet2/Apps/Project/qt/" t)
 (setenv "BE" "$PE_HOME/XjetApps/BuildEngine/BinLinux" t)
@@ -961,4 +961,4 @@
   (magit-diff-setup rev-or-range nil args
                     (list (replace-regexp-in-string (magit-toplevel) "" (expand-file-name file)))))
 
-(global-set-key (kbd "C-c-d") 'magit-diff-file)
+(global-set-key (kbd "C-c d") 'magit-diff-file)
