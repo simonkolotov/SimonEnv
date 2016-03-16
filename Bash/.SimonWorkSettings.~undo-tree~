@@ -1,2 +1,358 @@
-"4e1fab9fb6475b40a10510a7e11d645293d9a0c8"
-[cl-struct-undo-tree [nil ([nil ([nil (#1=[nil nil ((415 . 419)) nil (22173 331 457302 0) 0 nil]) (("u" . -415) (undo-tree-id0 . -1) (undo-tree-id1 . -1)) nil (22173 331 457323 678000) 0 nil]) ((399 . 416) (t 22163 23338 295559 42000)) nil (22173 331 457329 760000) 0 nil]) nil nil (22173 331 457332 408000) 0 nil] #1# 49 3 nil]
+"c4ac54c815b53d42ac58b031d52fcd69168c291e"
+[cl-struct-undo-tree [nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil (#4=[nil nil ((250 . 263)) nil (22246 49029 879700 645000) 0 nil]) ((#("y" 0 1 (fontified t face font-lock-comment-face)) . -250) (undo-tree-id1 . -1) (undo-tree-id2 . -1)) nil (22246 49029 879719 269000) 0 nil]) ((#("h" 0 1 (fontified t face font-lock-comment-face)) . -251) (undo-tree-id3 . -1) (undo-tree-id4 . -1)) nil (22246 49029 879729 251000) 0 nil]) ((235 . 252)) nil (22246 49029 879733 812000) 0 nil]) ((#("c" 0 1 (fontified t face font-lock-comment-face)) . -235) (undo-tree-id5 . -1) (undo-tree-id6 . -1)) nil (22246 49029 879741 354000) 0 nil]) ((222 . 236)) nil (22246 49029 879745 606000) 0 nil]) ((202 . 222)) nil (22246 49029 879748 818000) 0 nil]) ((201 . 202) (t 22246 48972 254859 807000)) nil (22246 49029 879752 405000) 0 nil] [nil nil ((689 . 690) (t 22246 48972 254859 807000)) ((#("
+" 0 1 (fontified t)) . 689) (undo-tree-id0 . 1)) (22246 48990 607394 401000) 0 nil]) ((nil font-lock-face comint-highlight-input 5725 . 5795) (nil font-lock-face comint-highlight-input 5117 . 5725) (nil font-lock-face comint-highlight-input 4572 . 5117) (nil font-lock-face comint-highlight-input 4534 . 4572) (nil font-lock-face comint-highlight-input 3875 . 4534) (nil font-lock-face comint-highlight-input 3344 . 3875) (nil font-lock-face comint-highlight-input 2898 . 3344) (nil font-lock-face nil 2828 . 2898) (t 22246 48972 254859 807000)) nil (22246 48990 607884 394000) 0 nil] [nil nil ((nil font-lock-face nil 5796 . 5821) (5796 . 5821) (nil fontified t 5795 . 5796) (nil font-lock-face comint-highlight-input 5795 . 5796) (nil mouse-face highlight 5795 . 5796) (nil help-echo #2="mouse-2: insert after prompt as new input" 5795 . 5796) (nil front-sticky #1=(help-echo mouse-face font-lock-face fontified) 5795 . 5796) (5795 . 5796) (t 22246 48972 254859 807000)) ((#("
+" 0 1 (fontified nil rear-nonsticky t field boundary inhibit-line-move-field-capture t font-lock-face comint-highlight-input mouse-face highlight help-echo #2# front-sticky #1#)) . 5795) (undo-tree-id155 . -1) (undo-tree-id156 . -1) (undo-tree-id157 . -1) (undo-tree-id158 . -1) (undo-tree-id159 . -1) (undo-tree-id160 . -1) (undo-tree-id161 . -1) (undo-tree-id162 . -1) (undo-tree-id163 . -1) (nil front-sticky nil 5795 . 5796) (nil help-echo nil 5795 . 5796) (nil mouse-face nil 5795 . 5796) (nil font-lock-face nil 5795 . 5796) (#("|~/github/SimonEnv/Bash|>" 0 25 (fontified nil front-sticky #3=(field inhibit-line-move-field-capture) rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face nil)) . 5796) (undo-tree-id164 . -25) (undo-tree-id165 . -25) (undo-tree-id166 . -25) (undo-tree-id167 . -25) (nil font-lock-face comint-highlight-prompt 5796 . 5821)) (22246 48973 631491 969000) 0 nil]) ((#("
+" 0 1 (fontified t rear-nonsticky t field boundary inhibit-line-move-field-capture t)) . -5795) (undo-tree-id144 . -1) (undo-tree-id145 . -1) (undo-tree-id146 . -1) (undo-tree-id147 . -1) (undo-tree-id148 . -1) (undo-tree-id149 . -1) (undo-tree-id150 . -1)) nil (22246 48973 632229 323000) 0 nil]) ((#("|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>...>...>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>" 0 183 (fontified t front-sticky #3# rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face comint-highlight-prompt) 183 1808 (fontified t front-sticky #3# rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face comint-highlight-prompt)) . -5796) (undo-tree-id151 . -1808) (undo-tree-id152 . -183) (undo-tree-id153 . -1808) (undo-tree-id154 . -1808)) nil (22246 48972 247981 898000) 0 nil]) ((nil font-lock-face nil 5979 . 7604) (nil font-lock-face nil 5796 . 5979) (nil font-lock-face comint-highlight-prompt 5796 . 5979) (5979 . 7604) (nil font-lock-face nil 5796 . 5979) (5795 . 5979) (#("#####################################
+# Env Vars
+#####################################
+
+export HALCONROOT=/usr/local/halcon
+export HALCONIMAGES=/mnt/3dfs/public/Groups/Software/Installs/HALCON/images
+
+if ! env | grep -q PE_HOME=; then
+  export PE_HOME=/home/simon/git/MetalJet
+fi      
+
+export METALJET=$PE_HOME/XjetApps/MetalJet/Apps/Project/qt
+
+export LD_LIBRARY_PATH=$METALJET/BinLinux:/usr/local/halcon/lib/x64-linux2.4-gcc40/:/usr/local/lib
+
+export PATH=$PATH:/usr/local/halcon/bin/x64-linux2.4-gcc40:/home/simon/scripts
+
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages
+
+export QTDIR=/usr
+export QMAKE=qmake-qt5
+
+export VISUAL=emacs
+export BROWSER=google-chrome
+###########
+# Shortcuts
+###########  
+
+export OLD_HOME=/mnt/HDD/linux/home/simon
+export OLD_ROOT=/mnt/HDD/linux/root
+
+export METALJET1=/home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt
+export BE1=/home/simon/git/MetalJet/XjetApps/BuildEngine/BinLinux
+
+export METALJET2=/home/simon/git/MetalJet2/XjetApps/MetalJet/Apps/Project/qt
+export BE2=/home/simon/git/MetalJet2/XjetApps/BuildEngine/BinLinux
+
+export METALJET3=/home/simon/git/MetalJet3/XjetApps/MetalJet/Apps/Project/qt
+export BE3=/home/simon/git/MetalJet3/XjetApps/BuildEngine/BinLinux
+
+export W=/mnt/3dfs/public
+export SWGROUP=/mnt/3dfs/public/Groups/Software
+export WSIMON=/mnt/3dfs/public/Groups/Software/Users/Simon
+
+export WMODELS=/mnt/3dfs/public/3D/Images/STL-Files
+export WSLICES=/mnt/3dfs/public/3D/Images/Samples
+
+export DROPBOX=/home/simon/Dropbox
+
+export MARKETSDEV=/mnt/3dfs/public/Markets\\ Development
+
+#####################################
+# User specific aliases and functions
+#####################################
+
+#alias HydraRdp='xfreerdp -u machine -f 172.16.10.60'
+#alias HydraRdesktop='cat /home/simon/.credentials | rdesktop Hydra -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias Machine64BitRdesktop='cat /home/simon/.credentials | rdesktop Machine64bit -g 1640x980 -u simon -d XJETDOM -p -'
+#    
+#alias YaronRdesktop='cat /home/simon/.credentials | rdesktop Yaron -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias SWTest1Rdesktop='cat /home/simon/.credentials | rdesktop swtest1 -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias SWTest2Rdesktop='cat /home/simon/.credentials | rdesktop swtest2 -g 1640x980 -u simon -d XJETDOM -p -'
+
+alias RemoteAccessSimon='/usr/bin/rdesktop -g 1672x976 -u simon -d XJETDOM -p `cat /home/simon/.SimonPass`'
+alias RemoteAccessMachine='/usr/bin/rdesktop -g 1672x976 -u machine -d XJETDOM -p `cat /home/simon/.MachinePass`'
+
+alias MountDiskOnKey='sudo mount /dev/sdb1 $DISKONKEY'
+alias MountTruecrypt='truecrypt --mount /dev/sdb2'
+
+alias STLViewer='export PYTHONPATH=$PYTHONPATH:$METALJET/Lib; python /home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt/PyExternalScripts/ModelViewer.py -m'
+alias TestSlicing='$BE/../Slicer/CL_Slicer/BinLinux/CL_Slicer -z 5 -m'" 0 2897 (fontified nil)) . 2898) (5795 . 8692) (nil fontified nil 2898 . 5795) (nil font-lock-face nil 2898 . 5795) (2898 . 5795) 201 (t 22246 48956 437859 809000)) nil (22246 48972 247992 894000) 0 nil] [nil nil ((nil font-lock-face nil 5979 . 7604) (nil font-lock-face nil 5796 . 5979) (nil font-lock-face comint-highlight-prompt 5796 . 5979) (5979 . 7604) (nil font-lock-face nil 5796 . 5979) (5795 . 5979) (#("#####################################
+# Env Vars
+#####################################
+
+export HALCONROOT=/usr/local/halcon
+export HALCONIMAGES=/mnt/3dfs/public/Groups/Software/Installs/HALCON/images
+
+if ! env | grep -q PE_HOME=; then
+  export PE_HOME=/home/simon/git/MetalJet
+fi      
+
+export METALJET=$PE_HOME/XjetApps/MetalJet/Apps/Project/qt
+
+export LD_LIBRARY_PATH=$METALJET/BinLinux:/usr/local/halcon/lib/x64-linux2.4-gcc40/:/usr/local/lib
+
+export PATH=$PATH:/usr/local/halcon/bin/x64-linux2.4-gcc40:/home/simon/scripts
+
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages
+
+export QTDIR=/usr
+export QMAKE=qmake-qt5
+
+export VISUAL=emacs
+export BROWSER=google-chrome
+###########
+# Shortcuts
+###########  
+
+export OLD_HOME=/mnt/HDD/linux/home/simon
+export OLD_ROOT=/mnt/HDD/linux/root
+
+export METALJET1=/home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt
+export BE1=/home/simon/git/MetalJet/XjetApps/BuildEngine/BinLinux
+
+export METALJET2=/home/simon/git/MetalJet2/XjetApps/MetalJet/Apps/Project/qt
+export BE2=/home/simon/git/MetalJet2/XjetApps/BuildEngine/BinLinux
+
+export METALJET3=/home/simon/git/MetalJet3/XjetApps/MetalJet/Apps/Project/qt
+export BE3=/home/simon/git/MetalJet3/XjetApps/BuildEngine/BinLinux
+
+export W=/mnt/3dfs/public
+export SWGROUP=/mnt/3dfs/public/Groups/Software
+export WSIMON=/mnt/3dfs/public/Groups/Software/Users/Simon
+
+export WMODELS=/mnt/3dfs/public/3D/Images/STL-Files
+export WSLICES=/mnt/3dfs/public/3D/Images/Samples
+
+export DROPBOX=/home/simon/Dropbox
+
+export MARKETSDEV=/mnt/3dfs/public/Markets\\ Development
+
+#####################################
+# User specific aliases and functions
+#####################################
+
+#alias HydraRdp='xfreerdp -u machine -f 172.16.10.60'
+#alias HydraRdesktop='cat /home/simon/.credentials | rdesktop Hydra -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias Machine64BitRdesktop='cat /home/simon/.credentials | rdesktop Machine64bit -g 1640x980 -u simon -d XJETDOM -p -'
+#    
+#alias YaronRdesktop='cat /home/simon/.credentials | rdesktop Yaron -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias SWTest1Rdesktop='cat /home/simon/.credentials | rdesktop swtest1 -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias SWTest2Rdesktop='cat /home/simon/.credentials | rdesktop swtest2 -g 1640x980 -u simon -d XJETDOM -p -'
+
+alias RemoteAccessSimon='/usr/bin/rdesktop -g 1672x976 -u simon -d XJETDOM -p `cat /home/simon/.SimonPass`'
+alias RemoteAccessMachine='/usr/bin/rdesktop -g 1672x976 -u machine -d XJETDOM -p `cat /home/simon/.MachinePass`'
+
+alias MountDiskOnKey='sudo mount /dev/sdb1 $DISKONKEY'
+alias MountTruecrypt='truecrypt --mount /dev/sdb2'
+
+alias STLViewer='export PYTHONPATH=$PYTHONPATH:$METALJET/Lib; python /home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt/PyExternalScripts/ModelViewer.py -m'
+alias TestSlicing='$BE/../Slicer/CL_Slicer/BinLinux/CL_Slicer -z 5 -m'" 0 2897 (fontified nil)) . 2898) (5795 . 8692) (nil fontified t 2898 . 5795) (nil font-lock-face nil 2898 . 5795) (2898 . 5795) 201 (t 22246 48956 437859 809000)) ((#("#####################################
+# Env Vars
+#####################################
+
+export HALCONROOT=/usr/local/halcon
+export HALCONIMAGES=/mnt/3dfs/public/Groups/Software/Installs/HALCON/images
+
+if ! env | grep -q PE_HOME=; then
+  export PE_HOME=/home/simon/git/MetalJet
+fi      
+
+export METALJET=$PE_HOME/XjetApps/MetalJet/Apps/Project/qt
+
+export LD_LIBRARY_PATH=$METALJET/BinLinux:/usr/local/halcon/lib/x64-linux2.4-gcc40/:/usr/local/lib
+
+export PATH=$PATH:/usr/local/halcon/bin/x64-linux2.4-gcc40:/home/simon/scripts
+
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages
+
+export QTDIR=/usr
+export QMAKE=qmake-qt5
+
+export VISUAL=emacs
+export BROWSER=google-chrome
+###########
+# Shortcuts
+###########  
+
+export OLD_HOME=/mnt/HDD/linux/home/simon
+export OLD_ROOT=/mnt/HDD/linux/root
+
+export METALJET1=/home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt
+export BE1=/home/simon/git/MetalJet/XjetApps/BuildEngine/BinLinux
+
+export METALJET2=/home/simon/git/MetalJet2/XjetApps/MetalJet/Apps/Project/qt
+export BE2=/home/simon/git/MetalJet2/XjetApps/BuildEngine/BinLinux
+
+export METALJET3=/home/simon/git/MetalJet3/XjetApps/MetalJet/Apps/Project/qt
+export BE3=/home/simon/git/MetalJet3/XjetApps/BuildEngine/BinLinux
+
+export W=/mnt/3dfs/public
+export SWGROUP=/mnt/3dfs/public/Groups/Software
+export WSIMON=/mnt/3dfs/public/Groups/Software/Users/Simon
+
+export WMODELS=/mnt/3dfs/public/3D/Images/STL-Files
+export WSLICES=/mnt/3dfs/public/3D/Images/Samples
+
+export DROPBOX=/home/simon/Dropbox
+
+export MARKETSDEV=/mnt/3dfs/public/Markets\\ Development
+
+#####################################
+# User specific aliases and functions
+#####################################
+
+#alias HydraRdp='xfreerdp -u machine -f 172.16.10.60'
+#alias HydraRdesktop='cat /home/simon/.credentials | rdesktop Hydra -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias Machine64BitRdesktop='cat /home/simon/.credentials | rdesktop Machine64bit -g 1640x980 -u simon -d XJETDOM -p -'
+#    
+#alias YaronRdesktop='cat /home/simon/.credentials | rdesktop Yaron -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias SWTest1Rdesktop='cat /home/simon/.credentials | rdesktop swtest1 -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias SWTest2Rdesktop='cat /home/simon/.credentials | rdesktop swtest2 -g 1640x980 -u simon -d XJETDOM -p -'
+
+alias RemoteAccessSimon='/usr/bin/rdesktop -g 1672x976 -u simon -d XJETDOM -p `cat /home/simon/.SimonPass`'
+alias RemoteAccessMachine='/usr/bin/rdesktop -g 1672x976 -u machine -d XJETDOM -p `cat /home/simon/.MachinePass`'
+
+alias MountDiskOnKey='sudo mount /dev/sdb1 $DISKONKEY'
+alias MountTruecrypt='truecrypt --mount /dev/sdb2'
+
+alias STLViewer='export PYTHONPATH=$PYTHONPATH:$METALJET/Lib; python /home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt/PyExternalScripts/ModelViewer.py -m'
+alias TestSlicing='$BE/../Slicer/CL_Slicer/BinLinux/CL_Slicer -z 5 -m'" 0 2897 (fontified nil font-lock-face nil)) . 2898) (undo-tree-id98 . -2897) (undo-tree-id99 . -2897) (undo-tree-id100 . -2897) (undo-tree-id101 . -2897) (undo-tree-id102 . -2897) (undo-tree-id103 . -2897) (undo-tree-id104 . -2897) (undo-tree-id105 . -2897) (undo-tree-id106 . -2897) (undo-tree-id107 . -2897) (undo-tree-id108 . -2897) (undo-tree-id109 . -2897) (undo-tree-id110 . -2897) (undo-tree-id111 . -2897) (undo-tree-id112 . -37) (undo-tree-id113 . -37) (nil font-lock-face nil 2898 . 5795) (nil fontified nil 2898 . 5795) (#("#####################################
+# Env Vars
+#####################################
+
+export HALCONROOT=/usr/local/halcon
+export HALCONIMAGES=/mnt/3dfs/public/Groups/Software/Installs/HALCON/images
+
+if ! env | grep -q PE_HOME=; then
+  export PE_HOME=/home/simon/git/MetalJet
+fi      
+
+export METALJET=$PE_HOME/XjetApps/MetalJet/Apps/Project/qt
+
+export LD_LIBRARY_PATH=$METALJET/BinLinux:/usr/local/halcon/lib/x64-linux2.4-gcc40/:/usr/local/lib
+
+export PATH=$PATH:/usr/local/halcon/bin/x64-linux2.4-gcc40:/home/simon/scripts
+
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages
+
+export QTDIR=/usr
+export QMAKE=qmake-qt5
+
+export VISUAL=emacs
+export BROWSER=google-chrome
+###########
+# Shortcuts
+###########  
+
+export OLD_HOME=/mnt/HDD/linux/home/simon
+export OLD_ROOT=/mnt/HDD/linux/root
+
+export METALJET1=/home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt
+export BE1=/home/simon/git/MetalJet/XjetApps/BuildEngine/BinLinux
+
+export METALJET2=/home/simon/git/MetalJet2/XjetApps/MetalJet/Apps/Project/qt
+export BE2=/home/simon/git/MetalJet2/XjetApps/BuildEngine/BinLinux
+
+export METALJET3=/home/simon/git/MetalJet3/XjetApps/MetalJet/Apps/Project/qt
+export BE3=/home/simon/git/MetalJet3/XjetApps/BuildEngine/BinLinux
+
+export W=/mnt/3dfs/public
+export SWGROUP=/mnt/3dfs/public/Groups/Software
+export WSIMON=/mnt/3dfs/public/Groups/Software/Users/Simon
+
+export WMODELS=/mnt/3dfs/public/3D/Images/STL-Files
+export WSLICES=/mnt/3dfs/public/3D/Images/Samples
+
+export DROPBOX=/home/simon/Dropbox
+
+export MARKETSDEV=/mnt/3dfs/public/Markets\\ Development
+
+#####################################
+# User specific aliases and functions
+#####################################
+
+#alias HydraRdp='xfreerdp -u machine -f 172.16.10.60'
+#alias HydraRdesktop='cat /home/simon/.credentials | rdesktop Hydra -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias Machine64BitRdesktop='cat /home/simon/.credentials | rdesktop Machine64bit -g 1640x980 -u simon -d XJETDOM -p -'
+#    
+#alias YaronRdesktop='cat /home/simon/.credentials | rdesktop Yaron -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias SWTest1Rdesktop='cat /home/simon/.credentials | rdesktop swtest1 -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias SWTest2Rdesktop='cat /home/simon/.credentials | rdesktop swtest2 -g 1640x980 -u simon -d XJETDOM -p -'
+
+alias RemoteAccessSimon='/usr/bin/rdesktop -g 1672x976 -u simon -d XJETDOM -p `cat /home/simon/.SimonPass`'
+alias RemoteAccessMachine='/usr/bin/rdesktop -g 1672x976 -u machine -d XJETDOM -p `cat /home/simon/.MachinePass`'
+
+alias MountDiskOnKey='sudo mount /dev/sdb1 $DISKONKEY'
+alias MountTruecrypt='truecrypt --mount /dev/sdb2'
+
+alias STLViewer='export PYTHONPATH=$PYTHONPATH:$METALJET/Lib; python /home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt/PyExternalScripts/ModelViewer.py -m'
+alias TestSlicing='$BE/../Slicer/CL_Slicer/BinLinux/CL_Slicer -z 5 -m'" 0 1674 (fontified nil front-sticky t font-lock-face comint-highlight-input mouse-face highlight help-echo #2#) 1674 2219 (fontified t front-sticky t font-lock-face comint-highlight-input mouse-face highlight help-echo #2#) 2219 2827 (fontified t front-sticky t font-lock-face comint-highlight-input mouse-face highlight help-echo #2#) 2827 2897 (fontified nil front-sticky t font-lock-face comint-highlight-input mouse-face highlight help-echo #2#)) . 5795) (undo-tree-id114 . -2897) (undo-tree-id115 . -2897) (undo-tree-id116 . -2897) (undo-tree-id117 . -1674) (undo-tree-id118 . -2897) (undo-tree-id119 . -2897) (undo-tree-id120 . -2897) (undo-tree-id121 . -2897) (undo-tree-id122 . -2897) (undo-tree-id123 . -2897) (undo-tree-id124 . -2897) (undo-tree-id125 . -2897) (undo-tree-id126 . -2897) (undo-tree-id127 . -2897) (2898 . 5795) (#("
+|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>...>...>" 0 1 (fontified t rear-nonsticky t field boundary inhibit-line-move-field-capture t) 1 184 (fontified nil front-sticky #3# rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face nil)) . 5795) (undo-tree-id128 . -184) (undo-tree-id129 . -1) (undo-tree-id130 . -184) (undo-tree-id131 . -1) (undo-tree-id132 . -184) (undo-tree-id133 . -1) (undo-tree-id134 . -184) (undo-tree-id135 . -1) (undo-tree-id136 . -184) (undo-tree-id137 . -184) (undo-tree-id138 . -184) (undo-tree-id139 . -1) (undo-tree-id140 . -184) (nil font-lock-face comint-highlight-prompt 5796 . 5979) (#("|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>|~/github/SimonEnv/Bash|>" 0 1625 (fontified nil front-sticky #3# rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face nil)) . 5979) (undo-tree-id141 . -1625) (undo-tree-id142 . -1625) (undo-tree-id143 . -1625) (nil font-lock-face nil 5796 . 5979) (nil font-lock-face comint-highlight-prompt 5796 . 5979) (nil font-lock-face comint-highlight-prompt 5979 . 7604)) (22246 48962 415658 808000) 0 nil]) ((#("
+" 0 1 (fontified t)) . 288) (undo-tree-id97 . 1) (t 22246 48748 127859 834000)) nil (22246 48962 422942 969000) 0 nil] [nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil nil ((3132 . 3133)) ((#(" " 0 1 (fontified t)) . 3132)) (22246 48786 160967 728000) 0 nil]) ((nil font-lock-face nil 3107 . 3132) (3106 . 3132)) ((#("
+|~/github/SimonEnv/Bash|>" 0 1 (fontified t rear-nonsticky t field boundary inhibit-line-move-field-capture t) 1 26 (fontified nil front-sticky #3# rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face nil)) . 3106) (undo-tree-id0 . -26) (undo-tree-id1 . -26) (undo-tree-id2 . -1) (undo-tree-id3 . -1) (undo-tree-id4 . -1) (undo-tree-id5 . -26) (undo-tree-id6 . -26) (nil font-lock-face comint-highlight-prompt 3107 . 3132)) (22246 48786 161133 912000) 0 nil]) ((nil font-lock-face nil 3081 . 3106) (3080 . 3106)) ((#("
+|~/github/SimonEnv/Bash|>" 0 1 (fontified t rear-nonsticky t field boundary inhibit-line-move-field-capture t) 1 26 (fontified nil front-sticky #3# rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face nil)) . 3080) (undo-tree-id7 . -26) (undo-tree-id8 . -26) (undo-tree-id9 . -26) (undo-tree-id10 . -26) (undo-tree-id11 . -26) (undo-tree-id12 . -26) (undo-tree-id13 . -26) (undo-tree-id14 . -26) (undo-tree-id15 . -26) (undo-tree-id16 . -26) (nil font-lock-face comint-highlight-prompt 3081 . 3106)) (22246 48786 401005 785000) 0 nil]) ((nil font-lock-face nil 3055 . 3080) (3054 . 3080)) ((#("
+|~/github/SimonEnv/Bash|>" 0 1 (fontified t rear-nonsticky t field boundary inhibit-line-move-field-capture t) 1 26 (fontified nil front-sticky #3# rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face nil)) . 3054) (undo-tree-id17 . -26) (undo-tree-id18 . -26) (undo-tree-id19 . -26) (undo-tree-id20 . -26) (undo-tree-id21 . -26) (undo-tree-id22 . -26) (undo-tree-id23 . -26) (undo-tree-id24 . -26) (undo-tree-id25 . -26) (undo-tree-id26 . -26) (nil font-lock-face comint-highlight-prompt 3055 . 3080)) (22246 48786 672935 807000) 0 nil]) ((nil font-lock-face nil 3029 . 3054) (3028 . 3054)) ((#("
+|~/github/SimonEnv/Bash|>" 0 1 (fontified t rear-nonsticky t field boundary inhibit-line-move-field-capture t) 1 26 (fontified nil front-sticky #3# rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face nil)) . 3028) (undo-tree-id27 . -26) (undo-tree-id28 . -26) (undo-tree-id29 . -26) (undo-tree-id30 . -26) (undo-tree-id31 . -26) (undo-tree-id32 . -26) (undo-tree-id33 . -26) (undo-tree-id34 . -26) (undo-tree-id35 . -26) (undo-tree-id36 . -26) (nil font-lock-face comint-highlight-prompt 3029 . 3054)) (22246 48787 32994 665000) 0 nil]) ((nil font-lock-face nil 3003 . 3028) (3002 . 3028)) ((#("
+|~/github/SimonEnv/Bash|>" 0 1 (fontified t rear-nonsticky t field boundary inhibit-line-move-field-capture t) 1 26 (fontified nil front-sticky #3# rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face nil)) . 3002) (undo-tree-id37 . -26) (undo-tree-id38 . -26) (undo-tree-id39 . -26) (undo-tree-id40 . -26) (undo-tree-id41 . -26) (undo-tree-id42 . -26) (undo-tree-id43 . -26) (undo-tree-id44 . -26) (undo-tree-id45 . -26) (undo-tree-id46 . -26) (nil font-lock-face comint-highlight-prompt 3003 . 3028)) (22246 48787 232930 997000) 0 nil]) ((nil font-lock-face nil 2977 . 3002) (2976 . 3002)) ((#("
+|~/github/SimonEnv/Bash|>" 0 1 (fontified t rear-nonsticky t field boundary inhibit-line-move-field-capture t) 1 26 (fontified nil front-sticky #3# rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face nil)) . 2976) (undo-tree-id47 . -26) (undo-tree-id48 . -26) (undo-tree-id49 . -26) (undo-tree-id50 . -26) (undo-tree-id51 . -26) (undo-tree-id52 . -26) (undo-tree-id53 . -26) (undo-tree-id54 . -26) (undo-tree-id55 . -26) (undo-tree-id56 . -26) (nil font-lock-face comint-highlight-prompt 2977 . 3002)) (22246 48787 433013 76000) 0 nil]) ((nil font-lock-face nil 2951 . 2976) (2950 . 2976)) ((#("
+|~/github/SimonEnv/Bash|>" 0 1 (fontified t rear-nonsticky t field boundary inhibit-line-move-field-capture t) 1 26 (fontified nil front-sticky #3# rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face nil)) . 2950) (undo-tree-id57 . -26) (undo-tree-id58 . -26) (undo-tree-id59 . -26) (undo-tree-id60 . -26) (undo-tree-id61 . -26) (undo-tree-id62 . -26) (undo-tree-id63 . -26) (undo-tree-id64 . -26) (undo-tree-id65 . -26) (undo-tree-id66 . -26) (nil font-lock-face comint-highlight-prompt 2951 . 2976)) (22246 48787 616933 410000) 0 nil]) ((nil font-lock-face nil 2925 . 2950) (2924 . 2950)) ((#("
+|~/github/SimonEnv/Bash|>" 0 1 (fontified t rear-nonsticky t field boundary inhibit-line-move-field-capture t) 1 26 (fontified nil front-sticky #3# rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face nil)) . 2924) (undo-tree-id67 . -26) (undo-tree-id68 . -26) (undo-tree-id69 . -26) (undo-tree-id70 . -26) (undo-tree-id71 . -26) (undo-tree-id72 . -26) (undo-tree-id73 . -26) (undo-tree-id74 . -26) (undo-tree-id75 . -26) (undo-tree-id76 . -26) (nil font-lock-face comint-highlight-prompt 2925 . 2950)) (22246 48787 824866 847000) 0 nil]) ((nil font-lock-face nil 2899 . 2924) (nil font-lock-face nil 2829 . 2899) (nil rear-nonsticky nil 2829 . 2899) (2899 . 2924) (t 22246 48748 127859 834000)) ((#("|~/github/SimonEnv/Bash|>" 0 25 (fontified nil front-sticky #3# rear-nonsticky t field output inhibit-line-move-field-capture t font-lock-face nil)) . 2899) (undo-tree-id87 . -25) (undo-tree-id88 . -25) (undo-tree-id89 . -25) (undo-tree-id90 . -25) (undo-tree-id91 . -25) (undo-tree-id92 . -25) (undo-tree-id93 . -25) (undo-tree-id94 . -25) (undo-tree-id95 . -25) (undo-tree-id96 . -25) (nil rear-nonsticky t 2829 . 2899) (nil font-lock-face comint-highlight-prompt 2829 . 2899) (nil font-lock-face comint-highlight-prompt 2899 . 2924)) (22246 48791 793322 195000) 0 nil]) ((#("]" 0 1 (fontified t)) . 229)) ((229 . 230) (t 22246 48748 127859 834000)) (22246 48798 601085 730000) 0 nil]) ((#("]" 0 1 (fontified t)) . 229)) nil (22246 48798 249258 473000) 0 nil]) ((#("[" 0 1 (fontified t)) . 205) (undo-tree-id13 . 1)) nil (22246 48748 121526 723000) 0 nil]) ((#("[" 0 1 (fontified t)) . 205) (undo-tree-id14 . 1) (undo-tree-id15 . -1)) nil (22246 48748 121552 812000) 0 nil]) ((220 . 223) (t 22246 48704 814859 839000)) nil (22246 48748 121561 692000) 0 nil]) ((#("
+" 0 1 (fontified t)) . 232) (undo-tree-id9 . -1) (undo-tree-id10 . -1) (undo-tree-id11 . -1) (undo-tree-id12 . 1)) nil (22246 48704 809764 945000) 0 nil]) ((230 . 232) (t 22246 48693 600859 840000)) nil (22246 48704 809776 45000) 0 nil]) ((228 . 230)) nil (22246 48693 595351 242000) 0 nil]) ((#("]" 0 1 (fontified t)) . 227)) nil (22246 48693 595371 242000) 0 nil]) ((#("]" 0 1 (fontified t)) . 227)) nil (22246 48693 595378 706000) 0 nil]) ((227 . 229)) nil (22246 48693 595385 119000) 0 nil]) ((205 . 207) (t 22246 48674 334859 842000)) nil (22246 48693 595391 959000) 0 nil]) ((227 . 231)) nil (22246 48674 329973 859000) 0 nil]) ((#("else" 0 4 (fontified t)) . -227) (undo-tree-id3 . -4) (undo-tree-id4 . -4) (undo-tree-id5 . -4)) nil (22246 48674 330003 686000) 0 nil]) ((#("
+" 0 1 (fontified t)) . 227)) nil (22246 48674 330009 447000) 0 nil]) ((#("then" 0 4 (fontified t)) . -227) (undo-tree-id6 . -4) (undo-tree-id7 . -4) (undo-tree-id8 . -4) (t 22246 48670 790859 843000)) nil (22246 48674 330021 196000) 0 nil]) ((205 . 207) (t 22246 48619 382859 849000)) nil (22246 48670 786031 556000) 0 nil]) ((235 . 237)) nil (22246 48619 378322 923000) 0 nil]) ((#("        " 0 8 (fontified t)) . 235) (undo-tree-id0 . -8) (undo-tree-id1 . 8) (undo-tree-id2 . -8) (t 22246 48606 593859 851000)) nil (22246 48619 378356 173000) 0 nil] [nil nil ((283 . 291)) (("        " . 283)) (22246 48602 914008 156000) 0 nil]) ((285 . 291)) nil (22246 48602 914264 795000) 0 nil]) ((283 . 285)) nil (22246 48602 914029 430000) 0 nil]) (("        " . 283) (undo-tree-id91 . -8) (undo-tree-id92 . -8) (undo-tree-id93 . -8) (undo-tree-id94 . -8) (undo-tree-id95 . -8)) nil (22246 48602 914067 731000) 0 nil]) (("fi      " . -291) (undo-tree-id96 . -8) (undo-tree-id97 . -8)) nil (22246 48602 914078 511000) 0 nil]) ((293 . 299) ("     " . 293) (undo-tree-id98 . -5) (undo-tree-id99 . -5) 298) nil (22246 48602 914090 295000) 0 nil]) ((293 . 298)) nil (22246 48602 914097 811000) 0 nil]) ((291 . 293)) nil (22246 48602 914102 398000) 0 nil]) ((282 . 291)) nil (22246 48602 914106 280000) 0 nil]) ((230 . 234)) nil (22246 48602 914110 383000) 0 nil]) ((229 . 230)) nil (22246 48602 914114 173000) 0 nil]) ((230 . 238)) nil (22246 48602 914118 140000) 0 nil]) ((225 . 229)) nil (22246 48602 914121 55000) 0 nil]) ((224 . 225)) nil (22246 48602 914124 771000) 0 nil]) ((223 . 224)) nil (22246 48602 914132 339000) 0 nil]) ((" " . -223) (undo-tree-id100 . -1) (undo-tree-id101 . -1)) nil (22246 48602 914141 67000) 0 nil]) ((208 . 224)) nil (22246 48602 914146 64000) 0 nil]) ((205 . 208)) nil (22246 48602 914152 634000) 0 nil]) ((245 . 247)) nil (22246 48602 914157 735000) 0 nil]) ((202 . 205)) nil (22246 48602 914163 530000) 0 nil]) ((201 . 202) (t 22246 48063 131859 915000)) nil (22246 48602 914169 414000) 0 nil]) ((663 . 671)) nil (22246 48063 126232 922000) 0 nil]) ((643 . 663)) nil (22246 48063 126247 678000) 0 nil]) ((642 . 643) (t 22246 47981 476859 925000)) nil (22246 48063 126253 387000) 0 nil]) (("/" . -1125) (undo-tree-id85 . -1) (undo-tree-id86 . -1)) nil (22246 47981 470645 12000) 0 nil]) (("/" . -980) (undo-tree-id87 . -1) (undo-tree-id88 . -1)) nil (22246 47981 470660 126000) 0 nil]) (("/" . -836) (undo-tree-id89 . -1) (undo-tree-id90 . -1) (t 22246 47974 634859 926000)) nil (22246 47981 470704 912000) 0 nil]) (("/" . -300) (undo-tree-id81 . -1) (undo-tree-id82 . -1) (undo-tree-id83 . -1) (undo-tree-id84 . -1)) nil (22246 47974 630576 76000) 0 nil]) ((" " . 258)) nil (22246 47974 630590 94000) 0 nil]) ((" " . 257) (t 22246 47931 747859 931000)) nil (22246 47974 630595 53000) 0 nil]) ((633 . 639)) nil (22246 47931 742935 217000) 0 nil]) (("EDITOR" . -633) (undo-tree-id80 . -6) 633 (t 22246 47817 133859 945000)) nil (22246 47931 742963 634000) 0 nil]) ((630 . 645)) nil (22246 47817 127711 36000) 0 nil]) (("t" . -630) (undo-tree-id76 . -1) (undo-tree-id77 . -1)) nil (22246 47817 127732 705000) 0 nil]) (("y" . -631) (undo-tree-id78 . -1) (undo-tree-id79 . -1)) nil (22246 47817 127743 327000) 0 nil]) ((626 . 632)) nil (22246 47817 127747 985000) 0 nil]) ((624 . 625) (t 22246 47440 878859 990000)) nil (22246 47817 127752 503000) 0 nil] [nil nil ((88 . 89) (t 22246 47440 878859 990000)) (("
+" . 88) (undo-tree-id74 . -1) (undo-tree-id75 . -1)) (22246 47802 191374 196000) 0 nil] [nil nil ((305 . 314) (t 22246 47440 878859 990000)) ((".bashrc i" . 305)) (22246 47456 881751 878000) 0 nil]) (("
+" . 602)) ((602 . 603) (t 22246 47440 878859 990000)) (22246 47803 559749 486000) 0 nil]) (("#export QTMAKE=/home/simon/Qt5.2.0/5.2.0/gcc_64/bin/qmake" . -602) (undo-tree-id69 . -57) (undo-tree-id70 . -57) (undo-tree-id71 . -57)) nil (22246 47802 959744 28000) 0 nil]) ((483 . 484)) nil (22246 47440 874376 156000) 0 nil]) ((403 . 404)) nil (22246 47440 874378 854000) 0 nil]) ((303 . 304)) nil (22246 47440 874385 980000) 0 nil]) ((200 . 201) (" " . 200) (undo-tree-id72 . -1) (undo-tree-id73 . -1) 201 (t 22246 47416 110859 993000)) nil (22246 47440 874394 530000) 0 nil]) (("$PE" . -260) (263 . 306) 263) nil (22246 47416 106483 406000) 0 nil]) ((257 . 263)) nil (22246 47416 106500 863000) 0 nil]) ((242 . 257)) nil (22246 47416 106504 943000) 0 nil]) ((241 . 242) (t 22246 47400 991859 994000)) nil (22246 47416 106511 154000) 0 nil]) ((823 . 824)) nil (22246 47400 986799 700000) 0 nil]) ((752 . 753) (t 22246 47377 326859 997000)) nil (22246 47400 986810 21000) 0 nil] [nil ([nil ([nil ([nil ([nil ([nil nil ((1123 . 1124)) (("
+" . 1123) (undo-tree-id40 . -1) (undo-tree-id41 . -1) (undo-tree-id42 . 1)) (22246 47371 306373 950000) 0 nil]) ((1082 . 1083) (" " . 1082) (undo-tree-id38 . -1) (undo-tree-id39 . -1) 1083 (t 22246 47323 6860 4000)) ((1082 . 1083) ("
+" . 1082) (undo-tree-id43 . -1) (undo-tree-id44 . -1) (undo-tree-id45 . 1)) (22246 47371 306635 658000) 0 nil]) ((883 . 1500)) (("#####################################
+# Env Vars
+#####################################
+
+export HALCONROOT=/usr/local/halcon
+export HALCONIMAGES=/mnt/3dfs/public/Groups/Software/Installs/HALCON/images 
+export PE_HOME=/home/simon/git/MetalJet
+export LD_LIBRARY_PATH=$METALJET/BinLinux:/usr/local/halcon/lib/x64-linux2.4-gcc40/:/usr/local/lib
+export PATH=$PATH:/usr/local/halcon/bin/x64-linux2.4-gcc40:/home/simon/scripts
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages
+
+export QTDIR=/usr
+#export QTMAKE=/home/simon/Qt5.2.0/5.2.0/gcc_64/bin/qmake
+export QMAKE=qmake-qt5
+" . 883) (undo-tree-id46 . -208) (undo-tree-id47 . -617) (undo-tree-id48 . -617) (undo-tree-id49 . 417) (undo-tree-id50 . 377) (undo-tree-id51 . -208) (t 22246 47323 6860 4000)) (22246 47371 546709 711000) 0 nil]) ((882 . 884)) (("
+
+" . 882) (undo-tree-id52 . -1) (undo-tree-id53 . 2) (undo-tree-id54 . 1) (undo-tree-id55 . -2) (undo-tree-id56 . -2) (undo-tree-id57 . -1) (undo-tree-id58 . 1) (undo-tree-id59 . 1) (undo-tree-id60 . -1)) (22246 47371 763078 230000) 0 nil]) (("
+" . 1) (undo-tree-id14 . 1) (undo-tree-id15 . 1) (undo-tree-id16 . 1) (undo-tree-id17 . -1) (undo-tree-id18 . -1) (undo-tree-id19 . -1)) ((1 . 2)) (22246 47372 66638 317000) 0 nil]) (("#####################################
+# Env Vars
+#####################################
+
+export HALCONROOT=/usr/local/halcon
+export HALCONIMAGES=/mnt/3dfs/public/Groups/Software/Installs/HALCON/images 
+export PE_HOME=/home/simon/git/MetalJet
+export LD_LIBRARY_PATH=$METALJET/BinLinux:/usr/local/halcon/lib/x64-linux2.4-gcc40/:/usr/local/lib
+export PATH=$PATH:/usr/local/halcon/bin/x64-linux2.4-gcc40:/home/simon/scripts
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages
+
+export QTDIR=/usr
+#export QTMAKE=/home/simon/Qt5.2.0/5.2.0/gcc_64/bin/qmake
+export QMAKE=qmake-qt5
+" . 1) (undo-tree-id20 . -265) (undo-tree-id21 . -265) (undo-tree-id22 . -264) (undo-tree-id23 . 352) (undo-tree-id24 . -273) (undo-tree-id25 . 352) (undo-tree-id26 . -273) (undo-tree-id27 . -265) (undo-tree-id28 . 352) (undo-tree-id29 . -273) (undo-tree-id30 . -265) (undo-tree-id31 . -241) (undo-tree-id32 . -617) (undo-tree-id33 . -617) (undo-tree-id34 . -273) (undo-tree-id35 . -594) (undo-tree-id36 . -617) (undo-tree-id37 . -617) 618 (t 22246 47297 486860 7000)) ((1 . 618)) (22246 47372 394396 53000) 0 nil]) (("
+" . 619) (undo-tree-id66 . -1) (undo-tree-id67 . -1)) ((619 . 620)) (22246 47376 738496 332000) 0 nil]) (("
+" . 620) (undo-tree-id65 . -1)) ((620 . 621)) (22246 47376 490425 278000) 0 nil]) (("pyqt5-env() {
+  #add pyqt5 to path (it's before pyqt4, so no problems)
+  export PATH=/usr/local/pyqt5/bin:$PATH
+  export PYTHONPATH=/usr/local/pyqt5/lib/python2.7/site-packages:$PYTHONPATH
+}
+
+" . 620) (undo-tree-id63 . -192) (undo-tree-id64 . -192)) ((620 . 812)) (22246 47376 282453 548000) 0 nil]) (("   " . 812) (undo-tree-id61 . -3) (undo-tree-id62 . -3)) ((812 . 815)) (22246 47376 82319 103000) 0 nil]) ((" " . 812)) nil (22246 47375 418381 393000) 0 nil]) (("
+" . 817)) nil (22246 47297 483369 865000) 0 nil]) (("pyqt4-env() {
+  ##Remove pyqt5 from paths (pyqt4 is already there)
+  export PATH=${PATH//\\/usr\\/local\\/pyqt5\\/bin:/}
+  export PYTHONPATH=${PYTHONPATH//\\/usr\\/local\\/pyqt5\\/lib\\/python2.7\\/site-packages:/}
+}
+" . -817) (undo-tree-id11 . -207) (undo-tree-id12 . -207) (undo-tree-id13 . -207) (t 22229 20036 99730 290000)) nil (22246 47297 483380 297000) 0 nil]) nil nil (22246 47297 483385 123000) 0 nil] #4# 21449 109 nil]

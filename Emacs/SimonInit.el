@@ -99,17 +99,25 @@
 (add-to-list 'load-path (concat emacs-git "Plugins/matlab-emacs/matlab-emacs"))
 
 (load "scott.emacs")
+
+(load "magit")
         
-;;;;;;;;;;Env Vars for MetalJet compilation        
+;;;;;;;;;;Env Vars for MetalJet compilation
+(defun my-reload-env-vars ()
+  (setenv "METALJET" "$PE_HOME/XjetApps/MetalJet/Apps/Project/qt/" t)
+  (setenv "BE" "$PE_HOME/XjetApps/BuildEngine/BinLinux" t)
+  )
+
+
 (setenv "QMAKE" "qmake-qt5")
 (setenv "QTDIR" "/usr")
 (setenv "XJETQTVERSION" "QT5")
 
 (setenv "PE_HOME" "/home/simon/git/MetalJet")
 ;(setenv "PE_HOME" "/home/simon/git/MetalJet2")
-(setenv "METALJET" "$PE_HOME/XjetApps/MetalJet/Apps/Project/qt/" t)
-;(setenv "METALJET" "$PE_HOME/XjetApps/MetalJet2/Apps/Project/qt/" t)
-(setenv "BE" "$PE_HOME/XjetApps/BuildEngine/BinLinux" t)
+;(setenv "PE_HOME" "/home/simon/git/MetalJet3")
+`my-reload-env-vars()
+
 (setenv "OLD_HOME" "/mnt/HDD/linux/home/simon" t)
 (setenv "OLD_ROOT" "/mnt/HDD/linux/root" t)
 (setenv "W" "/mnt/3dfs/public" t)
@@ -122,6 +130,7 @@
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages")
 (setenv "LD_LIBRARY_PATH" "$METALJET/BinLinux/:/usr/local/lib" t)
 (setenv "PATH" "$PATH:/home/simon/scripts" t)
+
 
 ;;;;;;;;;;Matlab Mode
 (require 'matlab-load)
@@ -241,7 +250,7 @@
 
 ;;Open notebook
 (defun open-work-notes-file ()
-  "Load my wrok notebook"
+  "Load my work notebook"
   (interactive)
   (find-file default-work-notes-file)
   (font-lock-fontify-buffer)
@@ -259,7 +268,7 @@
 
 ;;Open shell
 (defun open-shell ()
-  "Load my personal todo list"
+  "Load the emacs shell"
   (interactive)
   (shell)
   )
@@ -962,3 +971,11 @@
                     (list (replace-regexp-in-string (magit-toplevel) "" (expand-file-name file)))))
 
 (global-set-key (kbd "C-c d") 'magit-diff-file)
+
+; magit settings
+(setq magit-push-always-verify nil) ; by default push to updtream branch
+(setq git-commit-summary-max-length 256) ; length of commit-msg above which a warning is shown
+(load "magit-blame")
+(load "markdown-mode")
+(setq magit-diff-options '("-w"))
+(load "mo-git-blame")

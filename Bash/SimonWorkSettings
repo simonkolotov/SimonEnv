@@ -3,30 +3,26 @@
 #####################################
 
 export HALCONROOT=/usr/local/halcon
-export HALCONIMAGES=/mnt/3dfs/public/Groups/Software/Installs/HALCON/images 
-export PE_HOME=/home/simon/git/MetalJet
+export HALCONIMAGES=/mnt/3dfs/public/Groups/Software/Installs/HALCON/images
+
+#override only of not defined previously (e.g. through emacs)
+if ! env | grep -q PE_HOME=; then
+  export PE_HOME=/home/simon/git/MetalJet
+fi      
+
+export METALJET=$PE_HOME/XjetApps/MetalJet/Apps/Project/qt
+
 export LD_LIBRARY_PATH=$METALJET/BinLinux:/usr/local/halcon/lib/x64-linux2.4-gcc40/:/usr/local/lib
+
 export PATH=$PATH:/usr/local/halcon/bin/x64-linux2.4-gcc40:/home/simon/scripts
+
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages
 
 export QTDIR=/usr
-#export QTMAKE=/home/simon/Qt5.2.0/5.2.0/gcc_64/bin/qmake
 export QMAKE=qmake-qt5
 
-
-pyqt5-env() {
-  #add pyqt5 to path (it's before pyqt4, so no problems)
-  export PATH=/usr/local/pyqt5/bin:$PATH
-  export PYTHONPATH=/usr/local/pyqt5/lib/python2.7/site-packages:$PYTHONPATH
-}
-
-    
-pyqt4-env() {
-  ##Remove pyqt5 from paths (pyqt4 is already there)
-  export PATH=${PATH//\/usr\/local\/pyqt5\/bin:/}
-  export PYTHONPATH=${PYTHONPATH//\/usr\/local\/pyqt5\/lib\/python2.7\/site-packages:/}
-}
-
+export VISUAL=emacs
+export BROWSER=google-chrome
 ###########
 # Shortcuts
 ###########  
@@ -34,11 +30,87 @@ pyqt4-env() {
 export OLD_HOME=/mnt/HDD/linux/home/simon
 export OLD_ROOT=/mnt/HDD/linux/root
 
-export METALJET=/home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt/
-export BE=/home/simon/git/MetalJet/XjetApps/BuildEngine/BinLinux
+export METALJET1=/home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt
+export BE1=/home/simon/git/MetalJet/XjetApps/BuildEngine/BinLinux
 
-export METALJET2=/home/simon/git/MetalJet2/XjetApps/MetalJet/Apps/Project/qt/
+export METALJET2=/home/simon/git/MetalJet2/XjetApps/MetalJet/Apps/Project/qt
 export BE2=/home/simon/git/MetalJet2/XjetApps/BuildEngine/BinLinux
+
+export METALJET3=/home/simon/git/MetalJet3/XjetApps/MetalJet/Apps/Project/qt
+export BE3=/home/simon/git/MetalJet3/XjetApps/BuildEngine/BinLinux
+
+export W=/mnt/3dfs/public
+export SWGROUP=/mnt/3dfs/public/Groups/Software
+export WSIMON=/mnt/3dfs/public/Groups/Software/Users/Simon
+
+export WMODELS=/mnt/3dfs/public/3D/Images/STL-Files
+export WSLICES=/mnt/3dfs/public/3D/Images/Samples
+
+export DROPBOX=/home/simon/Dropbox
+
+export MARKETSDEV=/mnt/3dfs/public/Markets\ Development
+
+#####################################
+# User specific aliases and functions
+#####################################
+
+#alias HydraRdp='xfreerdp -u machine -f 172.16.10.60'
+#alias HydraRdesktop='cat /home/simon/.credentials | rdesktop Hydra -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias Machine64BitRdesktop='cat /home/simon/.credentials | rdesktop Machine64bit -g 1640x980 -u simon -d XJETDOM -p -'
+#    
+#alias YaronRdesktop='cat /home/simon/.credentials | rdesktop Yaron -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias SWTest1Rdesktop='cat /home/simon/.credentials | rdesktop swtest1 -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias SWTest2Rdesktop='cat /home/simon/.credentials | rdesktop swtest2 -g 1640x980 -u simon -d XJETDOM -p -'
+
+alias RemoteAccessSimon='/usr/bin/rdesktop -g 1672x976 -u simon -d XJETDOM -p `cat /home/simon/.SimonPass`'
+alias RemoteAccessMachine='/usr/bin/rdesktop -g 1672x976 -u machine -d XJETDOM -p `cat /home/simon/.MachinePass`'
+
+alias MountDiskOnKey='sudo mount /dev/sdb1 $DISKONKEY'
+alias MountTruecrypt='truecrypt --mount /dev/sdb2'
+
+alias STLViewer='export PYTHONPATH=$PYTHONPATH:$METALJET/Lib; python /home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt/PyExternalScripts/ModelViewer.py -m'
+alias TestSlicing='$BE/../Slicer/CL_Slicer/BinLinux/CL_Slicer -z 5 -m'#####################################
+# Env Vars
+#####################################
+
+export HALCONROOT=/usr/local/halcon
+export HALCONIMAGES=/mnt/3dfs/public/Groups/Software/Installs/HALCON/images
+
+if ! env | grep -q PE_HOME=; then
+  export PE_HOME=/home/simon/git/MetalJet
+fi      
+
+export METALJET=$PE_HOME/XjetApps/MetalJet/Apps/Project/qt
+
+export LD_LIBRARY_PATH=$METALJET/BinLinux:/usr/local/halcon/lib/x64-linux2.4-gcc40/:/usr/local/lib
+
+export PATH=$PATH:/usr/local/halcon/bin/x64-linux2.4-gcc40:/home/simon/scripts
+
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages
+
+export QTDIR=/usr
+export QMAKE=qmake-qt5
+
+export VISUAL=emacs
+export BROWSER=google-chrome
+###########
+# Shortcuts
+###########  
+
+export OLD_HOME=/mnt/HDD/linux/home/simon
+export OLD_ROOT=/mnt/HDD/linux/root
+
+export METALJET1=/home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt
+export BE1=/home/simon/git/MetalJet/XjetApps/BuildEngine/BinLinux
+
+export METALJET2=/home/simon/git/MetalJet2/XjetApps/MetalJet/Apps/Project/qt
+export BE2=/home/simon/git/MetalJet2/XjetApps/BuildEngine/BinLinux
+
+export METALJET3=/home/simon/git/MetalJet3/XjetApps/MetalJet/Apps/Project/qt
+export BE3=/home/simon/git/MetalJet3/XjetApps/BuildEngine/BinLinux
 
 export W=/mnt/3dfs/public
 export SWGROUP=/mnt/3dfs/public/Groups/Software
