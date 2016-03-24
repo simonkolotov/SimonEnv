@@ -11,6 +11,7 @@ if ! env | grep -q PE_HOME=; then
 fi      
 
 export METALJET=$PE_HOME/XjetApps/MetalJet/Apps/Project/qt
+export BE=$PE_HOME/XjetApps/BuildEngine/BinLinux
 
 export LD_LIBRARY_PATH=$METALJET/BinLinux:/usr/local/halcon/lib/x64-linux2.4-gcc40/:/usr/local/lib
 
