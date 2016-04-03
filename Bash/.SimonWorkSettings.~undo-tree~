@@ -1,2 +1,75 @@
-"3e0304e46b347d8306a343c1a1977555290fcd28"
-[cl-struct-undo-tree [nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil (#1=[nil nil ((840 . 892) (#("/mnt/HDD/linux/home/simon/Qt5.6/5.6/gcc_64/bin/qma" 0 50 (action ac-start fontified nil)) . -840) (undo-tree-id38 . 50) (undo-tree-id39 . -50) (undo-tree-id40 . -50)) nil (22273 7690 459880 97000) 0 nil]) ((889 . 890)) nil (22273 7690 459889 501000) 0 nil]) ((#("l" 0 1 (action ac-start fontified t)) . -889) (undo-tree-id41 . -1) (undo-tree-id42 . -1)) nil (22273 7690 459903 28000) 0 nil]) ((#("," 0 1 (action ac-start fontified t)) . -890) (undo-tree-id43 . -1) (undo-tree-id44 . -1)) nil (22273 7690 459911 553000) 0 nil]) ((890 . 891)) nil (22273 7690 459915 594000) 0 nil]) ((840 . 890) (#("/mnt/HDD/linux/home/simon/Qt5.6/5.6/gcc_64/bin/q" 0 48 (action ac-start fontified t)) . -840)) nil (22273 7690 459919 478000) 0 nil]) ((887 . 888)) nil (22273 7690 459923 121000) 0 nil]) ((840 . 887) (#("/mnt/HDD/linux/home/simon/Qt5.6/5.6/g" 0 37 (action ac-start fontified nil)) . -840)) nil (22273 7690 459926 978000) 0 nil]) ((876 . 877)) nil (22273 7690 459930 498000) 0 nil]) ((840 . 876) (#("/mnt/HDD/linux/home/simon/Qt5.6/5" 0 31 (fontified nil) 31 32 (rear-nonsticky t fontified nil) 32 33 (fontified nil)) . -840)) nil (22273 7690 459934 134000) 0 nil]) ((872 . 873)) nil (22273 7690 459937 564000) 0 nil]) ((nil fontified nil 871 . 872) (nil fontified nil 840 . 871) (840 . 872) 826) nil (22273 7690 459942 380000) 0 nil]) ((#("qmake-qt5" 0 8 (fontified t) 8 9 (rear-nonsticky t fontified t)) . -840) (undo-tree-id45 . -9)) nil (22273 7690 459948 454000) 0 nil]) ((nil fontified nil 848 . 849) (nil fontified nil 839 . 848) (nil fontified nil 834 . 839) (nil fontified nil 833 . 834) (nil fontified nil 827 . 833) (827 . 849)) nil (22273 7690 459955 301000) 0 nil]) ((757 . 758)) nil (22273 7690 459959 621000) 0 nil]) ((nil rear-nonsticky nil 778 . 779) (nil fontified nil 778 . 779) (nil fontified nil 769 . 778) (nil fontified nil 764 . 769) (nil fontified nil 763 . 764) (nil fontified nil 757 . 763) (757 . 779)) nil (22273 7690 459965 820000) 0 nil]) ((756 . 757)) nil (22273 7690 459970 102000) 0 nil]) ((#("export QMAKE=qmake-qt5" 0 6 (fontified t face font-lock-builtin-face) 6 7 (fontified t) 7 12 (fontified t face font-lock-variable-name-face) 12 21 (fontified t) 21 22 (fontified t)) . 803) (undo-tree-id46 . -21) (undo-tree-id47 . -21) (undo-tree-id48 . -22) 825) nil (22273 7690 459988 158000) 0 nil] [nil nil ((#("5" 0 1 (fontified t)) . -824) (undo-tree-id0 . -1) (undo-tree-id1 . -1) (undo-tree-id2 . -1) (undo-tree-id3 . -1) (undo-tree-id4 . -1) (undo-tree-id5 . -1)) ((824 . 825)) (22273 7667 171907 50000) 0 nil]) ((nil rear-nonsticky nil 801 . 802) (nil fontified nil 770 . 802) (770 . 802)) nil (22273 7667 172324 788000) 0 nil]) ((#("/" 0 1 (action ac-start fontified t)) . -770) (undo-tree-id6 . -1) (undo-tree-id7 . -1) (undo-tree-id8 . -1)) nil (22273 7667 171937 356000) 0 nil]) ((#("m" 0 1 (action ac-start fontified t)) . -771) (undo-tree-id9 . -1) (undo-tree-id10 . -1) (undo-tree-id11 . -1)) nil (22273 7667 171953 432000) 0 nil]) ((#("n" 0 1 (action ac-start fontified t)) . -772) (undo-tree-id12 . -1) (undo-tree-id13 . -1) (undo-tree-id14 . -1)) nil (22273 7667 171971 566000) 0 nil]) ((#("t" 0 1 (action ac-start fontified t)) . -773) (undo-tree-id15 . -1) (undo-tree-id16 . -1) (undo-tree-id17 . -1)) nil (22273 7667 171982 719000) 0 nil]) ((#("/" 0 1 (action ac-start fontified t)) . -774) (undo-tree-id18 . -1) (undo-tree-id19 . -1) (undo-tree-id20 . -1)) nil (22273 7667 171993 465000) 0 nil]) ((#("H" 0 1 (action ac-start fontified t)) . -775) (undo-tree-id21 . -1) (undo-tree-id22 . -1) (undo-tree-id23 . -1)) nil (22273 7667 172011 616000) 0 nil]) ((#("D" 0 1 (action ac-start fontified t)) . -776) (undo-tree-id24 . -1) (undo-tree-id25 . -1) (undo-tree-id26 . -1)) nil (22273 7667 172021 935000) 0 nil]) ((#("D" 0 1 (action ac-start fontified t)) . -777) (undo-tree-id27 . -1) (undo-tree-id28 . -1) (undo-tree-id29 . -1)) nil (22273 7667 172032 501000) 0 nil]) ((#("/" 0 1 (action ac-start fontified t)) . -778) (undo-tree-id30 . -1) (undo-tree-id31 . -1) (undo-tree-id32 . -1)) nil (22273 7667 172042 872000) 0 nil]) ((#("l" 0 1 (action ac-start fontified t)) . -779) (undo-tree-id33 . -1) (undo-tree-id34 . -1)) nil (22273 7667 172051 526000) 0 nil]) ((779 . 780)) nil (22273 7667 172056 836000) 0 nil]) ((#("Q" 0 1 (action ac-start fontified t)) . -779) (undo-tree-id35 . -1) (undo-tree-id36 . -1)) nil (22273 7667 172071 717000) 0 nil]) ((779 . 780)) nil (22273 7667 172081 499000) 0 nil]) ((778 . 779)) nil (22273 7667 172086 96000) 0 nil]) ((#("/" 0 1 (action ac-start fontified t)) . -778)) nil (22273 7667 172089 392000) 0 nil]) ((770 . 779) (#("/mnt/MJ2/" 0 9 (action ac-start fontified t)) . -770)) nil (22273 7667 172095 275000) 0 nil]) ((770 . 779) (#("/mnt/" 0 5 (fontified t)) . -770)) nil (22273 7667 172101 995000) 0 nil]) ((770 . 775)) nil (22273 7667 172105 791000) 0 nil]) ((#("/usr" 0 3 (fontified t) 3 4 (fontified t rear-nonsticky t)) . -770) (undo-tree-id37 . -4) 770) nil (22273 7667 172112 925000) 0 nil]) ((nil rear-nonsticky nil 773 . 774) (nil fontified nil 757 . 774) (757 . 774)) nil (22273 7667 172120 126000) 0 nil]) ((756 . 757)) nil (22273 7667 172124 821000) 0 nil]) ((738 . 739) (t 22256 3150 767344 917000)) nil (22273 7667 172129 414000) 0 nil] [nil ([nil ([nil ([nil nil (("/" . -751) (undo-tree-id0 . -1) (undo-tree-id1 . -1) (undo-tree-id2 . -1)) ((751 . 752)) (22273 7593 165192 415000) 0 nil]) (("u" . -752) (undo-tree-id3 . -1) (undo-tree-id4 . -1) (undo-tree-id5 . -1)) ((752 . 753)) (22273 7593 165391 176000) 0 nil]) (("s" . -753) (undo-tree-id6 . -1) (undo-tree-id7 . -1) (undo-tree-id8 . -1)) ((753 . 754)) (22273 7593 581224 39000) 0 nil]) (("r" . -754) (undo-tree-id9 . -1) (undo-tree-id10 . -1) (undo-tree-id11 . -1) (t 22256 3150 767344 917000)) ((754 . 755)) (22273 7593 805193 668000) 0 nil]) nil nil (22273 7594 5530 680000) 0 nil] #1# 1356 46 nil]
+"662bbc423b1d60d7b3b4854ae5a97fb5e224f04c"
+[cl-struct-undo-tree [nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil (#1=[nil nil (("#####################################
+
+alias TestSlicing='$BE/../Slicer/CL_Slicer/BinLinux/CL_Slicer -z 5 -m'" . -3170) (undo-tree-id18 . -38) (undo-tree-id19 . -38) (undo-tree-id20 . -38) (undo-tree-id21 . -38) (undo-tree-id22 . -38) (undo-tree-id23 . -38) (undo-tree-id24 . -38) (undo-tree-id25 . -109)) nil (22273 14261 527851 650000) 0 nil]) (("# Env Vars
+#####################################
+
+export HALCONROOT=/usr/local/halcon
+export HALCONIMAGES=/mnt/3dfs/public/Groups/Software/Installs/HALCON/images
+
+if ! env | grep -q PE_HOME=; then
+  export PE_HOME=/home/simon/git/MetalJet
+fi      
+
+export METALJET=$PE_HOME/XjetApps/MetalJet/Apps/Project/qt
+
+export PATH=$PATH:/usr/local/halcon/bin/x64-linux2.4-gcc40:/home/simon/scripts
+
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages
+
+export QTDIR=/usr
+export QMAKE=qmake-qt5
+
+export VISUAL=emacs
+export BROWSER=google-chrome
+###########
+# Shortcuts
+###########  
+
+export OLD_HOME=/mnt/HDD/linux/home/simon
+export OLD_ROOT=/mnt/HDD/linux/root
+
+export METALJET1=/home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt
+export BE1=/home/simon/git/MetalJet/XjetApps/BuildEngine/BinLinux
+
+export METALJET2=/home/simon/git/MetalJet2/XjetApps/MetalJet/Apps/Project/qt
+export BE2=/home/simon/git/MetalJet2/XjetApps/BuildEngine/BinLinux
+
+export METALJET3=/home/simon/git/MetalJet3/XjetApps/MetalJet/Apps/Project/qt
+export BE3=/home/simon/git/MetalJet3/XjetApps/BuildEngine/BinLinux
+
+export W=/mnt/3dfs/public
+export SWGROUP=/mnt/3dfs/public/Groups/Software
+export WSIMON=/mnt/3dfs/public/Groups/Software/Users/Simon
+
+export WMODELS=/mnt/3dfs/public/3D/Images/STL-Files
+export WSLICES=/mnt/3dfs/public/3D/Images/Samples
+
+export DROPBOX=/home/simon/Dropbox
+
+export MARKETSDEV=/mnt/3dfs/public/Markets\\ Development
+
+#####################################
+# User specific aliases and functions
+#####################################
+
+#alias HydraRdp='xfreerdp -u machine -f 172.16.10.60'
+#alias HydraRdesktop='cat /home/simon/.credentials | rdesktop Hydra -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias Machine64BitRdesktop='cat /home/simon/.credentials | rdesktop Machine64bit -g 1640x980 -u simon -d XJETDOM -p -'
+#    
+#alias YaronRdesktop='cat /home/simon/.credentials | rdesktop Yaron -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias SWTest1Rdesktop='cat /home/simon/.credentials | rdesktop swtest1 -g 1640x980 -u simon -d XJETDOM -p -'
+#
+#alias SWTest2Rdesktop='cat /home/simon/.credentials | rdesktop swtest2 -g 1640x980 -u simon -d XJETDOM -p -'
+
+alias RemoteAccessSimon='/usr/bin/rdesktop -g 1672x976 -u simon -d XJETDOM -p `cat /home/simon/.SimonPass`'
+alias RemoteAccessMachine='/usr/bin/rdesktop -g 1672x976 -u machine -d XJETDOM -p `cat /home/simon/.MachinePass`'
+
+alias MountDiskOnKey='sudo mount /dev/sdb1 $DISKONKEY'
+alias MountTruecrypt='truecrypt --mount /dev/sdb2'
+
+alias STLViewer='export PYTHONPATH=$PYTHONPATH:$METALJET/Lib; python /home/simon/git/MetalJet/XjetApps/MetalJet/Apps/Project/qt/PyExternalScripts/ModelViewer.py -m'" . -3208) (undo-tree-id26 . -696) (undo-tree-id27 . -309) (undo-tree-id28 . -249) (undo-tree-id29 . -249) (undo-tree-id30 . -618) (undo-tree-id31 . -2688) (undo-tree-id32 . -2688) (undo-tree-id33 . -2688) (t 22273 14196 461103 677000)) nil (22273 14261 527880 156000) 0 nil]) (("
+" . 3517)) nil (22273 14196 457106 489000) 0 nil]) (("
+" . 3517) (undo-tree-id13 . -1) (undo-tree-id14 . -1)) nil (22273 14196 457137 304000) 0 nil]) (("export LD_LIBRARY_PATH=$METALJET/BinLinux:/usr/local/halcon/lib/x64-linux2.4-gcc40/:/usr/local/lib" . -3517) (undo-tree-id15 . -98) (undo-tree-id16 . -98) (undo-tree-id17 . -98) (t 22273 14043 904105 472000)) nil (22273 14196 457150 928000) 0 nil]) ((589 . 590)) nil (22273 14043 899732 347000) 0 nil]) ((543 . 589)) nil (22273 14043 899751 670000) 0 nil]) ((":" . -557) (undo-tree-id0 . -1) (undo-tree-id1 . -1) (undo-tree-id2 . -1) (undo-tree-id3 . -1) (undo-tree-id4 . -1) (undo-tree-id5 . -1) (undo-tree-id6 . -1) (undo-tree-id7 . -1)) nil (22273 14043 899797 787000) 0 nil]) (("/mnt/HDD/linux/home/simon/Qt5.6/5.6/gcc_64/lib" . 558) (undo-tree-id8 . -46) (undo-tree-id9 . -46) (undo-tree-id10 . -1) (undo-tree-id11 . -46) (undo-tree-id12 . -46) 604 (t 22273 12149 952127 761000)) nil (22273 14043 899827 534000) 0 nil]) ((600 . 604)) nil (22273 12149 949032 115000) 0 nil]) ((558 . 600)) nil (22273 12149 949040 390000) 0 nil]) ((557 . 558) (t 22273 7690 465180 242000)) nil (22273 12149 949043 507000) 0 nil]) nil nil (22273 12149 949047 653000) 0 nil] #1# 3352 12 nil]
