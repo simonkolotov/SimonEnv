@@ -109,8 +109,10 @@
   )
 
 
-(setenv "QMAKE" "qmake-qt5")
-(setenv "QTDIR" "/usr")
+;(setenv "QMAKE" "qmake-qt5")
+;(setenv "QTDIR" "/usr")
+(setenv "QMAKE" "/mnt/HDD/linux/home/simon/Qt5.6/5.6/gcc_64/bin/qmake")
+(setenv "QTDIR" "/mnt/HDD/linux/home/simon/Qt5.6/")
 (setenv "XJETQTVERSION" "QT5")
 
 (setenv "PE_HOME" "/home/simon/git/MetalJet")
@@ -128,7 +130,7 @@
 (setenv "DROPBOX" "/home/simon/Dropbox" t)
 (setenv "MARKETSDEV" "/mnt/3dfs/public/Markets\ Development" t)
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages")
-(setenv "LD_LIBRARY_PATH" "$METALJET/BinLinux/:/usr/local/lib" t)
+(setenv "LD_LIBRARY_PATH" "$METALJET/BinLinux/:/mnt/HDD/linux/home/simon/Qt5.6/5.6/gcc_64/lib:/usr/local/lib" t)
 (setenv "PATH" "$PATH:/home/simon/scripts" t)
 
 

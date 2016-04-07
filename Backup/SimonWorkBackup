@@ -2,7 +2,7 @@
 
 echo "Starting General Backup"
 
-RemoteBackupDir=/mnt/3dfs/public/Groups/Software/Backup/Users/Simon/simonpc
+RemoteBackupDir=/mnt/backup/Groups/Software/Backup/Users/Simon/simonpc
 LocalBackupDir=/mnt/HDD/linux/home/simon/Backup
 SimonPCArchiveName=backup-simon-simonpc
 

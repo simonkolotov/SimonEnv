@@ -2,7 +2,7 @@
 
 echo "Starting SWTeam Backup"
 
-RemoteBackupDir=/mnt/xjetsrv/public/Groups/Software/Backup/Users/Simon/swteam
+RemoteBackupDir=/mnt/backup/Groups/Software/Backup/Users/Simon/swteam
 LocalBackupDir=/home/simon/Backup/
 
 WorkNotebookArchiveName=backup-simon-notebook
