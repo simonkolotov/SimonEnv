@@ -7,7 +7,7 @@ LocalBackupDir=/home/simon/Backup/
 
 WorkNotebookArchiveName=backup-simon-notebook
 TimeStamp=$(date --date="yesterday" +%Y-%m-%d)
-YesterdayArchive=$LocalBackupDir/WorkNotebookArchiveName-$TimeStamp.tgz
+YesterdayArchive=$LocalBackupDir/$WorkNotebookArchiveName-$TimeStamp.tgz
 
 #Back up all files
 echo "Archiving up All Backed-up files"
@@ -34,4 +34,4 @@ find $LocalBackupDir/*.tgz -type f -ctime +4 -exec rm {} \;
 
 #Remove archives older than 2 days on XJetSrv
 echo "Removing XJetSrv general archives older than 2 days"
-find $RemoteBackupDir/WorkNotebookArchiveName-*.tgz -type f -ctime +2 -exec rm {} \;
+find $RemoteBackupDir/$WorkNotebookArchiveName-*.tgz -type f -ctime +2 -exec rm {} \;
