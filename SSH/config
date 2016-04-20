@@ -3,6 +3,7 @@ Host *
   ForwardAgent yes
   GSSAPIAuthentication=no
   ForwardX11Trusted yes
+  IdentityFile /home/simon/.ssh/SimonWork_id_rsa
 
 Host XJetDovg
   Hostname 212.29.197.133
