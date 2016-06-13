@@ -9,7 +9,7 @@ Host XJetDovg
   Hostname 212.29.197.133
 
 Host XJetSimonK
-  ProxyCommand ssh XJetDovg nc 172.16.10.99 22
+  ProxyCommand ssh XJetDovg nc 172.16.10.79 22
 
 Host XJetSWTeam
   ProxyCommand ssh XJetDovg nc 172.16.10.84 22
