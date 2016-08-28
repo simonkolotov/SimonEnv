@@ -573,6 +573,8 @@
        (list (cons "SConscript" 'python-mode))
        (list (cons "\\.py$" 'python-mode))
        (list (cons "\\.run$" 'python-mode))
+
+       (list (cons "\\.md$" 'markdown-mode))
        
        (list (cons "\\.h$" 'c++-mode))
        (list (cons "\\.hh$" 'c++-mode))

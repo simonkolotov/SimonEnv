@@ -442,7 +442,10 @@
 
   (puthash "currency" "¤" xmsi-abrvs)
   (puthash "nis" "₪" xmsi-abrvs)
-  (puthash "NIS" "₪" xmsi-abrvs)  
+  (puthash "NIS" "₪" xmsi-abrvs)
+
+  (puthash "sqrt" "√" xmsi-abrvs)
+  (puthash "cross" "×" xmsi-abrvs)
 
   (puthash "tm" "™" xmsi-abrvs)
 
