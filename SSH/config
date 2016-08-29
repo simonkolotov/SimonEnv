@@ -6,7 +6,7 @@ Host *
   IdentityFile /home/simon/.ssh/SimonWork_id_rsa
 
 Host XJetDovg
-  Hostname 212.29.197.133
+  Hostname solar3d.xjet3d.com
 
 Host XJetSimonK
   ProxyCommand ssh XJetDovg nc 172.16.10.79 22

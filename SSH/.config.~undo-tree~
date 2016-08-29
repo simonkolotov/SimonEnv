@@ -1,2 +1,9 @@
-"ea783a9fd4b5419f79bedff2f5b19a9e3e76de25"
-[cl-struct-undo-tree [nil ([nil (#1=[nil nil ((242 . 243)) nil (22366 43841 501228 879000) 0 nil]) (("9" . 242) (t 22366 43763 883290 752000)) nil (22366 43841 501241 425000) 0 nil]) nil nil (22366 43841 501245 216000) 0 nil] #1# 25 2 nil]
+"c0be7866019be3533fc976ce8af04cbc8e3281aa"
+[cl-struct-undo-tree [nil ([nil ([nil (#1=[nil nil ((169 . 187)) nil (22468 29360 216344 56000) 0 nil]) (("212.29.197.133" . -169) (undo-tree-id39 . -14) (undo-tree-id40 . -14) (undo-tree-id41 . -14) 169 (t 22468 27641 674731 998000)) nil (22468 29360 216380 963000) 0 nil] [nil ([nil nil ((160 . 178)) (("solar3d.xjet3d.com" . 160) (undo-tree-id37 . -18) (undo-tree-id38 . -18)) (22468 27665 288385 404000) 0 nil]) (("Hostname 212.29.197.133" . -160) (undo-tree-id7 . -23) (undo-tree-id8 . -23) (undo-tree-id9 . -23) 160 (t 22468 27641 674731 998000)) ((160 . 183)) (22468 27665 288653 107000) 0 nil]) ((27 . 244) ("GSSAPIAuthentication=no
+  ForwardX11Trusted yes
+
+Host XJetDovg
+  Hostname 212.29.197.133
+
+Host XJetSimonK
+  ProxyCommand ssh XJetDovg nc 172.16.10.122" . 27) (undo-tree-id10 . -65) (undo-tree-id11 . -65) (undo-tree-id12 . -65) (undo-tree-id13 . -65) (undo-tree-id14 . 62) (undo-tree-id15 . -65) (undo-tree-id16 . 85) (undo-tree-id17 . -65) (undo-tree-id18 . -65) (undo-tree-id19 . 85) (undo-tree-id20 . -65) (undo-tree-id21 . -65) (undo-tree-id22 . -23) (undo-tree-id23 . -23) (undo-tree-id24 . -47) (undo-tree-id25 . -47) (undo-tree-id26 . -48) (undo-tree-id27 . -48) (undo-tree-id28 . -62) (undo-tree-id29 . -62) (undo-tree-id30 . -88) (undo-tree-id31 . -88) (undo-tree-id32 . -89) (undo-tree-id33 . -89) (undo-tree-id34 . -105) (undo-tree-id35 . -105) (undo-tree-id36 . -65) (t 22468 27621 249343 295000)) nil (22468 27665 920732 501000) 0 nil] [nil ([nil nil ((92 . 119)) (("Hostname solar3d.xjet3d.com" . 92) (undo-tree-id3 . -27) (undo-tree-id4 . -27) (undo-tree-id5 . -27) (undo-tree-id6 . -27) (t 22468 27585 98492 355000)) (22468 27585 91238 651000) 0 nil]) (("Hostname 212.29.197.133" . -92) (undo-tree-id1 . -23) (undo-tree-id2 . -23) 92 (t 22145 34016 860048 660000)) ((92 . 115)) (22468 27620 338128 638000) 0 nil]) nil nil (22468 27620 746240 899000) 0 nil] #1# 743 7 nil]
