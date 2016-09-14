@@ -1,8 +1,10 @@
 ;; Derived from `vc-git-grep' with the following changes:
 ;;
-;; - [ ] Always search at the top git directory.
-;; - [ ] Always search all files.
-;; - [x] Ignore binary files
+;; - Always search at the top git directory.
+;; - Always search all files.
+;; - Ignore binary files
+
+
 (defun dov-git-grep (regexp &optional files dir)
   "Run git grep, searching for REGEXP in FILES in directory DIR.
 The search is limited to file names matching shell pattern FILES.
@@ -28,7 +30,9 @@ This command shares argument histories with \\[rgrep] and \\[grep]."
 				   nil nil 'grep-history)
 	     nil))
       (t (let* ((regexp (grep-read-regexp))
-		(files "\\*")
+		(files
+                 ; Escape wild card on windows
+                 (if (eq system-type 'windows-nt) "*" "\*" ))
 		(dir (find-git-repo default-directory)))
 	   (list regexp files dir))))))
   (require 'grep)
