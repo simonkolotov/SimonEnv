@@ -218,6 +218,7 @@
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
+(setq lua-indent-level 2)
 
 ;;;;;;;;;;Toolbars
 (menu-bar-mode 't)
@@ -359,15 +360,25 @@
 (global-set-key (kbd "C-x <left>") 'windmove-left)
 
 ; Scroll with Ctrl+Up/Down
-(setq scroll-step 1)
-(setq scroll-conservatively 10000)
-(setq auto-window-vscroll nil)
+(defun scroll-dont-move-cursor (dist)
+  ""
+  (let ((p (point)))
+    (scroll-up dist)
+    (goto-char p)))
+  
+(defun scroll-up-line ()
+  (interactive)
+  (scroll-dont-move-cursor 1))
+
+(defun scroll-down-line ()
+  (interactive)
+  (scroll-dont-move-cursor -1))
 
 ; NB: scrolling down = moving the window up...
-(global-set-key (kbd "<C-up>")   (lambda () (interactive) (scroll-down 1)))
-(global-set-key (kbd "<C-kp-up>")   (lambda () (interactive) (scroll-down 1)))
-(global-set-key (kbd "<C-down>") (lambda () (interactive) (scroll-up 1)))
-(global-set-key (kbd "<C-kp-down>") (lambda () (interactive) (scroll-up 1)))
+(global-set-key (kbd "<C-up>")   'scroll-up-line)
+(global-set-key (kbd "<C-kp-up>")   'scroll-up-line)
+(global-set-key (kbd "<C-down>") 'scroll-down-line)
+(global-set-key (kbd "<C-kp-down>") 'scroll-down-line)
                                         ; Scroll Other Window with Alt-Up/Down
 (global-set-key (kbd "<M-up>")   (lambda () (interactive) (scroll-other-window-down 1)))
 (global-set-key (kbd "<M-kp-up>")   (lambda () (interactive) (scroll-other-window-down 1)))
