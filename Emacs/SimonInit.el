@@ -375,10 +375,10 @@
   (scroll-dont-move-cursor -1))
 
 ; NB: scrolling down = moving the window up...
-(global-set-key (kbd "<C-up>")   'scroll-up-line)
-(global-set-key (kbd "<C-kp-up>")   'scroll-up-line)
-(global-set-key (kbd "<C-down>") 'scroll-down-line)
-(global-set-key (kbd "<C-kp-down>") 'scroll-down-line)
+(global-set-key (kbd "<C-up>")   'scroll-down-line)
+(global-set-key (kbd "<C-kp-up>")   'scroll-down-line)
+(global-set-key (kbd "<C-down>") 'scroll-up-line)
+(global-set-key (kbd "<C-kp-down>") 'scroll-up-line)
                                         ; Scroll Other Window with Alt-Up/Down
 (global-set-key (kbd "<M-up>")   (lambda () (interactive) (scroll-other-window-down 1)))
 (global-set-key (kbd "<M-kp-up>")   (lambda () (interactive) (scroll-other-window-down 1)))
