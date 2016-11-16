@@ -130,7 +130,7 @@
 (setenv "DROPBOX" "/home/simon/Dropbox" t)
 (setenv "MARKETSDEV" "/mnt/3dfs/public/Markets\ Development" t)
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages")
-(setenv setenv "LD_LIBRARY_PATH" "$METALJET/BinLinux/:/usr/local/lib" t)
+(setenv "LD_LIBRARY_PATH" "$METALJET/BinLinux/:/usr/local/lib" t)
 (setenv "PATH" "$PATH:/home/simon/scripts" t)
 
 
