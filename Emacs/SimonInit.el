@@ -338,6 +338,9 @@
 (global-set-key (kbd "C-z") 'undo) ; 【Ctrl+z】
 (global-set-key (kbd "C-S-z") 'redo) ; 【Ctrl+Shift+z】;  Mac style
 
+;Disable default exit command (I trip over it accidentally while undoing and redoing too much)
+(global-set-key "\C-x\C-c" nil)
+
 (global-set-key "\C-o" 'find-file)  ; Open file (Microsoft style)
 (global-set-key (kbd "C-<f4>") 'kill-this-buffer) ; Close Buffer (Microsoft style)
 

@@ -494,6 +494,12 @@
   (puthash "'''" "‴" xmsi-abrvs)
   (puthash "." "·" xmsi-abrvs)
 
+  ;; dots
+  
+  (puthash "..." "…" xmsi-abrvs)
+  (puthash ".." "‥" xmsi-abrvs)
+  
+
   ;; superscripts
   (puthash "^0" "⁰" xmsi-abrvs)
   (puthash "^1" "¹" xmsi-abrvs)

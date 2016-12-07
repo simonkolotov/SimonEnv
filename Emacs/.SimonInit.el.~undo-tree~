@@ -1,10 +1,94 @@
-"a99abb06be2532241361d8ea6d2668095d4442d6"
-[cl-struct-undo-tree [nil ([nil ([nil ([nil ([nil (#8=[nil nil ((nil rear-nonsticky nil 5393 . 5394) (nil keymap #1=(keymap (118 . magit-reverse) (117 . magit-unstage) (115 . magit-stage) (67 . magit-commit-add-log) (97 . magit-apply) (remap keymap (magit-delete-thing . magit-discard) (magit-visit-thing . magit-diff-visit-file)) (10 . magit-diff-visit-file-worktree) (C-return . magit-diff-visit-file-worktree)) 5331 . 5394) (nil fontified nil 5331 . 5394) (5331 . 5394)) nil (22572 20716 100068 386000) 0 nil]) ((#("\"LD_LIBRARY_PATH\" \"$METALJET/BinLinux/:/mnt/HDD/linux/home/simon/Qt5.6/5.6/gcc_64/lib:/usr/local/lib\" t" 0 17 (fontified t face font-lock-string-face) 17 18 (fontified t) 18 40 (fontified t face font-lock-string-face) 40 87 (fontified t face font-lock-string-face) 87 101 (fontified t face font-lock-string-face) 101 103 (fontified t)) . -5331) (undo-tree-id6 . -103) 5435 (t 22572 20690 531752 828000)) nil (22572 20716 100099 194000) 0 nil] [nil ([nil nil ((nil rear-nonsticky nil 4524 . 4525) (nil keymap #1# 4462 . 4525) (nil fontified nil 4462 . 4525) (4462 . 4525)) ((#("setenv \"LD_LIBRARY_PATH\" \"$METALJET/BinLinux/:/usr/local/lib\" t" 0 7 (magit-section #7=[cl-struct-magit-section hunk (nil "-130,7" "+130,7") #<marker (moves after insertion) at 201 in *magit: SimonEnv> #<marker at 1 in *magit: SimonEnv> #<marker at 1 in *magit: SimonEnv> nil nil nil nil nil nil #6=[cl-struct-magit-section file "Emacs/SimonInit.el" #<marker (moves after insertion) at 201 in *magit: SimonEnv> #<marker at 1 in *magit: SimonEnv> #<marker at 1 in *magit: SimonEnv> nil nil nil nil "diff --git Emacs/SimonInit.el Emacs/SimonInit.el
-index f55648c..be729ff 100644
---- Emacs/SimonInit.el
-+++ Emacs/SimonInit.el
-" nil #4=[cl-struct-magit-section staged nil #<marker (moves after insertion) at 201 in *magit: SimonEnv> #<marker at 1 in *magit: SimonEnv> #<marker at 1 in *magit: SimonEnv> nil nil nil nil nil nil #2=[cl-struct-magit-section status nil #<marker (moves after insertion) at 201 in *magit: SimonEnv> nil #<marker at 1 in *magit: SimonEnv> nil nil nil nil nil nil nil (#3=[cl-struct-magit-section branch "master" #<marker (moves after insertion) at 201 in *magit: SimonEnv> #<marker at 1 in *magit: SimonEnv> #<marker at 1 in *magit: SimonEnv> nil nil nil nil nil nil #2# ([cl-struct-magit-section branch "origin/master" #<marker (moves after insertion) at 201 in *magit: SimonEnv> nil #<marker at 1 in *magit: SimonEnv> nil nil nil nil nil nil #3# nil])] #4# #5=[cl-struct-magit-section stashes "refs/stash" #<marker (moves after insertion) at 201 in *magit: SimonEnv> #<marker at 1 in *magit: SimonEnv> #<marker at 1 in *magit: SimonEnv> nil nil nil nil nil nil #2# ([cl-struct-magit-section stash "stash@{0}" #<marker (moves after insertion) at 201 in *magit: SimonEnv> nil #<marker at 1 in *magit: SimonEnv> nil nil nil nil nil nil #5# nil])])] (#6#)] (#7#)] nil] fontified nil keymap #1#) 7 24 (magit-section #7# fontified nil face font-lock-string-face keymap #1#) 24 25 (magit-section #7# fontified nil keymap #1#) 25 61 (magit-section #7# fontified nil face font-lock-string-face keymap #1#) 61 62 (magit-section #7# fontified nil keymap #1#) 62 63 (magit-section #7# fontified nil rear-nonsticky nil keymap #1#)) . 4462) (undo-tree-id0 . -63) (undo-tree-id1 . -63) (nil keymap nil 4524 . 4525) (nil keymap nil 4523 . 4524) (nil keymap nil 4487 . 4523) (nil keymap nil 4486 . 4487) (nil keymap nil 4469 . 4486) (nil keymap nil 4462 . 4469) (nil rear-nonsticky t 4524 . 4525)) (22572 20704 731492 450000) 0 nil]) ((4397 . 4437) (4421 . 4422) (t 22572 20690 531752 828000)) ((#("
-" 0 1 (fontified nil face font-lock-comment-face)) . 4421) (undo-tree-id2 . -1) (undo-tree-id3 . 1) (undo-tree-id4 . -1) (undo-tree-id5 . -1) (#("                                        " 0 40 (fontified t)) . 4397)) (22572 20704 731834 744000) 0 nil]) ((5371 . 5418) (t 22572 20658 463200 368000)) nil (22572 20704 995975 312000) 0 nil]) (("mnt/HDD/linux/home/simon/Qt5.6/5.6/gcc_64/lib:/" . 5371) (t 22572 20642 453924 569000)) nil (22572 20704 731516 90000) 0 nil] [nil nil ((1 . 2) (t 22572 20642 453924 569000)) ((#("z" 0 1 (fontified t)) . 1)) (22572 20651 394796 77000) 0 nil]) ((5371 . 5418) (t 22572 20521 52833 133000) ("mnt/HDD/linux/home/simon/Qt5.6/5.6/gcc_64/lib:/" . 5371) (t 22572 20518 593790 770000) (8122 . 12669) ("
+"a4c31b5289fdf7e2a0e7ca46c1018d582da6f2b1"
+[cl-struct-undo-tree [nil ([nil ([nil (#1=[nil nil ((nil rear-nonsticky nil 11297 . 11298) (nil fontified nil 11293 . 11298) (nil fontified nil 11292 . 11293) (nil fontified nil 11291 . 11292) (nil fontified nil 11283 . 11291) (nil fontified nil 11267 . 11283) (nil fontified nil 11173 . 11267) (nil fontified nil 11172 . 11173) (11172 . 11298)) nil (22599 47339 58000 0) 0 nil]) ((11170 . 11172) (t 22599 47324 0 0)) nil (22599 47339 58000 0) 0 nil]) ((5371 . 33293) (#("mnt/HDD/linux/home/simon/Qt5.6/5.6/gcc_64/lib:/usr/local/lib\" t)
+(setenv \"PATH\" \"$PATH:/home/simon/scripts\" t)
+
+
+;;;;;;;;;;Matlab Mode
+(require 'matlab-load)
+(setq matlab-indent-function-body t)  ; if you want function bodies indented
+(setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
+(defun my-matlab-mode-hook ()
+  (setq fill-column 76))		; where auto-fill should wrap
+(add-hook 'matlab-mode-hook 'my-matlab-mode-hook)
+(defun my-matlab-shell-mode-hook ()
+	'())
+(add-hook 'matlab-shell-mode-hook 'my-matlab-shell-mode-hook)
+
+
+;;;;;;;;;;ein for IPython Notebooks in emacs
+;(require 'ein-ipynb-mode)
+
+;;;;;;;;;;XSMI for math symbols
+(require 'xmsi-math-symbols-input)
+(xmsi-mode)
+
+;;;;;;;;;;Undo-Tree
+(require 'undo-tree)
+(global-undo-tree-mode)
+(set-default 'undo-tree-auto-save-history t)
+
+;;;;;;;;;Git for emacs
+(require 'magit)
+
+(global-set-key \"\\C-ci\" 'magit-status)
+(global-set-key \"\\C-c\\C-b\" 'magit-blame-mode)
+
+;;;;;;;;;; ido-mode
+(require 'ido)
+(ido-mode t)
+
+;;;;;;;;;; js2 mode for json
+(require 'js2-mode)
+
+;;;;;;;;;; yas for programming templates
+(require 'yasnippet)
+(yas-global-mode 1)
+(setq yas-snippet-dirs (list (concat emacs-git \"Plugins/yasnippet/snippets\")))
+
+;; Completing point by some yasnippet key
+(defun yas-ido-expand ()
+  \"Lets you select (and expand) a yasnippet key\"
+  (interactive)
+    (let ((original-point (point)))
+      (while (and
+              (not (= (point) (point-min) ))
+              (not
+               (string-match \"[[:space:]\\n]\" (char-to-string (char-before)))))
+        (backward-word 1))
+    (let* ((init-word (point))
+           (word (buffer-substring init-word original-point))
+           (list (yas-active-keys)))
+      (goto-char original-point)
+      (let ((key (remove-if-not
+                  (lambda (s) (string-match (concat \"^\" word) s)) list)))
+        (if (= (length key) 1)
+            (setq key (pop key))
+          (setq key (ido-completing-read \"key: \" list nil nil word)))
+        (delete-char (- init-word original-point))
+        (insert key)
+        (yas-expand)))))
+
+
+(define-key yas-minor-mode-map (kbd \"C-<return>\")     'yas-ido-expand)
+(define-key yas-minor-mode-map (kbd \"C-<kp-enter>\")     'yas-ido-expand)
+
+(yas-reload-all)
+
+;; Lexical completion with M-RET
+(define-key yas-minor-mode-map (kbd \"M-<return>\")     'dabbrev-expand)
+(define-key yas-minor-mode-map (kbd \"M-<kp-enter>\")     'dabbrev-expand)
+
+;;;;;;;;;;auto-complete
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories (concat emacs-git \"Plugins/autocomplete/ac-dict\"))
+(ac-config-default)
+
+;;;;;;;;;;lua-mode
+(autoload 'lua-mode \"lua-mode\" \"Lua editing mode.\" t)
+(add-to-list 'auto-mode-alist '(\"\\\\.lua$\" . lua-mode))
+(add-to-list 'interpreter-mode-alist '(\"lua\" . lua-mode))
+(setq lua-indent-level 2)
+
 ;;;;;;;;;;Toolbars
 (menu-bar-mode 't)
 (tool-bar-mode 'nil)
@@ -145,12 +229,641 @@ index f55648c..be729ff 100644
 (global-set-key (kbd \"C-x <left>\") 'windmove-left)
 
 ; Scroll with Ctrl+Up/Down
-(setq scroll-step 1)
-(setq scroll-conservatively 10000)
-(setq auto-window-vscroll nil)
+(defun scroll-dont-move-cursor (dist)
+  \"\"
+  (let ((p (point)))
+    (scroll-up dist)
+    (goto-char p)))
+  
+(defun scroll-up-line ()
+  (interactive)
+  (scroll-dont-move-cursor 1))
+
+(defun scroll-down-line ()
+  (interactive)
+  (scroll-dont-move-cursor -1))
 
 ; NB: scrolling down = moving the window up...
-(global-set-key (kbd \"<C-up>\")   (lambda () (interactive) (scroll-down 1)))
-(global-set-key (kbd \"<C-kp-up>\")   (lambda () (interactive) (scroll-down 1)))
-(global-set-key (kbd \"<C-down>\") (lambda () (interactive) (scroll-up 1)))
-(global-set-key (kbd \"<C-kp-down>\") (lambda () (interactive) (scroll-up 1))" . 8122) (t 22572 20514 252715 984000) (5371 . 5418) (t 22485 20394 16420 505000)) nil (22572 20651 395191 448000) 0 nil]) nil nil (22572 20651 394814 408000) 0 nil] #8# 5134 8 nil]
+(global-set-key (kbd \"<C-up>\")   'scroll-down-line)
+(global-set-key (kbd \"<C-kp-up>\")   'scroll-down-line)
+(global-set-key (kbd \"<C-down>\") 'scroll-up-line)
+(global-set-key (kbd \"<C-kp-down>\") 'scroll-up-line)
+                                        ; Scroll Other Window with Alt-Up/Down
+(global-set-key (kbd \"<M-up>\")   (lambda () (interactive) (scroll-other-window-down 1)))
+(global-set-key (kbd \"<M-kp-up>\")   (lambda () (interactive) (scroll-other-window-down 1)))
+(global-set-key (kbd \"<M-down>\") (lambda () (interactive) (scroll-other-window-down -1)))
+(global-set-key (kbd \"<M-kp-down>\") (lambda () (interactive) (scroll-other-window-down -1)))
+
+; page-up down works with C- or M- in the same way as the rest
+(global-set-key (kbd \"<C-prior>\")   'scroll-down-command) ;prior = page-up
+(global-set-key (kbd \"<C-kp-prior>\")   'scroll-down-command)
+
+(global-set-key (kbd \"<C-next>\")   'scroll-up-command) ;next = page-down
+(global-set-key (kbd \"<C-kp-next>\")   'scroll-up-command)
+
+
+; Change C-arrows to be the same as M-f/b
+(global-set-key (kbd \"C-<right>\")   'forward-word)
+(global-set-key (kbd \"C-<kp-right>\")   'forward-word)
+
+(global-set-key (kbd \"C-<left>\")   'backward-word)
+(global-set-key (kbd \"C-<kp-left>\")   'backward-word)
+
+(global-set-key (kbd \"<C-kp-home>\")   'beginning-of-buffer)
+(global-set-key (kbd \"<C-kp-end>\")   'end-of-buffer)
+
+(global-set-key (kbd \"<C-kp-delete>\")   'kill-word)
+
+
+; Set M-arrows to be the same as C-arrows, but by full words
+(global-set-key (kbd \"M-<kp-right>\")   'right-word)
+(global-set-key (kbd \"M-<kp-left>\")   'left-word)
+
+
+; Command History Completion
+(define-key minibuffer-local-map (kbd \"M-p\") 'previous-complete-history-element)
+(define-key minibuffer-local-map (kbd \"M-n\") 'next-complete-history-element)
+(define-key minibuffer-local-map (kbd \"<up>\") 'previous-complete-history-element)
+(define-key minibuffer-local-map (kbd \"<down>\") 'next-complete-history-element)
+
+; set hot-key for modes
+(global-set-key (kbd \"C-M-p\") 'python-mode)
+(global-set-key (kbd \"C-M-t\") 'text-mode)
+(global-set-key (kbd \"C-M-C\") 'c++-mode)
+
+;lines truncation
+(global-set-key (kbd \"C-x t\") 'toggle-truncate-lines)
+
+;Personal Notebook
+(global-set-key [f4] 'open-personal-notes-file)
+
+(global-set-key (kbd \"C-S-n\") '(lambda () (interactive)
+                                 (switch-to-buffer \"NoteBook.org\")))
+
+;Work Notebook
+(global-set-key [f5] 'open-work-notes-file)
+
+(global-set-key (kbd \"C-S-w\") '(lambda () (interactive)
+                                 (switch-to-buffer \"WorkNoteBook.org\")))
+
+;Shell
+(global-set-key [f6] 'open-shell)
+
+(global-set-key (kbd \"C-S-s\") '(lambda () (interactive) 
+                                 (switch-to-buffer (find-most-recent-pattern-buffer \"\\\\*shell\"))))
+
+;SimonInit
+(global-set-key (kbd \"C->\") '(lambda () (interactive) 
+                                 (open-init-file)))
+
+
+;Reload buffer
+(global-set-key \"\\C-x\\C-r\" 'revert-buffer)
+
+(global-set-key \"\\M-S-[\" 'c-beginning-of-defun)
+(global-set-key \"\\M-S-]\" 'c-end-of-defun)
+
+(global-set-key \"\\M-[\" 'find-matching-keyword)
+
+
+
+;Most Recent Buffers
+(global-set-key (kbd \"S-C-c\") 'find-most-recent-c-buffer)
+(global-set-key (kbd \"S-C-e\") 'find-most-recent-emacs-buffer)
+(global-set-key (kbd \"S-C-p\") 'find-most-recent-python-buffer)
+(global-set-key (kbd \"S-C-m\") 'find-most-recent-magit-buffer)
+(global-set-key (kbd \"S-C-o\") 'find-most-recent-org-buffer)
+
+;Help and documentation
+(global-set-key [(control h) (control q)] 'qtdoc-lookup)
+(global-set-key [(control h) (control g)] 'google-lookup)
+(global-set-key [(control h) (control p)] 'python-lookup)
+(global-set-key [(control h) (control c)] 'cpp-lookup)
+
+;===================================
+;gdb and gud-gdb
+(add-hook 'gud-mode-hook
+          '(lambda ()
+             (local-set-key [home] ; move to beginning of line, after prompt
+                            'comint-bol)
+             (local-set-key [up] ; cycle backward through command history
+                            '(lambda () (interactive)
+                               (if (comint-after-pmark-p)
+                                   (comint-previous-matching-input-from-input 1)
+                                 (previous-line 1))))
+             (local-set-key [down] ; cycle forward through command history
+                            '(lambda () (interactive)
+                               (if (comint-after-pmark-p)
+                                   (comint-next-matching-input-from-input 1)
+                                 (forward-line 1))))
+
+             (define-key gud-mode-map [(alt n)] 'gud-next) ; External Buffer Commands
+             (define-key gud-mode-map [(alt s)] 'gud-step)
+             (define-key gud-mode-map [(alt f)] 'gud-finish)
+
+                                  ; Load history file
+             ;;;;;WHY DOESN'T THIS WORK?!;;;;;
+;             (make-local-variable 'comint-input-ring-file-name) 
+;             (setq comint-input-ring-file-name ((concat emacs-persistance-dir \"/comint-history\"))) 
+;             (setq comint-input-ring-size 10000)
+;             (set History)
+             (comint-read-input-ring)
+             (make-local-variable 'kill-buffer-hook)
+             (add-hook 'kill-buffer-hook 'comint-write-input-ring)
+             
+             ))
+
+
+(defun gdb-keys (map) 
+  \"Set key bindings for gdb debugging\"
+  (interactive)
+  (define-key map [(alt n)] 'gdb-next)
+  (define-key map [(alt s)] 'gdb-step)
+  (define-key map [(alt f)] 'gdb-finish)
+  (define-key map [(alt h)] 'gdb-cont-to))
+
+;comint (?)
+(defun comint-write-input-ring-all-buffers ()
+  (mapc-buffers 'comint-write-input-ring))
+
+ (add-hook 'kill-emacs-hook 'comint-write-input-ring-all-buffers)
+
+
+(add-hook 'comint-mode-hook
+  (lambda()
+    (define-key comint-mode-map [(meta p)] 'comint-previous-matching-input-from-input)
+    (define-key comint-mode-map [(kbd \"<up>\")] 'comint-previous-matching-input-from-input)
+    
+    (define-key comint-mode-map [(meta n)] 'comint-next-matching-input-from-input)
+    (define-key comint-mode-map [(kbd \"<down>\")] 'comint-next-matching-input-from-input)
+    
+    (define-key comint-mode-map [(control c) (control o)] 'comint-kill-output-to-kill-ring)
+    (define-key comint-mode-map [(control x) (control ?\\\\)] 'toggle-backslash-line)
+    (define-key comint-mode-map [(tab)] 'comint-dynamic-complete)
+
+    ; Save history when the shell is killed
+    (make-local-variable 'comint-input-ring-file-name)
+    (setq comint-input-ring-file-name (concat emacs-persistance-dir \"/comint-history\"))
+    (setq comint-input-ring-size 10000)
+    (setq comint-process-echoes 't)
+    (comint-read-input-ring)
+    (make-local-variable 'kill-buffer-hook)
+    (add-hook 'kill-buffer-hook 'comint-write-input-ring)
+  ))
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+;; The following is based on:
+;; http://oleksandrmanzyuk.wordpress.com/2011/10/23/a-persistent-command-history-in-emacs/
+(defun mapc-buffers (fn)
+  (mapc (lambda (buffer)
+          (with-current-buffer buffer
+            (funcall fn)))
+        (buffer-list)))
+
+           
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;; Save history between emacs sessions
+(savehist-mode t)
+
+
+;;;;;;;;;;;;;; Fill-Column Indicator
+(require 'fill-column-indicator)
+(define-globalized-minor-mode
+  global-fci-mode fci-mode (lambda () (fci-mode 1)))
+(global-fci-mode t)
+(setq-default fill-column 100)
+
+; Lines Truncation
+(set-default 'truncate-lines nil)
+
+;;;;;;;;;;;;;;;;; Subword Mode - Jump by camelback
+(global-subword-mode t)
+
+;;;;;;;;;;;;;;;;;; Automatic Parentheses completion  Mode
+;(electric-pair-mode f)
+
+;; Set some auto modes
+(setq auto-mode-alist
+      (append
+       (list (cons \"\\\\.cmake$\" 'cmake-mode))
+
+       (list (cons \"\\\\.pro$\" 'makefile-mode))
+       
+       (list (cons \"SConstruct\" 'python-mode))
+       (list (cons \"SConscript\" 'python-mode))
+       (list (cons \"\\\\.py$\" 'python-mode))
+       (list (cons \"\\\\.run$\" 'python-mode))
+
+       (list (cons \"\\\\.md$\" 'markdown-mode))
+       
+       (list (cons \"\\\\.h$\" 'c++-mode))
+       (list (cons \"\\\\.hh$\" 'c++-mode))
+       (list (cons \"\\\\.H$\" 'c++-mode))
+       (list (cons \"\\\\.cxx$\" 'c++-mode))
+       (list (cons \"\\\\.cc$\" 'c++-mode))
+       (list (cons \"\\\\.cpp$\" 'c++-mode))       
+
+       (list (cons \"\\\\.json$\" 'js2-mode))
+
+       (list (cons \"\\\\.xml$\" 'xml-mode)) 
+
+       (list (cons \"\\\\.txt$\" 'text-mode))
+       
+       (list (cons \"\\\\.org\" 'org-mode))
+
+       (list (cons \"\\\\.init\" 'lisp-mode))
+       (list (cons \"\\\\.emacs\" 'lisp-mode))
+       (list (cons \"\\\\.el\" 'lisp-mode))              
+       
+       auto-mode-alist))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;Text mode indent
+(defun newline-and-indent-relative()
+  \"Do a newline and a relative indent.\"
+  (interactive)
+  (newline)
+  (indent-relative-maybe))
+
+    
+(define-key text-mode-map [return] 'newline-and-indent-relative)
+(define-key text-mode-map \"\\C-m\" 'newline-and-indent-relative)
+
+;;;;;;;;;;;;; python-mode
+(setq py-install-directory (concat emacs-git \"Plugins/python-mode.el-6.1.2\"))
+(add-to-list 'load-path py-install-directory)
+(setq py-outline-minor-mode-p nil)
+(require 'python-mode)
+
+; use IPython
+(setq-default py-shell-name \"ipython\")
+(setq-default py-which-bufname \"IPython\")
+
+; use the wx backend, for both mayavi and matplotlib
+(setq py-python-command-args
+      '(\"--gui=wx\" \"--pylab=wx\" \"-colors\" \"Linux\"))
+(setq py-force-py-shell-name-p t)
+
+; switch to the interpreter after executing code
+(setq py-shell-switch-buffers-on-execute-p t)
+(setq py-switch-buffers-on-execute-p t)
+
+; don't split windows
+;(setq py-split-windows-on-execute-p nil)
+
+; try to automagically figure out indentation
+(setq py-smart-indentation t)
+
+;(defun annotate-todo ()
+;  \"put fringe marker on TODO: lines in the curent buffer\"
+;  (interactive)
+;  (save-excursion
+;    (goto-char (point-min))
+;    (while (re-search-forward \"TODO:\" nil t)
+;      (let ((overlay (make-overlay (- (point) 5) (point))))
+;        (overlay-put overlay 'before-string (propertize \"A\"
+;                                                        'display '(left-fringe right-triangle)))))))
+;
+;(add-hook 'python-mode-hook 'annotate-todo)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;c/c++ mode
+(add-hook 'c-mode-common-hook
+  (lambda() 
+    (local-set-key  (kbd \"C-c h\") 'ff-find-other-file)))
+
+;=================================
+
+
+;;;;;;;;;;;;;;Window size
+
+(setq left-two-thirds-screen-pos (list 0.6 my-height-fraction 0 0))    ; 0 from left, 0 from top
+(defun frame-occupy-left-two-thirds-screen ()
+  \"Move and resize the frame so it occupies the left half of the screen.\"
+  (interactive)
+  ;(apply 'frame-move-resize left-half-screen-pos)
+  (apply 'frame-move-resize left-two-thirds-screen-pos))
+
+(setq left-third-screen-pos (list 0.278 my-height-fraction 0 0))    ; 0 from left, 0 from top
+(defun frame-occupy-left-third-screen ()
+  \"Move and resize the frame so it occupies the left half of the screen.\"
+  (interactive)
+  ;(apply 'frame-move-resize left-half-screen-pos)
+  (apply 'frame-move-resize left-third-screen-pos))
+
+; Set Window size by environment type
+(if (not (boundp 'my-emacs-monitors-num))(setq my-emacs-monitors-num 1))
+(if (window-system)
+    (cond
+     ((= my-emacs-monitors-num 1) 
+        (frame-occupy-left-two-thirds-screen))
+     ((= my-emacs-monitors-num 2)
+      (frame-occupy-left-third-screen))
+     (t
+      (frame-occupy-left-third-screen))
+    )
+  )
+
+; Invert Colors only on the first time emacs is run
+(if (not (boundp 'my-do-invert-color))(setq my-do-invert-color t))
+    
+(if my-do-invert-color
+    (progn 
+      (invert-face 'default)
+      (setq my-do-invert-color nil)
+    )
+)
+
+
+; Tabulation etc
+(setq-default tab-width 8)    ;I never use tabs. but if tabs are present - they should be very visible
+(setq python-indent 2)
+(setq perl-indent-level 2)
+(setq c-basic-indent 2)
+(setq standard-indent 2)
+(setq-default indent-tabs-mode nil)
+
+(defun update-indent-mode ()
+  (setq c-basic-offset my-indent)
+  (c-set-offset 'substatement my-substatement)
+  (c-set-offset 'substatement-open my-substatement-open)
+  (c-set-offset 'access-label my-access-label)
+  (c-set-offset 'topmost-intro my-topmost-intro))
+
+(defun xjet-indent-mode ()
+  \"Set indent tabs to the xjet indent mode\"
+  (interactive)
+  ;; C++-python
+  (setq my-indent 2)
+  (setq my-substatement 2)
+  (setq my-substatement-open 0)
+  (setq my-access-label 0)
+  (setq my-topmost-intro 0)
+  (update-indent-mode)
+
+  ;; Python
+  (setq py-indent-offset 2)
+  )
+
+(add-hook 'c++-mode-hook
+(lambda ()
+(xjet-indent-mode)))
+  
+(add-hook 'c-mode-hook
+(lambda ()
+;(setq indent-line-function (quote insert-tab))     ;<<<<<<<<<<<<<<<<<<
+;(xjet-indent-mode() )
+))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(cursor ((t (:background \"white\")))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ; Advanced Search Functions:
+;; git grep
+(load \"dov-git-grep\")
+(global-set-key [(control c) ?f] 'dov-git-grep)
+;; git find file
+(load \"git-find-file.el\")
+(global-set-key [(control c) ?g] 'git-find-file)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ; Allow sudo in ido-find-file  !!!
+(defadvice ido-find-file (after find-file-sudo activate)
+  \"Find file as root if necessary.\"
+  (unless (and buffer-file-name
+               (file-writable-p buffer-file-name))
+    (find-alternate-file (concat \"/sudo:root@localhost:\" buffer-file-name))))
+
+                                        ; Allow sudo in shell command  !!!
+;(defun sudo-shell-command (command)
+;  (shell-command (concat \"echo \" (read-passwd \"Password: \") \" | sudo -S \" command)))
+
+;(global-set-gkey (kbd \"C-M-!\") 'sudo-shell-command(command))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ; Show full(er) buffer name in status bar
+;(if (boundp 'InitialBufferName) () (setq InitialBufferName mode-line-buffer-identification))
+;(setq-default mode-line-buffer-identification
+;              (cons 'default-directory
+;               ;'(:eval (replace-regexp-in-string \"^.*/\\\\(.*\\\\)/\" \"\\\\1/\" default-directory))
+;               InitialBufferName))
+
+                                        ;Show BufferName and Path in Upper Tab
+;;;;; Disable loading of “default.el” at startup,
+;;;;; in Fedora all it does is fix window title which I rather configure differently
+;;;(setq inhibit-default-init t)
+;;;
+;;;;; SHOW FILE PATH IN FRAME TITLE
+;;;(setq-default frame-title-format \"%b (%f)\")
+;;;
+
+;;;(setq frame-title-format
+;;;      (list (format \"%s %%S: %%j \" (system-name))
+;;;        '(buffer-file-name \"%f\" (dired-directory dired-directory \"%b\"))))
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;; Org Mode
+(setq my-default-family \"InconsolataDov\")
+(setq my-default-font \"InconsolataDov 11\")
+
+(load \"org-bullets.el\")
+
+; This is a bug work around
+(defun org-element-cache-reset (&optional all) (interactive))
+
+(require 'org)
+(require 'org-crypt)
+(defun my-org-hook ()
+  (local-set-key [(control c) (control ?.)] 'org-time-stamp)
+  (local-set-key \"\\M-I\" 'org-toggle-inline-images);org-toggle-iimage-in-org)
+  (local-set-key \"\\C-c\\M-c\" 'org-screenshot)
+  (local-set-key \"\\C-c\\C-pe\" 'org-toggle-emphasis-markers)
+  (local-set-key \"\\C-c\\C-pp\" 'org-toggle-pretty-entities)
+  (local-set-key \"\\C-c\\C-pi\" 'org-toggle-iimage-inorg)
+  (setq org-export-with-sub-superscripts \"{}\")
+  (variable-pitch-mode t)
+  (set-face-attribute 'org-table nil :family my-default-family)
+  (set-face-attribute 'org-checkbox nil :family my-default-family)
+  (set-face-attribute 'org-block nil :family my-default-family)
+  (set-face-attribute 'org-verbatim nil :family my-default-family :foreground \"green4\")
+  (org-bullets-mode)
+  (setq org-bullets-bullet-list
+        '(\"▸\"
+          \"•\"
+          \"•\"
+          \"•\"
+          \"•\"
+          \"•\"
+          \"•\"
+          ;; ♥ ● ◇ ✚ ✜ ☯ ◆ ♠ ♣ ♦ ☢ ❀ ◆ ◖ ▶
+          ;;; Small
+          ;; ► • ★ ▸
+    ))
+
+  (setq org-hide-emphasis-markers nil)
+  (setq org-confirm-babel-evaluate nil)
+  (xmsi-mode)
+  (org-toggle-pretty-entities)
+  (setq bidi-paragraph-direction nil)
+  (setq org-export-html-postamble nil)
+  (setq org-export-html-validation-link \"\")
+  ;; Use journal theme if requested
+  (if (>= emacs-major-version 24)
+      (if (string-match \"notes.org\" (buffer-name) )
+          (progn
+            (disable-theme 'org-default)
+            (load-theme-buffer-local 'org-journal))
+        (load-theme-buffer-local 'org-default)))
+  (setq org-entities-user '(
+    (\"models\" \"\\\\models\" t \"&8872;\" \"[models]\" \"models\" \"⊨\")
+    (\"indf\" \"{\\bf 1}\" t \"&#120128;\" \"[indf]\" \"indf\" \"𝟙\")
+    (\"ell\" \"\\\\ell\" t \"&#2113;\" \"[ell]\" \"indf\" \"ℓ\")
+    ))
+
+  )
+(add-hook 'org-mode-hook 'my-org-hook)
+
+;;export to html-slidy
+(require 'ox-slidy)
+
+;; Make all font-lock faces fonts use inconsolata
+(dolist (face '(font-lock-builtin-face 	
+                font-lock-comment-delimiter-face
+                font-lock-comment-face 	
+                font-lock-constant-face
+                font-lock-doc-face 	
+                font-lock-function-name-face
+                font-lock-keyword-face 	
+                font-lock-negation-char-face
+                font-lock-preprocessor-face 	
+                font-lock-regexp-grouping-backslash
+                font-lock-regexp-grouping-construct 	
+                font-lock-string-face
+                font-lock-type-face 	
+                font-lock-variable-name-face
+                font-lock-warning-face))
+  (set-face-attribute face nil :family my-default-family))
+
+
+; Source Languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((sh . t)
+   (perl . t)
+   (emacs-lisp . t)
+   (python . t)
+   (ditaa . t)
+   (dot . t)
+   (asymptote . t)
+   (plantuml . t)
+   (octave . t)
+   (R . t)
+   (C . t)
+   )) 
+(setq org-plantuml-jar-path
+      (concat emacs-git \"/Plugins/plantuml.jar\"))
+
+
+; convert lines into checkbox
+(defun org-set-line-checkbox (arg)
+  (interactive \"P\")
+  (let ((n (or arg 1)))
+    (when (region-active-p)
+      (setq n (count-lines (region-beginning)
+                           (region-end)))
+      (goto-char (region-beginning)))
+    (dotimes (i n)
+      (beginning-of-line)
+      (skip-chars-forward \"[:blank:]\")
+      (insert \"- [ ] \")
+      (if (> n 1)
+        (forward-line))
+    (end-of-line))))
+
+(global-set-key (kbd \"C-M-]\") 'org-set-line-checkbox)
+
+;;Define programs to open files
+(if (string-match \"mingw-nt\" system-configuration)
+    (progn
+      (setq org-file-apps
+            (append
+             '((\"png\" . \"c:/progra~2/IrfanView/i_view32.exe %s\"))
+             '((\"doc\" . \"\\\"c:/Program Files (x86)/OpenOffice.org 3/program/soffice.exe\\\" %s\"))
+
+             org-file-apps
+             ))
+      )
+  (progn 
+    (setq org-file-apps
+          (append
+           '((\"png\" . \"eog %s\"))
+           '((\"pdf\" . \"evince %s\"))
+           '((\"svg\" . \"inkscape %s\"))
+           '((\"net\" . \"/usr/local/samiam/runsamiam %s\"))
+           '((\"xcf\" . \"gimp %s\"))
+           '((\"giv\" . \"giv %s\"))
+           '((\"doc\" . \"libreoffice -norestore %s\"))
+           '((\"odt\" . \"libreoffice -norestore %s\"))
+           '((\"gnumeric\" . \"gnumeric %s\"))
+           '((\"html\" . (concat my-chrome-command \" %s\")))
+           org-file-apps))))
+
+(setq org-src-lang-modes 
+     '((\"elisp\" . emacs-lisp)
+        (\"ditaa\" . artist)
+        (\"asymptote\" . asy)
+        (\"dot\" . fundamental)
+        (\"perl\" . cperl)
+        (\"python\" . python)
+        ))
+
+;;;;;;;;;;;;;;;;;;;;
+
+(defun xjet-python-buffer ()
+  \"Send the current (python) buffer to be evaluated in the MetalJet Application\"
+  (interactive)
+  (write-region (point-min) (point-max) \"/tmp/buffer.py\")
+  (shell-command \"xjet-python /tmp/buffer.py\"))
+(define-key py-mode-map [(control c) (control j)] 'xjet-python-buffer)
+
+
+; magit-diff-file was written by dov, and requsted to be merged into magit.
+; See: https://github.com/magit/magit/issues/2553
+(defun magit-diff-file (rev-or-range &optional file args)
+  \"Show changes between a file from another branch\"
+  (interactive (list (magit-diff-read-range-or-commit \"File diff for range\" nil current-prefix-arg)
+                     (if current-prefix-arg
+                       (read-file-name \"File: \")
+                       buffer-file-name))) 
+  (magit-diff-setup rev-or-range nil args
+                    (list (replace-regexp-in-string (magit-toplevel) \"\" (expand-file-name file)))))
+
+(global-set-key (kbd \"C-c d\") 'magit-diff-file)
+
+; magit settings
+(setq magit-push-always-verify nil) ; by default push to updtream branch
+(setq git-commit-summary-max-length 256) ; length of commit-msg above which a warning is shown
+(load \"magit-blame\")
+(load \"markdown-mode\")
+(setq magit-diff-options '(\"-w\"))
+(load \"mo-git-blame\")" 0 5401 (fontified nil) 5401 5403 (fontified t) 5403 5469 (fontified t face font-lock-doc-face) 5469 5521 (fontified t) 5521 5531 (fontified t face font-lock-string-face) 5531 5535 (fontified t) 5535 5538 (fontified t face font-lock-comment-delimiter-face) 5538 5553 (fontified t face font-lock-comment-face) 5553 5554 (fontified t) 5554 5561 (fontified t face font-lock-keyword-face) 5561 5580 (fontified t) 5580 5587 (fontified t face font-lock-string-face) 5587 5611 (fontified t) 5611 5637 (fontified t face font-lock-string-face) 5637 5645 (fontified t) 5645 5658 (fontified t face font-lock-string-face) 5658 5661 (fontified t) 5661 5671 (fontified t face font-lock-comment-delimiter-face) 5671 5690 (fontified t face font-lock-comment-face) 5690 5692 (fontified t face font-lock-comment-delimiter-face) 5692 5702 (fontified t face font-lock-comment-face) 5702 5756 (fontified t) 5756 5761 (fontified t face font-lock-string-face) 5761 5770 (fontified t) 5770 5781 (fontified t face font-lock-comment-face) 5781 5802 (fontified t) 5802 5809 (fontified t face font-lock-string-face) 5809 5818 (fontified t) 5818 5846 (fontified t face font-lock-comment-face) 5846 5847 (fontified t face font-lock-comment-face) 5847 5848 (fontified t) 5848 5864 (fontified t) 5864 5870 (fontified t face font-lock-string-face) 5870 5884 (fontified t) 5884 5914 (fontified t face font-lock-comment-face) 5914 5935 (fontified t) 5935 5943 (fontified t face font-lock-string-face) 5943 5964 (fontified t) 5964 5997 (fontified t face font-lock-comment-face) 5997 6026 (fontified t) 6026 6031 (fontified t face font-lock-string-face) 6031 6054 (fontified t) 6054 6087 (fontified t face font-lock-comment-face) 6087 6109 (fontified t) 6109 6114 (fontified t face font-lock-string-face) 6114 6128 (fontified t) 6128 6140 (fontified t face font-lock-comment-face) 6140 6162 (fontified t) 6162 6170 (fontified t face font-lock-string-face) 6170 6182 (fontified t) 6182 6192 (fontified t face font-lock-comment-face) 6192 6209 (fontified t) 6209 6215 (fontified t face font-lock-string-face) 6215 6229 (fontified t) 6229 6279 (fontified t face font-lock-comment-face) 6279 6295 (fontified t) 6295 6301 (fontified t face font-lock-string-face) 6301 6319 (fontified t) 6319 6377 (fontified t face font-lock-comment-face) 6377 6399 (fontified t) 6399 6408 (fontified t face font-lock-string-face) 6408 6424 (fontified t) 6424 6445 (fontified t face font-lock-comment-face) 6445 6466 (fontified t) 6466 6485 (fontified t face font-lock-string-face) 6485 6505 (fontified t) 6505 6532 (fontified t face font-lock-comment-face) 6532 6533 (fontified t) 6533 6535 (fontified t face font-lock-comment-delimiter-face) 6535 6556 (fontified t face font-lock-comment-face) 6556 6577 (fontified t) 6577 6587 (fontified t face font-lock-string-face) 6587 6624 (fontified t) 6624 6636 (fontified t face font-lock-string-face) 6636 6675 (fontified t) 6675 6688 (fontified t face font-lock-string-face) 6688 6728 (fontified t) 6728 6740 (fontified t face font-lock-string-face) 6740 6759 (fontified t) 6759 6761 (fontified t face font-lock-comment-delimiter-face) 6761 6786 (fontified t face font-lock-comment-face) 6786 6787 (fontified t) 6787 6792 (fontified t face font-lock-keyword-face) 6792 6793 (fontified t) 6793 6816 (fontified t face font-lock-function-name-face) 6816 6826 (fontified t) 6826 6828 (fontified t face font-lock-doc-face) 6828 6832 (fontified t) 6832 6835 (fontified t face font-lock-keyword-face) 6835 6891 (fontified t)) . 5371) (undo-tree-id55 . -5401) (undo-tree-id56 . -5469) (undo-tree-id57 . -5469) (undo-tree-id58 . -5485) (undo-tree-id59 . -5485) (undo-tree-id60 . -5533) (undo-tree-id61 . -5533) (undo-tree-id62 . -5534) (undo-tree-id63 . -5534) (undo-tree-id64 . -5552) (undo-tree-id65 . -5552) (undo-tree-id66 . -5573) (undo-tree-id67 . -5573) (undo-tree-id68 . -5588) (undo-tree-id69 . -5588) (undo-tree-id70 . -5638) (undo-tree-id71 . -5638) (undo-tree-id72 . -5659) (undo-tree-id73 . -5659) (undo-tree-id74 . -5660) (undo-tree-id75 . -5660) (undo-tree-id76 . -5689) (undo-tree-id77 . -5689) (undo-tree-id78 . -5701) (undo-tree-id79 . -5701) (undo-tree-id80 . -5734) (undo-tree-id81 . -5734) (undo-tree-id82 . -5780) (undo-tree-id83 . -5780) (undo-tree-id84 . -5847) (undo-tree-id85 . -5847) (undo-tree-id86 . -5913) (undo-tree-id87 . -5913) (undo-tree-id88 . -5996) (undo-tree-id89 . -5996) (undo-tree-id90 . -5997) (undo-tree-id91 . -5997) (undo-tree-id92 . -6086) (undo-tree-id93 . -6086) (undo-tree-id94 . -6087) (undo-tree-id95 . -6087) (undo-tree-id96 . -6139) (undo-tree-id97 . -6139) (undo-tree-id98 . -6140) (undo-tree-id99 . -6140) (undo-tree-id100 . -6191) (undo-tree-id101 . -6191) (undo-tree-id102 . -6192) (undo-tree-id103 . -6192) (undo-tree-id104 . -6278) (undo-tree-id105 . -6278) (undo-tree-id106 . -6376) (undo-tree-id107 . -6376) (undo-tree-id108 . -6377) (undo-tree-id109 . -6377) (undo-tree-id110 . -6444) (undo-tree-id111 . -6444) (undo-tree-id112 . -6531) (undo-tree-id113 . -6531) (undo-tree-id114 . -6532) (undo-tree-id115 . -6532) (undo-tree-id116 . -6555) (undo-tree-id117 . -6555) (undo-tree-id118 . -6602) (undo-tree-id119 . -6602) (undo-tree-id120 . -6653) (undo-tree-id121 . -6653) (undo-tree-id122 . -5846) (undo-tree-id123 . -5846) (undo-tree-id124 . -6706) (undo-tree-id125 . -6706) (undo-tree-id126 . -6757) (undo-tree-id127 . -6757) (undo-tree-id128 . -6758) (undo-tree-id129 . -6758) (undo-tree-id130 . -6785) (undo-tree-id131 . -6785) (undo-tree-id132 . -6823) (undo-tree-id133 . -6823) (undo-tree-id134 . -5846) (undo-tree-id135 . -5846) (undo-tree-id136 . -5951) (undo-tree-id137 . -5701) (undo-tree-id138 . -5701) 11072 (t 22599 47287 0 0)) nil (22599 47339 58000 0) 0 nil] [nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil ([nil nil ((11339 . 11340)) ((#("c" 0 1 (fontified t face font-lock-string-face)) . 11339) (t 22599 47268 0 0)) (22599 47279 510000 0) 0 nil]) ((#("z" 0 1 (face font-lock-string-face fontified t)) . 11339) (t 22599 46976 0 0)) ((11339 . 11340)) (22599 47282 255000 0) 0 nil]) ((nil rear-nonsticky nil 11345 . 11346) (nil fontified nil 11315 . 11346) (11315 . 11346)) ((#("(global-set-key \"\\C-x\\C-z\" nil)" 0 16 (fontified nil) 16 24 (fontified nil face font-lock-string-face) 24 25 (fontified nil face font-lock-string-face) 25 26 (fontified nil face font-lock-string-face) 26 30 (fontified nil) 30 31 (fontified nil rear-nonsticky nil)) . 11315) (undo-tree-id0 . -24) (undo-tree-id1 . -24) (undo-tree-id2 . -31) (undo-tree-id3 . -31) (nil rear-nonsticky nil 11345 . 11346)) (22599 47282 753000 0) 0 nil] [nil ([nil ([nil nil ((#("i" 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 46974 97000 0) 0 nil]) ((#("D" 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 46974 97000 0) 0 nil]) ((#(";" 0 1 (face font-lock-comment-delimiter-face fontified t)) . 11220)) ((11220 . 11221)) (22599 46974 417000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47282 786000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47282 819000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47282 852000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47282 885000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47282 918000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47282 951000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47282 984000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 17000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 50000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 83000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 116000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 149000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 182000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 215000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 248000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 281000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 314000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 347000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 380000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 413000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 446000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 479000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 512000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 545000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 578000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 611000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 644000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 677000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 710000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 743000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 776000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 809000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 842000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 875000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 908000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 941000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47283 974000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47284 7000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47284 40000 0) 0 nil]) ((#(" " 0 1 (fontified t)) . 11220)) ((11220 . 11221)) (22599 47284 73000 0) 0 nil]) ((11220 . 11260) (11314 . 11315)) ((#("
+" 0 1 (fontified nil face font-lock-comment-face)) . 11314) (undo-tree-id4 . -1) (undo-tree-id5 . -1) (undo-tree-id6 . -1) (undo-tree-id7 . -1) (undo-tree-id8 . -1) (#("                                        " 0 1 (fontified t) 1 2 (fontified t) 2 3 (fontified t) 3 4 (fontified t) 4 5 (fontified t) 5 6 (fontified t) 6 7 (fontified t) 7 8 (fontified t) 8 9 (fontified t) 9 10 (fontified t) 10 11 (fontified t) 11 12 (fontified t) 12 13 (fontified t) 13 14 (fontified t) 14 15 (fontified t) 15 16 (fontified t) 16 17 (fontified t) 17 18 (fontified t) 18 19 (fontified t) 19 20 (fontified t) 20 21 (fontified t) 21 22 (fontified t) 22 23 (fontified t) 23 24 (fontified t) 24 25 (fontified t) 25 26 (fontified t) 26 27 (fontified t) 27 28 (fontified t) 28 29 (fontified t) 29 30 (fontified t) 30 31 (fontified t) 31 32 (fontified t) 32 33 (fontified t) 33 34 (fontified t) 34 35 (fontified t) 35 36 (fontified t) 36 37 (fontified t) 37 38 (fontified t) 38 39 (fontified t) 39 40 (fontified t)) . 11220)) (22599 47284 106000 0) 0 nil]) ((11300 . 11314)) ((#("oing too much)" 0 14 (fontified t face font-lock-comment-face)) . 11300) (undo-tree-id9 . -14) (undo-tree-id10 . -14) (undo-tree-id11 . -14) (undo-tree-id12 . -14) (undo-tree-id13 . -14)) (22599 47284 139000 0) 0 nil]) ((#("i" 0 1 (face font-lock-comment-face fontified t)) . -11300) (undo-tree-id1 . -1)) ((11300 . 11301)) (22599 47284 172000 0) 0 nil]) ((#("o" 0 1 (face font-lock-comment-face fontified t)) . -11301) (undo-tree-id3 . -1)) ((11301 . 11302)) (22599 47284 205000 0) 0 nil]) ((11301 . 11302)) ((#("o" 0 1 (fontified t face font-lock-comment-face)) . 11301) (undo-tree-id14 . -1) (undo-tree-id15 . -1)) (22599 47284 238000 0) 0 nil]) ((11281 . 11301)) ((#("ile undoing and redi" 0 19 (fontified t face font-lock-comment-face) 19 20 (fontified t face font-lock-comment-face)) . 11281) (undo-tree-id16 . -19) (undo-tree-id17 . -19) (undo-tree-id18 . -19) (undo-tree-id19 . -20) (undo-tree-id20 . -20)) (22599 47284 271000 0) 0 nil]) ((#("y" 0 1 (face font-lock-comment-face fontified t)) . -11281) (undo-tree-id5 . -1)) ((11281 . 11282)) (22599 47284 304000 0) 0 nil]) ((11278 . 11282)) ((#(" why" 0 3 (fontified t face font-lock-comment-face) 3 4 (fontified t face font-lock-comment-face)) . 11278) (undo-tree-id21 . -3) (undo-tree-id22 . -3) (undo-tree-id23 . -3) (undo-tree-id24 . -4) (undo-tree-id25 . -4)) (22599 47284 337000 0) 0 nil]) ((11258 . 11278)) ((#("over it accidentally" 0 20 (fontified t face font-lock-comment-face)) . 11258) (undo-tree-id26 . -20) (undo-tree-id27 . -20) (undo-tree-id28 . -20) (undo-tree-id29 . -20) (undo-tree-id30 . -20)) (22599 47284 370000 0) 0 nil]) ((#("a" 0 1 (face font-lock-comment-face fontified t)) . -11258) (undo-tree-id7 . -1)) ((11258 . 11259)) (22599 47284 403000 0) 0 nil]) ((11251 . 11259)) ((#("I trip a" 0 7 (fontified t face font-lock-comment-face) 7 8 (fontified t face font-lock-comment-face)) . 11251) (undo-tree-id31 . -7) (undo-tree-id32 . -7) (undo-tree-id33 . -7) (undo-tree-id34 . -8) (undo-tree-id35 . -8)) (22599 47284 436000 0) 0 nil]) ((#("I" 0 1 (face font-lock-comment-face fontified t)) . -11251) (undo-tree-id9 . -1)) ((11251 . 11252)) (22599 47284 469000 0) 0 nil]) ((#("t" 0 1 (face font-lock-comment-face fontified t)) . -11252) (undo-tree-id11 . -1)) ((11252 . 11253)) (22599 47284 502000 0) 0 nil]) ((11252 . 11253)) ((#("t" 0 1 (fontified t face font-lock-comment-face)) . 11252) (undo-tree-id36 . -1) (undo-tree-id37 . -1)) (22599 47284 781000 0) 0 nil]) ((#(" " 0 1 (face font-lock-comment-face fontified t)) . -11252) (undo-tree-id13 . -1)) ((11252 . 11253)) (22599 47285 280000 0) 0 nil]) ((11240 . 11253)) ((#("t command (I " 0 11 (fontified t face font-lock-comment-face) 11 12 (fontified t face font-lock-comment-face) 12 13 (fontified t face font-lock-comment-face)) . 11240) (undo-tree-id38 . -11) (undo-tree-id39 . -11) (undo-tree-id40 . -11) (undo-tree-id41 . -13) (undo-tree-id42 . -13)) (22599 47285 313000 0) 0 nil]) ((11220 . 11240)) ((#(";Disable default exi" 0 1 (fontified t face font-lock-comment-delimiter-face) 1 20 (fontified t face font-lock-comment-face)) . 11220) (undo-tree-id43 . -20) (undo-tree-id44 . -20) (undo-tree-id45 . -20) (undo-tree-id46 . -20) (undo-tree-id47 . -20)) (22599 47285 346000 0) 0 nil]) ((11217 . 11220) (t 22562 60041 0 0)) ((#("
+
+
+" 0 1 (fontified t face font-lock-comment-face) 1 3 (fontified t)) . 11217) (undo-tree-id48 . -3) (undo-tree-id49 . -3) (undo-tree-id50 . -3) (undo-tree-id51 . -3) (undo-tree-id52 . -3) (undo-tree-id53 . -3) (undo-tree-id54 . -3)) (22599 47285 379000 0) 0 nil]) nil nil (22599 47285 412000 0) 0 nil] #1# 30643 67 nil]
