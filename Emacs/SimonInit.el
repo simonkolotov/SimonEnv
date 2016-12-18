@@ -355,6 +355,7 @@
 
 (global-set-key (kbd "C-<tab>") 'next-buffer) ; C-Tab: Next Buffer
 (global-set-key (kbd "C-S-<iso-lefttab>") 'previous-buffer) ; C-S-Tab: Previous Buffer
+(global-set-key (kbd "C-S-<tab>") 'previous-buffer) ; C-S-Tab: Previous Buffer
 
 ; Move between Windows
 (global-set-key (kbd "C-x <up>") 'windmove-up)
