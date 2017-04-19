@@ -8,8 +8,11 @@ Host *
 Host XJetDovg
   Hostname solar3d.xjet3d.com
 
-Host XJetSimonK
-  ProxyCommand ssh XJetDovg nc 172.16.10.79 22
+Host XJetSimonPC_Linux
+  ProxyCommand ssh XJetDovg nc 172.16.11.57 22
+  
+Host XJetSimonPC_Win
+  ProxyCommand ssh XJetDovg nc 172.16.11.57 3389
 
 Host XJetSWTeam
   ProxyCommand ssh XJetDovg nc 172.16.10.84 22
