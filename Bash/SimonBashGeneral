@@ -11,7 +11,7 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" || $EMACS
   #shopt -u direxpand # disable
 
   shopt -s expand_aliases # enable
-  #shopt -s expand_aliases # disable
+  #shopt -u expand_aliases # disable
   
   # Replace Prompt
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
@@ -132,10 +132,19 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" || $EMACS
 
     
   ##########
-  #Shortcuts
+  #Remote desktop etc
   ##########
 
-    
+  RemoteAccessSimon() { /usr/bin/rdesktop -g 1672x976 -u simon -d XJETDOM -p `cat /home/simon/.SimonPass` "$1"; }
+  TunnelAccessSimon() { ssh -f -N -L 3389:"$1":3389 XJetDovg && RemoteAccessSimon localhost; killall ssh; }
+  
+  RemoteAccessMachine() { /usr/bin/rdesktop -g 1672x976 -u machine -d XJETDOM -p `cat /home/simon/.MachinePass` "$1"; }
+  TunnelAccessMachine() { ssh -f -N -L 3389:"$1":3389 XJetDovg && RemoteAccessMachine localhost; killall ssh; }
+
+
+  ##########
+  #Shortcuts
+  ##########
   export DISKONKEY=/mnt/DiskOnKey
   export DISKONKEY2=/mnt/DiskOnKey2
 
