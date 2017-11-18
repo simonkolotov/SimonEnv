@@ -5,9 +5,9 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python
 #Shortcuts
 export D=/mnt/HDD/win/D
 export C=/mnt/HDD/win/C
-export OLD_HOME=/mnt/HDD/linux/home/simon
 export INCOMING_D=$D/Incoming
 export PERSONAL=$D/Personal
 export DROPBOX=$PERSONAL/Senya/Dropbox
 
 export SEAGATE=/run/media/simon/Seagate\ Backup\ Plus\ Drive
+export TRANSCEND=/run/media/simon/Transcend

@@ -716,6 +716,7 @@
 ; Tabulation etc
 (setq-default tab-width 8)    ;I never use tabs. but if tabs are present - they should be very visible
 (setq python-indent 2)
+(setq py-indent-offset 2)
 (setq perl-indent-level 2)
 (setq c-basic-indent 2)
 (setq standard-indent 2)
