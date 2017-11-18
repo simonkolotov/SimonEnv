@@ -181,7 +181,7 @@
 
 ;;;;;;;;;; yas for programming templates
 (require 'yasnippet)
-(yas-global-mode 1)
+(yas-reload-all)
 (setq yas-snippet-dirs (list (concat emacs-git "Plugins/yasnippet/snippets")))
 
 ;; Completing point by some yasnippet key
