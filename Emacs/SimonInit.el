@@ -101,6 +101,14 @@
 (load "scott.emacs")
 
 (load "magit")
+
+(autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
+
+(setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
+                                 nsis-mode)) auto-mode-alist))
+
+(setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
+                                 nsis-mode)) auto-mode-alist))
         
 ;;;;;;;;;;Env Vars for MetalJet compilation
 (defun my-reload-env-vars ()
@@ -173,7 +181,7 @@
 
 ;;;;;;;;;; yas for programming templates
 (require 'yasnippet)
-;(yas-global-mode 1)
+(yas-global-mode 1)
 (setq yas-snippet-dirs (list (concat emacs-git "Plugins/yasnippet/snippets")))
 
 ;; Completing point by some yasnippet key
@@ -207,6 +215,7 @@
 
 ;; Lexical completion with M-RET
 (define-key yas-minor-mode-map (kbd "M-<return>")     'dabbrev-expand)
+(define-key yas-minor-mode-map (kbd "M-RET")     'dabbrev-expand)
 (define-key yas-minor-mode-map (kbd "M-<kp-enter>")     'dabbrev-expand)
 
 ;;;;;;;;;;auto-complete
@@ -608,7 +617,11 @@
 
        (list (cons "\\.init" 'lisp-mode))
        (list (cons "\\.emacs" 'lisp-mode))
-       (list (cons "\\.el" 'lisp-mode))              
+       (list (cons "\\.el" 'lisp-mode))
+
+       (list (cons "\\.nsi" 'nsis-mode))
+
+       (list (cons "\\.bat" 'bat-mode))              
        
        auto-mode-alist))
 
