@@ -613,11 +613,11 @@
 (define-key text-mode-map [return] 'newline-and-indent-relative)
 (define-key text-mode-map "\C-m" 'newline-and-indent-relative)
 
-;;;;;;;;;;;;; python-mode
-(setq py-install-directory (concat emacs-git "Plugins/python-mode.el-6.1.2"))
-(add-to-list 'load-path py-install-directory)
-(setq py-outline-minor-mode-p nil)
-(require 'python-mode)
+;;;;;;;;;;;;; python-mode - I'll try using the built-in mode that comes with emacs
+;;;;;;;(setq py-install-directory (concat emacs-git "Plugins/python-mode.el-6.1.2"))
+;;;;;;;(add-to-list 'load-path py-install-directory)
+;;;;;;;(setq py-outline-minor-mode-p nil)
+;;;;;;;(require 'python-mode)
 
 ; use IPython
 (setq-default py-shell-name "ipython")
@@ -720,7 +720,7 @@
 (defun my-indent-mode ()
   "Set indent tabs to the xjet indent mode"
   (interactive)
-  ;; C++-python
+  ;; C++
   (setq my-indent 2)
   (setq my-substatement 2)
   (setq my-substatement-open 0)
@@ -729,8 +729,7 @@
   (update-indent-mode)
 
   ;; Python
-  (python-guess-indent nil)
-  (setq py-indent-offset 2)
+  (setq python-indent-offset 2)
 
   )
 
