@@ -156,6 +156,7 @@
 ;; TODO: is this working?
 (require 'yasnippet)
 (setq yas-snippet-dirs (list (concat emacs-git "Plugins/yasnippet/snippets")))
+(yas-global-mode 1)
 
 ;; Completing point by some yasnippet key
 (defun yas-ido-expand ()

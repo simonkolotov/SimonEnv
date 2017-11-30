@@ -1,7 +1,0 @@
-# name: for(const auto &Member:Collection)
-# key: for11
-# --
-for (const ${1:auto} &${2:Member}:${3:Collection})
-  {
-    
-  }

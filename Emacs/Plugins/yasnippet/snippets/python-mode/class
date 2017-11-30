@@ -11,8 +11,7 @@ class ${1:ClassName}(${2:object}):
 
     def __init__(self, $4):
         """$5
-        ${4:$
-        (let* ((indent
+        ${4:$(let* ((indent
                 (concat "\n" (make-string (current-column) 32)))
                (args
                 (mapconcat
@@ -40,7 +39,7 @@ class ${1:ClassName}(${2:object}):
         (mapconcat
          '(lambda (x)
             (if (not (string= (nth 0 x) ""))
-                (concat "self." (nth 0 x) " = " (nth 0 x))))
+                (concat "self._" (nth 0 x) " = " (nth 0 x))))
          (mapcar
           '(lambda (x)
              (mapcar
