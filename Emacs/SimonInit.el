@@ -24,6 +24,7 @@
 ;;Win vs Linux
 (if (string-match "mingw" system-configuration)
     (progn
+      ;On Windows
       (if (not (boundp 'emacs-git))
           (setq emacs-git "D:/Simon/github/SimonEnv/Emacs/"))
       (if (not (boundp 'emacs-persistance-dir))
@@ -32,10 +33,11 @@
       ;; don't use Hebrew locale!
       (setq system-time-locale "C")
       
-      ;; Load windows utilities (?)
+      ;; Load windows utilities - those include send buffer to VS by Dov.
+      ;; TODO: Check this out
                                         ;      (load (concat emacs-git "win-utils.el")))
 
-      ;; Various settings to use utf-8
+      ;; Various settings to use utf-8 (From Dov, I don't understand them all)
       (setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
       (set-language-environment 'utf-8)
       (set-keyboard-coding-system 'utf-8-mac) ; For old Carbon emacs on OS X only
@@ -53,8 +55,7 @@
        
       )
   (progn
-
-    (setq browse-url-generic-program "google-chrome")
+    ;On Linux
     (if (not (boundp 'emacs-git))
         (setq emacs-git "/home/simon/github/SimonEnv/Emacs/"))
     (if (not (boundp 'emacs-persistance-dir))
@@ -67,10 +68,11 @@
                              "/usr/local/share/emacs/site-lisp"
                              ) load-path))
 
-    ;; Chrome command for windows
+    ;; Chrome command for linux
     (if (not (boundp 'my-chrome-command))
-             (setq my-chrome-command "google-chrome"))
-    )
+        (setq my-chrome-command "google-chrome"))
+    (setq browse-url-generic-program "google-chrome")    
+   ) 
   )
 
 ;;;;;;;;Font
@@ -79,7 +81,6 @@
 
 (set-face-attribute 'default nil :font  "InconsolataDov 11" )
 (set-frame-font   "InconsolataDov 11" nil t)
-
     
 (setq my-default-family "InconsolataDov 11")
 (setq my-default-font "InconsolataDov 11")
@@ -87,72 +88,45 @@
 
 ;;;;;;;;;;EXTERNAL PLUGINS
 (add-to-list 'load-path (concat emacs-git "Plugins/"))
+
 (add-to-list 'load-path (concat emacs-git "Plugins/git-modes")) ;various modes required for magit
 (add-to-list 'load-path (concat emacs-git "Plugins/magit"))
+
 (add-to-list 'load-path (concat emacs-git "Plugins/yasnippet"))
-(add-to-list 'load-path (concat emacs-git "Plugins/ein"))
+
+;(add-to-list 'load-path (concat emacs-git "Plugins/ein")) ;for python notebook. I didn't manage to make it work
+
 (add-to-list 'load-path (concat emacs-git "Plugins/org-mode"))
 (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/lisp"))
 (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/contrib/lisp"))
 (add-to-list 'load-path (concat emacs-git "Plugins/autocomplete"))
 (add-to-list 'load-path (concat emacs-git "Plugins/fill-column-indicator-1.83"))
-(add-to-list 'load-path (concat emacs-git "Plugins/matlab-emacs/matlab-emacs"))
 
-(load "scott.emacs")
+
+(load "scott.emacs") ;I think this is used for setting the Emacs window size
 
 (load "magit")
 
+;NSIS mode
 (autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
-
 (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
                                  nsis-mode)) auto-mode-alist))
-
 (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
                                  nsis-mode)) auto-mode-alist))
         
-;;;;;;;;;;Env Vars for MetalJet compilation
+;;;;;;;;;;Env Vars
 (defun my-reload-env-vars ()
-  (setenv "METALJET" "$PE_HOME/XjetApps/MetalJet/Apps/Project/qt/" t)
-  (setenv "BE" "$PE_HOME/XjetApps/BuildEngine/BinLinux" t)
+; set env vars to be reloaded here
+; e.g.:  
+;  (setenv "METALJET" "$PE_HOME/XjetApps/MetalJet/Apps/Project/qt/" t)
   )
 
 
-;(setenv "QMAKE" "qmake-qt5")
-;(setenv "QTDIR" "/usr")
-(setenv "QMAKE" "/mnt/HDD/linux/home/simon/Qt5.6/5.6/gcc_64/bin/qmake")
-(setenv "QTDIR" "/mnt/HDD/linux/home/simon/Qt5.6/")
-(setenv "XJETQTVERSION" "QT5")
+(setenv "QMAKE" "qmake-qt5")
+(setenv "QTDIR" "/usr")
+; add env vars according to bashrc...
 
-(setenv "PE_HOME" "/home/simon/git/MetalJet")
-;(setenv "PE_HOME" "/home/simon/git/MetalJet2")
-;(setenv "PE_HOME" "/home/simon/git/MetalJet3")
 `my-reload-env-vars()
-
-(setenv "OLD_HOME" "/mnt/HDD/linux/home/simon" t)
-(setenv "OLD_ROOT" "/mnt/HDD/linux/root" t)
-(setenv "W" "/mnt/3dfs/public" t)
-(setenv "SWGROUP" "/mnt/3dfs/public/Groups/Software" t)
-(setenv "WSIMON" "/mnt/3dfs/public/Groups/Software/Users/Simon" t)
-(setenv "WMODELS" "/mnt/3dfs/public/3D/Images/STL-Files" t)
-(setenv "WSLICES" "/mnt/3dfs/public/3D/Images/Samples" t)
-(setenv "DROPBOX" "/home/simon/Dropbox" t)
-(setenv "MARKETSDEV" "/mnt/3dfs/public/Markets\ Development" t)
-(setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:/usr/local/lib64/python2.7/site-packages")
-(setenv "LD_LIBRARY_PATH" "$METALJET/BinLinux/:/usr/local/lib" t)
-(setenv "PATH" "$PATH:/home/simon/scripts" t)
-
-
-;;;;;;;;;;Matlab Mode
-(require 'matlab-load)
-(setq matlab-indent-function-body t)  ; if you want function bodies indented
-(setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
-(defun my-matlab-mode-hook ()
-  (setq fill-column 76))		; where auto-fill should wrap
-(add-hook 'matlab-mode-hook 'my-matlab-mode-hook)
-(defun my-matlab-shell-mode-hook ()
-	'())
-(add-hook 'matlab-shell-mode-hook 'my-matlab-shell-mode-hook)
-
 
 ;;;;;;;;;;ein for IPython Notebooks in emacs
 ;(require 'ein-ipynb-mode)
@@ -168,11 +142,10 @@
 
 ;;;;;;;;;Git for emacs
 (require 'magit)
-
 (global-set-key "\C-ci" 'magit-status)
 (global-set-key "\C-c\C-b" 'magit-blame-mode)
 
-;;;;;;;;;; ido-mode
+;;;;;;;;;; ido-mode is the cool autocompletion mode in the lower buffer
 (require 'ido)
 (ido-mode t)
 
@@ -180,8 +153,8 @@
 (require 'js2-mode)
 
 ;;;;;;;;;; yas for programming templates
+;; TODO: is this working?
 (require 'yasnippet)
-(yas-reload-all)
 (setq yas-snippet-dirs (list (concat emacs-git "Plugins/yasnippet/snippets")))
 
 ;; Completing point by some yasnippet key
@@ -215,7 +188,6 @@
 
 ;; Lexical completion with M-RET
 (define-key yas-minor-mode-map (kbd "M-<return>")     'dabbrev-expand)
-(define-key yas-minor-mode-map (kbd "M-RET")     'dabbrev-expand)
 (define-key yas-minor-mode-map (kbd "M-<kp-enter>")     'dabbrev-expand)
 
 ;;;;;;;;;;auto-complete
@@ -290,7 +262,7 @@
 
 ;;Open Init File
 (defun open-init-file ()
-  "Load my personal todo list"
+  "Load my personal init file"
   (interactive)
   (find-file default-init-file)
   )
@@ -311,22 +283,22 @@
   )
 
 (defun find-most-recent-python-buffer ()
-  "find the most recent code buffer in the history and switch to it"
+  "find the most recent python buffer in the history and switch to it"
   (interactive)
   (find-most-recent-pattern-buffer "\\.py"))
 
 (defun find-most-recent-c-buffer ()
-  "find the most recent code buffer in the history and switch to it"
+  "find the most recent c/c++ buffer in the history and switch to it"
   (interactive)
   (find-most-recent-pattern-buffer "\\.\\(cpp\\|h\\|cc\\|hh|hpp\\)$"))
 
 (defun find-most-recent-emacs-buffer ()
-  "find the most recent code buffer in the history and switch to it"
+  "find the most recent emacs init buffer in the history and switch to it"
   (interactive)
   (find-most-recent-pattern-buffer "\\.el\\$\\|dov.emacs|SimonInit.el"))
 
 (defun find-most-recent-magit-buffer ()
-  "find the most recent code buffer in the history and switch to it"
+  "find the most recent magit buffer in the history and switch to it"
   (interactive)
   (find-most-recent-pattern-buffer "magit"))
 
@@ -338,7 +310,8 @@
 ;; qt docs lookup
 (require `info-look)
 (load "qtdoc")
-(setq qtdoc-html-root "http://doc.qt.io/qt-4.8/")
+(setq qtdoc-html-root "http://doc.qt.io/qt-5/")
+
 (load "google-look")
 
 ;;;;;;;;;;KEYBOARD SHORTCUTS
@@ -405,7 +378,6 @@
 (global-set-key (kbd "<C-next>")   'scroll-up-command) ;next = page-down
 (global-set-key (kbd "<C-kp-next>")   'scroll-up-command)
 
-
 ; Change C-arrows to be the same as M-f/b
 (global-set-key (kbd "C-<right>")   'forward-word)
 (global-set-key (kbd "C-<kp-right>")   'forward-word)
@@ -470,7 +442,6 @@
 (global-set-key "\M-[" 'find-matching-keyword)
 
 
-
 ;Most Recent Buffers
 (global-set-key (kbd "S-C-c") 'find-most-recent-c-buffer)
 (global-set-key (kbd "S-C-e") 'find-most-recent-emacs-buffer)
@@ -517,14 +488,14 @@
              
              ))
 
-
-(defun gdb-keys (map) 
-  "Set key bindings for gdb debugging"
-  (interactive)
-  (define-key map [(alt n)] 'gdb-next)
-  (define-key map [(alt s)] 'gdb-step)
-  (define-key map [(alt f)] 'gdb-finish)
-  (define-key map [(alt h)] 'gdb-cont-to))
+;Is this needed? I'm using (?) gud
+;(defun gdb-keys (map) 
+;  "Set key bindings for gdb debugging"
+;  (interactive)
+;  (define-key map [(alt n)] 'gdb-next)
+;  (define-key map [(alt s)] 'gdb-step)
+;  (define-key map [(alt f)] 'gdb-finish)
+;  (define-key map [(alt h)] 'gdb-cont-to))
 
 ;comint (?)
 (defun comint-write-input-ring-all-buffers ()
@@ -621,7 +592,9 @@
 
        (list (cons "\\.nsi" 'nsis-mode))
 
-       (list (cons "\\.bat" 'bat-mode))              
+       (list (cons "\\.bat" 'bat-mode))
+
+       (list (cons "\\.txt" 'text-mode))
        
        auto-mode-alist))
 
@@ -664,6 +637,7 @@
 ; try to automagically figure out indentation
 (setq py-smart-indentation t)
 
+;TODO: Make this work?
 ;(defun annotate-todo ()
 ;  "put fringe marker on TODO: lines in the curent buffer"
 ;  (interactive)
@@ -742,7 +716,7 @@
   (c-set-offset 'access-label my-access-label)
   (c-set-offset 'topmost-intro my-topmost-intro))
 
-(defun xjet-indent-mode ()
+(defun my-indent-mode ()
   "Set indent tabs to the xjet indent mode"
   (interactive)
   ;; C++-python
@@ -754,18 +728,26 @@
   (update-indent-mode)
 
   ;; Python
+  (python-guess-indent nil)
   (setq py-indent-offset 2)
+
   )
 
 (add-hook 'c++-mode-hook
-(lambda ()
-(xjet-indent-mode)))
-  
+  (lambda ()
+    (my-indent-mode))
+  )
+
 (add-hook 'c-mode-hook
 (lambda ()
 ;(setq indent-line-function (quote insert-tab))     ;<<<<<<<<<<<<<<<<<<
-;(xjet-indent-mode() )
+(my-indent-mode() )
 ))
+
+(add-hook 'python-mode-hook
+  (lambda ()
+    (my-indent-mode))
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -841,10 +823,10 @@
 (defun my-org-hook ()
   (local-set-key [(control c) (control ?.)] 'org-time-stamp)
   (local-set-key "\M-I" 'org-toggle-inline-images);org-toggle-iimage-in-org)
-  (local-set-key "\C-c\M-c" 'org-screenshot)
-  (local-set-key "\C-c\C-pe" 'org-toggle-emphasis-markers)
   (local-set-key "\C-c\C-pp" 'org-toggle-pretty-entities)
   (local-set-key "\C-c\C-pi" 'org-toggle-iimage-inorg)
+  (local-set-key "\C-c\C-pi" 'org-toggle-iimage-inorg)
+  (local-set-key (kbd "C-<tab>") 'next-buffer) ; C-Tab: Next Buffer
   (setq org-export-with-sub-superscripts "{}")
   (variable-pitch-mode t)
   (set-face-attribute 'org-table nil :family my-default-family)
@@ -983,14 +965,6 @@
         ))
 
 ;;;;;;;;;;;;;;;;;;;;
-
-(defun xjet-python-buffer ()
-  "Send the current (python) buffer to be evaluated in the MetalJet Application"
-  (interactive)
-  (write-region (point-min) (point-max) "/tmp/buffer.py")
-  (shell-command "xjet-python /tmp/buffer.py"))
-(define-key py-mode-map [(control c) (control j)] 'xjet-python-buffer)
-
 
 ; magit-diff-file was written by dov, and requsted to be merged into magit.
 ; See: https://github.com/magit/magit/issues/2553
