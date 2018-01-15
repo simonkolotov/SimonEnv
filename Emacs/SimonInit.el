@@ -136,7 +136,7 @@
 (require 'xmsi-math-symbols-input)
 (xmsi-mode)
 
-;;;;;;;;;;smex for using IDO for M-x commands
+;;;;;;;;;smex for using IDO for M-x commands
 (require 'smex) ; Not needed if you use package.el
   (smex-initialize) ; Can be omitted. This might cause a (minimal) delay
                                         ; when Smex is auto-initialized on its first run.
@@ -176,7 +176,7 @@
 
 ;;;;;;;;;; ido-mode is the cool autocompletion mode in the lower buffer
 (require 'ido)
-;(ido-mode t)
+(ido-mode t)
 
 ;;;;;;;;;; js2 mode for json
 (require 'js2-mode)
@@ -902,7 +902,7 @@
 (add-hook 'org-mode-hook 'my-org-hook)
 
 ;;export to html-slidy
-(require 'ox-slidy)
+;(require 'ox-slidy)
 
 ;; Make all font-lock faces fonts use inconsolata
 (dolist (face '(font-lock-builtin-face 	
