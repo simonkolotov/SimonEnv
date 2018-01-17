@@ -110,10 +110,6 @@
 
 ;NSIS mode
 (autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
-(setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
-                                 nsis-mode)) auto-mode-alist))
-(setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
-                                 nsis-mode)) auto-mode-alist))
         
 ;;;;;;;;;;Env Vars
 (defun my-reload-env-vars ()
@@ -136,7 +132,10 @@
 (require 'xmsi-math-symbols-input)
 (xmsi-mode)
 
-;;;;;;;;;smex for using IDO for M-x commands
+;;;;;;;;;;bb-mode for bit-bake
+(require 'bb-mode)
+
+;;;;;;;;;;smex for using IDO for M-x commands
 (require 'smex) ; Not needed if you use package.el
   (smex-initialize) ; Can be omitted. This might cause a (minimal) delay
                                         ; when Smex is auto-initialized on its first run.
@@ -227,7 +226,6 @@
 
 ;;;;;;;;;;lua-mode
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
-(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 (setq lua-indent-level 2)
 
@@ -607,7 +605,7 @@
        (list (cons "\\.H$" 'c++-mode))
        (list (cons "\\.cxx$" 'c++-mode))
        (list (cons "\\.cc$" 'c++-mode))
-       (list (cons "\\.cpp$" 'c++-mode))       
+       (list (cons "\\.cpp$" 'c++-mode))
 
        (list (cons "\\.json$" 'js2-mode))
 
@@ -621,11 +619,20 @@
        (list (cons "\\.emacs" 'lisp-mode))
        (list (cons "\\.el" 'lisp-mode))
 
-       (list (cons "\\.nsi" 'nsis-mode))
-
        (list (cons "\\.bat" 'bat-mode))
 
        (list (cons "\\.txt" 'text-mode))
+
+       (list (cons "\\.bb$" 'bb-mode))
+       (list (cons "\\.inc$" 'bb-mode))
+       (list (cons "\\.bbappend$" 'bb-mode))
+       (list (cons "\\.bbclass$" 'bb-mode))
+       (list (cons "\\.conf$" 'bb-mode))
+
+       (list (cons "\\.lua$" 'lua-mode))
+
+       (list (cons "\\.\\([Nn][Ss][Ii]\\)$" 'nsis-mode))
+       (list (cons "\\.\\([Nn][Ss][Hh]\\)$" 'nsis-mode))
        
        auto-mode-alist))
 
@@ -701,11 +708,17 @@
   (apply 'frame-move-resize left-two-thirds-screen-pos))
 
 (setq left-third-screen-pos (list 0.278 my-height-fraction 0 0))    ; 0 from left, 0 from top
+(setq left-sixth-screen-pos (list 0.21 my-height-fraction 0 0))    ; 0 from left, 0 from top
 (defun frame-occupy-left-third-screen ()
   "Move and resize the frame so it occupies the left half of the screen."
   (interactive)
   ;(apply 'frame-move-resize left-half-screen-pos)
   (apply 'frame-move-resize left-third-screen-pos))
+(defun frame-occupy-left-sixth-screen ()
+  "Move and resize the frame so it occupies the left half of the screen."
+  (interactive)
+  ;(apply 'frame-move-resize left-half-screen-pos)
+  (apply 'frame-move-resize left-sixth-screen-pos))
 
 ; Set Window size by environment type
 (if (not (boundp 'my-emacs-monitors-num))(setq my-emacs-monitors-num 1))
@@ -715,6 +728,8 @@
         (frame-occupy-left-two-thirds-screen))
      ((= my-emacs-monitors-num 2)
       (frame-occupy-left-third-screen))
+     ((= my-emacs-monitors-num 3)
+      (frame-occupy-left-sixth-screen))     
      (t
       (frame-occupy-left-third-screen))
     )
@@ -902,7 +917,7 @@
 (add-hook 'org-mode-hook 'my-org-hook)
 
 ;;export to html-slidy
-;(require 'ox-slidy)
+(require 'ox-slidy)
 
 ;; Make all font-lock faces fonts use inconsolata
 (dolist (face '(font-lock-builtin-face 	
