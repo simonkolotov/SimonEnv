@@ -23,6 +23,7 @@
 
 ** To use this file, add lines similar to the following to ~/.emacs:
                                         ;This is done to safely ignore local-variables warnings
+;This is done to safely ignore local-variables warnings
 (setq enable-local-variables :safe)
 
                                         ;Setting basic location and variables - override those if needed
@@ -31,7 +32,7 @@
   "The location of my Emacs environment settings")
 
 (defvar default-work-notes-file
-  "/home/simon/github/Notes/WorkNoteBook.org"
+  "/home/simon/github/XJetWorkNotes/XJetWorkNotebook.org"
   "The location of my Work Notebook (somewhere on the work server?)")
 
 (defvar default-personal-notes-file
@@ -39,7 +40,7 @@
   "The location of my personal notebook (mounted from EncFS)")
 
 (defvar default-init-file 
-  (concat emacs-git "/SimonNewInit.org") 
+  (concat emacs-git "SimonNewInit.org") 
   "My Init File")
 
 (defvar my-emacs-monitors-num 1
@@ -51,12 +52,15 @@
     (setq emacs-persistance-dir "/home/simon/.emacs.d")
 )
 
-                                        ;Loading the rest of the configuration from my environment
-;;The old way
-;(load default-init-file)
+;;Loading the rest of the configuration from my environment
+(if (string-equal (file-name-extension default-init-file) "org")
+  ;;The new way: via org mode
+  (org-babel-load-file default-init-file)
+  
+  ;;Else: The old way
+  (load default-init-file)
+  )
 
-;;The new (org-mode) way
-(org-babel-load-file default-init-file)
 
 * Setting up the basics
 ** Default files and directories
