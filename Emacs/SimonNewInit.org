@@ -11,6 +11,7 @@
   - [ ] Annotate TODO markers?
   - [ ] sudo in shell mode
   - [ ] Path in status bar?
+  - [ ] test image opener on Windows
 
 * Introduction
 ** General
@@ -153,7 +154,6 @@
          ) 
        )
    #+END_SRC
-
 ** Fonts
    I use the "InconsolataDov" font size 11 for code. This font (located in the repository) must be installed
 #+BEGIN_SRC emacs-lisp
@@ -856,9 +856,7 @@
    #+BEGIN_SRC emacs-lisp
      (require 'org)
      (require 'org-crypt) ;;for encryption of parts of org
-
    #+END_SRC
-
 *** Fonts
    #+BEGIN_SRC emacs-lisp
      (setq my-default-family "InconsolataDov")
@@ -881,16 +879,17 @@
                      font-lock-variable-name-face
                      font-lock-warning-face))
        (set-face-attribute face nil :family my-default-family))
-
    #+END_SRC
-
+*** Bullets
    #+BEGIN_SRC emacs-lisp
      (load "org-bullets.el")
 
-                                             ; This is a bug work around
+     ;; This is a bug work around
      (defun org-element-cache-reset (&optional all) (interactive))
 
+
      (defun my-org-hook ()
+     
        (local-set-key [(control c) (control ?.)] 'org-time-stamp)
        (local-set-key "\M-I" 'org-toggle-inline-images);org-toggle-iimage-in-org)
        (local-set-key "\C-c\C-pp" 'org-toggle-pretty-entities)
@@ -926,7 +925,7 @@
        (setq org-export-html-validation-link "")
        ;; Use journal theme if requested
        (if (>= emacs-major-version 24)
-           (if (string-match "notes.org" (buffer-name) )
+           (if (string-match "NoteBook.org" (buffer-name) )
                (progn
                  (disable-theme 'org-default)
                  (load-theme-buffer-local 'org-journal))
@@ -939,15 +938,92 @@
 
        )
      (add-hook 'org-mode-hook 'my-org-hook)
-
-
    #+END_SRC
-
-** ox-slidy
+*** ox-slidy
+    NB: for some reason this has to go *after* the previous org hooks...
    #+BEGIN_SRC emacs-lisp
      ;;export to html-slidy
      (require 'ox-slidy)
    #+END_SRC
+*** languages
+    #+BEGIN_SRC emacs-lisp
+      ;; Source Languages
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       '((sh . t)
+         (perl . t)
+         (emacs-lisp . t)
+         (python . t)
+         (ditaa . t)
+         (dot . t)
+         (asymptote . t)
+         (plantuml . t)
+         (octave . t)
+         (C . t)
+         )) 
+
+      (setq org-src-lang-modes 
+            '(("elisp" . emacs-lisp)
+              ("ditaa" . artist)
+              ("asymptote" . asy)
+              ("dot" . fundamental)
+              ("perl" . cperl)
+              ("python" . python)
+              ))
+
+      (setq org-plantuml-jar-path
+            (concat emacs-git "/Plugins/plantuml.jar"))
+
+    #+END_SRC
+*** Apps to open links
+    #+BEGIN_SRC emacs-lisp
+      ;;Define programs to open files
+      (if (string-match "mingw-nt" system-configuration)
+          (progn
+            (setq org-file-apps
+                  (append
+                   '(("application/png" . "c:/progra~2/IrfanView/i_view32.exe %s"))
+                   '(("application/doc" . "\"c:/Program Files (x86)/OpenOffice.org 3/program/soffice.exe\" %s"))
+
+                   org-file-apps
+                   ))
+            )
+        (progn 
+          (setq org-file-apps
+                (append
+                 '(("application/png" . "eog %s"))
+                 '(("application/pdf" . "evince %s"))
+                 '(("application/svg" . "inkscape %s"))
+                 '(("application/net" . "/usr/local/samiam/runsamiam %s"))
+                 '(("application/xcf" . "gimp %s"))
+                 '(("application/giv" . "giv %s"))
+                 '(("application/doc" . "libreoffice -norestore %s"))
+                 '(("application/odt" . "libreoffice -norestore %s"))
+                 '(("\\.x?html\\'" . default))
+                 org-file-apps))))
+
+    #+END_SRC
+*** Add checkbox
+    #+BEGIN_SRC emacs-lisp
+      (defun org-set-line-checkbox (arg)
+        (interactive "P")
+        (let ((n (or arg 1)))
+          (when (region-active-p)
+            (setq n (count-lines (region-beginning)
+                                 (region-end)))
+            (goto-char (region-beginning)))
+          (dotimes (i n)
+            (beginning-of-line)
+            (skip-chars-forward "[:blank:]")
+            (insert "- [ ] ")
+            (if (> n 1)
+              (forward-line))
+          (end-of-line))))
+
+      (global-set-key (kbd "C-M-]") 'org-set-line-checkbox)
+
+    #+END_SRC
+
 * Emacs Env Vars
 #+BEGIN_SRC emacs-lisp
   (defun my-reload-env-vars ()
@@ -1184,10 +1260,11 @@
      (global-set-key (kbd "C-z") 'undo) ; 【Ctrl+z】
      (global-set-key (kbd "C-S-z") 'redo) ; 【Ctrl+Shift+z】;  Mac style
    #+END_SRC
-** Disable default exit command
-   I trip over it accidentally while undoing and redoing too much
+** Disable default exit and minimize commands
+   I trip over them accidentally while undoing and redoing too much
    #+BEGIN_SRC emacs-lisp
      (global-set-key "\C-x\C-c" nil)
+     (global-set-key "\C-x\C-z" nil)
    #+END_SRC
 ** Windows style commands
    #+BEGIN_SRC emacs-lisp
