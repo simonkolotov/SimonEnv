@@ -119,6 +119,7 @@
   )
 
 
+
 (setenv "QMAKE" "qmake-qt5")
 (setenv "QTDIR" "/usr")
 ; add env vars according to bashrc...
@@ -762,7 +763,7 @@
   (c-set-offset 'access-label my-access-label)
   (c-set-offset 'topmost-intro my-topmost-intro))
 
-(defun my-indent-mode ()
+(defun my-indent-mode-xjet ()
   "Set indent tabs to the xjet indent mode"
   (interactive)
   ;; C++
@@ -778,20 +779,36 @@
 
   )
 
+(defun my-indent-mode-cree ()
+  "Set indent tabs to the xjet indent mode"
+  (interactive)
+  ;; C++
+  (setq my-indent 4)
+  (setq my-substatement 4)
+  (setq my-substatement-open 0)
+  (setq my-access-label 0)
+  (setq my-topmost-intro 0)
+  (update-indent-mode)
+
+  ;; Python
+  (setq python-indent-offset 2)
+
+  )
+
 (add-hook 'c++-mode-hook
   (lambda ()
-    (my-indent-mode))
+    (my-indent-mode-cree))
   )
 
 (add-hook 'c-mode-hook
 (lambda ()
 ;(setq indent-line-function (quote insert-tab))     ;<<<<<<<<<<<<<<<<<<
-(my-indent-mode() )
+(my-indent-mode-cree() )
 ))
 
 (add-hook 'python-mode-hook
   (lambda ()
-    (my-indent-mode))
+    (my-indent-mode-cree))
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -917,7 +934,7 @@
 (add-hook 'org-mode-hook 'my-org-hook)
 
 ;;export to html-slidy
-(require 'ox-slidy)
+;(require 'ox-slidy)
 
 ;; Make all font-lock faces fonts use inconsolata
 (dolist (face '(font-lock-builtin-face 	

@@ -19,7 +19,7 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" || $EMACS
 
       #This shows the path on the window tab or title.
       # see https://superuser.com/questions/79972/set-the-title-of-the-terminal-window-to-the-current-directory
-      PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
+      PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}:${PWD}\007"'
       
   elif [[ $EMACS == "t" ]]; then
       PS1="|\w|>"
@@ -29,7 +29,7 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" || $EMACS
 
       #This shows the path on the window tab or title.
       # see https://superuser.com/questions/79972/set-the-title-of-the-terminal-window-to-the-current-directory
-      PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
+      PROMPT_COMMAND='echo -ne "\033]0;${USER}@${PWD}\007"'
   fi
 
   PS2="...>"
