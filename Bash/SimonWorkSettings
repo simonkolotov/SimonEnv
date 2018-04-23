@@ -2,7 +2,6 @@
 # Env Vars
 #####################################
 
-
 export PATH=$PATH:/home/simon/scripts
 
 export PYTHONPATH="usr/local/lib/python2.7/site-packages"
@@ -22,3 +21,8 @@ export BROWSER=google-chrome
 export WinIncoming=/media/sf_Simon/Incoming
 
 alias gitExtensions='mono /home/simon/GitExtensions/GitExtensions.exe &'
+
+###########
+# git completion in Bash
+###########
+source /usr/share/bash-completion/completions/git
