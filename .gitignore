@@ -1,2 +1,2 @@
-#*#
-*.~undo-tree~
+#do not ignore undo-tree files in this repo
+!*.~undo-tree~
