@@ -20,3 +20,5 @@ export BROWSER=google-chrome
 ###########  
 
 export WinIncoming=/media/sf_Simon/Incoming
+
+alias gitExtensions='mono /home/simon/GitExtensions/GitExtensions.exe &'

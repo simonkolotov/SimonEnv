@@ -5,17 +5,17 @@
 ;; To use this file, add lines similar to the following to ~/.emacs:
 ;;
 ;; ; -*- Encoding: utf-8 -*-
-;; 
+;;
 ;; (setq emacs-git "/home/simon/github/SimonEnv/Emacs/")
 ;; (setq default-work-notes-file "/home/simon/github/Notes/WorkNoteBook.org")
 ;; (setq default-personal-notes-file "/home/simon/Notes/NoteBook.org")
 ;; (setq my-emacs-monitors-num 2) ; Number of monitors attached
-;; 
+;;
 ;; ; emacs persistance directory
 ;; (if (not (boundp 'emacs-persistance-dir))
 ;;     (setq emacs-persistance-dir "/home/simon/.emacs.d")
 ;; )
-;; 
+;;
 ;; (load (concat emacs-git "SimonInit.el"))
 ;;
 ;;  The default font used is InconsolataDov. copy it from /home/simon/github/SimonEnv/Emacs/ to ~/.fonts/
@@ -29,10 +29,10 @@
           (setq emacs-git "D:/Simon/github/SimonEnv/Emacs/"))
       (if (not (boundp 'emacs-persistance-dir))
           (setq emacs-persistance-dir "C:/Documents and Settings/simon/Application Data/.emacs.d"))
-      
+
       ;; don't use Hebrew locale!
       (setq system-time-locale "C")
-      
+
       ;; Load windows utilities - those include send buffer to VS by Dov.
       ;; TODO: Check this out
                                         ;      (load (concat emacs-git "win-utils.el")))
@@ -52,7 +52,7 @@
       ;; Chrome command for windows (assumes C:\Program Files (x86)\Google\Chrome\Application is in path)
       (if (not (boundp 'my-chrome-command))
                (setq my-chrome-command "chrome"))
-       
+
       )
   (progn
     ;On Linux
@@ -71,8 +71,8 @@
     ;; Chrome command for linux
     (if (not (boundp 'my-chrome-command))
         (setq my-chrome-command "google-chrome"))
-    (setq browse-url-generic-program "google-chrome")    
-   ) 
+    (setq browse-url-generic-program "google-chrome")
+   )
   )
 
 ;;;;;;;;Font
@@ -81,7 +81,7 @@
 
 (set-face-attribute 'default nil :font  "InconsolataDov 11" )
 (set-frame-font   "InconsolataDov 11" nil t)
-    
+
 (setq my-default-family "InconsolataDov 11")
 (setq my-default-font "InconsolataDov 11")
 
@@ -114,12 +114,23 @@
 
 ;NSIS mode
 (autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
-        
+
 ;;;;;;;;;;Env Vars
 (defun my-reload-env-vars ()
-; set env vars to be reloaded here
-; e.g.:  
-;  (setenv "METALJET" "$PE_HOME/XjetApps/MetalJet/Apps/Project/qt/" t)
+  ;; set env vars to be reloaded here
+  ;; e.g.:
+  ;;  (setenv "METALJET" "$PE_HOME/XjetApps/MetalJet/Apps/Project/qt/" t)
+
+  export PYTHONPATH="usr/local/lib/python2.7/site-packages"
+  export PYTHONPATH="$PYTHONPATH:/usr/local/lib64/python2.7/site-packages"
+  export PYTHONPATH="$PYTHONPATH:/home/simon/scripts"
+
+  (setenv "PYTHONPATH"
+          (concat "$PE_HOME/XjetApps/MetalJet/Apps/Project/qt/"
+                  ":/usr/local/lib64/python2.7/site-packages"
+                  ":/home/simon/scripts"
+                  )
+          t)
   )
 
 
@@ -395,7 +406,7 @@
   (let ((p (point)))
     (scroll-up dist)
     (goto-char p)))
-  
+
 (defun scroll-up-line ()
   (interactive)
   (scroll-dont-move-cursor 1))
@@ -483,7 +494,7 @@
                     (find-most-recent-pattern-buffer "\\*shell"))))
 
 ;SimonInit
-(global-set-key (kbd "C->") '(lambda () (interactive) 
+(global-set-key (kbd "C->") '(lambda () (interactive)
                                  (open-init-file)))
 
 
@@ -533,18 +544,18 @@
 
                                   ; Load history file
              ;;;;;WHY DOESN'T THIS WORK?!;;;;;
-;             (make-local-variable 'comint-input-ring-file-name) 
-;             (setq comint-input-ring-file-name ((concat emacs-persistance-dir "/comint-history"))) 
+;             (make-local-variable 'comint-input-ring-file-name)
+;             (setq comint-input-ring-file-name ((concat emacs-persistance-dir "/comint-history")))
 ;             (setq comint-input-ring-size 10000)
 ;             (set History)
              (comint-read-input-ring)
              (make-local-variable 'kill-buffer-hook)
              (add-hook 'kill-buffer-hook 'comint-write-input-ring)
-             
+
              ))
 
 ;Is this needed? I'm using (?) gud
-;(defun gdb-keys (map) 
+;(defun gdb-keys (map)
 ;  "Set key bindings for gdb debugging"
 ;  (interactive)
 ;  (define-key map [(alt n)] 'gdb-next)
@@ -563,10 +574,10 @@
   (lambda()
     (define-key comint-mode-map [(meta p)] 'comint-previous-matching-input-from-input)
     (define-key comint-mode-map [(kbd "<up>")] 'comint-previous-matching-input-from-input)
-    
+
     (define-key comint-mode-map [(meta n)] 'comint-next-matching-input-from-input)
     (define-key comint-mode-map [(kbd "<down>")] 'comint-next-matching-input-from-input)
-    
+
     (define-key comint-mode-map [(control c) (control o)] 'comint-kill-output-to-kill-ring)
     (define-key comint-mode-map [(control x) (control ?\\)] 'toggle-backslash-line)
     (define-key comint-mode-map [(tab)] 'comint-dynamic-complete)
@@ -589,7 +600,7 @@
             (funcall fn)))
         (buffer-list)))
 
-           
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;; Save history between emacs sessions
@@ -618,14 +629,14 @@
        (list (cons "\\.cmake$" 'cmake-mode))
 
        (list (cons "\\.pro$" 'makefile-mode))
-       
+
        (list (cons "SConstruct" 'python-mode))
        (list (cons "SConscript" 'python-mode))
        (list (cons "\\.py$" 'python-mode))
        (list (cons "\\.run$" 'python-mode))
 
        (list (cons "\\.md$" 'markdown-mode))
-       
+
        (list (cons "\\.h$" 'c++-mode))
        (list (cons "\\.hh$" 'c++-mode))
        (list (cons "\\.H$" 'c++-mode))
@@ -635,10 +646,10 @@
 
        (list (cons "\\.json$" 'js2-mode))
 
-       (list (cons "\\.xml$" 'xml-mode)) 
+       (list (cons "\\.xml$" 'xml-mode))
 
        (list (cons "\\.txt$" 'text-mode))
-       
+
        (list (cons "\\.org" 'org-mode))
 
        (list (cons "\\.init" 'lisp-mode))
@@ -659,7 +670,7 @@
 
        (list (cons "\\.\\([Nn][Ss][Ii]\\)$" 'nsis-mode))
        (list (cons "\\.\\([Nn][Ss][Hh]\\)$" 'nsis-mode))
-       
+
        auto-mode-alist))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -672,7 +683,7 @@
   (newline)
   (indent-relative-maybe))
 
-    
+
 (define-key text-mode-map [return] 'newline-and-indent-relative)
 (define-key text-mode-map "\C-m" 'newline-and-indent-relative)
 
@@ -718,7 +729,7 @@
 
 ;;;;;;;;;;;;;;;c/c++ mode
 (add-hook 'c-mode-common-hook
-  (lambda() 
+  (lambda()
     (local-set-key  (kbd "C-c h") 'ff-find-other-file)))
 
 ;=================================
@@ -750,12 +761,12 @@
 (if (not (boundp 'my-emacs-monitors-num))(setq my-emacs-monitors-num 1))
 (if (window-system)
     (cond
-     ((= my-emacs-monitors-num 1) 
+     ((= my-emacs-monitors-num 1)
         (frame-occupy-left-two-thirds-screen))
      ((= my-emacs-monitors-num 2)
       (frame-occupy-left-third-screen))
      ((= my-emacs-monitors-num 3)
-      (frame-occupy-left-sixth-screen))     
+      (frame-occupy-left-sixth-screen))
      (t
       (frame-occupy-left-third-screen))
     )
@@ -763,9 +774,9 @@
 
 ; Invert Colors only on the first time emacs is run
 (if (not (boundp 'my-do-invert-color))(setq my-do-invert-color t))
-    
+
 (if my-do-invert-color
-    (progn 
+    (progn
       (invert-face 'default)
       (setq my-do-invert-color nil)
     )
@@ -970,15 +981,15 @@
                 font-lock-comment-delimiter-face
                 font-lock-comment-face 	
                 font-lock-constant-face
-                font-lock-doc-face 	
+                font-lock-doc-face
                 font-lock-function-name-face
-                font-lock-keyword-face 	
+                font-lock-keyword-face
                 font-lock-negation-char-face
-                font-lock-preprocessor-face 	
+                font-lock-preprocessor-face
                 font-lock-regexp-grouping-backslash
-                font-lock-regexp-grouping-construct 	
+                font-lock-regexp-grouping-construct
                 font-lock-string-face
-                font-lock-type-face 	
+                font-lock-type-face
                 font-lock-variable-name-face
                 font-lock-warning-face))
   (set-face-attribute face nil :family my-default-family))
@@ -998,7 +1009,7 @@
    (octave . t)
    (R . t)
    (C . t)
-   )) 
+   ))
 (setq org-plantuml-jar-path
       (concat emacs-git "/Plugins/plantuml.jar"))
 
@@ -1032,7 +1043,7 @@
              org-file-apps
              ))
       )
-  (progn 
+  (progn
     (setq org-file-apps
           (append
            '(("png" . "eog %s"))
@@ -1047,7 +1058,7 @@
            '(("html" . (concat my-chrome-command " %s")))
            org-file-apps))))
 
-(setq org-src-lang-modes 
+(setq org-src-lang-modes
      '(("elisp" . emacs-lisp)
         ("ditaa" . artist)
         ("asymptote" . asy)
@@ -1066,7 +1077,7 @@
   (interactive (list (magit-diff-read-range-or-commit "File diff for range" nil current-prefix-arg)
                      (if current-prefix-arg
                        (read-file-name "File: ")
-                       buffer-file-name))) 
+                       buffer-file-name)))
   (magit-diff-setup rev-or-range nil args
                     (list (replace-regexp-in-string (magit-toplevel) "" (expand-file-name file)))))
 
