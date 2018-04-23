@@ -175,10 +175,13 @@
 (global-undo-tree-mode)
 (set-default 'undo-tree-auto-save-history t)
 
-;;;;;;;;;Git for emacs
+;;;;;;;;;Git wrapping for emacs
 (require 'magit)
 (global-set-key "\C-ci" 'magit-status)
 (global-set-key "\C-c\C-b" 'magit-blame-mode)
+
+;;;;;;;;;Git modes for emacs
+(require 'git-modes)
 
 ;;;;;;;;;; ido-mode is the cool autocompletion mode in the lower buffer
 (require 'ido)

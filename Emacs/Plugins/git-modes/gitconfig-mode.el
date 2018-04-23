@@ -1,7 +1,7 @@
 ;;; gitconfig-mode.el --- Major mode for editing .gitconfig files -*- lexical-binding: t; -*-
 
 ;; Copyright (c) 2012-2013  Sebastian Wiesner
-;; Copyright (C) 2012-2014  The Magit Project Developers
+;; Copyright (C) 2012-2018  The Magit Project Contributors
 
 ;; Author: Sebastian Wiesner <lunaryorn@gmail.com>
 ;; Maintainer: Jonas Bernoulli <jonas@bernoul.li>
@@ -40,35 +40,45 @@
                         symbol-start
                         (minimal-match (zero-or-more not-newline))
                         symbol-end "]"))
-        (looking-at (rx line-start "\t"
-                        symbol-start (or (syntax word)
-                                         (syntax symbol)))))))
+        (looking-at (concat (rx line-start)
+                            (gitconfig-indentation-string)
+                            (rx symbol-start (or (syntax word)
+                                                 (syntax symbol)))))
+        (looking-at (rx (zero-or-one "\t") (or "#" ";"))))))
 
 (defun gitconfig-point-in-indentation-p ()
   "Return if the point is in the indentation of the current line."
   (save-excursion
     (let ((pos (point)))
       (back-to-indentation)
-      (< pos (point)))))
+      (<= pos (point)))))
 
 (defun gitconfig-indent-line ()
   "Indent the current line."
   (interactive)
-  (unless (gitconfig-line-indented-p)
+  (if (gitconfig-line-indented-p)
+      (when (gitconfig-point-in-indentation-p)
+        (back-to-indentation))
     (let ((old-point (point-marker))
           (was-in-indent (gitconfig-point-in-indentation-p)))
       (beginning-of-line)
       (delete-horizontal-space)
       (unless (equal (char-after) ?\[)
-        (insert-char ?\t 1))
+        (insert (gitconfig-indentation-string)))
       (if was-in-indent
           (back-to-indentation)
-        (goto-char (marker-position old-point))))))
+        (goto-char (marker-position old-point)))
+      (set-marker old-point nil))))
+
+(defun gitconfig-indentation-string ()
+  (if indent-tabs-mode "\t" (make-string tab-width ?\ )))
 
 (defvar gitconfig-mode-syntax-table
   (let ((table (make-syntax-table conf-unix-mode-syntax-table)))
     ;; ; is a comment in .gitconfig
     (modify-syntax-entry ?\; "<" table)
+    ;; ' is not used for string quoting
+    (modify-syntax-entry ?\' "." table)
     table)
   "Syntax table to use in .gitconfig buffers.")
 
@@ -84,11 +94,12 @@
                     (group (syntax string-quote)
                            (minimal-match (one-or-more not-newline))
                            (syntax string-quote)))
-          "]" (zero-or-more (syntax whitespace)) line-end)
+          "]" (zero-or-more not-newline) line-end)
      (1 'font-lock-type-face t nil)
      (2 'font-lock-function-name-face t t))
     (,(rx line-start (zero-or-more (syntax whitespace)) symbol-start
-          (group (one-or-more (or (syntax word) (syntax symbol))))
+          (group alphanumeric
+                 (zero-or-more (or (syntax word) (syntax symbol))))
           symbol-end (zero-or-more (syntax whitespace))
           (optional "=" (zero-or-more not-newline)) line-end)
      (1 'font-lock-variable-name-face))
@@ -114,10 +125,12 @@
        'gitconfig-indent-line))
 
 ;;;###autoload
-(dolist (pattern '("/\\.gitconfig\\'" "/\\.git/config\\'"
-                   "/git/config\\'"   "/\\.gitmodules\\'"))
+(dolist (pattern '("/\\.gitconfig\\'"      "/\\.git/config\\'"
+                   "/modules/.*/config\\'" "/git/config\\'"
+                   "/\\.gitmodules\\'"     "/etc/gitconfig\\'"))
   (add-to-list 'auto-mode-alist (cons pattern 'gitconfig-mode)))
 
+;;; _
 (provide 'gitconfig-mode)
 ;; Local Variables:
 ;; indent-tabs-mode: nil
