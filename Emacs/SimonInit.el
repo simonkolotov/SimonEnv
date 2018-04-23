@@ -102,6 +102,8 @@
 (add-to-list 'load-path (concat emacs-git "Plugins/autocomplete"))
 (add-to-list 'load-path (concat emacs-git "Plugins/fill-column-indicator-1.83"))
 (add-to-list 'load-path (concat emacs-git "Plugins/swiper"))
+(add-to-list 'load-path (concat emacs-git "Plugins/plantuml-mode"))
+
 
 
 (load "scott.emacs") ;I think this is used for setting the Emacs window size
