@@ -89,12 +89,14 @@
 ;;;;;;;;;;EXTERNAL PLUGINS
 (add-to-list 'load-path (concat emacs-git "Plugins/"))
 
-(add-to-list 'load-path (concat emacs-git "Plugins/git-modes")) ;various modes required for magit
+;various modes required for magit
+(add-to-list 'load-path (concat emacs-git "Plugins/git-modes")) 
 (add-to-list 'load-path (concat emacs-git "Plugins/magit"))
 
 (add-to-list 'load-path (concat emacs-git "Plugins/yasnippet"))
 
-;(add-to-list 'load-path (concat emacs-git "Plugins/ein")) ;for python notebook. I didn't manage to make it work
+;for python notebook. I didn't manage to make it work
+;(add-to-list 'load-path (concat emacs-git "Plugins/ein")) 
 
 (add-to-list 'load-path (concat emacs-git "Plugins/org-mode"))
 (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/lisp"))
@@ -129,7 +131,11 @@
 `my-reload-env-vars()
 
 ;;;;;;;;;;ein for IPython Notebooks in emacs
-;(require 'ein-ipynb-mode)
+;;(require 'ein-ipynb-mode)
+
+;;;;;;;;;;plantuml-mode for editing plant-uml diagrams
+(require 'plantuml-mode)
+(setq plantuml-jar-path (concat emacs-git "Plugins/plantuml-mode/bin/"))
 
 ;;;;;;;;;;XSMI for math symbols
 (require 'xmsi-math-symbols-input)
@@ -141,7 +147,7 @@
 ;;;;;;;;;;smex for using IDO for M-x commands
 (require 'smex) ; Not needed if you use package.el
   (smex-initialize) ; Can be omitted. This might cause a (minimal) delay
-                                        ; when Smex is auto-initialized on its first run.
+;;                     when Smex is auto-initialized on its first run.
 
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
@@ -163,8 +169,6 @@
 
 (global-set-key (kbd "C-c g") 'counsel-git)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
-
-
 
 ;;;;;;;;;;Undo-Tree
 (require 'undo-tree)
@@ -224,7 +228,8 @@
 
 ;;;;;;;;;;auto-complete
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories (concat emacs-git "Plugins/autocomplete/ac-dict"))
+(add-to-list 'ac-dictionary-directories
+             (concat emacs-git "Plugins/autocomplete/ac-dict"))
 (ac-config-default)
 
 ;;;;;;;;;;lua-mode
@@ -351,25 +356,29 @@
 (global-set-key (kbd "C-z") 'undo) ; 【Ctrl+z】
 (global-set-key (kbd "C-S-z") 'redo) ; 【Ctrl+Shift+z】;  Mac style
 
-;Disable default exit command (I trip over it accidentally while undoing and redoing too much)
+;;Disable default exit command
+;;(I trip over it accidentally while undoing and redoing too much)
 (global-set-key "\C-x\C-c" nil)
 
-;(global-set-key "\C-o" 'find-file)  ; Open file (Microsoft style)
+;;(global-set-key "\C-o" 'find-file)  ; Open file (Microsoft style)
 (global-set-key "\C-o" 'counsel-find-file)  ; Open file (Microsoft style)
 (global-set-key (kbd "C-<f4>") 'kill-this-buffer) ; Close Buffer (Microsoft style)
 
-(define-key global-map (kbd "RET") 'newline-and-indent) ; For programming language modes
+;; For programming language modes
+(define-key global-map (kbd "RET") 'newline-and-indent) 
 
 (global-set-key (kbd "M-g") 'goto-line) ; Goto-line
 
 (global-set-key (kbd "C-<f9>") 'compile) ; Compile
 
-(global-set-key "\M-`" 'next-error) ; Next Error (and also next file in dov-git-grep)
-(global-set-key "\M-~" 'previous-error) ; Previous Error (and also previous file in dov-git-grep)
+; Previous/Next Error (and also previous/next file in dov-git-grep)
+(global-set-key "\M-`" 'next-error) 
+(global-set-key "\M-~" 'previous-error)
 
 (global-set-key (kbd "C-<tab>") 'next-buffer) ; C-Tab: Next Buffer
-(global-set-key (kbd "C-S-<iso-lefttab>") 'previous-buffer) ; C-S-Tab: Previous Buffer
-(global-set-key (kbd "C-S-<tab>") 'previous-buffer) ; C-S-Tab: Previous Buffer
+;; C-S-Tab: Previous Buffer
+(global-set-key (kbd "C-S-<iso-lefttab>") 'previous-buffer) 
+(global-set-key (kbd "C-S-<tab>") 'previous-buffer)
 
 ; Move between Windows
 (global-set-key (kbd "C-x <up>") 'windmove-up)
@@ -398,10 +407,14 @@
 (global-set-key (kbd "<C-down>") 'scroll-up-line)
 (global-set-key (kbd "<C-kp-down>") 'scroll-up-line)
                                         ; Scroll Other Window with Alt-Up/Down
-(global-set-key (kbd "<M-up>")   (lambda () (interactive) (scroll-other-window-down 1)))
-(global-set-key (kbd "<M-kp-up>")   (lambda () (interactive) (scroll-other-window-down 1)))
-(global-set-key (kbd "<M-down>") (lambda () (interactive) (scroll-other-window-down -1)))
-(global-set-key (kbd "<M-kp-down>") (lambda () (interactive) (scroll-other-window-down -1)))
+(global-set-key (kbd "<M-up>")
+                (lambda () (interactive) (scroll-other-window-down 1)))
+(global-set-key (kbd "<M-kp-up>")
+                (lambda () (interactive) (scroll-other-window-down 1)))
+(global-set-key (kbd "<M-down>")
+                (lambda () (interactive) (scroll-other-window-down -1)))
+(global-set-key (kbd "<M-kp-down>")
+                (lambda () (interactive) (scroll-other-window-down -1)))
 
 ; page-up down works with C- or M- in the same way as the rest
 (global-set-key (kbd "<C-prior>")   'scroll-down-command) ;prior = page-up
@@ -429,10 +442,14 @@
 
 
 ; Command History Completion
-(define-key minibuffer-local-map (kbd "M-p") 'previous-complete-history-element)
-(define-key minibuffer-local-map (kbd "M-n") 'next-complete-history-element)
-(define-key minibuffer-local-map (kbd "<up>") 'previous-complete-history-element)
-(define-key minibuffer-local-map (kbd "<down>") 'next-complete-history-element)
+(define-key minibuffer-local-map
+  (kbd "M-p") 'previous-complete-history-element)
+(define-key minibuffer-local-map
+  (kbd "M-n") 'next-complete-history-element)
+(define-key minibuffer-local-map
+  (kbd "<up>") 'previous-complete-history-element)
+(define-key minibuffer-local-map
+  (kbd "<down>") 'next-complete-history-element)
 
 ; set hot-key for modes
 (global-set-key (kbd "C-M-p") 'python-mode)
@@ -457,8 +474,10 @@
 ;Shell
 (global-set-key [f6] 'open-shell)
 
-(global-set-key (kbd "C-S-s") '(lambda () (interactive) 
-                                 (switch-to-buffer (find-most-recent-pattern-buffer "\\*shell"))))
+(global-set-key (kbd "C-S-s")
+                '(lambda () (interactive) 
+                   (switch-to-buffer
+                    (find-most-recent-pattern-buffer "\\*shell"))))
 
 ;SimonInit
 (global-set-key (kbd "C->") '(lambda () (interactive) 
@@ -504,7 +523,8 @@
                                    (comint-next-matching-input-from-input 1)
                                  (forward-line 1))))
 
-             (define-key gud-mode-map [(alt n)] 'gud-next) ; External Buffer Commands
+             ; External Buffer Commands
+             (define-key gud-mode-map [(alt n)] 'gud-next) 
              (define-key gud-mode-map [(alt s)] 'gud-step)
              (define-key gud-mode-map [(alt f)] 'gud-finish)
 
@@ -938,6 +958,10 @@
 ;;export to html-slidy
 ;(require 'ox-slidy)
 
+(require 'ox-latex)
+(setq org-latex-create-formula-image-program 'dvipng)
+(org-babel-do-load-languages 'org-babel-load-languages '((latex . t)))
+
 ;; Make all font-lock faces fonts use inconsolata
 (dolist (face '(font-lock-builtin-face 	
                 font-lock-comment-delimiter-face
@@ -995,12 +1019,12 @@
 (global-set-key (kbd "C-M-]") 'org-set-line-checkbox)
 
 ;;Define programs to open files
-(if (string-match "mingw-nt" system-configuration)
+(if (string-match "mingw" system-configuration)
     (progn
       (setq org-file-apps
             (append
-             '(("png" . "c:/progra~2/IrfanView/i_view32.exe %s"))
-             '(("doc" . "\"c:/Program Files (x86)/OpenOffice.org 3/program/soffice.exe\" %s"))
+             '(("png" . "\"c:/Program Files (x86)/giv/bin/giv.exe\" %s"))
+             '(("doc" . "\"c:/Program Files (x86)/Microsoft Office/root/Office16/WINWORD.EXE\" %s"))
 
              org-file-apps
              ))
@@ -1027,6 +1051,7 @@
         ("dot" . fundamental)
         ("perl" . cperl)
         ("python" . python)
+        ("plantuml" . plantuml)
         ))
 
 ;;;;;;;;;;;;;;;;;;;;
