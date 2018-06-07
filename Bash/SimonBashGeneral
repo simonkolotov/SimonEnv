@@ -175,3 +175,9 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" || $EMACS
   export INCOMING=/home/simon/Incoming
 
 fi
+
+  ##########
+  #Additional Autocomplete files
+  ##########
+
+  source $SimonEnvBashPath"VirtualBoxAutoComplete"

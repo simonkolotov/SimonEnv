@@ -1,2 +1,40 @@
-"d7ff67f4dd5c3fb736f407a517263046ddb5c37c"
-[cl-struct-undo-tree [nil ([nil (#1=[nil nil ((1032 . 1033)) nil (23277 9725 600173 435000) 0 nil]) (("@" . 1032) (t 23262 44042 384800 66000)) nil (23277 9725 600186 444000) 0 nil]) nil nil (23277 9725 600193 284000) 0 nil] #1# 25 2 nil]
+"e00170b06557de49e3c814197c77ca01d05111bd"
+[cl-struct-undo-tree [nil ([nil ([nil (#1=[nil nil ((5389 . 5390)) nil (23320 43263 639820 15000) 0 nil]) ((5349 . 5367) (#("# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+export SimonEnvBashPath=/home/simon/github/SimonEnv/Bash/
+
+if [ -f $SimonEnvBashPath\"SimonBashGeneral\" ]; then
+	source /home/simon/github/SimonEnv/Bash/SimonBashGeneral
+fi
+
+#if [ -f $SimonEnvBashPath\"SimonWorkSettings\" ]; then
+#	source /home/simon/github/SimonEnv/Bash/SimonWorkSettings
+#fi
+
+if [ -f $SimonEnvBashPath\"SimonHomeSettings\" ]; then
+	source /home/simon/github/SimonEnv/Bash/SimonHomeSettings
+fi" 0 2 (face font-lock-comment-delimiter-face) 2 10 (face font-lock-comment-face) 11 13 (face font-lock-comment-delimiter-face) 13 39 (face font-lock-comment-face) 39 41 (face font-lock-keyword-face) 62 66 (face font-lock-keyword-face) 68 69 (face font-lock-builtin-face) 82 84 (face font-lock-keyword-face) 86 92 (face font-lock-builtin-face) 93 109 (face font-lock-variable-name-face) 145 147 (face font-lock-keyword-face) 154 170 (face font-lock-variable-name-face) 170 188 (face font-lock-string-face) 192 196 (face font-lock-keyword-face) 198 204 (face font-lock-builtin-face) 255 257 (face font-lock-keyword-face) 259 260 (face font-lock-comment-delimiter-face) 260 313 (face font-lock-comment-face) 313 315 (face font-lock-comment-delimiter-face) 315 373 (face font-lock-comment-face) 373 374 (face font-lock-comment-delimiter-face) 374 377 (face font-lock-comment-face) 378 380 (face font-lock-keyword-face) 387 403 (face font-lock-variable-name-face) 403 422 (face font-lock-string-face) 426 430 (face font-lock-keyword-face) 432 438 (face font-lock-builtin-face) 490 491 (face font-lock-keyword-face) 491 492 (face font-lock-keyword-face rear-nonsticky t)) . -5349) (undo-tree-id2 . -492) (undo-tree-id3 . -11) 5841) nil (23320 43263 639838 743000) 0 nil]) ((nil rear-nonsticky nil 5840 . 5841) (5349 . 5841) (t 23318 48193 312439 967000)) nil (23320 43263 639845 88000) 0 nil] [nil nil ((nil rear-nonsticky nil 5840 . 5841) (5349 . 5841) (t 23318 48193 312439 967000)) ((#("# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+export SimonEnvBashPath=/home/simon/github/SimonEnv/Bash/
+
+if [ -f $SimonEnvBashPath\"SimonBashGeneral\" ]; then
+	source /home/simon/github/SimonEnv/Bash/SimonBashGeneral
+fi
+
+#if [ -f $SimonEnvBashPath\"SimonWorkSettings\" ]; then
+#	source /home/simon/github/SimonEnv/Bash/SimonWorkSettings
+#fi
+
+if [ -f $SimonEnvBashPath\"SimonHomeSettings\" ]; then
+	source /home/simon/github/SimonEnv/Bash/SimonHomeSettings
+fi" 0 2 (face font-lock-comment-delimiter-face) 2 10 (face font-lock-comment-face) 11 13 (face font-lock-comment-delimiter-face) 13 39 (face font-lock-comment-face) 39 41 (face font-lock-keyword-face) 62 66 (face font-lock-keyword-face) 68 69 (face font-lock-builtin-face) 82 84 (face font-lock-keyword-face) 86 92 (face font-lock-builtin-face) 93 109 (face font-lock-variable-name-face) 145 147 (face font-lock-keyword-face) 154 170 (face font-lock-variable-name-face) 170 188 (face font-lock-string-face) 192 196 (face font-lock-keyword-face) 198 204 (face font-lock-builtin-face) 255 257 (face font-lock-keyword-face) 259 260 (face font-lock-comment-delimiter-face) 260 313 (face font-lock-comment-face) 313 315 (face font-lock-comment-delimiter-face) 315 373 (face font-lock-comment-face) 373 374 (face font-lock-comment-delimiter-face) 374 377 (face font-lock-comment-face) 378 380 (face font-lock-keyword-face) 387 403 (face font-lock-variable-name-face) 403 422 (face font-lock-string-face) 426 430 (face font-lock-keyword-face) 432 438 (face font-lock-builtin-face) 490 491 (face font-lock-keyword-face) 491 492 (face font-lock-keyword-face rear-nonsticky nil)) . 5349) (undo-tree-id0 . -492) (undo-tree-id1 . -11) (nil rear-nonsticky t 5840 . 5841)) (23320 43258 863984 180000) 0 nil]) nil nil (23320 43258 864411 197000) 0 nil] #1# 1112 4 nil]
