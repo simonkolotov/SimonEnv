@@ -4,70 +4,111 @@
 #+OPTIONS: TOC:nil
 
 * TODO:
-  - [ ] Env vars according to bashrc
-  - [ ] python indents
-  - [ ] check out latest magit
-  - [ ] IPython? Jupyter?
-  - [ ] Annotate TODO markers?
-  - [ ] sudo in shell mode
-  - [ ] Path in status bar?
-  - [ ] test image opener on Windows
+** Rebase or incorporate changes from master
+** Env vars according to bashrc
+** indents for different standards - look up in cree settings?
+*** python indents (test it) - [[Python Mode]]
+** check out latest magit
+** IPython? Jupyter?
+*** IPython
+    TODO: make this work
+   #+BEGIN_SRC emacs-lisp
+     ;; use IPython
+     (setq-default py-shell-name "ipython")
+     (setq-default py-which-bufname "IPython")
 
+     ;; use the wx backend, for both mayavi and matplotlib
+     (setq py-python-command-args
+           '("--gui=wx" "--pylab=wx" "-colors" "Linux"))
+     (setq py-force-py-shell-name-p t)
+
+     ;; switch to the interpreter after executing code
+     (setq py-shell-switch-buffers-on-execute-p t)
+     (setq py-switch-buffers-on-execute-p t)
+
+     ;; don't split windows
+     ;;(setq py-split-windows-on-execute-p nil)
+   #+END_SRC
+  - [ ] Annotate TODO markers?
+** Annotate TODO markers
+    TODO: make this work?
+    #+BEGIN_SRC emacs-lisp
+      ;;TODO: Make this work?
+      ;;(defun annotate-todo ()
+      ;;  "put fringe marker on TODO: lines in the curent buffer"
+      ;;  (interactive)
+      ;;  (save-excursion
+      ;;    (goto-char (point-min))
+      ;;    (while (re-search-forward "TODO:" nil t)
+      ;;      (let ((overlay (make-overlay (- (point) 5) (point))))
+      ;;        (overlay-put overlay 'before-string (propertize "A"
+      ;;                                                        'display '(left-fringe right-triangle)))))))
+      ;;
+      ;;(add-hook 'python-mode-hook 'annotate-todo)
+    #+END_SRC
+** sudo in shell mode
+*** check out [[Shell Mode]]
+** root under ido-mode
+** Path in status bar?
+** test image opener on Windows
+** Check out WinUtils.el (under [[Windows vs Linux Settings]])
+** Go over the rest of scott.emacs.el and delete it
+** Cheat-sheet
 * Introduction
 ** General
   This is my emacs configuration file, to which I constantly add stuff shamelessly stolen from others.
   I try to attribute wherever I take a big (or significant) chunk of stuff.
 ** Major Thanks and attributions
-*** Much of my stuff was takenfrom (and taught to me by) [[https://www.linkedin.com/in/dovgrobgeld][Dov Grobgeld]] ([[https://github.com/dov][github repository here]])
-*** A lot of additional stuff (including how to organize the init file as an org mode) I learned from [[http://cestlaz.github.io/stories/emacs/][Mark Zamansky's excellent blog on emacs]]
-
+*** Dov Grobgeld
+    Much of my stuff was taken from (and taught to me by) [[https://www.linkedin.com/in/dovgrobgeld][Dov Grobgeld]] ([[https://github.com/dov][github repository here]])
+*** Mark Zamansky
+    A lot of additional stuff (including how to organize the init file as an org mode) I learned from [[http://cestlaz.github.io/stories/emacs/][Mark Zamansky's excellent blog on emacs]]
 ** To use this file, add lines similar to the following to ~/.emacs:
-                                        ;This is done to safely ignore local-variables warnings
-;This is done to safely ignore local-variables warnings
-(setq enable-local-variables :safe)
+   #+BEGIN_SRC .emacs-file
+     ;This is done to safely ignore local-variables warnings
+     (setq enable-local-variables :safe)
 
-                                        ;Setting basic location and variables - override those if needed
-(defvar emacs-git
-  "/home/simon/github/SimonEnv/Emacs/"
-  "The location of my Emacs environment settings")
+     ;Setting basic location and variables - override those if needed
+     (defvar emacs-git
+      "/home/simon/github/SimonEnv/Emacs/"
+      "The location of my Emacs environment settings")
 
-(defvar default-work-notes-file
-  "/home/simon/github/XJetWorkNotes/XJetWorkNotebook.org"
-  "The location of my Work Notebook (somewhere on the work server?)")
+     (defvar default-work-notes-file
+      "/home/simon/github/XJetWorkNotes/XJetWorkNotebook.org"
+      "The location of my Work Notebook (somewhere on the work server?)")
 
-(defvar default-personal-notes-file
-  "/home/simon/Notebook/NoteBook.org"
-  "The location of my personal notebook (mounted from EncFS)")
+     (defvar default-personal-notes-file
+      "/home/simon/Notebook/NoteBook.org"
+      "The location of my personal notebook (mounted from EncFS)")
 
-(defvar default-init-file 
-  (concat emacs-git "SimonNewInit.org") 
-  "My Init File")
+     (defvar default-init-file
+      (concat emacs-git "SimonNewInit.org")
+      "My Init File")
 
-(defvar my-emacs-monitors-num 1
-  "The number of monitors to take into account when calculating the Emacs window size (2/3 of the
-  available width)")
+     (defvar my-emacs-monitors-num 1
+      "The number of monitors to take into account when calculating the Emacs window size (2/3 of the
+       available width)")
 
-                                        ;emacs persistance directory
-(if (not (boundp 'emacs-persistance-dir))
-    (setq emacs-persistance-dir "/home/simon/.emacs.d")
-)
+     ;emacs persistance directory
+     (if (not (boundp 'emacs-persistance-dir))
+         (setq emacs-persistance-dir "/home/simon/.emacs.d")
+     )
 
-;;Loading the rest of the configuration from my environment
-(if (string-equal (file-name-extension default-init-file) "org")
-  ;;The new way: via org mode
-  (org-babel-load-file default-init-file)
-  
-  ;;Else: The old way
-  (load default-init-file)
-  )
+     ;;Loading the rest of the configuration from my environment
+     (if (string-equal (file-name-extension default-init-file) "org")
+       ;;The new way: via org mode
+       (org-babel-load-file default-init-file)
 
-
+       ;;Else: The old way
+       (load default-init-file)
+     )
+   #+END_SRC
 * Setting up the basics
 ** Default files and directories
   #+BEGIN_SRC emacs-lisp
     (if (not (boundp 'default-init-file))
-        (defvar default-init-file 
-          (concat emacs-git "SimonNewInit.org") 
+        (defvar default-init-file
+          (concat emacs-git "SimonNewInit.org")
           "My Init File")
       )
 
@@ -87,7 +128,6 @@
           (file-name-nondirectory default-personal-notes-file)
           "Name of the default Personal Notebook")
       )
-
   #+END_SRC
 ** Number of monitors attached
    #+BEGIN_SRC emacs-lisp
@@ -100,7 +140,7 @@
 ** Windows vs Linux Settings
    #+BEGIN_SRC emacs-lisp
      (if (string-match "mingw" system-configuration)
-                                             ;On Windows
+         ;;On Windows
          (progn
            (if (not (boundp 'emacs-git))
                (defvar emacs-git "D:/Simon/github/SimonEnv/Emacs/"
@@ -114,12 +154,11 @@
 
            ;; Load windows utilities - those include send buffer to VS by Dov.
            ;; TODO: Check this out
-                                             ;      (load (concat emacs-git "win-utils.el")))
+           ;;      (load (concat emacs-git "win-utils.el")))
 
            ;; Various settings to use utf-8 (From Dov, I don't understand them all)
            (setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
            (set-language-environment 'utf-8)
-           (set-keyboard-coding-system 'utf-8-mac) ; For old Carbon emacs on OS X only
            (setq locale-coding-system 'utf-8)
            (set-default-coding-systems 'utf-8)
            (set-terminal-coding-system 'utf-8)
@@ -135,12 +174,12 @@
            )
                                              ;On Linux
        (progn
-                                        
+
          (if (not (boundp 'emacs-git))
              (defvar emacs-git "/home/simon/github/SimonEnv/Emacs/"
                "/home/simon/github/SimonEnv/Emacs/"
                "The location of my Emacs environment settings"))
-    
+
          (if (not (boundp 'emacs-persistance-dir))
              (setq emacs-persistance-dir "/home/simon/.emacs.d"))
 
@@ -155,11 +194,13 @@
          (if (not (boundp 'my-chrome-command))
              (defvar my-chrome-command "google-chrome" "The command to run Google-Chrome"))
          (setq browse-url-generic-program "google-chrome")
-         ) 
+         )
        )
    #+END_SRC
 ** Fonts
-   I use the "InconsolataDov" font size 11 for code. This font (located in the repository) must be installed
+   I use the "InconsolataDov" font size 11 for code. This font (located [[file:InconsolataDov.ttf][in the repository]]) must be installed
+   - On Windows - double click the font
+   - On Linux - just copy it into file:~/.fonts/ (create dir if necessary)
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist '(font .   "InconsolataDov 11"))
   (set-face-attribute 'default t :font  "InconsolataDov 11" )
@@ -170,57 +211,261 @@
   (setq my-default-family "InconsolataDov 11")
   (setq my-default-font "InconsolataDov 11")
 #+END_SRC
+* Plugins
+  I try to have my emacs as encapsulated as possible. Thus all the packages I use should be downloaded and added
+   to the repository
+** Plugin directories
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'load-path (concat emacs-git "Plugins/"))
 
+     (add-to-list 'load-path (concat emacs-git "Plugins/git-modes")) ;various modes required for magit
+     (add-to-list 'load-path (concat emacs-git "Plugins/magit"))
+
+     (add-to-list 'load-path (concat emacs-git "Plugins/yasnippet"))
+
+     ;(add-to-list 'load-path (concat emacs-git "Plugins/ein")) ;for python notebook. I didn't manage to make it work
+
+     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode"))
+     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/lisp"))
+     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/contrib/lisp"))
+     (add-to-list 'load-path (concat emacs-git "Plugins/autocomplete"))
+     (add-to-list 'load-path (concat emacs-git "Plugins/fill-column-indicator-1.83"))
+     (add-to-list 'load-path (concat emacs-git "Plugins/swiper"))
+   #+END_SRC
+** Loading the plugins
+*** Move-Border for window resizing
+    This (by an unknown author, found at [[https://github.com/ramnes/move-border][ramnes' github]]) allows a general approach to resizing emacs windows
+    #+BEGIN_SRC emacs-lisp
+      (load "move-border.el")
+    #+END_SRC
+*** Magit
+    This is the cool git mode for emacs
+    #+BEGIN_SRC emacs-lisp
+      ;TODO: Get the latest version of Magit from github, and see what has been happening
+      (load "magit")
+      (require 'magit)
+
+      (global-set-key "\C-ci" 'magit-status)
+      (global-set-key "\C-c\C-b" 'magit-blame-mode)
+
+      ; magit-diff-file was written by dov, and requsted to be merged into magit.
+      ; See: https://github.com/magit/magit/issues/2553
+      (defun magit-diff-file (rev-or-range &optional file args)
+        "Show changes between a file from another branch"
+        (interactive (list (magit-diff-read-range-or-commit "File diff for range" nil current-prefix-arg)
+                           (if current-prefix-arg
+                             (read-file-name "File: ")
+                             buffer-file-name)))
+        (magit-diff-setup rev-or-range nil args
+                          (list (replace-regexp-in-string (magit-toplevel) "" (expand-file-name file)))))
+
+      (global-set-key (kbd "C-c d") 'magit-diff-file)
+
+      ; magit settings
+      (setq magit-push-always-verify nil) ; by default push to updtream branch
+      (setq git-commit-summary-max-length 256) ; length of commit-msg above which a warning is shown
+      (load "magit-blame")
+      (load "markdown-mode")
+      (setq magit-diff-options '("-w"))
+      (load "mo-git-blame")
+    #+END_SRC
+*** NSIS
+    #+BEGIN_SRC emacs-lisp
+      (autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
+    #+END_SRC
+*** lua
+    #+BEGIN_SRC emacs-lisp
+      (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+      (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
+                                              ;(setq lua-indent-level 2)
+    #+END_SRC
+*** XMSI
+    This allows to replace sequences of characters for symbols
+    #+BEGIN_SRC emacs-lisp
+      (require 'xmsi-math-symbols-input)
+      (xmsi-mode)
+    #+END_SRC
+*** Ido mode
+    ido-mode is the cool autocompletion mode in the lower buffer
+    #+BEGIN_SRC emacs-lisp
+      (require 'ido)
+      (ido-mode t)
+
+      ;; Allow sudo in ido-find-file  !!!
+      (defadvice ido-find-file (after find-file-sudo activate)
+        "Find file as root if necessary."
+        (unless (and buffer-file-name
+                     (file-writable-p buffer-file-name))
+          (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+
+    #+END_SRC
+*** Smex
+    Smex uses Ido mode for M-x commands
+    #+BEGIN_SRC emacs-lisp
+                                              ;smex for using IDO for M-x commands
+      (require 'smex) ; Not needed if you use package.el
+      (smex-initialize) ; Can be omitted. This might cause a (minimal) delay
+                                              ; when Smex is auto-initialized on its first run.
+
+      (global-set-key (kbd "M-x") 'smex)
+      (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+      ;; This is your old M-x.
+      (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+    #+END_SRC
+*** Ivy
+    Ivy is like Ido, but better is /some/ regards. I use it for opening files, but not for M-x or switch-to-buffer
+    #+BEGIN_SRC emacs-lisp
+      (require 'counsel)
+
+      (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-immediate-done)
+      (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
+
+      (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+      (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+      (global-set-key (kbd "<f1> l") 'counsel-find-library)
+
+      (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+      (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+
+      (global-set-key (kbd "C-c g") 'counsel-git)
+      (global-set-key (kbd "C-c f") 'counsel-git-grep) ;default was "C-c j"
+    #+END_SRC
+*** Undo Tree
+    #+BEGIN_SRC emacs-lisp
+      (require 'undo-tree)
+      (global-undo-tree-mode)
+      (set-default 'undo-tree-auto-save-history t)
+    #+END_SRC
+*** js2 mode for json
+    #+BEGIN_SRC emacs-lisp
+      (require 'js2-mode)
+    #+END_SRC
+*** YaSnippet for programming templates
+    #+BEGIN_SRC emacs-lisp
+      (require 'yasnippet)
+      (setq yas-snippet-dirs (list (concat emacs-git "Plugins/yasnippet/snippets")))
+      (yas-global-mode 1)
+
+      ;; Completing point by some yasnippet key
+      (defun yas-ido-expand ()
+        "Lets you select (and expand) a yasnippet key"
+        (interactive)
+        (let ((original-point (point)))
+          (while (and
+                  (not (= (point) (point-min) ))
+                  (not
+                   (string-match "[[:space:]\n]" (char-to-string (char-before)))))
+            (backward-word 1))
+          (let* ((init-word (point))
+                 (word (buffer-substring init-word original-point))
+                 (list (yas-active-keys)))
+            (goto-char original-point)
+            (let ((key (remove-if-not
+                        (lambda (s) (string-match (concat "^" word) s)) list)))
+              (if (= (length key) 1)
+                  (setq key (pop key))
+                (setq key (ido-completing-read "key: " list nil nil word)))
+              (delete-char (- init-word original-point))
+              (insert key)
+              (yas-expand)))))
+
+
+      (define-key yas-minor-mode-map (kbd "C-<return>")     'yas-ido-expand)
+      (define-key yas-minor-mode-map (kbd "C-<kp-enter>")     'yas-ido-expand)
+
+      (yas-reload-all)
+    #+END_SRC
+*** AutoCompletion
+    #+BEGIN_SRC emacs-lisp
+      ;; Lexical completion with M-RET
+      (define-key yas-minor-mode-map (kbd "M-<return>")     'dabbrev-expand)
+      (define-key yas-minor-mode-map (kbd "M-<kp-enter>")     'dabbrev-expand)
+
+      ;;auto-complete
+      (require 'auto-complete-config)
+      (add-to-list 'ac-dictionary-directories (concat emacs-git "Plugins/autocomplete/ac-dict"))
+      (ac-config-default)
+    #+END_SRC
+*** BitBake
+    #+BEGIN_SRC emacs-lisp
+      (require 'bb-mode)
+    #+END_SRC
+*** Fill Column Indicator
+    This shows the line at what I expect to be the line width (100 by default)
+   #+BEGIN_SRC emacs-lisp
+     (require 'fill-column-indicator)
+
+     (define-globalized-minor-mode
+       global-fci-mode fci-mode (lambda () (fci-mode 1)))
+
+     (global-fci-mode t)
+
+     (setq-default fill-column 100)
+   #+END_SRC
+*** dov-git-grep for advanced git search
+   #+BEGIN_SRC emacs-lisp
+     ;;I'm experimenting with Ivy for a while
+     ;;(load "dov-git-grep")
+     ;;
+     ;; git grep
+     ;;(global-set-key (kbd "C-c F") 'dov-git-grep)
+     ;;
+     ;; git grep, case insensitive
+     ;;(global-set-key (kbd "C-c f") 'dov-git-grep-case-insensitive)
+   #+END_SRC
+*** git-find-file
+    I'm experimenting with Ivy for a while
+    #+BEGIN_SRC emacs-lisp
+      ;;I'm experimenting with Ivy for a while
+      ;;(load "git-find-file.el")
+      ;;(global-set-key [(control c) ?g] 'git-find-file)
+    #+END_SRC
 * GUI and Visuals
 ** Misc small things
    #+BEGIN_SRC emacs-lisp
-                                                  ;Toolbars
-          (setq menu-bar-mode 't)
-          (tool-bar-mode 0)
+     ;;Toolbars
+     (setq menu-bar-mode 't)
+     (tool-bar-mode 0)
 
-                                                  ;(non) Blinking Cursor
-          (blink-cursor-mode 0)
+     ;;(non) Blinking Cursor
+     (blink-cursor-mode 0)
 
-                                                  ;Show row and column in a mini-mode
-          (column-number-mode t)
-          (line-number-mode t)
+     ;;Show row and column in a mini-mode
+     (column-number-mode t)
+     (line-number-mode t)
 
-                                                  ;Skip the annoying startup screen
-          (setq inhibit-startup-screen t)
+     ;;Skip the annoying startup screen
+     (setq inhibit-startup-screen t)
 
-                                                  ;TODO: Not sure what that is - inherited from Dov
-     ;     `(safe-local-variable-values (quote ((Encoding . utf-8))))
+     ;;Mark correspondind parentheses
+     (show-paren-mode t)
 
-                                                  ;Mark correspondind parentheses
-          (show-paren-mode t)
+     ;;Overwrite Selection
+     (delete-selection-mode t)
 
-                                                  ;Overwrite Selection
-          (delete-selection-mode t)
+     ;;Reload changed files
+     (global-auto-revert-mode t)
 
-                                                  ;Reload changed files
-          (global-auto-revert-mode t)
-
-                                                  ;Don't add newline at end of file
-          (setq mode-require-final-newline nil)
-
+     ;;Don't add newline at end of file
+     (setq mode-require-final-newline nil)
    #+END_SRC
 ** Invert colors for my emacs editor
    #+BEGIN_SRC emacs-lisp
-     ; Invert Colors only on the first time emacs is run
-       (if (not (boundp 'my-do-invert-color))
-           (defvar my-do-invert-color t "Is color inversion is required (only once)"))
+     ;; Invert Colors only on the first time emacs is run
+     (if (not (boundp 'my-do-invert-color))
+         (defvar my-do-invert-color t "Is color inversion is required (only once)"))
 
-       (if my-do-invert-color
-           (progn 
-             (invert-face 'default)
-             (custom-set-faces `(cursor ((t (:background "white")))))
-             (setq my-do-invert-color nil)
-             )
-         )
+     (if my-do-invert-color
+         (progn
+           (invert-face 'default)
+           (custom-set-faces `(cursor ((t (:background "white")))))
+           (setq my-do-invert-color nil)
+           )
+       )
    #+END_SRC
 ** Emacs main window size
    #+BEGIN_SRC emacs-lisp
-                                             ;Emacs window size
+     ;;Emacs window size
      ;The following was taken from Scott McPeak's "scott.emacs.el". Thank you Scott
      ; ---------------- frame move/resize (i.e. X window) -----------------------
      (defun frame-move-resize
@@ -265,20 +510,25 @@
                                              ; no it doesn't.. but the delay doesn't help..
                                              ; nothing works except doing it twice...
              )
-         ))  
+         ))
 
      (setq my-height-fraction 1) ;use the entire screen height
+
+     ;;For one monitor
      (setq left-two-thirds-screen-pos (list 0.6 my-height-fraction 0 0))    ;last two: 0 from left, 0 from top
      (defun frame-occupy-left-two-thirds-screen ()
        "Move and resize the frame so it occupies the left ⅔ of the screen."
        (interactive)
        (apply 'frame-move-resize left-two-thirds-screen-pos))
 
+     ;;For 2 monitors
      (setq left-third-screen-pos (list 0.278 my-height-fraction 0 0))    ;last two: 0 from left, 0 from top
      (defun frame-occupy-left-third-screen ()
        "Move and resize the frame so it occupies the left third of the screen."
        (interactive)
        (apply 'frame-move-resize left-third-screen-pos))
+
+     ;;For 3 monitors
      (setq left-sixth-screen-pos (list 0.21 my-height-fraction 0 0))    ; 0 from left, 0 from top
      (defun frame-occupy-left-sixth-screen ()
        "Move and resize the frame so it occupies the left half of the screen."
@@ -293,27 +543,27 @@
           ((= my-emacs-monitors-num 2)
            (frame-occupy-left-third-screen))
           ((= my-emacs-monitors-num 3)
-           (frame-occupy-left-sixth-screen))     
-          (t
+           (frame-occupy-left-sixth-screen))
+          (t ;;default behaviour: 2 monitors
            (frame-occupy-left-third-screen))
           )
        )
    #+END_SRC
 ** Resizing emacs windows
     #+BEGIN_SRC emacs-lisp
-    (global-set-key (kbd "<s-up>") 'enlarge-window)
-    (global-set-key (kbd "<s-kp-up>") 'enlarge-window)
-    (global-set-key (kbd "<s-down>") 'shrink-window)
-    (global-set-key (kbd "<s-kp-down>") 'shrink-window)
-    (global-set-key (kbd "<s-right>") 'enlarge-window-horizontally)
-    (global-set-key (kbd "<s-kp-right>") 'enlarge-window-horizontally)
-    (global-set-key (kbd "<s-left>") 'shrink-window-horizontally)
-    (global-set-key (kbd "<s-kp-left>") 'shrink-window-horizontally)
+    (global-set-key (kbd "<C-S-up>")       'move-border-up)
+    (global-set-key (kbd "<C-S-kp-up>")    'move-border-up)
+    (global-set-key (kbd "<C-S-down>")     'move-border-down)
+    (global-set-key (kbd "<C-S-kp-down>")  'move-border-down)
+    (global-set-key (kbd "<C-S-right>")    'move-border-right)
+    (global-set-key (kbd "<C-S-kp-right>") 'move-border-right)
+    (global-set-key (kbd "<C-S-left>")     'move-border-left)
+    (global-set-key (kbd "<C-S-kp-left>")  'move-border-left)
     #+END_SRC
 ** Navigation within and between windows
 *** Scrolling
     #+BEGIN_SRC emacs-lisp
-                                              ;Scroll with Ctrl+Up/Down
+      ;;Scroll with Ctrl+Up/Down
       (defun scroll-dont-move-cursor (dist)
         ""
         (let ((p (point)))
@@ -340,18 +590,17 @@
       (global-set-key (kbd "<M-down>") (lambda () (interactive) (scroll-other-window-down -1)))
       (global-set-key (kbd "<M-kp-down>") (lambda () (interactive) (scroll-other-window-down -1)))
 
-      ; page-up down works with C- or in the same way as without. NB: M- page up or down work for other 
+      ; page-up down works with C- or in the same way as without. NB: M- page up or down work for other
       ;   window out of the box
       (global-set-key (kbd "<C-prior>")   'scroll-down-command) ;prior = page-up
       (global-set-key (kbd "<C-kp-prior>")   'scroll-down-command)
 
       (global-set-key (kbd "<C-next>")   'scroll-up-command) ;next = page-down
       (global-set-key (kbd "<C-kp-next>")   'scroll-up-command)
-
     #+END_SRC
 *** Jumping between words
     #+BEGIN_SRC emacs-lisp
-                                              ; Change C-arrows to be the same as M-f/b
+      ;; Change C-arrows to be the same as M-f/b
       (global-set-key (kbd "C-<right>")   'forward-word)
       (global-set-key (kbd "C-<kp-right>")   'forward-word)
 
@@ -363,14 +612,13 @@
 
       (global-set-key (kbd "<C-kp-delete>")   'kill-word)
 
-
-                                              ; Set M-arrows to be the same as C-arrows, but by full words
+      ;; Set M-arrows to be the same as C-arrows, but by full words
       (global-set-key (kbd "M-<kp-right>")   'forward-sexp)
       (global-set-key (kbd "M-<kp-left>")   'backward-sexp)
     #+END_SRC
 *** Navigation between windows
     #+BEGIN_SRC emacs-lisp
-                                              ;Move between Windows
+      ;;Move between Windows
       (global-set-key (kbd "C-x <up>") 'windmove-up)
       (global-set-key (kbd "C-x <down>") 'windmove-down)
       (global-set-key (kbd "C-x <right>") 'windmove-right)
@@ -465,222 +713,16 @@
     #+END_SRC
 ** Winner mode
     This allows to undo and redo window configurations by C-c-left or C-c-right
-    #+BEGIN_SRC 
+    #+BEGIN_SRC emacs-lisp
     (winner-mode 1)
-    #+END_SRC
-* Plugins
-   I try to have my emacs as encapsulated as possible. Thus all the packages I use should be downloaded and added
-   to the repository
-** Plugin directories
-   #+BEGIN_SRC emacs-lisp
-     (add-to-list 'load-path (concat emacs-git "Plugins/"))
-
-     (add-to-list 'load-path (concat emacs-git "Plugins/git-modes")) ;various modes required for magit
-     (add-to-list 'load-path (concat emacs-git "Plugins/magit"))
-
-     (add-to-list 'load-path (concat emacs-git "Plugins/yasnippet"))
-
-     ;(add-to-list 'load-path (concat emacs-git "Plugins/ein")) ;for python notebook. I didn't manage to make it work
-
-     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode"))
-     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/lisp"))
-     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/contrib/lisp"))
-     (add-to-list 'load-path (concat emacs-git "Plugins/autocomplete"))
-     (add-to-list 'load-path (concat emacs-git "Plugins/fill-column-indicator-1.83"))
-     (add-to-list 'load-path (concat emacs-git "Plugins/swiper"))
-   #+END_SRC
-** Loading the plugins
-*** Magit
-    This is the cool git mode for emacs
-    #+BEGIN_SRC emacs-lisp
-      ;TODO: Get the latest version of Magit from github, and see what has been happening
-
-      (load "magit")
-      (require 'magit)
-
-      (global-set-key "\C-ci" 'magit-status)
-      (global-set-key "\C-c\C-b" 'magit-blame-mode)
-
-      ; magit-diff-file was written by dov, and requsted to be merged into magit.
-      ; See: https://github.com/magit/magit/issues/2553
-      (defun magit-diff-file (rev-or-range &optional file args)
-        "Show changes between a file from another branch"
-        (interactive (list (magit-diff-read-range-or-commit "File diff for range" nil current-prefix-arg)
-                           (if current-prefix-arg
-                             (read-file-name "File: ")
-                             buffer-file-name))) 
-        (magit-diff-setup rev-or-range nil args
-                          (list (replace-regexp-in-string (magit-toplevel) "" (expand-file-name file)))))
-
-      (global-set-key (kbd "C-c d") 'magit-diff-file)
-
-      ; magit settings
-      (setq magit-push-always-verify nil) ; by default push to updtream branch
-      (setq git-commit-summary-max-length 256) ; length of commit-msg above which a warning is shown
-      (load "magit-blame")
-      (load "markdown-mode")
-      (setq magit-diff-options '("-w"))
-      (load "mo-git-blame")
-
-
-    #+END_SRC
-*** NSIS
-    #+BEGIN_SRC emacs-lisp
-      (autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
-    #+END_SRC
-*** lua
-    #+BEGIN_SRC emacs-lisp
-      (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
-      (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
-                                              ;(setq lua-indent-level 2)
-    #+END_SRC
-*** XMSI
-    This allows to replace sequences of characters for symbols
-    #+BEGIN_SRC emacs-lisp
-      (require 'xmsi-math-symbols-input)
-      (xmsi-mode)
-    #+END_SRC
-*** Ido mode
-    ido-mode is the cool autocompletion mode in the lower buffer
-    #+BEGIN_SRC emacs-lisp
-      (require 'ido)
-      (ido-mode t)
-
-                                              ; Allow sudo in ido-find-file  !!!
-      (defadvice ido-find-file (after find-file-sudo activate)
-        "Find file as root if necessary."
-        (unless (and buffer-file-name
-                     (file-writable-p buffer-file-name))
-          (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
-
-    #+END_SRC
-*** Smex
-    Smex uses Ido mode for M-x commands
-    #+BEGIN_SRC emacs-lisp
-                                              ;smex for using IDO for M-x commands
-      (require 'smex) ; Not needed if you use package.el
-      (smex-initialize) ; Can be omitted. This might cause a (minimal) delay
-                                              ; when Smex is auto-initialized on its first run.
- 
-      (global-set-key (kbd "M-x") 'smex)
-      (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-      ;; This is your old M-x.
-      (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-    #+END_SRC
-*** Ivy
-    Ivy is like Ido, but better is /some/ regards
-    #+BEGIN_SRC emacs-lisp
-      (require 'counsel)
-  
-      (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-immediate-done)
-      (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
-  
-      (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-      (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-      (global-set-key (kbd "<f1> l") 'counsel-find-library)
-  
-      (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-      (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-  
-      (global-set-key (kbd "C-c g") 'counsel-git)
-      (global-set-key (kbd "C-c j") 'counsel-git-grep)
-    #+END_SRC
-*** Undo Tree
-    #+BEGIN_SRC emacs-lisp
-      (require 'undo-tree)
-      (global-undo-tree-mode)
-      (set-default 'undo-tree-auto-save-history t)
-    #+END_SRC
-*** js2 mode for json
-    #+BEGIN_SRC emacs-lisp
-      (require 'js2-mode)
-    #+END_SRC
-*** YaSnippet for programming templates
-    #+BEGIN_SRC emacs-lisp
-      (require 'yasnippet)
-      (setq yas-snippet-dirs (list (concat emacs-git "Plugins/yasnippet/snippets")))
-      (yas-global-mode 1)
-
-      ;; Completing point by some yasnippet key
-      (defun yas-ido-expand ()
-        "Lets you select (and expand) a yasnippet key"
-        (interactive)
-        (let ((original-point (point)))
-          (while (and
-                  (not (= (point) (point-min) ))
-                  (not
-                   (string-match "[[:space:]\n]" (char-to-string (char-before)))))
-            (backward-word 1))
-          (let* ((init-word (point))
-                 (word (buffer-substring init-word original-point))
-                 (list (yas-active-keys)))
-            (goto-char original-point)
-            (let ((key (remove-if-not
-                        (lambda (s) (string-match (concat "^" word) s)) list)))
-              (if (= (length key) 1)
-                  (setq key (pop key))
-                (setq key (ido-completing-read "key: " list nil nil word)))
-              (delete-char (- init-word original-point))
-              (insert key)
-              (yas-expand)))))
-
-
-      (define-key yas-minor-mode-map (kbd "C-<return>")     'yas-ido-expand)
-      (define-key yas-minor-mode-map (kbd "C-<kp-enter>")     'yas-ido-expand)
-
-      (yas-reload-all)
-    #+END_SRC
-*** AutoCompletion
-    #+BEGIN_SRC emacs-lisp
-                                              ; Lexical completion with M-RET
-      (define-key yas-minor-mode-map (kbd "M-<return>")     'dabbrev-expand)
-      (define-key yas-minor-mode-map (kbd "M-<kp-enter>")     'dabbrev-expand)
-
-                                              ;auto-complete
-      (require 'auto-complete-config)
-      (add-to-list 'ac-dictionary-directories (concat emacs-git "Plugins/autocomplete/ac-dict"))
-      (ac-config-default)
-
-    #+END_SRC
-*** BitBake
-    #+BEGIN_SRC emacs-lisp
-      (require 'bb-mode)
-    #+END_SRC
-*** Fill Column Indicator
-   #+BEGIN_SRC emacs-lisp
-     (require 'fill-column-indicator)
-
-     (define-globalized-minor-mode
-       global-fci-mode fci-mode (lambda () (fci-mode 1)))
-
-     (global-fci-mode t)
-
-     (setq-default fill-column 100)
-   #+END_SRC
-*** dov-git-grep for advanced git search
-   #+BEGIN_SRC emacs-lisp
-     (load "dov-git-grep")
-
-     ;; git grep
-     (global-set-key (kbd "C-c F") 'dov-git-grep)
-
-     ;; git grep, case insensitive
-     (global-set-key (kbd "C-c f") 'dov-git-grep-case-insensitive)
-   #+END_SRC
-*** git-find-file
-    I'm experimenting with Ivy for a while
-    #+BEGIN_SRC emacs-lisp
-      ;;I'm experimenting with Ivy for a while
-      ;;(load "git-find-file.el")
-      ;;(global-set-key [(control c) ?g] 'git-find-file)
     #+END_SRC
 * Indentations
   #+BEGIN_SRC emacs-lisp
     (defun update-indent-mode ()
 
       (setq standard-indent my-indent)
-  
-                                            ; c/c++
+
+      ;; c/c++
       (setq c-basic-offset my-c-indent)
       (c-set-offset 'substatement my-substatement)
       (c-set-offset 'substatement-open my-substatement-open)
@@ -701,33 +743,28 @@
     (defun my-indent-mode ()
       "Set indent tabs to the xjet indent mode"
       (interactive)
+
       ;;general
       (setq my-indent 2)
-  
+
       ;; C++
-      (setq my-c-indent 4)
+      (setq my-c-indent 2)
       (setq my-substatement 2)
       (setq my-substatement-open 0)
       (setq my-access-label 0)
       (setq my-topmost-intro 0)
-  
+
       (update-indent-mode)
       )
   #+END_SRC
 * Modes
-  TL;DR: 
+  TL;DR:
   F10    → shell mode
   C-M-p → python mode
   C-M-t → text mode
   C-M-c → c++ mode
 ** Python Mode
    #+BEGIN_SRC emacs-lisp
-     ;;;;;;;;;;;;; python-mode - I'll try using the built-in mode that comes with emacs
-     ;;;;;;;(setq py-install-directory (concat emacs-git "Plugins/python-mode.el-6.1.2"))
-     ;;;;;;;(add-to-list 'load-path py-install-directory)
-     ;;;;;;;(setq py-outline-minor-mode-p nil)
-     ;;;;;;;(require 'python-mode)
-
      (global-set-key (kbd "C-M-p") 'python-mode)
 
      (add-hook 'python-mode-hook
@@ -742,7 +779,7 @@
    #+END_SRC
 ** Shell Mode
    #+BEGIN_SRC emacs-lisp
-                                             ;Open shell
+     ;;Open shell
      (defun open-shell ()
        "Load the emacs shell"
        (interactive)
@@ -750,14 +787,15 @@
        )
 
      (global-set-key [f10] 'open-shell)
-                                             ;??
+
+     ;;??
      (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
      ;; Allow sudo in shell command  !!!
      ;;TODO: make this work?
      ;;(defun sudo-shell-command (command)
      ;;  (shell-command (concat "echo " (read-passwd "Password: ") " | sudo -S " command)))
-
+     ;;
      ;;(global-set-key (kbd "C-M-!") 'sudo-shell-command(command))
    #+END_SRC
 ** Text Mode
@@ -770,20 +808,20 @@
      (interactive)
      (newline)
      (indent-relative-maybe))
-    
+
      (define-key text-mode-map [return] 'newline-and-indent-relative)
    #+END_SRC
 ** c++ Mode
 *** general
    #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "C-M-C") 'c++-mode)   
+     (global-set-key (kbd "C-M-C") 'c++-mode)
 
      (global-set-key (kbd "C-M-{") 'c-beginning-of-defun) ; something like matching function
      (global-set-key (kbd "C-M-}") 'c-end-of-defun)
 
      ;;switch between header and src files
      (add-hook 'c-mode-common-hook
-     (lambda() 
+     (lambda()
      (local-set-key  (kbd "C-c h") 'ff-find-other-file)))
    #+END_SRC
 *** find matching paren of any type
@@ -805,7 +843,7 @@
           (find-matching-element 're-search-forward 6 "ASSERT" "RETRACT"))
          ((looking-at "RETRACT")
           (find-matching-element 're-search-backward 0 "RETRACT" "ASSERT"))
-   
+
                                               ; Kettle CVC
                                               ;
                                               ; "\\b": word boundary assertion, needed because one delimiter is
@@ -840,7 +878,7 @@
          (t t)
          ))
 
-         (global-set-key "\M-[" 'find-matching-keyword)
+      (global-set-key "\M-[" 'find-matching-keyword)
     #+END_SRC
 *** hooks
     #+BEGIN_SRC emacs-lisp
@@ -851,7 +889,7 @@
 
       (add-hook 'c-mode-hook
                 (lambda ()
-                                              ;(setq indent-line-function (quote insert-tab))
+                  ;;(setq indent-line-function (quote insert-tab))
                   (my-indent-mode() )
                   ))
     #+END_SRC
@@ -867,19 +905,19 @@
      (setq my-default-font "InconsolataDov 11")
 
      ;; Make all font-lock faces fonts use inconsolata
-     (dolist (face '(font-lock-builtin-face 	
+     (dolist (face '(font-lock-builtin-face
                      font-lock-comment-delimiter-face
-                     font-lock-comment-face 	
+                     font-lock-comment-face
                      font-lock-constant-face
-                     font-lock-doc-face 	
+                     font-lock-doc-face
                      font-lock-function-name-face
-                     font-lock-keyword-face 	
+                     font-lock-keyword-face
                      font-lock-negation-char-face
-                     font-lock-preprocessor-face 	
+                     font-lock-preprocessor-face
                      font-lock-regexp-grouping-backslash
-                     font-lock-regexp-grouping-construct 	
+                     font-lock-regexp-grouping-construct
                      font-lock-string-face
-                     font-lock-type-face 	
+                     font-lock-type-face
                      font-lock-variable-name-face
                      font-lock-warning-face))
        (set-face-attribute face nil :family my-default-family))
@@ -893,7 +931,7 @@
 
 
      (defun my-org-hook ()
-     
+
        (local-set-key [(control c) (control ?.)] 'org-time-stamp)
        (local-set-key "\M-I" 'org-toggle-inline-images);org-toggle-iimage-in-org)
        (local-set-key "\C-c\C-pp" 'org-toggle-pretty-entities)
@@ -964,9 +1002,9 @@
          (plantuml . t)
          (octave . t)
          (C . t)
-         )) 
+         ))
 
-      (setq org-src-lang-modes 
+      (setq org-src-lang-modes
             '(("elisp" . emacs-lisp)
               ("ditaa" . artist)
               ("asymptote" . asy)
@@ -992,7 +1030,7 @@
                    org-file-apps
                    ))
             )
-        (progn 
+        (progn
           (setq org-file-apps
                 (append
                  '(("application/png" . "eog %s"))
@@ -1032,7 +1070,7 @@
 #+BEGIN_SRC emacs-lisp
   (defun my-reload-env-vars ()
                                           ; set env vars to be reloaded here
-    ;; e.g.:  
+    ;; e.g.:
     ;;  (setenv "METALJET" "$PE_HOME/XjetApps/MetalJet/Apps/Project/qt/" t)
     )
 
@@ -1046,7 +1084,7 @@
 
 #+END_SRC
 * Connecting various notebooks to keys
-  TL;DR: 
+  TL;DR:
   F8 → Personal Notebook
   F9 → Work Notebook
   C-> → This Init File
@@ -1077,7 +1115,7 @@
     (defun open-personal-notes-file ()
       "Load my personal notebook"
       (interactive)
-      
+
       (if (buffer-exists personal-notebook-filename)
           (progn
             (message "Switching to Personal Notebook")
@@ -1110,7 +1148,7 @@
         )
       )
 
-    (global-set-key (kbd "C->") '(lambda () (interactive) 
+    (global-set-key (kbd "C->") '(lambda () (interactive)
                                    (open-init-file)
                                    )
                     )
@@ -1232,7 +1270,7 @@
       (find-most-recent-pattern-buffer "\\.org\$"))
     (global-set-key (kbd "S-C-o") 'find-most-recent-org-buffer)
 
-    (global-set-key (kbd "C-S-s") '(lambda () (interactive) 
+    (global-set-key (kbd "C-S-s") '(lambda () (interactive)
                                      (switch-to-buffer (find-most-recent-pattern-buffer "\\*shell"))))
 
     (defun find-most-recent-magit-buffer ()
@@ -1306,10 +1344,9 @@
 
      ;(electric-pair-mode f) ;Automatic Parentheses completion, should I ever want it for some reason
    #+END_SRC
-
 * gdb
   #+BEGIN_SRC emacs-lisp
-                                            ;gdb and gud-gdb
+    ;;gdb and gud-gdb
     (add-hook 'gud-mode-hook
               '(lambda ()
                  (local-set-key [home] ; move to beginning of line, after prompt
@@ -1331,25 +1368,24 @@
 
                                             ; Load history file
                  ;;;;;WHY DOESN'T THIS WORK?!;;;;;
-                 ;;             (make-local-variable 'comint-input-ring-file-name) 
-                 ;;             (setq comint-input-ring-file-name ((concat emacs-persistance-dir "/comint-history"))) 
+                 ;;             (make-local-variable 'comint-input-ring-file-name)
+                 ;;             (setq comint-input-ring-file-name ((concat emacs-persistance-dir "/comint-history")))
                  ;;             (setq comint-input-ring-size 10000)
                  ;;             (set History)
                  (comint-read-input-ring)
                  (make-local-variable 'kill-buffer-hook)
                  (add-hook 'kill-buffer-hook 'comint-write-input-ring)
-             
+
                  ))
 
     ;;Is this needed? I'm using (?) gud
-    ;;(defun gdb-keys (map) 
+    ;;(defun gdb-keys (map)
     ;;  "Set key bindings for gdb debugging"
     ;;  (interactive)
     ;;  (define-key map [(alt n)] 'gdb-next)
     ;;  (define-key map [(alt s)] 'gdb-step)
     ;;  (define-key map [(alt f)] 'gdb-finish)
     ;;  (define-key map [(alt h)] 'gdb-cont-to))
-
   #+END_SRC
 * Autoload modes
   #+BEGIN_SRC emacs-lisp
@@ -1358,14 +1394,14 @@
            (list (cons "\\.cmake$" 'cmake-mode))
 
            (list (cons "\\.pro$" 'makefile-mode))
-       
+
            (list (cons "SConstruct" 'python-mode))
            (list (cons "SConscript" 'python-mode))
            (list (cons "\\.py$" 'python-mode))
            (list (cons "\\.run$" 'python-mode))
 
            (list (cons "\\.md$" 'markdown-mode))
-       
+
            (list (cons "\\.h$" 'c++-mode))
            (list (cons "\\.hh$" 'c++-mode))
            (list (cons "\\.H$" 'c++-mode))
@@ -1375,10 +1411,10 @@
 
            (list (cons "\\.json$" 'js2-mode))
 
-           (list (cons "\\.xml$" 'xml-mode)) 
+           (list (cons "\\.xml$" 'xml-mode))
 
            (list (cons "\\.txt$" 'text-mode))
-       
+
            (list (cons "\\.org" 'org-mode))
 
            (list (cons "\\.init" 'lisp-mode))
@@ -1403,65 +1439,6 @@
            (list (cons "\\.\\([Nn][Ss][Hh]\\)$" 'nsis-mode))
 
            (list (cons "\\.sh$" 'shell-script-mode))
-       
+
            auto-mode-alist))
-  #+END_SRC
-* IPython
-  TODO: make this work?
-  #+BEGIN_SRC emacs-lisp
-    ;; use IPython
-    (setq-default py-shell-name "ipython")
-    (setq-default py-which-bufname "IPython")
-
-    ;; use the wx backend, for both mayavi and matplotlib
-    (setq py-python-command-args
-          '("--gui=wx" "--pylab=wx" "-colors" "Linux"))
-    (setq py-force-py-shell-name-p t)
-
-    ;; switch to the interpreter after executing code
-    (setq py-shell-switch-buffers-on-execute-p t)
-    (setq py-switch-buffers-on-execute-p t)
-
-    ;; don't split windows
-    ;;(setq py-split-windows-on-execute-p nil)
-  #+END_SRC
-* Annotate TODO markers
-  TODO: make this work?
-  #+BEGIN_SRC emacs-lisp
-    ;;TODO: Make this work?
-    ;;(defun annotate-todo ()
-    ;;  "put fringe marker on TODO: lines in the curent buffer"
-    ;;  (interactive)
-    ;;  (save-excursion
-    ;;    (goto-char (point-min))
-    ;;    (while (re-search-forward "TODO:" nil t)
-    ;;      (let ((overlay (make-overlay (- (point) 5) (point))))
-    ;;        (overlay-put overlay 'before-string (propertize "A"
-    ;;                                                        'display '(left-fringe right-triangle)))))))
-    ;;
-    ;;(add-hook 'python-mode-hook 'annotate-todo)
-  #+END_SRC
-* Show full(er) path
-  #+BEGIN_SRC emacs-lisp
-    ;; Show full(er) buffer name in status bar
-    ;; (if (boundp 'InitialBufferName) () (setq InitialBufferName mode-line-buffer-identification))
-    ;; (setq-default mode-line-buffer-identification
-    ;;               (cons 'default-directory
-    ;;                ;'(:eval (replace-regexp-in-string "^.*/\\(.*\\)/" "\\1/" default-directory))
-    ;;                InitialBufferName))
-
-                                            ;Show BufferName and Path in Upper Tab
-    ;; Disable loading of “default.el” at startup,
-    ;; in Fedora all it does is fix window title which I rather configure differently
-    ;;(setq inhibit-default-init t)
-    ;;
-    ;; SHOW FILE PATH IN FRAME TITLE
-    ;;(setq-default frame-title-format "%b (%f)")
-    ;;
-
-    ;;(setq frame-title-format
-    ;;      (list (format "%s %%S: %%j " (system-name))
-    ;;        '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
-    ;;
-
   #+END_SRC
