@@ -6,8 +6,7 @@
 * TODO:
 ** Rebase or incorporate changes from master
 ** Env vars according to bashrc (under [[Emacs Env Vars]])
-** indents for different standards - look up in cree settings?
-*** python indents (test it) - [[Python Mode]]
+** python indents (test it) - [[Python Mode]]
 ** check out latest magit
 ** IPython? Jupyter?
 *** IPython
@@ -743,7 +742,7 @@
       (setq perl-indent-level my-indent)
       )
 
-    (defun my-indent-mode ()
+    (defun my-indent-mode-xjet ()
       "Set indent tabs to the xjet indent mode"
       (interactive)
 
@@ -759,6 +758,23 @@
 
       (update-indent-mode)
       )
+
+    (defun my-indent-mode-cree ()
+      "Set indent tabs to the xjet indent mode"
+      (interactive)
+      ;; C++
+      (setq my-indent 4)
+      (setq my-substatement 4)
+      (setq my-substatement-open 0)
+      (setq my-access-label 0)
+      (setq my-topmost-intro 0)
+      (update-indent-mode)
+
+      ;; Python
+      (setq python-indent-offset 2)
+
+      )
+
   #+END_SRC
 * Modes
   TL;DR:
@@ -772,7 +788,7 @@
 
      (add-hook 'python-mode-hook
        (lambda ()
-         (my-indent-mode))
+         (my-indent-mode-xjet))
        )
 
      ;;TODO: Python indents
@@ -887,13 +903,13 @@
     #+BEGIN_SRC emacs-lisp
       (add-hook 'c++-mode-hook
                 (lambda ()
-                  (my-indent-mode))
+                  (my-indent-mode-xjet))
                 )
 
       (add-hook 'c-mode-hook
                 (lambda ()
                   ;;(setq indent-line-function (quote insert-tab))
-                  (my-indent-mode() )
+                  (my-indent-mode-xjet )
                   ))
     #+END_SRC
 ** Org Mode
