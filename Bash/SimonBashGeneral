@@ -16,12 +16,20 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" || $EMACS
   # Replace Prompt
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
       PS1="|\h|>"
+
+      #This shows the path on the window tab or title.
+      # see https://superuser.com/questions/79972/set-the-title-of-the-terminal-window-to-the-current-directory
+      PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
       
   elif [[ $EMACS == "t" ]]; then
       PS1="|\w|>"
   
   else
       PS1=">"
+
+      #This shows the path on the window tab or title.
+      # see https://superuser.com/questions/79972/set-the-title-of-the-terminal-window-to-the-current-directory
+      PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
   fi
 
   PS2="...>"
