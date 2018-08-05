@@ -60,6 +60,8 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" || $EMACS
 
   alias df="pydf"
 
+  alias gitExtensions='mono /home/simon/github/GitExtensions/GitExtensions.exe &'
+
   #####################
   #Multi-Type Extractor
   #####################
@@ -176,8 +178,13 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" || $EMACS
 
 fi
 
+  ###########
+  # git completion in Bash
+  ###########
+  source /usr/share/bash-completion/completions/git
+
   ##########
-  #Additional Autocomplete files
+  #virtualbox Autocomplete in bash
   ##########
 
   source $SimonEnvBashPath"VirtualBoxAutoComplete"
