@@ -1023,6 +1023,11 @@
      ;;export to html-slidy
      (require 'ox-slidy)
    #+END_SRC
+*** ox-latex
+    #+BEGIN_SRC emacs-lisp
+      (require 'ox-latex)
+      (setq org-latex-create-formula-image-program 'dvipng)
+    #+END_SRC
 *** plantuml
     #+BEGIN_SRC emacs-lisp
       (setq plantuml-jar-path (concat emacs-git "Plugins/plantuml-mode/bin/"))
@@ -1043,6 +1048,7 @@
          (plantuml . t)
          (octave . t)
          (C . t)
+         (latex . t)
          ))
 
       (setq org-src-lang-modes
@@ -1052,6 +1058,7 @@
               ("dot" . fundamental)
               ("perl" . cperl)
               ("python" . python)
+              ("plantuml" . plantuml)
               ))
     #+END_SRC
 *** Apps to open links
