@@ -5,7 +5,7 @@
 
 * TODO:
 ** Rebase or incorporate changes from master
-** Env vars according to bashrc
+** Env vars according to bashrc (under [[Emacs Env Vars]])
 ** indents for different standards - look up in cree settings?
 *** python indents (test it) - [[Python Mode]]
 ** check out latest magit
@@ -74,7 +74,7 @@
       "The location of my Emacs environment settings")
 
      (defvar default-work-notes-file
-      "/home/simon/github/XJetWorkNotes/XJetWorkNotebook.org"
+      "/home/simon/github/XJetWorkNotes/WorkNotebook.org"
       "The location of my Work Notebook (somewhere on the work server?)")
 
      (defvar default-personal-notes-file
@@ -328,7 +328,7 @@
       (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 
       (global-set-key (kbd "C-c g") 'counsel-git)
-      (global-set-key (kbd "C-c f") 'counsel-git-grep) ;default was "C-c j"
+      (global-set-key (kbd "C-c j") 'counsel-git-grep) ;useful for finding a single occurrence
     #+END_SRC
 *** Undo Tree
     #+BEGIN_SRC emacs-lisp
@@ -404,14 +404,14 @@
    #+END_SRC
 *** dov-git-grep for advanced git search
    #+BEGIN_SRC emacs-lisp
-     ;;I'm experimenting with Ivy for a while
-     ;;(load "dov-git-grep")
-     ;;
+     (load "dov-git-grep")
+
      ;; git grep
-     ;;(global-set-key (kbd "C-c F") 'dov-git-grep)
-     ;;
+     (global-set-key (kbd "C-c F") 'dov-git-grep)
+
      ;; git grep, case insensitive
-     ;;(global-set-key (kbd "C-c f") 'dov-git-grep-case-insensitive)
+     ;;useful for finding a sequence across many files, with M-~ and M-` for next and previous file
+     (global-set-key (kbd "C-c f") 'dov-git-grep-case-insensitive)
    #+END_SRC
 *** git-find-file
     I'm experimenting with Ivy for a while
@@ -600,6 +600,9 @@
     #+END_SRC
 *** Jumping between words
     #+BEGIN_SRC emacs-lisp
+      ;;Subwork mode for jumping by camelback
+      (global-subword-mode t) ;Subword Mode - Jump by camelback
+
       ;; Change C-arrows to be the same as M-f/b
       (global-set-key (kbd "C-<right>")   'forward-word)
       (global-set-key (kbd "C-<kp-right>")   'forward-word)
@@ -921,6 +924,12 @@
                      font-lock-variable-name-face
                      font-lock-warning-face))
        (set-face-attribute face nil :family my-default-family))
+
+       (variable-pitch-mode t) ;something related to face (font)
+       (set-face-attribute 'org-table nil :family my-default-family)
+       (set-face-attribute 'org-checkbox nil :family my-default-family)
+       (set-face-attribute 'org-block nil :family my-default-family)
+       (set-face-attribute 'org-verbatim nil :family my-default-family :foreground "green4")
    #+END_SRC
 *** Bullets
    #+BEGIN_SRC emacs-lisp
@@ -929,21 +938,15 @@
      ;; This is a bug work around
      (defun org-element-cache-reset (&optional all) (interactive))
 
-
      (defun my-org-hook ()
 
        (local-set-key [(control c) (control ?.)] 'org-time-stamp)
-       (local-set-key "\M-I" 'org-toggle-inline-images);org-toggle-iimage-in-org)
-       (local-set-key "\C-c\C-pp" 'org-toggle-pretty-entities)
-       (local-set-key "\C-c\C-pi" 'org-toggle-iimage-inorg)
-       (local-set-key "\C-c\C-pi" 'org-toggle-iimage-inorg)
+       (local-set-key (kbd "M-S-i") 'org-toggle-inline-images) ;org-toggle-iimage-in-org)
+       (local-set-key (kbd "C-c C-p p") 'org-toggle-pretty-entities)
        (local-set-key (kbd "C-<tab>") 'next-buffer) ; C-Tab: Next Buffer
-       (setq org-export-with-sub-superscripts "{}")
-       (variable-pitch-mode t)
-       (set-face-attribute 'org-table nil :family my-default-family)
-       (set-face-attribute 'org-checkbox nil :family my-default-family)
-       (set-face-attribute 'org-block nil :family my-default-family)
-       (set-face-attribute 'org-verbatim nil :family my-default-family :foreground "green4")
+
+       (setq org-export-with-sub-superscripts "{}") ;use only {} for sub and super script
+
        (org-bullets-mode)
        (setq org-bullets-bullet-list
              '("▸"
@@ -960,12 +963,14 @@
 
        (setq org-hide-emphasis-markers nil)
        (setq org-confirm-babel-evaluate nil)
-       (xmsi-mode)
-       (org-toggle-pretty-entities)
+
        (setq bidi-paragraph-direction nil)
+
        (setq org-export-html-postamble nil)
        (setq org-export-html-validation-link "")
+
        ;; Use journal theme if requested
+       ;; not sure what this is, inherited from Dov
        (if (>= emacs-major-version 24)
            (if (string-match "NoteBook.org" (buffer-name) )
                (progn
@@ -1025,6 +1030,7 @@
             (setq org-file-apps
                   (append
                    '(("application/png" . "c:/progra~2/IrfanView/i_view32.exe %s"))
+                   ;;replace with path to office!!
                    '(("application/doc" . "\"c:/Program Files (x86)/OpenOffice.org 3/program/soffice.exe\" %s"))
 
                    org-file-apps
@@ -1043,7 +1049,6 @@
                  '(("application/odt" . "libreoffice -norestore %s"))
                  '(("\\.x?html\\'" . default))
                  org-file-apps))))
-
     #+END_SRC
 *** Add checkbox
     #+BEGIN_SRC emacs-lisp
@@ -1063,9 +1068,7 @@
           (end-of-line))))
 
       (global-set-key (kbd "C-M-]") 'org-set-line-checkbox)
-
     #+END_SRC
-
 * Emacs Env Vars
 #+BEGIN_SRC emacs-lisp
   (defun my-reload-env-vars ()
@@ -1079,15 +1082,13 @@
   (setenv "QTDIR" "/usr")
                                           ; add env vars according to bashrc...
 
-
   `my-reload-env-vars()
-
 #+END_SRC
 * Connecting various notebooks to keys
   TL;DR:
   F8 → Personal Notebook
   F9 → Work Notebook
-  C-> → This Init File
+  C-(shifted)> → This Init File
   #+BEGIN_SRC emacs-lisp
     (defun buffer-exists (bufname) (not (eq nil (get-buffer bufname))))
 
@@ -1098,7 +1099,7 @@
       (if (buffer-exists work-notebook-filename)
           (progn
             (message "Switching to Work Notebook")
-            (switch-to-buffer personal-notebook-filename)
+            (switch-to-buffer work-notebook-filename)
             )
         (progn
           (message "Opening Work Notebook")
@@ -1258,12 +1259,6 @@
       (find-most-recent-pattern-buffer "\\.\\(cpp\\|h\\|cc\\|hh|hpp\\)$"))
     (global-set-key (kbd "S-C-c") 'find-most-recent-c-buffer)
 
-    (defun find-most-recent-emacs-buffer ()
-      "find the most recent emacs init buffer in the history and switch to it"
-      (interactive)
-      (find-most-recent-pattern-buffer "\\.el\\$\\|dov.emacs|SimonInit.el"))
-    (global-set-key (kbd "S-C-e") 'find-most-recent-emacs-buffer)
-
     (defun find-most-recent-org-buffer ()
       "find the most recent code buffer in the history and switch to it"
       (interactive)
@@ -1281,13 +1276,13 @@
   #+END_SRC
 * Documentation Lookup
    #+BEGIN_SRC emacs-lisp
-                                             ; qt docs lookup
+     ;; qt docs lookup
      (require `info-look)
      (load "qtdoc")
      (setq qtdoc-html-root "http://doc.qt.io/qt-5/")
      (global-set-key [(control h) (control q)] 'qtdoc-lookup)
 
-                                             ;google-doc searches google for the various lookup commands
+     ;; google-doc searches google for the various lookup commands
      (load "google-look")
 
      (global-set-key [(control h) (control g)] 'google-lookup)
@@ -1317,7 +1312,6 @@
      (global-set-key (kbd "C-<tab>") 'next-buffer) ; C-Tab: Next Buffer
      (global-set-key (kbd "C-S-<iso-lefttab>") 'previous-buffer) ; C-S-Tab: Previous Buffer
      (global-set-key (kbd "C-S-<tab>") 'previous-buffer) ; C-S-Tab: Previous Buffer
-
    #+END_SRC
 ** Files
    #+BEGIN_SRC emacs-lisp
@@ -1336,8 +1330,6 @@
 
      (global-set-key (kbd "C-x t") 'toggle-truncate-lines)
      (set-default 'truncate-lines nil)
-
-     (global-subword-mode t) ;Subword Mode - Jump by camelback
 
      (setq-default tab-width 8) ;I never use tabs. but if present they should be very visible
      (setq-default indent-tabs-mode nil) ; never use tabs when auto-indenting
