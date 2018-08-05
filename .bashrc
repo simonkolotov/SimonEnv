@@ -5,14 +5,16 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-if [ -f /home/simon/github/SimonEnv/Bash/SimonBashGeneral ]; then
+export SimonEnvBashPath=/home/simon/github/SimonEnv/Bash/
+
+if [ -f $SimonEnvBashPath"SimonBashGeneral" ]; then
 	source /home/simon/github/SimonEnv/Bash/SimonBashGeneral
 fi
 
-#if [ -f /home/simon/github/SimonEnv/Bash/SimonWorkSettings ]; then
+#if [ -f $SimonEnvBashPath"SimonWorkSettings" ]; then
 #	source /home/simon/github/SimonEnv/Bash/SimonWorkSettings
 #fi
 
-if [ -f /home/simon/github/SimonEnv/Bash/SimonHomeSettings ]; then
+if [ -f $SimonEnvBashPath"SimonHomeSettings" ]; then
 	source /home/simon/github/SimonEnv/Bash/SimonHomeSettings
 fi
