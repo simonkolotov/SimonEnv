@@ -62,6 +62,11 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "rxvt" || $EMACS
 
   alias gitExtensions='mono /home/simon/github/GitExtensions/GitExtensions.exe &'
 
+  ###########
+  # git completion in Bash
+  ###########
+  source /usr/share/bash-completion/completions/git
+
   #####################
   #Multi-Type Extractor
   #####################
