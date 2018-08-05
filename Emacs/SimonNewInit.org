@@ -224,11 +224,16 @@
 
      ;(add-to-list 'load-path (concat emacs-git "Plugins/ein")) ;for python notebook. I didn't manage to make it work
 
+     (add-to-list 'load-path (concat emacs-git "Plugins/plantuml-mode"))
+
      (add-to-list 'load-path (concat emacs-git "Plugins/org-mode"))
      (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/lisp"))
      (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/contrib/lisp"))
+
      (add-to-list 'load-path (concat emacs-git "Plugins/autocomplete"))
+
      (add-to-list 'load-path (concat emacs-git "Plugins/fill-column-indicator-1.83"))
+
      (add-to-list 'load-path (concat emacs-git "Plugins/swiper"))
    #+END_SRC
 ** Loading the plugins
@@ -418,6 +423,10 @@
       ;;I'm experimenting with Ivy for a while
       ;;(load "git-find-file.el")
       ;;(global-set-key [(control c) ?g] 'git-find-file)
+    #+END_SRC
+*** plantuml
+    #+BEGIN_SRC emacs-lisp
+      (require 'plantuml-mode)
     #+END_SRC
 * GUI and Visuals
 ** Misc small things
@@ -1008,6 +1017,11 @@
      ;;export to html-slidy
      (require 'ox-slidy)
    #+END_SRC
+*** plantuml
+    #+BEGIN_SRC emacs-lisp
+      (setq plantuml-jar-path (concat emacs-git "Plugins/plantuml-mode/bin/"))
+    #+END_SRC
+
 *** languages
     #+BEGIN_SRC emacs-lisp
       ;; Source Languages
@@ -1033,10 +1047,6 @@
               ("perl" . cperl)
               ("python" . python)
               ))
-
-      (setq org-plantuml-jar-path
-            (concat emacs-git "/Plugins/plantuml.jar"))
-
     #+END_SRC
 *** Apps to open links
     #+BEGIN_SRC emacs-lisp
