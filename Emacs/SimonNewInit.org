@@ -245,33 +245,38 @@
 *** Magit
     This is the cool git mode for emacs
     #+BEGIN_SRC emacs-lisp
-      ;TODO: Get the latest version of Magit from github, and see what has been happening
+      ;;TODO: Get the latest version of Magit from github, and see what has been happening
       (load "magit")
       (require 'magit)
 
       (global-set-key "\C-ci" 'magit-status)
       (global-set-key "\C-c\C-b" 'magit-blame-mode)
 
-      ; magit-diff-file was written by dov, and requsted to be merged into magit.
-      ; See: https://github.com/magit/magit/issues/2553
+      ;; magit-diff-file was written by dov, and requsted to be merged into magit.
+      ;; See: https://github.com/magit/magit/issues/2553
       (defun magit-diff-file (rev-or-range &optional file args)
         "Show changes between a file from another branch"
         (interactive (list (magit-diff-read-range-or-commit "File diff for range" nil current-prefix-arg)
                            (if current-prefix-arg
-                             (read-file-name "File: ")
+                               (read-file-name "File: ")
                              buffer-file-name)))
         (magit-diff-setup rev-or-range nil args
                           (list (replace-regexp-in-string (magit-toplevel) "" (expand-file-name file)))))
 
       (global-set-key (kbd "C-c d") 'magit-diff-file)
 
-      ; magit settings
+      ;; magit settings
       (setq magit-push-always-verify nil) ; by default push to updtream branch
       (setq git-commit-summary-max-length 256) ; length of commit-msg above which a warning is shown
       (load "magit-blame")
       (load "markdown-mode")
       (setq magit-diff-options '("-w"))
       (load "mo-git-blame")
+    #+END_SRC
+*** git-modes
+    Those are various git-related modes (e.g. .gitattributes, .gitignore files etc)
+    #+BEGIN_SRC emacs-lisp
+      (require 'git-modes)
     #+END_SRC
 *** NSIS
     #+BEGIN_SRC emacs-lisp
