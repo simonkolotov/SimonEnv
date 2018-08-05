@@ -4,7 +4,7 @@
 #+OPTIONS: TOC:nil
 
 * TODO:
-** Rebase or incorporate changes from master
+** Something not working in [[ox-slidy]] and [[ox-latex]] → fix it
 ** Env vars according to bashrc (under [[Emacs Env Vars]])
 ** python indents (test it) - [[Python Mode]]
 ** check out latest magit
@@ -1025,13 +1025,15 @@
 *** ox-slidy
     NB: for some reason this has to go *after* the previous org hooks...
    #+BEGIN_SRC emacs-lisp
+     ;;Something NOT WORKING HERE
      ;;export to html-slidy
-     (require 'ox-slidy)
+     ;;(require 'ox-slidy)
    #+END_SRC
 *** ox-latex
     #+BEGIN_SRC emacs-lisp
-      (require 'ox-latex)
-      (setq org-latex-create-formula-image-program 'dvipng)
+      ;;Something NOT WORKING HERE
+      ;;(require 'ox-latex)
+      ;;(setq org-latex-create-formula-image-program 'dvipng)
     #+END_SRC
 *** plantuml
     #+BEGIN_SRC emacs-lisp
