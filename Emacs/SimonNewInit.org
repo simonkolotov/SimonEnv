@@ -424,10 +424,11 @@
      (global-set-key (kbd "C-c f") 'dov-git-grep-case-insensitive)
    #+END_SRC
 *** git-find-file
-    I'm experimenting with Ivy for a while
+    this is used to both find a file in a repo (I'm currently not using it and trying the IVY way)
+    and as a basis for dov-git-grep (which I am using to allow for M-~ etc)
     #+BEGIN_SRC emacs-lisp
+      (load "git-find-file.el")
       ;;I'm experimenting with Ivy for a while
-      ;;(load "git-find-file.el")
       ;;(global-set-key [(control c) ?g] 'git-find-file)
     #+END_SRC
 *** plantuml
