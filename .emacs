@@ -22,7 +22,10 @@
   "The number of monitors to take into account when calculating the Emacs window size (2/3 of the
   available width)")
 
-                                        ;emacs persistance directory
+(defalias `my-indent-mode `my-indent-mode-xjet
+  "My Indent Mode")
+
+;;emacs persistance directory
 (if (not (boundp 'emacs-persistance-dir))
     (setq emacs-persistance-dir "/home/simon/.emacs.d")
 )

@@ -64,69 +64,76 @@
     A lot of additional stuff (including how to organize the init file as an org mode) I learned from [[http://cestlaz.github.io/stories/emacs/][Mark Zamansky's excellent blog on emacs]]
 ** To use this file, add lines similar to the following to ~/.emacs:
    #+BEGIN_SRC .emacs-file
-     ;This is done to safely ignore local-variables warnings
-     (setq enable-local-variables :safe)
+;;This is done to safely ignore local-variables warnings
+(setq enable-local-variables :safe)
 
-     ;Setting basic location and variables - override those if needed
-     (defvar emacs-git
-      "/home/simon/github/SimonEnv/Emacs/"
-      "The location of my Emacs environment settings")
+;;Setting basic location and variables - override those if needed
+(defvar emacs-git
+  "/home/simon/github/SimonEnv/Emacs/"
+  "The location of my Emacs environment settings")
 
-     (defvar default-work-notes-file
-      "/home/simon/github/XJetWorkNotes/WorkNotebook.org"
-      "The location of my Work Notebook (somewhere on the work server?)")
+(defvar default-work-notes-file
+  "/home/simon/github/XJetWorkNotes/WorkNoteBook.org"
+  "The location of my Work Notebook (somewhere on the work server?)")
 
-     (defvar default-personal-notes-file
-      "/home/simon/Notebook/NoteBook.org"
-      "The location of my personal notebook (mounted from EncFS)")
+(defvar default-personal-notes-file
+  "/home/simon/Notebook/NoteBook.org"
+  "The location of my personal notebook (mounted from EncFS)")
 
-     (defvar default-init-file
-      (concat emacs-git "SimonNewInit.org")
-      "My Init File")
+(defvar default-init-file 
+  (concat emacs-git "SimonNewInit.org") 
+  "My Init File")
 
-     (defvar my-emacs-monitors-num 1
-      "The number of monitors to take into account when calculating the Emacs window size (2/3 of the
-       available width)")
+(defvar my-emacs-monitors-num 1
+  "The number of monitors to take into account when calculating the Emacs window size (2/3 of the
+  available width)")
 
-     ;emacs persistance directory
-     (if (not (boundp 'emacs-persistance-dir))
-         (setq emacs-persistance-dir "/home/simon/.emacs.d")
-     )
+(defalias `my-indent-mode `my-indent-mode-xjet
+  "My Indent Mode")
 
-     ;;Loading the rest of the configuration from my environment
-     (if (string-equal (file-name-extension default-init-file) "org")
-       ;;The new way: via org mode
-       (org-babel-load-file default-init-file)
+;;emacs persistance directory
+(if (not (boundp 'emacs-persistance-dir))
+    (setq emacs-persistance-dir "/home/simon/.emacs.d")
+  )
 
-       ;;Else: The old way
-       (load default-init-file)
-     )
+;;Loading the rest of the configuration from my environment
+(if (string-equal (file-name-extension default-init-file) "org")
+    ;;The new way: via org mode
+    (org-babel-load-file default-init-file)
+
+  ;;Else: The old way
+  (load default-init-file)
+  )
    #+END_SRC
 * Setting up the basics
 ** Default files and directories
   #+BEGIN_SRC emacs-lisp
-    (if (not (boundp 'default-init-file))
-        (defvar default-init-file
-          (concat emacs-git "SimonNewInit.org")
-          "My Init File")
-      )
+(if (not (boundp 'default-init-file))
+    (defvar default-init-file
+      (concat emacs-git "SimonNewInit.org")
+      "My Init File")
+  )
 
-    (defvar default-init-filename
-      (file-name-nondirectory default-init-file)
-      "Name of the default init file"
-      )
+(defvar default-init-filename
+  (file-name-nondirectory default-init-file)
+  "Name of the default init file"
+  )
 
-    (if (boundp 'default-work-notes-file)
-        (defvar work-notebook-filename
-          (file-name-nondirectory default-work-notes-file)
-          "Name of the default Work Notebook")
-      )
+(if (boundp 'default-work-notes-file)
+    (defvar work-notebook-filename
+      (file-name-nondirectory default-work-notes-file)
+      "Name of the default Work Notebook")
+  )
 
-    (if (boundp 'default-personal-notes-file)
-        (defvar personal-notebook-filename
-          (file-name-nondirectory default-personal-notes-file)
-          "Name of the default Personal Notebook")
-      )
+(if (boundp 'default-personal-notes-file)
+    (defvar personal-notebook-filename
+      (file-name-nondirectory default-personal-notes-file)
+      "Name of the default Personal Notebook")
+  )
+(if (not (boundp 'my-indent-mode))
+    (defalias `my-indent-mode `my-indent-mode-xjet
+      "My Indent Mode")
+  )
   #+END_SRC
 ** Number of monitors attached
    #+BEGIN_SRC emacs-lisp
@@ -286,7 +293,7 @@
     #+BEGIN_SRC emacs-lisp
       (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
       (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
-                                              ;(setq lua-indent-level 2)
+
     #+END_SRC
 *** XMSI
     This allows to replace sequences of characters for symbols
@@ -761,6 +768,9 @@
 
       ;; Perl
       (setq perl-indent-level my-indent)
+
+      ;; lua
+      (setq lua-indent-level my-indent)
       )
 
     (defun my-indent-mode-xjet ()
@@ -791,9 +801,8 @@
       (setq my-topmost-intro 0)
       (update-indent-mode)
 
-      ;; Python
+      ;; Python - override
       (setq python-indent-offset 2)
-
       )
 
   #+END_SRC
@@ -809,13 +818,20 @@
 
      (add-hook 'python-mode-hook
        (lambda ()
-         (my-indent-mode-xjet))
+         (my-indent-mode))
        )
 
      ;;TODO: Python indents
 
      ;; try to automagically figure out indentation
      (setq py-smart-indentation t)
+   #+END_SRC
+** Lua Mode
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'lua-mode-hook
+          (lambda ()
+            (my-indent-mode))
+          )
    #+END_SRC
 ** Shell Mode
    #+BEGIN_SRC emacs-lisp
@@ -924,13 +940,13 @@
     #+BEGIN_SRC emacs-lisp
       (add-hook 'c++-mode-hook
                 (lambda ()
-                  (my-indent-mode-xjet))
+                  (my-indent-mode))
                 )
 
       (add-hook 'c-mode-hook
                 (lambda ()
                   ;;(setq indent-line-function (quote insert-tab))
-                  (my-indent-mode-xjet )
+                  (my-indent-mode)
                   ))
     #+END_SRC
 ** Org Mode
@@ -1069,6 +1085,13 @@
               ("plantuml" . plantuml)
               ))
     #+END_SRC
+*** src blocks settings
+    #+BEGIN_SRC emacs-lisp
+      (setq org-edit-src-content-indentation 0)
+      (setq org-src-tab-acts-natively t)
+      (setq org-src-preserve-indentation t)
+      (setq org-src-fontify-natively t)
+    #+END_SRC
 *** Apps to open links
     #+BEGIN_SRC emacs-lisp
       ;;Define programs to open files
@@ -1114,6 +1137,10 @@
           (end-of-line))))
 
       (global-set-key (kbd "C-M-]") 'org-set-line-checkbox)
+    #+END_SRC
+*** Allow selection with shift
+    #+BEGIN_SRC emacs-lisp
+      (setq org-support-shift-select t)
     #+END_SRC
 * Emacs Env Vars
 #+BEGIN_SRC emacs-lisp
@@ -1488,3 +1515,11 @@
 
            auto-mode-alist))
   #+END_SRC
+* General hooks
+** before-save
+   #+BEGIN_SRC emacs-lisp
+     ;(add-hook ’before-save-hook ’untabify)
+     ;(add-hook ’before-save-hook ’whitespace-cleanup)
+   #+END_SRC
+* Spell Checking
+  
