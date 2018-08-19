@@ -242,6 +242,8 @@
      (add-to-list 'load-path (concat emacs-git "Plugins/fill-column-indicator-1.83"))
 
      (add-to-list 'load-path (concat emacs-git "Plugins/swiper"))
+
+     (add-to-list 'load-path (concat emacs-git "Plugins/expand-region"))
    #+END_SRC
 ** Loading the plugins
 *** Move-Border for window resizing
@@ -331,20 +333,22 @@
 *** Ivy
     Ivy is like Ido, but better is /some/ regards. I use it for opening files, but not for M-x or switch-to-buffer
     #+BEGIN_SRC emacs-lisp
-      (require 'counsel)
+(require 'counsel)
+;;Try out the swiper search
+(global-set-key (kbd "C-M-s") 'swiper)
 
-      (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-immediate-done)
-      (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
+(define-key ivy-minibuffer-map (kbd "C-j") 'ivy-immediate-done)
+(define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
 
-      (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-      (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-      (global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
 
-      (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-      (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 
-      (global-set-key (kbd "C-c g") 'counsel-git)
-      (global-set-key (kbd "C-c j") 'counsel-git-grep) ;useful for finding a single occurrence
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep) ;useful for finding a single occurrence
     #+END_SRC
 *** Undo Tree
     #+BEGIN_SRC emacs-lisp
@@ -746,6 +750,26 @@
     #+BEGIN_SRC emacs-lisp
     (winner-mode 1)
     #+END_SRC
+** Ibuffer
+   ibuffer is an interactive version of switch buffer (with selection)
+   (C-x b) for switch buffer (with ido)
+   (C-x C-b) for selecting the buffer + more info
+   #+BEGIN_SRC emacs-lisp
+   (defalias 'list-buffers 'ibuffer-other-window) ; make ibuffer default
+   #+END_SRC
+** Beacon Mode
+   This lights upthe curson on window move
+   #+BEGIN_SRC emacs-lisp
+(require 'beacon)
+(beacon-mode 1)
+   #+END_SRC
+** Expand Region
+   Semantic expansion of selection
+   #+BEGIN_SRC emacs-lisp
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C--") 'er/contract-region)
+   #+END_SRC
 * Indentations
   #+BEGIN_SRC emacs-lisp
     (defun update-indent-mode ()
@@ -1396,6 +1420,12 @@
    #+BEGIN_SRC emacs-lisp
      (global-set-key "\C-x\C-r" 'revert-buffer)
    #+END_SRC
+** Which-key
+   This shows a popup to help remember different key combinations
+   #+BEGIN_SRC emacs-lisp
+(require 'which-key)
+(which-key-mode)
+   #+END_SRC
 * Programming
    #+BEGIN_SRC emacs-lisp
      (define-key global-map (kbd "RET") 'newline-and-indent) ; For programming language modes
@@ -1521,5 +1551,3 @@
      ;(add-hook ’before-save-hook ’untabify)
      ;(add-hook ’before-save-hook ’whitespace-cleanup)
    #+END_SRC
-* Spell Checking
-  
