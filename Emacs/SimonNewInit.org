@@ -446,6 +446,10 @@
     #+BEGIN_SRC emacs-lisp
       (require 'plantuml-mode)
     #+END_SRC
+*** python pickle-mode (from Dov)
+    #+BEGIN_SRC emacs-lisp
+    (load "pickle-mode.el")
+    #+END_SRC
 * GUI and Visuals
 ** Misc small things
    #+BEGIN_SRC emacs-lisp
