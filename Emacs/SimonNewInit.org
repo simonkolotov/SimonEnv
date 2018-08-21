@@ -64,46 +64,46 @@
     A lot of additional stuff (including how to organize the init file as an org mode) I learned from [[http://cestlaz.github.io/stories/emacs/][Mark Zamansky's excellent blog on emacs]]
 ** To use this file, add lines similar to the following to ~/.emacs:
    #+BEGIN_SRC .emacs-file
-;;This is done to safely ignore local-variables warnings
-(setq enable-local-variables :safe)
+     ;;This is done to safely ignore local-variables warnings
+     (setq enable-local-variables :safe)
 
-;;Setting basic location and variables - override those if needed
-(defvar emacs-git
-  "/home/simon/github/SimonEnv/Emacs/"
-  "The location of my Emacs environment settings")
+     ;;Setting basic location and variables - override those if needed
+     (defvar emacs-git
+       "/home/simon/github/SimonEnv/Emacs/"
+       "The location of my Emacs environment settings")
 
-(defvar default-work-notes-file
-  "/home/simon/github/XJetWorkNotes/WorkNoteBook.org"
-  "The location of my Work Notebook (somewhere on the work server?)")
+     (defvar default-work-notes-file
+       "/home/simon/github/XJetWorkNotes/WorkNoteBook.org"
+       "The location of my Work Notebook (somewhere on the work server?)")
 
-(defvar default-personal-notes-file
-  "/home/simon/Notebook/NoteBook.org"
-  "The location of my personal notebook (mounted from EncFS)")
+     (defvar default-personal-notes-file
+       "/home/simon/Notebook/NoteBook.org"
+       "The location of my personal notebook (mounted from EncFS)")
 
-(defvar default-init-file 
-  (concat emacs-git "SimonNewInit.org") 
-  "My Init File")
+     (defvar default-init-file 
+       (concat emacs-git "SimonNewInit.org") 
+       "My Init File")
 
-(defvar my-emacs-monitors-num 1
-  "The number of monitors to take into account when calculating the Emacs window size (2/3 of the
-  available width)")
+     (defvar my-emacs-monitors-num 1
+       "The number of monitors to take into account when calculating the Emacs window size (2/3 of the
+       available width)")
 
-(defalias `my-indent-mode `my-indent-mode-xjet
-  "My Indent Mode")
+     (defalias `my-indent-mode `my-indent-mode-xjet
+       "My Indent Mode")
 
-;;emacs persistance directory
-(if (not (boundp 'emacs-persistance-dir))
-    (setq emacs-persistance-dir "/home/simon/.emacs.d")
-  )
+     ;;emacs persistance directory
+     (if (not (boundp 'emacs-persistance-dir))
+         (setq emacs-persistance-dir "/home/simon/.emacs.d")
+       )
 
-;;Loading the rest of the configuration from my environment
-(if (string-equal (file-name-extension default-init-file) "org")
-    ;;The new way: via org mode
-    (org-babel-load-file default-init-file)
+     ;;Loading the rest of the configuration from my environment
+     (if (string-equal (file-name-extension default-init-file) "org")
+         ;;The new way: via org mode
+         (org-babel-load-file default-init-file)
 
-  ;;Else: The old way
-  (load default-init-file)
-  )
+       ;;Else: The old way
+       (load default-init-file)
+       )
    #+END_SRC
 * Setting up the basics
 ** Default files and directories
@@ -229,7 +229,7 @@
 
      (add-to-list 'load-path (concat emacs-git "Plugins/yasnippet"))
 
-     ;(add-to-list 'load-path (concat emacs-git "Plugins/ein")) ;for python notebook. I didn't manage to make it work
+                                             ;(add-to-list 'load-path (concat emacs-git "Plugins/ein")) ;for python notebook. I didn't manage to make it work
 
      (add-to-list 'load-path (concat emacs-git "Plugins/plantuml-mode"))
 
@@ -244,6 +244,8 @@
      (add-to-list 'load-path (concat emacs-git "Plugins/swiper"))
 
      (add-to-list 'load-path (concat emacs-git "Plugins/expand-region"))
+
+     (add-to-list 'load-path (concat emacs-git "Plugins/flycheck"))
    #+END_SRC
 ** Loading the plugins
 *** Move-Border for window resizing
@@ -333,22 +335,22 @@
 *** Ivy
     Ivy is like Ido, but better is /some/ regards. I use it for opening files, but not for M-x or switch-to-buffer
     #+BEGIN_SRC emacs-lisp
-(require 'counsel)
-;;Try out the swiper search
-(global-set-key (kbd "C-M-s") 'swiper)
+      (require 'counsel)
+      ;;Try out the swiper search
+      (global-set-key (kbd "C-M-s") 'swiper)
 
-(define-key ivy-minibuffer-map (kbd "C-j") 'ivy-immediate-done)
-(define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
+      (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-immediate-done)
+      (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
 
-(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "<f1> l") 'counsel-find-library)
+      (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+      (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+      (global-set-key (kbd "<f1> l") 'counsel-find-library)
 
-(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+      (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+      (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 
-(global-set-key (kbd "C-c g") 'counsel-git)
-(global-set-key (kbd "C-c j") 'counsel-git-grep) ;useful for finding a single occurrence
+      (global-set-key (kbd "C-c g") 'counsel-git)
+      (global-set-key (kbd "C-c j") 'counsel-git-grep) ;useful for finding a single occurrence
     #+END_SRC
 *** Undo Tree
     #+BEGIN_SRC emacs-lisp
@@ -365,6 +367,7 @@
       (require 'yasnippet)
       (setq yas-snippet-dirs (list (concat emacs-git "Plugins/yasnippet/snippets")))
       (yas-global-mode 1)
+
 
       ;; Completing point by some yasnippet key
       (defun yas-ido-expand ()
@@ -390,6 +393,8 @@
               (yas-expand)))))
 
 
+      (define-key yas-minor-mode-map (kbd "TAB")    nil)
+
       (define-key yas-minor-mode-map (kbd "C-<return>")     'yas-ido-expand)
       (define-key yas-minor-mode-map (kbd "C-<kp-enter>")     'yas-ido-expand)
 
@@ -398,8 +403,8 @@
 *** AutoCompletion
     #+BEGIN_SRC emacs-lisp
       ;; Lexical completion with M-RET
-      (define-key yas-minor-mode-map (kbd "M-<return>")     'dabbrev-expand)
-      (define-key yas-minor-mode-map (kbd "M-<kp-enter>")     'dabbrev-expand)
+      (global-set-key (kbd "M-<return>")     'dabbrev-expand)
+      (global-set-key (kbd "M-<kp-enter>")     'dabbrev-expand)
 
       ;;auto-complete
       (require 'auto-complete-config)
@@ -449,6 +454,12 @@
 *** python pickle-mode (from Dov)
     #+BEGIN_SRC emacs-lisp
     (load "pickle-mode.el")
+    #+END_SRC
+*** flycheck for lint
+    #+BEGIN_SRC emacs-lisp
+      ;;; Code:
+      (require 'flycheck)
+      (global-flycheck-mode)
     #+END_SRC
 * GUI and Visuals
 ** Misc small things
@@ -764,15 +775,19 @@
 ** Beacon Mode
    This lights upthe curson on window move
    #+BEGIN_SRC emacs-lisp
-(require 'beacon)
-(beacon-mode 1)
+     (require 'beacon)
+     (beacon-mode 1)
    #+END_SRC
 ** Expand Region
    Semantic expansion of selection
    #+BEGIN_SRC emacs-lisp
-(require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
-(global-set-key (kbd "C--") 'er/contract-region)
+     (require 'expand-region)
+     (global-set-key (kbd "C-=") 'er/expand-region)
+     (global-set-key (kbd "C--") 'er/contract-region)
+   #+END_SRC
+** y/n for yes/no
+   #+BEGIN_SRC emacs-lisp
+   (fset 'yes-or-no-p 'y-or-n-p)
    #+END_SRC
 * Indentations
   #+BEGIN_SRC emacs-lisp
@@ -1052,20 +1067,16 @@
 
        ;; Use journal theme if requested
        ;; not sure what this is, inherited from Dov
-       (if (>= emacs-major-version 24)
-           (if (string-match "NoteBook.org" (buffer-name) )
-               (progn
-                 (disable-theme 'org-default)
-                 (load-theme-buffer-local 'org-journal))
-             (load-theme-buffer-local 'org-default)))
        (setq org-entities-user '(
                                  ("models" "\\models" t "&8872;" "[models]" "models" "⊨")
                                  ("indf" "{\bf 1}" t "&#120128;" "[indf]" "indf" "𝟙")
                                  ("ell" "\\ell" t "&#2113;" "[ell]" "indf" "ℓ")
                                  ))
-
        )
      (add-hook 'org-mode-hook 'my-org-hook)
+
+     ;;disable yas-mode in org-mode
+     (add-hook 'org-mode-hook (lambda () (yas-minor-mode -1)))
    #+END_SRC
 *** ox-slidy
     NB: for some reason this has to go *after* the previous org hooks...
@@ -1115,10 +1126,14 @@
     #+END_SRC
 *** src blocks settings
     #+BEGIN_SRC emacs-lisp
-      (setq org-edit-src-content-indentation 0)
       (setq org-src-tab-acts-natively t)
-      (setq org-src-preserve-indentation t)
       (setq org-src-fontify-natively t)
+
+      ;;Disable elisp Flycheck in src-block
+      (defun disable-fylcheck-in-org-src-block ()
+        (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+
+      (add-hook 'org-src-mode-hook 'disable-fylcheck-in-org-src-block)
     #+END_SRC
 *** Apps to open links
     #+BEGIN_SRC emacs-lisp
@@ -1445,7 +1460,7 @@
      (global-set-key (kbd "C-x t") 'toggle-truncate-lines)
      (set-default 'truncate-lines nil)
 
-     (setq-default tab-width 8) ;I never use tabs. but if present they should be very visible
+     (setq-default tab-width 16) ;I never use tabs. but if present they should be very visible
      (setq-default indent-tabs-mode nil) ; never use tabs when auto-indenting
 
      ;(electric-pair-mode f) ;Automatic Parentheses completion, should I ever want it for some reason
