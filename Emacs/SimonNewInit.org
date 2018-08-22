@@ -244,6 +244,8 @@
      (add-to-list 'load-path (concat emacs-git "Plugins/swiper"))
 
      (add-to-list 'load-path (concat emacs-git "Plugins/expand-region"))
+
+     (add-to-list 'load-path (concat emacs-git "Plugins/multiple-cursors"))
    #+END_SRC
 ** Loading the plugins
 *** Move-Border for window resizing
@@ -340,15 +342,13 @@
       (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-immediate-done)
       (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
 
-      (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-      (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-      (global-set-key (kbd "<f1> l") 'counsel-find-library)
-
-      (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-      (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+      (global-set-key (kbd "C-c u") 'counsel-unicode-char)
 
       (global-set-key (kbd "C-c g") 'counsel-git)
-      (global-set-key (kbd "C-c j") 'counsel-git-grep) ;useful for finding a single occurrence
+      (global-set-key (kbd "C-c j") 'counsel-git-grep) ;useful for finding a single occurrence (compare to Dov's git grep)
+
+      (global-set-key (kbd "M-y") 'counsel-yank-pop) ;using counsel to select from kill ring
+      (define-key ivy-minibuffer-map (kbd "M-y") 'ivy-next-line)
     #+END_SRC
 *** Undo Tree
     #+BEGIN_SRC emacs-lisp
@@ -453,6 +453,15 @@
     #+BEGIN_SRC emacs-lisp
     (load "pickle-mode.el")
     #+END_SRC
+*** multiple-cursors
+    A very powerful tool I need to experiment with
+    #+BEGIN_SRC emacs-lisp
+      (require 'multiple-cursors)
+
+      (global-set-key (kbd "C-S-s") 'mc/mark-next-like-this)
+      (global-set-key (kbd "C-S-r") 'mc/mark-previous-like-this)
+      (global-set-key (kbd "C-S-a") 'mc/mark-all-like-this)
+    #+END_SRC
 * GUI and Visuals
 ** Misc small things
    #+BEGIN_SRC emacs-lisp
@@ -481,6 +490,9 @@
 
      ;;Don't add newline at end of file
      (setq mode-require-final-newline nil)
+
+     ;;Save clipboard in emacs kill ring before overwriting it
+     (setq save-interprogram-paste-before-kill t)
    #+END_SRC
 ** Invert colors for my emacs editor
    #+BEGIN_SRC emacs-lisp
@@ -780,6 +792,43 @@
 ** y/n for yes/no
    #+BEGIN_SRC emacs-lisp
    (fset 'yes-or-no-p 'y-or-n-p)
+   #+END_SRC
+** Narrow or Widen DWIM
+   *Do What I Mean* for Narrow or Widen
+   This narrows on the relevant part(region, org-src-block, org-subtree, or
+     defun, whichever applies first)
+   I took this from Mike Zamansky, who quoted it from [[http://endlessparentheses.com/][Endless Parentheses]]
+   #+BEGIN_SRC emacs-lisp
+     (defun narrow-or-widen-dwim (p)
+       "Widen if buffer is narrowed, narrow-dwim otherwise.
+          Dwim means: region, org-src-block, org-subtree, or
+          defun, whichever applies first. Narrowing to
+          org-src-block actually calls `org-edit-src-code'.
+
+          With prefix P, don't widen, just narrow even if buffer
+          is already narrowed."
+       (interactive "P")
+       (declare (interactive-only))
+       (cond ((and (buffer-narrowed-p) (not p)) (widen))
+             ((region-active-p)
+              (narrow-to-region (region-beginning)
+                                (region-end)))
+             ((derived-mode-p 'org-mode)
+              ;; `org-edit-src-code' is not a real narrowing
+              ;; command. Remove this first conditional if
+              ;; you don't want it.
+              (cond ((ignore-errors (org-edit-src-code) t)
+                     (delete-other-windows))
+                    ((ignore-errors (org-narrow-to-block) t))
+                    (t (org-narrow-to-subtree))))
+             ((derived-mode-p 'latex-mode)
+              (LaTeX-narrow-to-environment))
+             (t (narrow-to-defun))))
+
+     ;; This line actually replaces Emacs' entire narrowing
+     ;; keymap, that's how much I like this command. Only
+     ;; copy it if that's what you want.
+     (define-key ctl-x-map "n" #'narrow-or-widen-dwim)
    #+END_SRC
 * Indentations
   #+BEGIN_SRC emacs-lisp
@@ -1338,48 +1387,44 @@
    #+END_SRC
 * Most Recent Buffers
   #+BEGIN_SRC emacs-lisp
-    ;; Most Recent Buffers
-    (defun find-first-buffer-match (buffers pattern)
-      (dolist (f buffers)
-        (when (string-match pattern (buffer-name f))
-          (return f))))
+        ;; Most Recent Buffers
+        (defun find-first-buffer-match (buffers pattern)
+          (dolist (f buffers)
+            (when (string-match pattern (buffer-name f))
+              (return f))))
 
-    (defun find-most-recent-pattern-buffer (pattern)
-      "find the most recent code buffer in the history and switch to it"
-      (let ((f (find-first-buffer-match (cdr (buffer-list)) pattern)))
-        (if (not (eq f nil))
-            (switch-to-buffer f)
+        (defun find-most-recent-pattern-buffer (pattern)
+          "find the most recent code buffer in the history and switch to it"
+          (let ((f (find-first-buffer-match (cdr (buffer-list)) pattern)))
+            (if (not (eq f nil))
+                (switch-to-buffer f)
+              )
+            )
           )
-        )
-      )
 
-    (defun find-most-recent-python-buffer ()
-      "find the most recent python buffer in the history and switch to it"
-      (interactive)
-      (find-most-recent-pattern-buffer "\\.py"))
-    (global-set-key (kbd "S-C-p") 'find-most-recent-python-buffer)
+        (defun find-most-recent-python-buffer ()
+          "find the most recent python buffer in the history and switch to it"
+          (interactive)
+          (find-most-recent-pattern-buffer "\\.py"))
 
-    (defun find-most-recent-c-buffer ()
-      "find the most recent c/c++ buffer in the history and switch to it"
-      (interactive)
-      (find-most-recent-pattern-buffer "\\.\\(cpp\\|h\\|cc\\|hh|hpp\\)$"))
-    (global-set-key (kbd "S-C-c") 'find-most-recent-c-buffer)
+        (defun find-most-recent-c-buffer ()
+          "find the most recent c/c++ buffer in the history and switch to it"
+          (interactive)
+          (find-most-recent-pattern-buffer "\\.\\(cpp\\|h\\|cc\\|hh|hpp\\)$"))
 
-    (defun find-most-recent-org-buffer ()
-      "find the most recent code buffer in the history and switch to it"
-      (interactive)
-      (find-most-recent-pattern-buffer "\\.org\$"))
-    (global-set-key (kbd "S-C-o") 'find-most-recent-org-buffer)
+        (defun find-most-recent-org-buffer ()
+          "find the most recent code buffer in the history and switch to it"
+          (interactive)
+          (find-most-recent-pattern-buffer "\\.org\$"))
 
-    (global-set-key (kbd "C-S-s")
-                    '(lambda () (interactive)
-                       (switch-to-buffer (find-most-recent-pattern-buffer "\\*shell"))))
+        (defun find-most-recent-shell-buffer ()
+          (interactive)
+          (find-most-recent-pattern-buffer "\\*shell"))
 
-    (defun find-most-recent-magit-buffer ()
-      "find the most recent magit buffer in the history and switch to it"
-      (interactive)
-      (find-most-recent-pattern-buffer "magit"))
-    (global-set-key (kbd "S-C-m") 'find-most-recent-magit-buffer)
+        (defun find-most-recent-magit-buffer ()
+          "find the most recent magit buffer in the history and switch to it"
+          (interactive)
+          (find-most-recent-pattern-buffer "magit"))
   #+END_SRC
 * Documentation Lookup
    #+BEGIN_SRC emacs-lisp
