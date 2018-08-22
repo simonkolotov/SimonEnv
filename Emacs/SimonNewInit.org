@@ -244,8 +244,6 @@
      (add-to-list 'load-path (concat emacs-git "Plugins/swiper"))
 
      (add-to-list 'load-path (concat emacs-git "Plugins/expand-region"))
-
-     (add-to-list 'load-path (concat emacs-git "Plugins/flycheck"))
    #+END_SRC
 ** Loading the plugins
 *** Move-Border for window resizing
@@ -454,12 +452,6 @@
 *** python pickle-mode (from Dov)
     #+BEGIN_SRC emacs-lisp
     (load "pickle-mode.el")
-    #+END_SRC
-*** flycheck for lint
-    #+BEGIN_SRC emacs-lisp
-      ;;; Code:
-      (require 'flycheck)
-      (global-flycheck-mode)
     #+END_SRC
 * GUI and Visuals
 ** Misc small things
@@ -1128,12 +1120,6 @@
     #+BEGIN_SRC emacs-lisp
       (setq org-src-tab-acts-natively t)
       (setq org-src-fontify-natively t)
-
-      ;;Disable elisp Flycheck in src-block
-      (defun disable-fylcheck-in-org-src-block ()
-        (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
-
-      (add-hook 'org-src-mode-hook 'disable-fylcheck-in-org-src-block)
     #+END_SRC
 *** Apps to open links
     #+BEGIN_SRC emacs-lisp
