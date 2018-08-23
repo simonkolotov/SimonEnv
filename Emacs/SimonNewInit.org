@@ -82,8 +82,8 @@
        "/home/simon/Notebook/NoteBook.org"
        "The location of my personal notebook (mounted from EncFS)")
 
-     (defvar default-init-file 
-       (concat emacs-git "SimonNewInit.org") 
+     (defvar default-init-file
+       (concat emacs-git "SimonNewInit.org")
        "My Init File")
 
      (defvar my-emacs-monitors-num 1
@@ -349,6 +349,8 @@
       (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
 
       (global-set-key (kbd "C-c u") 'counsel-unicode-char)
+
+      (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
 
       (global-set-key (kbd "C-c g") 'counsel-git)
       (global-set-key (kbd "C-c j") 'counsel-git-grep) ;useful for finding a single occurrence (compare to Dov's git grep)
@@ -787,7 +789,45 @@
    (C-x b) for switch buffer (with ido)
    (C-x C-b) for selecting the buffer + more info
    #+BEGIN_SRC emacs-lisp
-   (defalias 'list-buffers 'ibuffer-other-window) ; make ibuffer default
+     (defalias 'list-buffers 'ibuffer-other-window) ; make ibuffer default
+
+     (setq ibuffer-saved-filter-groups
+           (quote (("default"
+
+                    ("dired" (mode . dired-mode))
+
+                    ("org" (name . "^.*org$"))
+
+                    ("json" (mode . js2-mode))
+
+                    ("shell" (or (mode . eshell-mode) (mode . shell-mode)))
+
+                    ("mu4e" (name . "\*mu4e\*"))
+
+                    ("programming" (or
+                                    (mode . python-mode)
+                                    (mode . c-mode)
+                                    (mode . c++-mode)
+                                    (mode . lua-mode)
+                                    (mode . c++-mode)
+                                    ))
+                    ("emacs" (or
+                              (name . "^\\*scratch\\*$")
+                              (name . "^\\*Messages\\*$")))
+                    ))))
+
+     (add-hook 'ibuffer-mode-hook
+               (lambda ()
+                 (ibuffer-auto-mode 1)
+                 (ibuffer-switch-to-saved-filter-groups "default")))
+
+     ;; don't show these
+                                             ;(add-to-list 'ibuffer-never-show-predicates "zowie")
+     ;; Don't show filter groups if there are no buffers in that group
+     (setq ibuffer-show-empty-filter-groups nil)
+
+     ;; Don't ask for confirmation to delete marked buffers
+     (setq ibuffer-expert t)
    #+END_SRC
 ** Beacon Mode
    This lights upthe curson on window move
