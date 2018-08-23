@@ -48,10 +48,12 @@
 ** sudo in shell mode
 *** check out [[Shell Mode]]
 ** root under ido-mode
+   Zamansky mentions the possibility of opening file as sudo by opening sudo::FILENAME (*Double Colon!*)
 ** Path in status bar?
 ** test image opener on Windows
 ** Check out WinUtils.el (under [[Windows vs Linux Settings]])
 ** Go over the rest of scott.emacs.el and delete it
+** before-save-hook
 ** Cheat-sheet
 * Introduction
 ** General
