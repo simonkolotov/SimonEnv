@@ -1,0 +1,19 @@
+site_name: "Projectile: The Project Interaction Library for Emacs"
+repo_url: https://github.com/bbatsov/projectile
+site_favicon: favicon.ico
+copyright: "Copyright (C) 2011-2018 Bozhidar Batsov and Projectile contributors"
+docs_dir: doc
+pages:
+- Home: index.md
+- Installation: installation.md
+- Usage: usage.md
+- Configuration: configuration.md
+- Extensions: extensions.md
+- FAQ: faq.md
+- Contributing: contributing.md
+- Support: support.md
+extra_css:
+  - css/extra.css
+markdown_extensions:
+  - admonition
+theme: readthedocs

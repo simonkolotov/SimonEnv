@@ -248,6 +248,10 @@
      (add-to-list 'load-path (concat emacs-git "Plugins/expand-region"))
 
      (add-to-list 'load-path (concat emacs-git "Plugins/multiple-cursors"))
+
+     (add-to-list 'load-path (concat emacs-git "Plugins/projectile"))
+
+     (add-to-list 'load-path (concat emacs-git "Plugins/counsel-projectile"))
    #+END_SRC
 ** Loading the plugins
 *** Move-Border for window resizing
@@ -464,6 +468,13 @@
       (global-set-key (kbd "C-S-r") 'mc/mark-previous-like-this)
       (global-set-key (kbd "C-S-a") 'mc/mark-all-like-this)
     #+END_SRC
+*** Projectile for limiting the commands to the current project
+    Based on .git or similar files
+    #+BEGIN_SRC emacs-lisp
+      (require 'counsel-projectile)
+      (projectile-global-mode)
+      (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+    #+END_SRC
 * GUI and Visuals
 ** Misc small things
    #+BEGIN_SRC emacs-lisp
@@ -537,25 +548,25 @@
              (sleep-for 0.5)                               ; see below
              (set-frame-position frame horiz-pos vert-pos) ; and move (after resize)
 
-                                             ; There is a bug where sometimes, inexplicably, the window appears
-                                             ; shifted about halfway off the right edge of the screen.  I have no
-                                             ; idea which software the bug is in (emacs, X server, KDE, ...).
-                                             ; It can be reliably reproduced by running, in sequence:
-                                             ;   `frame-occupy-normal-position'
-                                             ;   `frame-occupy-normal-position'
-                                             ;   `frame-occupy-right-half-screen'
-                                             ;   `frame-occupy-normal-position'        ; here it will be bad
-                                             ;   `frame-occupy-normal-position'        ; one more gets it back ok
-                                             ;
-                                             ; Update:  On a hunch it was (at least partially) a race condition
-                                             ; I've inserted a 0.1 second delay between resize and move, and this
-                                             ; has cured the problem (at least when running on my system with emacs
-                                             ; running on the same machine as the X server).
-                                             ;
-                                             ; Faster machine, longer delay (?): 0.2 secs works now..
-                                             ; Then again, no delay at all also works!  cool.
-                                             ; no it doesn't.. but the delay doesn't help..
-                                             ; nothing works except doing it twice...
+             ;; There is a bug where sometimes, inexplicably, the window appears
+             ;; shifted about halfway off the right edge of the screen.  I have no
+             ;; idea which software the bug is in (emacs, X server, KDE, ...).
+             ;; It can be reliably reproduced by running, in sequence:
+             ;;   `frame-occupy-normal-position'
+             ;;   `frame-occupy-normal-position'
+             ;;   `frame-occupy-right-half-screen'
+             ;;   `frame-occupy-normal-position'        ; here it will be bad
+             ;;   `frame-occupy-normal-position'        ; one more gets it back ok
+             ;;
+             ;; Update:  On a hunch it was (at least partially) a race condition
+             ;; I've inserted a 0.1 second delay between resize and move, and this
+             ;; has cured the problem (at least when running on my system with emacs
+             ;; running on the same machine as the X server).
+             ;;
+             ;; Faster machine, longer delay (?): 0.2 secs works now..
+             ;; Then again, no delay at all also works!  cool.
+             ;; no it doesn't.. but the delay doesn't help..
+             ;; nothing works except doing it twice...
              )
          ))
 
