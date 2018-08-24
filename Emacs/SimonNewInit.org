@@ -496,6 +496,17 @@
       ;;how to open the text windows
       (setq atomic-chrome-buffer-open-style 'frame)
     #+END_SRC
+*** git gutter for marking git changes
+    #+BEGIN_SRC emacs-lisp
+      (require 'git-gutter)
+      (global-git-gutter-mode +1)
+
+      ;;later think about git-gutter-hydra here
+    #+END_SRC
+*** git-timemachine for previewing file history
+    #+BEGIN_SRC emacs-lisp
+      (require 'git-timemachine)
+    #+END_SRC
 * GUI and Visuals
 ** Misc small things
    #+BEGIN_SRC emacs-lisp
