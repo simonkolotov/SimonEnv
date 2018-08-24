@@ -7,7 +7,7 @@ export D=/mnt/HDD/win/D
 export C=/mnt/HDD/win/C
 export INCOMING_D=$D/Incoming
 export PERSONAL=$D/Personal
-export DROPBOX=$PERSONAL/Senya/Dropbox
+export DROPBOX=/home/simon/Dropbox
 
 export SEAGATE=/run/media/simon/Seagate\ Backup\ Plus\ Drive
 export TRANSCEND=/run/media/simon/Transcend
