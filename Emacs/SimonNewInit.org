@@ -231,7 +231,7 @@
 
      (add-to-list 'load-path (concat emacs-git "Plugins/yasnippet"))
 
-                                             ;(add-to-list 'load-path (concat emacs-git "Plugins/ein")) ;for python notebook. I didn't manage to make it work
+     ;;(add-to-list 'load-path (concat emacs-git "Plugins/ein")) ;for python notebook. I didn't manage to make it work
 
      (add-to-list 'load-path (concat emacs-git "Plugins/plantuml-mode"))
 
@@ -252,6 +252,9 @@
      (add-to-list 'load-path (concat emacs-git "Plugins/projectile"))
 
      (add-to-list 'load-path (concat emacs-git "Plugins/counsel-projectile"))
+
+     ;;websocket for atomic chrome
+     (add-to-list 'load-path (concat emacs-git "Plugins/websocket"))
    #+END_SRC
 ** Loading the plugins
 *** Move-Border for window resizing
@@ -476,6 +479,22 @@
       (require 'counsel-projectile)
       (projectile-global-mode)
       (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+    #+END_SRC
+*** Atomic chrome for editing chrome text boxes from within emacs
+    #+BEGIN_SRC emacs-lisp
+      (require 'atomic-chrome)
+      (atomic-chrome-start-server)
+
+      ;;the mode to use when editing
+      (setq atomic-chrome-default-major-mode 'markdown-mode)
+
+      ;;specific modes for different websites
+      (setq atomic-chrome-url-major-mode-alist
+            '(("github\\.com" . gfm-mode)
+              ("redmine" . textile-mode)))
+
+      ;;how to open the text windows
+      (setq atomic-chrome-buffer-open-style 'frame)
     #+END_SRC
 * GUI and Visuals
 ** Misc small things
