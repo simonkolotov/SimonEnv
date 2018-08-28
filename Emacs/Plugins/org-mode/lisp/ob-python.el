@@ -1,11 +1,11 @@
-;;; ob-python.el --- org-babel functions for python evaluation
+;;; ob-python.el --- Babel Functions for Python      -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2009-2013 Free Software Foundation, Inc.
+;; Copyright (C) 2009-2018 Free Software Foundation, Inc.
 
 ;; Authors: Eric Schulte
 ;;	 Dan Davison
 ;; Keywords: literate programming, reproducible research
-;; Homepage: http://orgmode.org
+;; Homepage: https://orgmode.org
 
 ;; This file is part of GNU Emacs.
 
@@ -20,7 +20,7 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+;; along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -28,12 +28,11 @@
 
 ;;; Code:
 (require 'ob)
-(eval-when-compile (require 'cl))
+(require 'org-macs)
 
-(declare-function org-remove-indentation "org" )
 (declare-function py-shell "ext:python-mode" (&optional argprompt))
 (declare-function py-toggle-shells "ext:python-mode" (arg))
-(declare-function run-python "ext:python" (cmd &optional dedicated show))
+(declare-function run-python "ext:python" (&optional cmd dedicated show))
 
 (defvar org-babel-tangle-lang-exts)
 (add-to-list 'org-babel-tangle-lang-exts '("python" . "py"))
@@ -48,15 +47,13 @@
   :type 'string)
 
 (defcustom org-babel-python-mode
-  (if (or (featurep 'xemacs) (featurep 'python-mode)) 'python-mode 'python)
+  (if (featurep 'python-mode) 'python-mode 'python)
   "Preferred python mode for use in running python interactively.
-This will typically be either 'python or 'python-mode."
+This will typically be either `python' or `python-mode'."
   :group 'org-babel
   :version "24.4"
   :package-version '(Org . "8.0")
-  :type 'function)
-
-(defvar org-src-preserve-indentation)
+  :type 'symbol)
 
 (defcustom org-babel-python-hline-to "None"
   "Replace hlines in incoming tables with this when translating to python."
@@ -66,22 +63,25 @@ This will typically be either 'python or 'python-mode."
   :type 'string)
 
 (defcustom org-babel-python-None-to 'hline
-  "Replace 'None' in python tables with this before returning."
+  "Replace `None' in python tables with this before returning."
   :group 'org-babel
   :version "24.4"
   :package-version '(Org . "8.0")
-  :type 'string)
+  :type 'symbol)
 
 (defun org-babel-execute:python (body params)
   "Execute a block of Python code with Babel.
 This function is called by `org-babel-execute-src-block'."
-  (let* ((session (org-babel-python-initiate-session
-		   (cdr (assoc :session params))))
-         (result-params (cdr (assoc :result-params params)))
-         (result-type (cdr (assoc :result-type params)))
+  (let* ((org-babel-python-command
+	  (or (cdr (assq :python params))
+	      org-babel-python-command))
+	 (session (org-babel-python-initiate-session
+		   (cdr (assq :session params))))
+         (result-params (cdr (assq :result-params params)))
+         (result-type (cdr (assq :result-type params)))
 	 (return-val (when (and (eq result-type 'value) (not session))
-		       (cdr (assoc :return params))))
-	 (preamble (cdr (assoc :preamble params)))
+		       (cdr (assq :return params))))
+	 (preamble (cdr (assq :preamble params)))
          (full-body
 	  (org-babel-expand-body:generic
 	   (concat body (if return-val (format "\nreturn %s" return-val) ""))
@@ -90,10 +90,10 @@ This function is called by `org-babel-execute-src-block'."
 		  session full-body result-type result-params preamble)))
     (org-babel-reassemble-table
      result
-     (org-babel-pick-name (cdr (assoc :colname-names params))
-			  (cdr (assoc :colnames params)))
-     (org-babel-pick-name (cdr (assoc :rowname-names params))
-			  (cdr (assoc :rownames params))))))
+     (org-babel-pick-name (cdr (assq :colname-names params))
+			  (cdr (assq :colnames params)))
+     (org-babel-pick-name (cdr (assq :rowname-names params))
+			  (cdr (assq :rownames params))))))
 
 (defun org-babel-prep-session:python (session params)
   "Prepare SESSION according to the header arguments in PARAMS.
@@ -125,7 +125,7 @@ VARS contains resolved variable references"
      (format "%s=%s"
 	     (car pair)
 	     (org-babel-python-var-to-python (cdr pair))))
-   (mapcar #'cdr (org-babel-get-header params :var))))
+   (org-babel--get-vars params)))
 
 (defun org-babel-python-var-to-python (var)
   "Convert an elisp value to a python variable.
@@ -133,23 +133,22 @@ Convert an elisp value, VAR, into a string of python source code
 specifying a variable of the same value."
   (if (listp var)
       (concat "[" (mapconcat #'org-babel-python-var-to-python var ", ") "]")
-    (if (equal var 'hline)
+    (if (eq var 'hline)
 	org-babel-python-hline-to
       (format
        (if (and (stringp var) (string-match "[\n\r]" var)) "\"\"%S\"\"" "%S")
-       var))))
+       (if (stringp var) (substring-no-properties var) var)))))
 
 (defun org-babel-python-table-or-string (results)
   "Convert RESULTS into an appropriate elisp value.
 If the results look like a list or tuple, then convert them into an
 Emacs-lisp table, otherwise return the results as a string."
-  ((lambda (res)
-     (if (listp res)
-	 (mapcar (lambda (el) (if (equal el 'None)
-			     org-babel-python-None-to el))
-		 res)
-       res))
-   (org-babel-script-escape results)))
+  (let ((res (org-babel-script-escape results)))
+    (if (listp res)
+        (mapcar (lambda (el) (if (eq el 'None)
+                            org-babel-python-None-to el))
+                res)
+      res)))
 
 (defvar org-babel-python-buffers '((:default . "*Python*")))
 
@@ -157,14 +156,14 @@ Emacs-lisp table, otherwise return the results as a string."
   "Return the buffer associated with SESSION."
   (cdr (assoc session org-babel-python-buffers)))
 
-(defun org-babel-python-with-earmufs (session)
+(defun org-babel-python-with-earmuffs (session)
   (let ((name (if (stringp session) session (format "%s" session))))
     (if (and (string= "*" (substring name 0 1))
 	     (string= "*" (substring name (- (length name) 1))))
 	name
       (format "*%s*" name))))
 
-(defun org-babel-python-without-earmufs (session)
+(defun org-babel-python-without-earmuffs (session)
   (let ((name (if (stringp session) session (format "%s" session))))
     (if (and (string= "*" (substring name 0 1))
 	     (string= "*" (substring name (- (length name) 1))))
@@ -172,6 +171,8 @@ Emacs-lisp table, otherwise return the results as a string."
       name)))
 
 (defvar py-default-interpreter)
+(defvar py-which-bufname)
+(defvar python-shell-buffer-name)
 (defun org-babel-python-initiate-session-by-key (&optional session)
   "Initiate a python session.
 If there is not a current inferior-process-buffer in SESSION
@@ -189,9 +190,9 @@ then create.  Return the initialized session."
 	(if (not (version< "24.1" emacs-version))
 	    (run-python cmd)
 	  (unless python-buffer
-	    (setq python-buffer (org-babel-python-with-earmufs session)))
+	    (setq python-buffer (org-babel-python-with-earmuffs session)))
 	  (let ((python-shell-buffer-name
-		 (org-babel-python-without-earmufs python-buffer)))
+		 (org-babel-python-without-earmuffs python-buffer)))
 	    (run-python cmd))))
        ((and (eq 'python-mode org-babel-python-mode)
 	     (fboundp 'py-shell)) ; python-mode.el
@@ -207,7 +208,7 @@ then create.  Return the initialized session."
 			  (concat "Python-" (symbol-name session))))
 	       (py-which-bufname bufname))
 	  (py-shell)
-	  (setq python-buffer (org-babel-python-with-earmufs bufname))))
+	  (setq python-buffer (org-babel-python-with-earmuffs bufname))))
        (t
 	(error "No function available for running an inferior Python")))
       (setq org-babel-python-buffers
@@ -215,7 +216,7 @@ then create.  Return the initialized session."
 		  (assq-delete-all session org-babel-python-buffers)))
       session)))
 
-(defun org-babel-python-initiate-session (&optional session params)
+(defun org-babel-python-initiate-session (&optional session _params)
   "Create a session named SESSION according to PARAMS."
   (unless (string= session "none")
     (org-babel-python-session-buffer
@@ -223,19 +224,28 @@ then create.  Return the initialized session."
 
 (defvar org-babel-python-eoe-indicator "'org_babel_python_eoe'"
   "A string to indicate that evaluation has completed.")
-(defvar org-babel-python-wrapper-method
+(defconst org-babel-python-wrapper-method
   "
 def main():
 %s
 
 open('%s', 'w').write( str(main()) )")
-(defvar org-babel-python-pp-wrapper-method
+(defconst org-babel-python-pp-wrapper-method
   "
 import pprint
 def main():
 %s
 
 open('%s', 'w').write( pprint.pformat(main()) )")
+
+(defconst org-babel-python--exec-tmpfile
+  (concat
+   "__org_babel_python_fname = '%s'; "
+   "__org_babel_python_fh = open(__org_babel_python_fname); "
+   "exec(compile("
+   "__org_babel_python_fh.read(), __org_babel_python_fname, 'exec'"
+   ")); "
+   "__org_babel_python_fh.close()"))
 
 (defun org-babel-python-evaluate
   (session body &optional result-type result-params preamble)
@@ -247,42 +257,41 @@ open('%s', 'w').write( pprint.pformat(main()) )")
      body result-type result-params preamble)))
 
 (defun org-babel-python-evaluate-external-process
-  (body &optional result-type result-params preamble)
+    (body &optional result-type result-params preamble)
   "Evaluate BODY in external python process.
-If RESULT-TYPE equals 'output then return standard output as a
-string.  If RESULT-TYPE equals 'value then return the value of the
+If RESULT-TYPE equals `output' then return standard output as a
+string.  If RESULT-TYPE equals `value' then return the value of the
 last statement in BODY, as elisp."
-  ((lambda (raw)
-     (org-babel-result-cond result-params
-       raw
-       (org-babel-python-table-or-string (org-babel-trim raw))))
-   (case result-type
-     (output (org-babel-eval org-babel-python-command
-			     (concat (if preamble (concat preamble "\n") "")
-				     body)))
-     (value (let ((tmp-file (org-babel-temp-file "python-")))
-	      (org-babel-eval
-	       org-babel-python-command
-	       (concat
-		(if preamble (concat preamble "\n") "")
-		(format
-		 (if (member "pp" result-params)
-		     org-babel-python-pp-wrapper-method
-		   org-babel-python-wrapper-method)
-		 (mapconcat
-		  (lambda (line) (format "\t%s" line))
-		  (split-string
-		   (org-remove-indentation
-		    (org-babel-trim body))
-		   "[\r\n]") "\n")
-		 (org-babel-process-file-name tmp-file 'noquote))))
-	      (org-babel-eval-read-file tmp-file))))))
+  (let ((raw
+         (pcase result-type
+           (`output (org-babel-eval org-babel-python-command
+				    (concat preamble (and preamble "\n")
+					    body)))
+           (`value (let ((tmp-file (org-babel-temp-file "python-")))
+		     (org-babel-eval
+		      org-babel-python-command
+		      (concat
+		       preamble (and preamble "\n")
+		       (format
+			(if (member "pp" result-params)
+			    org-babel-python-pp-wrapper-method
+			  org-babel-python-wrapper-method)
+			(mapconcat
+			 (lambda (line) (format "\t%s" line))
+			 (split-string (org-remove-indentation (org-trim body))
+				       "[\r\n]")
+			 "\n")
+			(org-babel-process-file-name tmp-file 'noquote))))
+		     (org-babel-eval-read-file tmp-file))))))
+    (org-babel-result-cond result-params
+      raw
+      (org-babel-python-table-or-string (org-trim raw)))))
 
 (defun org-babel-python-evaluate-session
-  (session body &optional result-type result-params)
+    (session body &optional result-type result-params)
   "Pass BODY to the Python process in SESSION.
-If RESULT-TYPE equals 'output then return standard output as a
-string.  If RESULT-TYPE equals 'value then return the value of the
+If RESULT-TYPE equals `output' then return standard output as a
+string.  If RESULT-TYPE equals `value' then return the value of the
 last statement in BODY, as elisp."
   (let* ((send-wait (lambda () (comint-send-input nil t) (sleep-for 0 5)))
 	 (dump-last-value
@@ -296,44 +305,66 @@ last statement in BODY, as elisp."
 		  (format "open('%s', 'w').write(pprint.pformat(_))"
 			  (org-babel-process-file-name tmp-file 'noquote)))
 	       (list (format "open('%s', 'w').write(str(_))"
-			     (org-babel-process-file-name tmp-file 'noquote)))))))
+			     (org-babel-process-file-name tmp-file
+                                                          'noquote)))))))
+	 (last-indent 0)
 	 (input-body (lambda (body)
-		       (mapc (lambda (line) (insert line) (funcall send-wait))
-			     (split-string body "[\r\n]"))
-		       (funcall send-wait))))
-    ((lambda (results)
-       (unless (string= (substring org-babel-python-eoe-indicator 1 -1) results)
-	 (org-babel-result-cond result-params
-	   results
-	   (org-babel-python-table-or-string results))))
-     (case result-type
-       (output
-	(mapconcat
-	 #'org-babel-trim
-	 (butlast
-	  (org-babel-comint-with-output
-	      (session org-babel-python-eoe-indicator t body)
-	    (funcall input-body body)
-	    (funcall send-wait) (funcall send-wait)
-	    (insert org-babel-python-eoe-indicator)
-	    (funcall send-wait))
-	  2) "\n"))
-       (value
-	(let ((tmp-file (org-babel-temp-file "python-")))
-	  (org-babel-comint-with-output
-	      (session org-babel-python-eoe-indicator nil body)
-	    (let ((comint-process-echoes nil))
-	      (funcall input-body body)
-	      (funcall dump-last-value tmp-file (member "pp" result-params))
-	      (funcall send-wait) (funcall send-wait)
-	      (insert org-babel-python-eoe-indicator)
-	      (funcall send-wait)))
-	  (org-babel-eval-read-file tmp-file)))))))
+		       (dolist (line (split-string body "[\r\n]"))
+			 ;; Insert a blank line to end an indent
+			 ;; block.
+			 (let ((curr-indent (string-match "\\S-" line)))
+			   (if curr-indent
+			       (progn
+				 (when (< curr-indent last-indent)
+				   (insert "")
+				   (funcall send-wait))
+				 (setq last-indent curr-indent))
+			     (setq last-indent 0)))
+			 (insert line)
+			 (funcall send-wait))
+		       (funcall send-wait)))
+         (results
+          (pcase result-type
+            (`output
+	     (let ((body (if (string-match-p ".\n+." body) ; Multiline
+			     (let ((tmp-src-file (org-babel-temp-file
+						  "python-")))
+			       (with-temp-file tmp-src-file (insert body))
+			       (format org-babel-python--exec-tmpfile
+				       tmp-src-file))
+			   body)))
+	       (mapconcat
+		#'org-trim
+		(butlast
+		 (org-babel-comint-with-output
+		     (session org-babel-python-eoe-indicator t body)
+		   (funcall input-body body)
+		   (funcall send-wait) (funcall send-wait)
+		   (insert org-babel-python-eoe-indicator)
+		   (funcall send-wait))
+		 2) "\n")))
+            (`value
+             (let ((tmp-file (org-babel-temp-file "python-")))
+               (org-babel-comint-with-output
+                   (session org-babel-python-eoe-indicator nil body)
+                 (let ((comint-process-echoes nil))
+                   (funcall input-body body)
+                   (funcall dump-last-value tmp-file
+                            (member "pp" result-params))
+                   (funcall send-wait) (funcall send-wait)
+                   (insert org-babel-python-eoe-indicator)
+                   (funcall send-wait)))
+               (org-babel-eval-read-file tmp-file))))))
+    (unless (string= (substring org-babel-python-eoe-indicator 1 -1) results)
+      (org-babel-result-cond result-params
+	results
+        (org-babel-python-table-or-string results)))))
 
 (defun org-babel-python-read-string (string)
-  "Strip 's from around Python string."
-  (if (string-match "^'\\([^\000]+\\)'$" string)
-      (match-string 1 string)
+  "Strip \\='s from around Python string."
+  (if (and (string-prefix-p "'" string)
+	   (string-suffix-p "'" string))
+      (substring string 1 -1)
     string))
 
 (provide 'ob-python)

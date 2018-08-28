@@ -1,10 +1,12 @@
-;;; ox-beamer.el --- Beamer Back-End for Org Export Engine
+;;; ox-beamer.el --- Beamer Back-End for Org Export Engine -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2007-2013  Free Software Foundation, Inc.
+;; Copyright (C) 2007-2018 Free Software Foundation, Inc.
 
 ;; Author: Carsten Dominik <carsten.dominik AT gmail DOT com>
 ;;         Nicolas Goaziou <n.goaziou AT gmail DOT com>
 ;; Keywords: org, wp, tex
+
+;; This file is part of GNU Emacs.
 
 ;; GNU Emacs is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -17,7 +19,7 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+;; along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 ;;
@@ -27,17 +29,14 @@
 
 ;;; Code:
 
-(eval-when-compile (require 'cl))
+(require 'cl-lib)
 (require 'ox-latex)
 
 ;; Install a default set-up for Beamer export.
 (unless (assoc "beamer" org-latex-classes)
   (add-to-list 'org-latex-classes
 	       '("beamer"
-		 "\\documentclass[presentation]{beamer}
-\[DEFAULT-PACKAGES]
-\[PACKAGES]
-\[EXTRA]"
+		 "\\documentclass[presentation]{beamer}"
 		 ("\\section{%s}" . "\\section*{%s}")
 		 ("\\subsection{%s}" . "\\subsection*{%s}")
 		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
@@ -106,7 +105,9 @@ key     Selection key for `org-beamer-select-environment'
 open    The opening template for the environment, with the following escapes
         %a   the action/overlay specification
         %A   the default action/overlay specification
-        %o   the options argument of the template
+        %R   the raw BEAMER_act value
+        %o   the options argument, with square brackets
+        %O   the raw BEAMER_opt value
         %h   the headline text
         %r   the raw headline text (i.e. without any processing)
         %H   if there is headline text, that raw text in {} braces
@@ -133,6 +134,15 @@ You might want to put e.g. \"allowframebreaks=0.9\" here."
   :group 'org-export-beamer
   :type '(string :tag "Outline frame options"))
 
+
+(defcustom org-beamer-subtitle-format "\\subtitle{%s}"
+  "Format string used for transcoded subtitle.
+The format string should have at most one \"%s\"-expression,
+which is replaced with the subtitle."
+  :group 'org-export-beamer
+  :version "26.1"
+  :package-version '(Org . "8.3")
+  :type '(string :tag "Format string"))
 
 
 ;;; Internal Variables
@@ -164,11 +174,11 @@ through `org-beamer-environments-extra' variable.")
     ("quotation"      "q" "\\begin{quotation}%a %% %h"    "\\end{quotation}")
     ("quote"          "Q" "\\begin{quote}%a %% %h"        "\\end{quote}")
     ("structureenv"   "s" "\\begin{structureenv}%a %% %h" "\\end{structureenv}")
-    ("theorem"        "t" "\\begin{theorem}%a%U"          "\\end{theorem}")
-    ("definition"     "d" "\\begin{definition}%a%U"       "\\end{definition}")
-    ("example"        "e" "\\begin{example}%a%U"          "\\end{example}")
+    ("theorem"        "t" "\\begin{theorem}%a[%h]"        "\\end{theorem}")
+    ("definition"     "d" "\\begin{definition}%a[%h]"     "\\end{definition}")
+    ("example"        "e" "\\begin{example}%a[%h]"        "\\end{example}")
     ("exampleblock"   "E" "\\begin{exampleblock}%a{%h}"   "\\end{exampleblock}")
-    ("proof"          "p" "\\begin{proof}%a%U"            "\\end{proof}")
+    ("proof"          "p" "\\begin{proof}%a[%h]"          "\\end{proof}")
     ("beamercolorbox" "o" "\\begin{beamercolorbox}%o{%h}" "\\end{beamercolorbox}"))
   "Environments triggered by properties in Beamer export.
 These are the defaults - for user definitions, see
@@ -192,19 +202,14 @@ TYPE is a symbol among the following:
 `defaction' Return ARGUMENT within both square and angular brackets.
 `option'    Return ARGUMENT within square brackets."
   (if (not (string-match "\\S-" argument)) ""
-    (case type
-      (action (if (string-match "\\`<.*>\\'" argument) argument
-		(format "<%s>" argument)))
-      (defaction (cond
-		  ((string-match "\\`\\[<.*>\\]\\'" argument) argument)
-		  ((string-match "\\`<.*>\\'" argument)
-		   (format "[%s]" argument))
-		  ((string-match "\\`\\[\\(.*\\)\\]\\'" argument)
-		   (format "[<%s>]" (match-string 1 argument)))
-		  (t (format "[<%s>]" argument))))
-      (option (if (string-match "\\`\\[.*\\]\\'" argument) argument
-		(format "[%s]" argument)))
-      (otherwise argument))))
+    (cl-case type
+      (action (format "<%s>" (org-unbracket-string "<" ">" argument)))
+      (defaction
+	(format "[<%s>]"
+		(org-unbracket-string "<" ">" (org-unbracket-string "[" "]" argument))))
+      (option (format "[%s]" (org-unbracket-string "[" "]" argument)))
+      (otherwise (error "Invalid `type' argument to `org-beamer--normalize-argument': %s"
+			type)))))
 
 (defun org-beamer--element-has-overlay-p (element)
   "Non-nil when ELEMENT has an overlay specified.
@@ -214,14 +219,14 @@ Return overlay specification, as a string, or nil."
   (let ((first-object (car (org-element-contents element))))
     (when (eq (org-element-type first-object) 'export-snippet)
       (let ((value (org-element-property :value first-object)))
-	(and (string-match "\\`<.*>\\'" value) value)))))
+	(and (string-prefix-p "<" value) (string-suffix-p ">" value)
+	     value)))))
 
 
 
 ;;; Define Back-End
 
 (org-export-define-derived-backend 'beamer 'latex
-  :export-block "BEAMER"
   :menu-entry
   '(?l 1
        ((?B "As LaTeX buffer (Beamer)" org-beamer-export-as-latex)
@@ -232,15 +237,20 @@ Return overlay specification, as a string, or nil."
 	      (if a (org-beamer-export-to-pdf t s v b)
 		(org-open-file (org-beamer-export-to-pdf nil s v b)))))))
   :options-alist
-  '((:beamer-theme "BEAMER_THEME" nil org-beamer-theme)
+  '((:headline-levels nil "H" org-beamer-frame-level)
+    (:latex-class "LATEX_CLASS" nil "beamer" t)
+    (:beamer-subtitle-format nil nil org-beamer-subtitle-format)
+    (:beamer-column-view-format "COLUMNS" nil org-beamer-column-view-format)
+    (:beamer-theme "BEAMER_THEME" nil org-beamer-theme)
     (:beamer-color-theme "BEAMER_COLOR_THEME" nil nil t)
     (:beamer-font-theme "BEAMER_FONT_THEME" nil nil t)
     (:beamer-inner-theme "BEAMER_INNER_THEME" nil nil t)
     (:beamer-outer-theme "BEAMER_OUTER_THEME" nil nil t)
-    (:beamer-header-extra "BEAMER_HEADER" nil nil newline)
-    ;; Modify existing properties.
-    (:headline-levels nil "H" org-beamer-frame-level)
-    (:latex-class "LATEX_CLASS" nil "beamer" t))
+    (:beamer-header "BEAMER_HEADER" nil nil newline)
+    (:beamer-environments-extra nil nil org-beamer-environments-extra)
+    (:beamer-frame-default-options nil nil org-beamer-frame-default-options)
+    (:beamer-outline-frame-options nil nil org-beamer-outline-frame-options)
+    (:beamer-outline-frame-title nil nil org-beamer-outline-frame-title))
   :translate-alist '((bold . org-beamer-bold)
 		     (export-block . org-beamer-export-block)
 		     (export-snippet . org-beamer-export-snippet)
@@ -250,7 +260,6 @@ Return overlay specification, as a string, or nil."
 		     (link . org-beamer-link)
 		     (plain-list . org-beamer-plain-list)
 		     (radio-target . org-beamer-radio-target)
-		     (target . org-beamer-target)
 		     (template . org-beamer-template)))
 
 
@@ -259,7 +268,7 @@ Return overlay specification, as a string, or nil."
 
 ;;;; Bold
 
-(defun org-beamer-bold (bold contents info)
+(defun org-beamer-bold (bold contents _info)
   "Transcode BLOCK object into Beamer code.
 CONTENTS is the text being bold.  INFO is a plist used as
 a communication channel."
@@ -270,7 +279,7 @@ a communication channel."
 
 ;;;; Export Block
 
-(defun org-beamer-export-block (export-block contents info)
+(defun org-beamer-export-block (export-block _contents _info)
   "Transcode an EXPORT-BLOCK element into Beamer code.
 CONTENTS is nil.  INFO is a plist used as a communication
 channel."
@@ -280,7 +289,7 @@ channel."
 
 ;;;; Export Snippet
 
-(defun org-beamer-export-snippet (export-snippet contents info)
+(defun org-beamer-export-snippet (export-snippet _contents info)
   "Transcode an EXPORT-SNIPPET object into Beamer code.
 CONTENTS is nil.  INFO is a plist used as a communication
 channel."
@@ -316,16 +325,21 @@ channel."
 INFO is a plist used as a communication channel.
 
 The value is either the label specified in \"BEAMER_opt\"
-property, or a fallback value built from headline's number.  This
-function assumes HEADLINE will be treated as a frame."
-  (let ((opt (org-element-property :BEAMER_OPT headline)))
-    (if (and (org-string-nw-p opt)
-	     (string-match "\\(?:^\\|,\\)label=\\(.*?\\)\\(?:$\\|,\\)" opt))
-	(match-string 1 opt)
-      (format "sec-%s"
-	      (mapconcat 'number-to-string
-			 (org-export-get-headline-number headline info)
-			 "-")))))
+property, the custom ID, if there is one and
+`:latex-prefer-user-labels' property has a non nil value, or
+a unique internal label.  This function assumes HEADLINE will be
+treated as a frame."
+  (cond
+   ((let ((opt (org-element-property :BEAMER_OPT headline)))
+      (and (stringp opt)
+	   (string-match "\\(?:^\\|,\\)label=\\(.*?\\)\\(?:$\\|,\\)" opt)
+	   (let ((label (match-string 1 opt)))
+	     (if (string-match-p "\\`{.*}\\'" label)
+		 (substring label 1 -1)
+	       label)))))
+   ((and (plist-get info :latex-prefer-user-labels)
+	 (org-element-property :CUSTOM_ID headline)))
+   (t (format "sec:%s" (org-export-get-reference headline info)))))
 
 (defun org-beamer--frame-level (headline info)
   "Return frame level in subtree containing HEADLINE.
@@ -334,12 +348,10 @@ INFO is a plist used as a communication channel."
    ;; 1. Look for "frame" environment in parents, starting from the
    ;;    farthest.
    (catch 'exit
-     (mapc (lambda (parent)
-	     (let ((env (org-element-property :BEAMER_ENV parent)))
-	       (when (and env (member-ignore-case env '("frame" "fullframe")))
-		 (throw 'exit (org-export-get-relative-level parent info)))))
-	   (nreverse (org-export-get-genealogy headline)))
-     nil)
+     (dolist (parent (nreverse (org-element-lineage headline)))
+       (let ((env (org-element-property :BEAMER_ENV parent)))
+	 (when (and env (member-ignore-case env '("frame" "fullframe")))
+	   (throw 'exit (org-export-get-relative-level parent info))))))
    ;; 2. Look for "frame" environment in HEADLINE.
    (let ((env (org-element-property :BEAMER_ENV headline)))
      (and env (member-ignore-case env '("frame" "fullframe"))
@@ -411,24 +423,35 @@ used as a communication channel."
 	    ;; Options, if any.
 	    (let* ((beamer-opt (org-element-property :BEAMER_OPT headline))
 		   (options
-		    ;; Collect options from default value and headline's
-		    ;; properties.  Also add a label for links.
-		    (append
-		     (org-split-string org-beamer-frame-default-options ",")
-		     (and beamer-opt
-			  (org-split-string
-			   ;; Remove square brackets if user provided
-			   ;; them.
-			   (and (string-match "^\\[?\\(.*\\)\\]?$" beamer-opt)
-				(match-string 1 beamer-opt))
-			   ","))
-		     ;; Provide an automatic label for the frame
-		     ;; unless the user specified one.
-		     (unless (and beamer-opt
-				  (string-match "\\(^\\|,\\)label=" beamer-opt))
-		       (list
-			(format "label=%s"
-				(org-beamer--get-label headline info)))))))
+		    ;; Collect nonempty options from default value and
+		    ;; headline's properties.  Also add a label for
+		    ;; links.
+		    (cl-remove-if-not 'org-string-nw-p
+		     (append
+		      (org-split-string
+		       (plist-get info :beamer-frame-default-options) ",")
+		      (and beamer-opt
+			   (org-split-string
+			    ;; Remove square brackets if user provided
+			    ;; them.
+			    (and (string-match "^\\[?\\(.*\\)\\]?$" beamer-opt)
+				 (match-string 1 beamer-opt))
+			    ","))
+		      ;; Provide an automatic label for the frame
+		      ;; unless the user specified one.  Also refrain
+		      ;; from labeling `allowframebreaks' frames; this
+		      ;; is not allowed by beamer.
+		      (unless (and beamer-opt
+				   (or (string-match "\\(^\\|,\\)label=" beamer-opt)
+				       (string-match "allowframebreaks" beamer-opt)))
+			(list
+			 (let ((label (org-beamer--get-label headline info)))
+			   ;; Labels containing colons need to be
+			   ;; wrapped within braces.
+			   (format (if (string-match-p ":" label)
+				       "label={%s}"
+				     "label=%s")
+				   label))))))))
 	      ;; Change options list into a string.
 	      (org-beamer--normalize-argument
 	       (mapconcat
@@ -476,14 +499,15 @@ used as a communication channel."
 	 (env-format
 	  (cond ((member environment '("column" "columns")) nil)
 		((assoc environment
-			(append org-beamer-environments-extra
+			(append (plist-get info :beamer-environments-extra)
 				org-beamer-environments-default)))
 		(t (user-error "Wrong block type at a headline named \"%s\""
 			       raw-title))))
 	 (title (org-export-data (org-element-property :title headline) info))
-	 (options (let ((options (org-element-property :BEAMER_OPT headline)))
-		    (if (not options) ""
-		      (org-beamer--normalize-argument options 'option))))
+	 (raw-options (org-element-property :BEAMER_OPT headline))
+	 (options (if raw-options
+		      (org-beamer--normalize-argument raw-options 'option)
+		    ""))
 	 ;; Start a "columns" environment when explicitly requested or
 	 ;; when there is no previous headline or the previous
 	 ;; headline do not have a BEAMER_column property.
@@ -522,7 +546,7 @@ used as a communication channel."
 	       ;; One can specify placement for column only when
 	       ;; HEADLINE stands for a column on its own.
 	       (if (equal environment "column") options "")
-	       (format "%s\\textwidth" column-width)))
+	       (format "%s\\columnwidth" column-width)))
      ;; Block's opening string.
      (when (nth 2 env-format)
        (concat
@@ -535,15 +559,19 @@ used as a communication channel."
 	  ;; overlay specification and the default one is nil.
 	  (let ((action (org-element-property :BEAMER_ACT headline)))
 	    (cond
-	     ((not action) (list (cons "a" "") (cons "A" "")))
-	     ((string-match "\\`\\[.*\\]\\'" action)
+	     ((not action) (list (cons "a" "") (cons "A" "") (cons "R" "")))
+	     ((and (string-prefix-p "[" action)
+		   (string-suffix-p "]" action))
 	      (list
 	       (cons "A" (org-beamer--normalize-argument action 'defaction))
-	       (cons "a" "")))
+	       (cons "a" "")
+	       (cons "R" action)))
 	     (t
 	      (list (cons "a" (org-beamer--normalize-argument action 'action))
-		    (cons "A" "")))))
+		    (cons "A" "")
+		    (cons "R" action)))))
 	  (list (cons "o" options)
+		(cons "O" (or raw-options ""))
 		(cons "h" title)
 		(cons "r" raw-title)
 		(cons "H" (if (equal raw-title "") ""
@@ -579,28 +607,27 @@ as a communication channel."
 		      (when overlay
 			(org-beamer--normalize-argument
 			 overlay
-			 (if (string-match "^\\[.*\\]$" overlay) 'defaction
+			 (if (string-match "\\`\\[.*\\]\\'" overlay) 'defaction
 			   'action))))
 		    ;; Options.
 		    (let ((options (org-element-property :BEAMER_OPT headline)))
 		      (when options
 			(org-beamer--normalize-argument options 'option)))
 		    ;; Resolve reference provided by "BEAMER_ref"
-		    ;; property.  This is done by building a minimal fake
-		    ;; link and calling the appropriate resolve function,
-		    ;; depending on the reference syntax.
-		    (let* ((type
-			    (progn
-			      (string-match "^\\(id:\\|#\\|\\*\\)?\\(.*\\)" ref)
-			      (cond
-			       ((or (not (match-string 1 ref))
-				    (equal (match-string 1 ref) "*")) 'fuzzy)
-			       ((equal (match-string 1 ref) "id:") 'id)
-			       (t 'custom-id))))
-			   (link (list 'link (list :path (match-string 2 ref))))
-			   (target (if (eq type 'fuzzy)
-				       (org-export-resolve-fuzzy-link link info)
-				     (org-export-resolve-id-link link info))))
+		    ;; property.  This is done by building a minimal
+		    ;; fake link and calling the appropriate resolve
+		    ;; function, depending on the reference syntax.
+		    (let ((target
+			   (if (string-match "\\`\\(id:\\|#\\)" ref)
+			       (org-export-resolve-id-link
+				`(link (:path ,(substring ref (match-end 0))))
+				info)
+			     (org-export-resolve-fuzzy-link
+			      `(link (:path
+				      ;; Look for headlines only.
+				      ,(if (eq (string-to-char ref) ?*) ref
+					 (concat "*" ref))))
+			      info))))
 		      ;; Now use user-defined label provided in TARGET
 		      ;; headline, or fallback to standard one.
 		      (format "{%s}" (org-beamer--get-label target info)))))))
@@ -641,15 +668,27 @@ as a communication channel."
   "Transcode an ITEM element into Beamer code.
 CONTENTS holds the contents of the item.  INFO is a plist holding
 contextual information."
-  (let ((action (let ((first-element (car (org-element-contents item))))
-		  (and (eq (org-element-type first-element) 'paragraph)
-		       (org-beamer--element-has-overlay-p first-element))))
-	(output (org-export-with-backend 'latex item contents info)))
-    (if (not action) output
-      ;; If the item starts with a paragraph and that paragraph starts
-      ;; with an export snippet specifying an overlay, insert it after
-      ;; \item command.
-      (replace-regexp-in-string "\\\\item" (concat "\\\\item" action) output))))
+  (org-export-with-backend
+   ;; Delegate item export to `latex'.  However, we use `beamer'
+   ;; transcoders for objects in the description tag.
+   (org-export-create-backend
+    :parent 'beamer
+    :transcoders
+    (list
+     (cons
+      'item
+      (lambda (item _c _i)
+	(let ((action
+	       (let ((first (car (org-element-contents item))))
+		 (and (eq (org-element-type first) 'paragraph)
+		      (org-beamer--element-has-overlay-p first))))
+	      (output (org-latex-item item contents info)))
+	  (if (not (and action (string-match "\\\\item" output))) output
+	    ;; If the item starts with a paragraph and that paragraph
+	    ;; starts with an export snippet specifying an overlay,
+	    ;; append it to the \item command.
+	    (replace-match (concat "\\\\item" action) nil nil output)))))))
+   item contents info))
 
 
 ;;;; Keyword
@@ -682,45 +721,16 @@ channel."
   "Transcode a LINK object into Beamer code.
 CONTENTS is the description part of the link.  INFO is a plist
 used as a communication channel."
-  (let ((type (org-element-property :type link))
-	(path (org-element-property :path link)))
-    ;; Use \hyperlink command for all internal links.
-    (cond
-     ((equal type "radio")
-      (let ((destination (org-export-resolve-radio-link link info)))
-	(when destination
-	  (format "\\hyperlink%s{%s}{%s}"
-		  (or (org-beamer--element-has-overlay-p link) "")
-		  (org-export-solidify-link-text path)
-		  (org-export-data (org-element-contents destination) info)))))
-     ((and (member type '("custom-id" "fuzzy" "id"))
-	   (let ((destination (if (string= type "fuzzy")
-				  (org-export-resolve-fuzzy-link link info)
-				(org-export-resolve-id-link link info))))
-	     (case (org-element-type destination)
-	       (headline
-		(let ((label
-		       (format "sec-%s"
-			       (mapconcat
-				'number-to-string
-				(org-export-get-headline-number
-				 destination info)
-				"-"))))
-		  (if (and (plist-get info :section-numbers) (not contents))
-		      (format "\\ref{%s}" label)
-		    (format "\\hyperlink%s{%s}{%s}"
-			    (or (org-beamer--element-has-overlay-p link) "")
-			    label
-			    contents))))
-	       (target
-		(let ((path (org-export-solidify-link-text path)))
-		  (if (not contents) (format "\\ref{%s}" path)
-		    (format "\\hyperlink%s{%s}{%s}"
-			    (or (org-beamer--element-has-overlay-p link) "")
-			    path
-			    contents))))))))
-     ;; Otherwise, use `latex' back-end.
-     (t (org-export-with-backend 'latex link contents info)))))
+  (or (org-export-custom-protocol-maybe link contents 'beamer)
+      ;; Fall-back to LaTeX export.  However, prefer "\hyperlink" over
+      ;; "\hyperref" since the former handles overlay specifications.
+      (let ((latex-link (org-export-with-backend 'latex link contents info)))
+	(if (string-match "\\`\\\\hyperref\\[\\(.*?\\)\\]" latex-link)
+	    (replace-match
+	     (format "\\\\hyperlink%s{\\1}"
+		     (or (org-beamer--element-has-overlay-p link) ""))
+	     nil nil latex-link)
+	  latex-link))))
 
 
 ;;;; Plain List
@@ -755,7 +765,8 @@ contextual information."
 	      'option)
 	     ;; Eventually insert contents and close environment.
 	     contents
-	     latex-type))))
+	     latex-type)
+     info)))
 
 
 ;;;; Radio Target
@@ -766,19 +777,8 @@ TEXT is the text of the target.  INFO is a plist holding
 contextual information."
   (format "\\hypertarget%s{%s}{%s}"
 	  (or (org-beamer--element-has-overlay-p radio-target) "")
-	  (org-export-solidify-link-text
-	   (org-element-property :value radio-target))
+	  (org-export-get-reference radio-target info)
 	  text))
-
-
-;;;; Target
-
-(defun org-beamer-target (target contents info)
-  "Transcode a TARGET object into Beamer code.
-CONTENTS is nil.  INFO is a plist holding contextual
-information."
-  (format "\\hypertarget{%s}{}"
-	  (org-export-solidify-link-text (org-element-property :value target))))
 
 
 ;;;; Template
@@ -790,37 +790,17 @@ information."
   "Return complete document string after Beamer conversion.
 CONTENTS is the transcoded contents string.  INFO is a plist
 holding export options."
-  (let ((title (org-export-data (plist-get info :title) info)))
+  (let ((title (org-export-data (plist-get info :title) info))
+	(subtitle (org-export-data (plist-get info :subtitle) info)))
     (concat
-     ;; 1. Time-stamp.
+     ;; Time-stamp.
      (and (plist-get info :time-stamp-file)
 	  (format-time-string "%% Created %Y-%m-%d %a %H:%M\n"))
-     ;; 2. Document class and packages.
-     (let* ((class (plist-get info :latex-class))
-	    (class-options (plist-get info :latex-class-options))
-	    (header (nth 1 (assoc class org-latex-classes)))
-	    (document-class-string
-	     (and (stringp header)
-		  (if (not class-options) header
-		    (replace-regexp-in-string
-		     "^[ \t]*\\\\documentclass\\(\\(\\[[^]]*\\]\\)?\\)"
-		     class-options header t nil 1)))))
-       (if (not document-class-string)
-	   (user-error "Unknown LaTeX class `%s'" class)
-	 (org-latex-guess-babel-language
-	  (org-latex-guess-inputenc
-	   (org-element-normalize-string
-	    (org-splice-latex-header
-	     document-class-string
-	     org-latex-default-packages-alist
-	     org-latex-packages-alist nil
-	     (concat (org-element-normalize-string
-		      (plist-get info :latex-header))
-		     (org-element-normalize-string
-		      (plist-get info :latex-header-extra))
-		     (plist-get info :beamer-header-extra)))))
-	  info)))
-     ;; 3. Insert themes.
+     ;; LaTeX compiler
+     (org-latex--insert-compiler info)
+     ;; Document class and packages.
+     (org-latex-make-preamble info)
+     ;; Insert themes.
      (let ((format-theme
 	    (function
 	     (lambda (prop command)
@@ -840,11 +820,11 @@ holding export options."
 		    (:beamer-inner-theme "\\useinnertheme")
 		    (:beamer-outer-theme "\\useoutertheme"))
 		  ""))
-     ;; 4. Possibly limit depth for headline numbering.
+     ;; Possibly limit depth for headline numbering.
      (let ((sec-num (plist-get info :section-numbers)))
        (when (integerp sec-num)
 	 (format "\\setcounter{secnumdepth}{%d}\n" sec-num)))
-     ;; 5. Author.
+     ;; Author.
      (let ((author (and (plist-get info :with-author)
 			(let ((auth (plist-get info :author)))
 			  (and auth (org-export-data auth info)))))
@@ -852,52 +832,52 @@ holding export options."
 		       (org-export-data (plist-get info :email) info))))
        (cond ((and author email (not (string= "" email)))
 	      (format "\\author{%s\\thanks{%s}}\n" author email))
-	     (author (format "\\author{%s}\n" author))
-	     (t "\\author{}\n")))
-     ;; 6. Date.
+	     ((or author email) (format "\\author{%s}\n" (or author email)))))
+     ;; Date.
      (let ((date (and (plist-get info :with-date) (org-export-get-date info))))
        (format "\\date{%s}\n" (org-export-data date info)))
-     ;; 7. Title
+     ;; Title
      (format "\\title{%s}\n" title)
-     ;; 8. Hyperref options.
-     (when (plist-get info :latex-hyperref-p)
-       (format "\\hypersetup{\n  pdfkeywords={%s},\n  pdfsubject={%s},\n  pdfcreator={%s}}\n"
-	       (or (plist-get info :keywords) "")
-	       (or (plist-get info :description) "")
-	       (if (not (plist-get info :with-creator)) ""
-		 (plist-get info :creator))))
-     ;; 9. Document start.
+     (when (org-string-nw-p subtitle)
+       (concat (format (plist-get info :beamer-subtitle-format) subtitle) "\n"))
+     ;; Beamer-header
+     (let ((beamer-header (plist-get info :beamer-header)))
+       (when beamer-header
+	 (format "%s\n" (plist-get info :beamer-header))))
+     ;; 9. Hyperref options.
+     (let ((template (plist-get info :latex-hyperref-template)))
+       (and (stringp template)
+	    (format-spec template (org-latex--format-spec info))))
+     ;; Document start.
      "\\begin{document}\n\n"
-     ;; 10. Title command.
+     ;; Title command.
      (org-element-normalize-string
-      (cond ((string= "" title) nil)
+      (cond ((not (plist-get info :with-title)) nil)
+	    ((string= "" title) nil)
 	    ((not (stringp org-latex-title-command)) nil)
 	    ((string-match "\\(?:[^%]\\|^\\)%s"
 			   org-latex-title-command)
 	     (format org-latex-title-command title))
 	    (t org-latex-title-command)))
-     ;; 11. Table of contents.
+     ;; Table of contents.
      (let ((depth (plist-get info :with-toc)))
        (when depth
 	 (concat
 	  (format "\\begin{frame}%s{%s}\n"
 		  (org-beamer--normalize-argument
-		   org-beamer-outline-frame-options 'option)
-		  org-beamer-outline-frame-title)
+		   (plist-get info :beamer-outline-frame-options) 'option)
+		  (plist-get info :beamer-outline-frame-title))
 	  (when (wholenump depth)
 	    (format "\\setcounter{tocdepth}{%d}\n" depth))
 	  "\\tableofcontents\n"
 	  "\\end{frame}\n\n")))
-     ;; 12. Document's body.
+     ;; Document's body.
      contents
-     ;; 13. Creator.
-     (let ((creator-info (plist-get info :with-creator)))
-       (cond
-	((not creator-info) "")
-	((eq creator-info 'comment)
-	 (format "%% %s\n" (plist-get info :creator)))
-	(t (concat (plist-get info :creator) "\n"))))
-     ;; 14. Document end.
+     ;; Creator.
+     (if (plist-get info :with-creator)
+	 (concat (plist-get info :creator) "\n")
+       "")
+     ;; Document end.
      "\\end{document}")))
 
 
@@ -933,10 +913,10 @@ value."
     (save-excursion
       (org-back-to-heading t)
       ;; Filter out Beamer-related tags and install environment tag.
-      (let ((tags (org-remove-if (lambda (x) (string-match "^B_" x))
-				 (org-get-tags)))
+      (let ((tags (cl-remove-if (lambda (x) (string-match "^B_" x))
+				(org-get-tags nil t)))
 	    (env-tag (and (org-string-nw-p value) (concat "B_" value))))
-	(org-set-tags-to (if env-tag (cons env-tag tags) tags))
+	(org-set-tags (if env-tag (cons env-tag tags) tags))
 	(when env-tag (org-toggle-tag env-tag 'on)))))
    ((equal property "BEAMER_col")
     (org-toggle-tag "BMCOL" (if (org-string-nw-p value) 'on 'off)))))
@@ -955,9 +935,9 @@ value."
 			 org-beamer-environments-default)))
    ((and (equal property "BEAMER_col")
 	 (not (org-entry-get nil (concat property "_ALL") 'inherit)))
-    ;; If no allowed values for BEAMER_col have been defined,
-    ;; supply some
-    (org-split-string org-beamer-column-widths " "))))
+    ;; If no allowed values for BEAMER_col have been defined, supply
+    ;; some.
+    (split-string org-beamer-column-widths " "))))
 
 (add-hook 'org-property-allowed-value-functions
 	  'org-beamer-allowed-property-values)
@@ -1085,20 +1065,22 @@ aid, but the tag does not have any semantic meaning."
   (let* ((envs (append org-beamer-environments-special
 		       org-beamer-environments-extra
 		       org-beamer-environments-default))
-	 (org-tag-alist
+	 (org-current-tag-alist
 	  (append '((:startgroup))
 		  (mapcar (lambda (e) (cons (concat "B_" (car e))
 				       (string-to-char (nth 1 e))))
 			  envs)
 		  '((:endgroup))
 		  '(("BMCOL" . ?|))))
+	 (org-tag-persistent-alist nil)
+	 (org-use-fast-tag-selection t)
 	 (org-fast-tag-selection-single-key t))
-    (org-set-tags)
-    (let ((tags (or (ignore-errors (org-get-tags-string)) "")))
+    (org-set-tags-command)
+    (let ((tags (org-get-tags nil t)))
       (cond
        ;; For a column, automatically ask for its width.
        ((eq org-last-tag-selection-key ?|)
-	(if (string-match ":BMCOL:" tags)
+	(if (member "BMCOL" tags)
 	    (org-set-property "BEAMER_col" (read-string "Column width: "))
 	  (org-delete-property "BEAMER_col")))
        ;; For an "againframe" section, automatically ask for reference
@@ -1114,33 +1096,13 @@ aid, but the tag does not have any semantic meaning."
 	   (read-string "Frame reference (*Title, #custom-id, id:...): "))
 	  (org-set-property "BEAMER_act"
 			    (read-string "Overlay specification: "))))
-       ((string-match (concat ":B_\\(" (mapconcat 'car envs "\\|") "\\):") tags)
-	(org-entry-put nil "BEAMER_env" (match-string 1 tags)))
+       ((let* ((tags-re (concat "B_" (regexp-opt (mapcar #'car envs) t)))
+	       (env (cl-some (lambda (tag)
+			       (and (string-match tags-re tag)
+				    (match-string 1 tag)))
+			     tags)))
+	  (and env (progn (org-entry-put nil "BEAMER_env" env) t))))
        (t (org-entry-delete nil "BEAMER_env"))))))
-
-;;;###autoload
-(defun org-beamer-insert-options-template (&optional kind)
-  "Insert a settings template, to make sure users do this right."
-  (interactive (progn
-		 (message "Current [s]ubtree or [g]lobal?")
-		 (if (eq (read-char-exclusive) ?g) (list 'global)
-		   (list 'subtree))))
-  (if (eq kind 'subtree)
-      (progn
-	(org-back-to-heading t)
-	(org-reveal)
-	(org-entry-put nil "EXPORT_LaTeX_CLASS" "beamer")
-	(org-entry-put nil "EXPORT_LaTeX_CLASS_OPTIONS" "[presentation]")
-	(org-entry-put nil "EXPORT_FILE_NAME" "presentation.pdf")
-	(when org-beamer-column-view-format
-	  (org-entry-put nil "COLUMNS" org-beamer-column-view-format))
-	(org-entry-put nil "BEAMER_col_ALL" org-beamer-column-widths))
-    (insert "#+LaTeX_CLASS: beamer\n")
-    (insert "#+LaTeX_CLASS_OPTIONS: [presentation]\n")
-    (when org-beamer-theme (insert "#+BEAMER_THEME: " org-beamer-theme "\n"))
-    (when org-beamer-column-view-format
-      (insert "#+COLUMNS: " org-beamer-column-view-format "\n"))
-    (insert "#+PROPERTY: BEAMER_col_ALL " org-beamer-column-widths "\n")))
 
 ;;;###autoload
 (defun org-beamer-publish-to-latex (plist filename pub-dir)
@@ -1166,7 +1128,13 @@ Return output file name."
   ;; working directory and then moved to publishing directory.
   (org-publish-attachment
    plist
-   (org-latex-compile (org-publish-org-to 'beamer filename ".tex" plist))
+   ;; Default directory could be anywhere when this function is
+   ;; called.  We ensure it is set to source file directory during
+   ;; compilation so as to not break links to external documents.
+   (let ((default-directory (file-name-directory filename)))
+     (org-latex-compile
+      (org-publish-org-to
+       'beamer filename ".tex" plist (file-name-directory filename))))
    pub-dir))
 
 

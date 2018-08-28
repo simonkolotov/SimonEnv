@@ -1,6 +1,6 @@
 ;;; ox-s5.el --- S5 Presentation Back-End for Org Export Engine
 
-;; Copyright (C) 2011-2013  Rick Frankel
+;; Copyright (C) 2011-2014  Rick Frankel
 
 ;; Author: Rick Frankel <emacs at rickster dot com>
 ;; Keywords: outlines, hypermedia, S5, wp
@@ -48,7 +48,14 @@
 ;; in an Org mode buffer.  See ox.el and ox-html.el for more details
 ;; on how this exporter works.
 
+;; TODOs
+;; ------
+;; The title page is formatted using format-spec.  This is error prone
+;; when details are missing and may insert empty tags, like <h2></h2>,
+;; for missing values.
+
 (require 'ox-html)
+(eval-when-compile (require 'cl))
 
 (org-export-define-derived-backend 's5 'html
   :menu-entry
@@ -173,9 +180,10 @@ or an empty string."
 
 (defcustom org-s5-title-slide-template
   "<h1>%t</h1>
+<h2>%s</h2>
 <h2>%a</h2>
-<h2>%e</h2>
-<h2>%d</h2>"
+<h3>%e</h3>
+<h4>%d</h4>"
   "Format template to specify title page section.
 See `org-html-postamble-format' for the valid elements which
 can be included.
@@ -201,7 +209,7 @@ INFO is a plist used as a communication channel."
     (concat section-number
             (org-export-data
              (org-export-get-alt-title headline info) info)
-            (and tags "&nbsp;&nbsp;&nbsp;") (org-html--tags tags))))
+            (and tags "&nbsp;&nbsp;&nbsp;") (org-html--tags tags info))))
 
 (defun org-s5-toc (depth info)
   (let* ((headlines (org-export-collect-headlines info depth))
@@ -284,7 +292,8 @@ which will make the list into a \"build\"."
              "<%s class='org-%s%s'>" tag tag
              (if (org-export-get-node-property :INCREMENTAL plain-list t)
                  " incremental" ""))
-            contents (org-html-end-plain-list type))))
+            contents
+	    (format "</%s>" tag))))
 
 (defun org-s5-inner-template (contents info)
   "Return body of document string after HTML conversion.
@@ -296,13 +305,15 @@ holding export options."
   "Return complete document string after HTML conversion.
 CONTENTS is the transcoded contents string.  INFO is a plist
 holding export options."
-  (let ((org-html-divs
-	 (if (equal (plist-get info :html-container) "li")
-	     (append '((content "ol" "content")) org-s5--divs)
-	   org-s5--divs))
-	 (info (plist-put
+  (let ((info (plist-put
+	       (plist-put
 		(plist-put info :html-preamble (plist-get info :s5-preamble))
-		:html-postamble (plist-get info :s5-postamble))))
+		:html-postamble
+		(plist-get info :s5-postamble))
+	       :html-divs
+	       (if (equal "li" (plist-get info :html-container))
+		   (cons '(content "ol" "content") org-s5--divs)
+		 org-s5--divs))))
     (mapconcat
      'identity
      (list

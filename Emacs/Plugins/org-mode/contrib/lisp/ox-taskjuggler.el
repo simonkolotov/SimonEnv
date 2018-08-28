@@ -1,6 +1,6 @@
 ;;; ox-taskjuggler.el --- TaskJuggler Back-End for Org Export Engine
 ;;
-;; Copyright (C) 2007-2013 Free Software Foundation, Inc.
+;; Copyright (C) 2007-2018 Free Software Foundation, Inc.
 ;;
 ;; Emacs Lisp Archive Entry
 ;; Filename: ox-taskjuggler.el
@@ -64,7 +64,7 @@
 ;; should end up with something similar to the example by Peter Jones
 ;; in:
 ;;
-;;   http://www.contextualdevelopment.com/static/artifacts/articles/2008/project-planning/project-planning.org.
+;;   http://www.devalot.com/assets/articles/2008/07/project-planning/project-planning.org.
 ;;
 ;; Now mark the top node of your tasks with a tag named
 ;; "taskjuggler_project" (or whatever you customized
@@ -307,7 +307,23 @@ but before any resource and task declarations."
 	    startbuffer startcredit statusnote chargeset charge)
   "Valid attributes for Taskjuggler tasks.
 If one of these appears as a property for a headline, it will be
-exported with the corresponding task."
+exported with the corresponding task.
+
+Note that multiline properties are not supported, so attributes
+like note or journalentry have to be on a single line."
+  :group 'org-export-taskjuggler)
+
+(defcustom org-taskjuggler-valid-project-attributes
+  '(timingresolution timezone alertlevels currency currencyformat
+  dailyworkinghours extend includejournalentry now numberformat
+  outputdir scenario shorttimeformat timeformat trackingscenario
+  weekstartsmonday weekstartssunday workinghours
+  yearlyworkingdays)
+  "Valid attributes for Taskjuggler project.
+If one of these appears as a property for a headline that is a
+project definition, it will be exported with the corresponding
+task. Attribute 'timingresolution' should be the first in the
+list."
   :group 'org-export-taskjuggler)
 
 (defcustom org-taskjuggler-valid-resource-attributes
@@ -483,9 +499,9 @@ Return new string.  If S is the empty string, return it."
   (if (equal "" s) s (replace-regexp-in-string "^ *\\S-" "  \\&" s)))
 
 (defun org-taskjuggler--build-attributes (item attributes)
-  "Return attributes string for task, resource or report ITEM.
-ITEM is a headline.  ATTRIBUTES is a list of symbols
-representing valid attributes for ITEM."
+  "Return attributes string for ITEM.
+ITEM is a project, task, resource or report headline.  ATTRIBUTES
+is a list of symbols representing valid attributes for ITEM."
   (mapconcat
    (lambda (attribute)
      (let ((value (org-element-property
@@ -504,7 +520,7 @@ headline or finally add more underscore characters (\"_\")."
   (let ((id (org-string-nw-p (org-element-property :TASK_ID item))))
     ;; If an id is specified, use it, as long as it's unique.
     (if (and id (not (member id unique-ids))) id
-      (let* ((parts (org-split-string (org-element-property :raw-value item)))
+      (let* ((parts (split-string (org-element-property :raw-value item)))
 	     (id (org-taskjuggler--clean-id (downcase (pop parts)))))
 	;; Try to add more parts of the headline to make it unique.
 	(while (and (car parts) (member id unique-ids))
@@ -538,8 +554,8 @@ channel."
          (let ((deps (concat (org-element-property :BLOCKER task)
                              (org-element-property :DEPENDS task))))
            (and deps
-                (org-split-string (replace-regexp-in-string "{.*?}" "" deps)
-                                  "[ ,]* +"))))
+                (split-string (replace-regexp-in-string "{.*?}" "" deps)
+			      "[ ,]* +"))))
         depends)
     (when deps-ids
       ;; Find tasks with :task_id: property matching id in DEPS-IDS.
@@ -587,7 +603,7 @@ doesn't include leading \"depends\"."
 		   (let ((id (org-element-property :TASK_ID dep)))
 		     (and id
 			  (string-match (concat id " +\\({.*?}\\)") dep-str)
-			  (org-match-string-no-properties 1))))
+			  (match-string-no-properties 1 dep-str))))
 		  path)
 	      ;; Compute number of exclamation marks by looking for the
 	      ;; common ancestor between TASK and DEP.
@@ -715,18 +731,27 @@ PROJECT is a headline.  INFO is a plist used as a communication
 channel.  If no start date is specified, start today.  If no end
 date is specified, end `org-taskjuggler-default-project-duration'
 days from now."
-  (format "project %s \"%s\" \"%s\" %s %s {\n}\n"
-          (org-taskjuggler-get-id project info)
-          (org-taskjuggler-get-name project)
-          ;; Version is obtained through :TASKJUGGLER_VERSION:
-          ;; property or `org-taskjuggler-default-project-version'.
-          (or (org-element-property :VERSION project)
-              org-taskjuggler-default-project-version)
-          (or (org-taskjuggler-get-start project)
-              (format-time-string "%Y-%m-%d"))
-          (let ((end (org-taskjuggler-get-end project)))
-            (or (and end (format "- %s" end))
-                (format "+%sd" org-taskjuggler-default-project-duration)))))
+  (concat
+   ;; Opening project.
+   (format "project %s \"%s\" \"%s\" %s %s {\n"
+	   (org-taskjuggler-get-id project info)
+	   (org-taskjuggler-get-name project)
+	   ;; Version is obtained through :TASKJUGGLER_VERSION:
+	   ;; property or `org-taskjuggler-default-project-version'.
+	   (or (org-element-property :VERSION project)
+	       org-taskjuggler-default-project-version)
+	   (or (org-taskjuggler-get-start project)
+	       (format-time-string "%Y-%m-%d"))
+	   (let ((end (org-taskjuggler-get-end project)))
+	     (or (and end (format "- %s" end))
+		 (format "+%sd"
+			 org-taskjuggler-default-project-duration))))
+   ;; Add attributes.
+   (org-taskjuggler--indent-string
+    (org-taskjuggler--build-attributes
+     project org-taskjuggler-valid-project-attributes))
+   ;; Closing project.
+   "}\n"))
 
 (defun org-taskjuggler--build-resource (resource info)
   "Return a resource declaration.
@@ -836,7 +861,7 @@ a unique id will be associated to it."
      (and complete (format "  complete %s\n" complete))
      (and effort
           (format "  effort %s\n"
-                  (let* ((minutes (org-duration-string-to-minutes effort))
+                  (let* ((minutes (org-duration-to-minutes effort))
                          (hours (/ minutes 60.0)))
                     (format "%.1fh" hours))))
      (and priority (format "  priority %s\n" priority))

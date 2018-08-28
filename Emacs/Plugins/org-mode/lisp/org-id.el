@@ -1,10 +1,10 @@
-;;; org-id.el --- Global identifiers for Org-mode entries
+;;; org-id.el --- Global identifiers for Org entries -*- lexical-binding: t; -*-
 ;;
-;; Copyright (C) 2008-2013 Free Software Foundation, Inc.
+;; Copyright (C) 2008-2018 Free Software Foundation, Inc.
 ;;
 ;; Author: Carsten Dominik <carsten at orgmode dot org>
 ;; Keywords: outlines, hypermedia, calendar, wp
-;; Homepage: http://orgmode.org
+;; Homepage: https://orgmode.org
 ;;
 ;; This file is part of GNU Emacs.
 ;;
@@ -19,12 +19,12 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+;; along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Commentary:
 
-;; This file implements globally unique identifiers for Org-mode entries.
+;; This file implements globally unique identifiers for Org entries.
 ;; Identifiers are stored in the entry as an :ID: property.  Functions
 ;; are provided that create and retrieve such identifiers, and that find
 ;; entries based on the identifier.
@@ -73,20 +73,18 @@
 (require 'org)
 
 (declare-function message-make-fqdn "message" ())
-(declare-function org-pop-to-buffer-same-window
-		  "org-compat" (&optional buffer-or-name norecord label))
+(declare-function org-goto-location "org-goto" (&optional _buf help))
 
 ;;; Customization
 
 (defgroup org-id nil
-  "Options concerning global entry identifiers in Org-mode."
+  "Options concerning global entry identifiers in Org mode."
   :tag "Org ID"
   :group 'org)
 
-(define-obsolete-variable-alias
-  'org-link-to-org-use-id 'org-id-link-to-org-use-id "24.3")
 (defcustom org-id-link-to-org-use-id nil
   "Non-nil means storing a link to an Org file will use entry IDs.
+\\<org-mode-map>\
 
 The variable can have the following values:
 
@@ -101,7 +99,7 @@ create-if-interactive
       call `org-capture' that automatically and preemptively creates a
       link.  If you do want to get an ID link in a capture template to
       an entry not having an ID, create it first by explicitly creating
-      a link to it, using `C-c C-l' first.
+      a link to it, using `\\[org-store-link]' first.
 
 create-if-interactive-and-no-custom-id
       Like create-if-interactive, but do not create an ID if there is
@@ -203,7 +201,7 @@ This variable is only relevant when `org-id-track-globally' is set."
 When Org reparses files to remake the list of files and IDs it is tracking,
 it will normally scan the agenda files, the archives related to agenda files,
 any files that are listed as ID containing in the current register, and
-any Org-mode files currently visited by Emacs.
+any Org file currently visited by Emacs.
 You can list additional files here.
 This variable is only relevant when `org-id-track-globally' is set."
   :group 'org-id
@@ -233,6 +231,7 @@ With optional argument FORCE, force the creation of a new ID."
     (org-entry-put (point) "ID" nil))
   (org-id-get (point) 'create))
 
+;;;###autoload
 (defun org-id-copy ()
   "Copy the ID of the entry at point to the kill ring.
 Create an ID if necessary."
@@ -258,6 +257,7 @@ In any case, the ID of the entry is returned."
 	(org-id-add-location id (buffer-file-name (buffer-base-buffer)))
 	id)))))
 
+;;;###autoload
 (defun org-id-get-with-outline-path-completion (&optional targets)
   "Use `outline-path-completion' to retrieve the ID of an entry.
 TARGETS may be a setting for `org-refile-targets' to define
@@ -274,11 +274,12 @@ If necessary, the ID is created."
     (prog1 (org-id-get pom 'create)
       (move-marker pom nil))))
 
-(defun org-id-get-with-outline-drilling (&optional targets)
+;;;###autoload
+(defun org-id-get-with-outline-drilling ()
   "Use an outline-cycling interface to retrieve the ID of an entry.
-This only finds entries in the current buffer, using `org-get-location'.
+This only finds entries in the current buffer, using `org-goto-location'.
 It returns the ID of the entry.  If necessary, the ID is created."
-  (let* ((spos (org-get-location (current-buffer) org-goto-help))
+  (let* ((spos (org-goto-location))
 	 (pom (and spos (move-marker (make-marker) (car spos)))))
     (prog1 (org-id-get pom 'create)
       (move-marker pom nil))))
@@ -291,7 +292,7 @@ Move the cursor to that entry in that buffer."
   (let ((m (org-id-find id 'marker)))
     (unless m
       (error "Cannot find entry with ID \"%s\"" id))
-    (org-pop-to-buffer-same-window (marker-buffer m))
+    (pop-to-buffer-same-window (marker-buffer m))
     (goto-char m)
     (move-marker m nil)
     (org-show-context)))
@@ -320,6 +321,7 @@ With optional argument MARKERP, return the position as a new marker."
 
 ;; Creating new IDs
 
+;;;###autoload
 (defun org-id-new (&optional prefix)
   "Create a new globally unique ID.
 
@@ -443,8 +445,7 @@ and time is the usual three-integer representation of time."
 Store the relation between files and corresponding IDs.
 This will scan all agenda files, all associated archives, and all
 files currently mentioned in `org-id-locations'.
-When FILES is given, scan these files instead.
-When CHECK is given, prepare detailed information about duplicate IDs."
+When FILES is given, scan these files instead."
   (interactive)
   (if (not org-id-track-globally)
       (error "Please turn on `org-id-track-globally' if you want to track IDs")
@@ -462,7 +463,7 @@ When CHECK is given, prepare detailed information about duplicate IDs."
 		 (if (symbolp org-id-extra-files)
 		     (symbol-value org-id-extra-files)
 		   org-id-extra-files)
-		 ;; Files associated with live org-mode buffers
+		 ;; Files associated with live Org buffers
 		 (delq nil
 		       (mapcar (lambda (b)
 				 (with-current-buffer b
@@ -490,7 +491,7 @@ When CHECK is given, prepare detailed information about duplicate IDs."
 		(goto-char (point-min))
 		(while (re-search-forward "^[ \t]*:ID:[ \t]+\\(\\S-+\\)[ \t]*$"
 					  nil t)
-		  (setq id (org-match-string-no-properties 1))
+		  (setq id (match-string-no-properties 1))
 		  (if (member id found)
 		      (progn
 			(message "Duplicate ID \"%s\", also in file %s"
@@ -539,8 +540,7 @@ When CHECK is given, prepare detailed information about duplicate IDs."
     (with-temp-buffer
       (condition-case nil
 	  (progn
-	    (insert-file-contents-literally org-id-locations-file)
-	    (goto-char (point-min))
+	    (insert-file-contents org-id-locations-file)
 	    (setq org-id-locations (read (current-buffer))))
 	(error
 	 (message "Could not read org-id-values from %s.  Setting it to nil."
@@ -674,7 +674,7 @@ optional argument MARKERP, return the position as a new marker."
     (move-marker m nil)
     (org-show-context)))
 
-(org-add-link-type "id" 'org-id-open)
+(org-link-set-parameters "id" :follow #'org-id-open)
 
 (provide 'org-id)
 

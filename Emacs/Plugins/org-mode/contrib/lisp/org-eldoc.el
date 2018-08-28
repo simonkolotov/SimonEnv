@@ -1,6 +1,6 @@
 ;;; org-eldoc.el --- display org header and src block info using eldoc
 
-;; Copyright (c) 2014-2016 Free Software Foundation, Inc.
+;; Copyright (c) 2014-2018 Free Software Foundation, Inc.
 
 ;; Author: Łukasz Gruner <lukasz@gruner.lu>
 ;; Maintainer: Łukasz Gruner <lukasz@gruner.lu>
@@ -37,6 +37,10 @@
 (require 'org)
 (require 'ob-core)
 (require 'eldoc)
+
+(declare-function org-element-at-point "org-element" ())
+(declare-function org-element-property "org-element" (property element))
+(declare-function org-element-type "org-element" (element))
 
 (defgroup org-eldoc nil "" :group 'org)
 
@@ -87,13 +91,17 @@
 
 (defun org-eldoc-get-src-lang ()
   "Return value of lang for the current block if in block body and nil otherwise."
-  (let ((case-fold-search t))
-    (save-match-data
-      (when (org-between-regexps-p ".*#\\+begin_src"
-                                   ".*#\\+end_src")
-        (save-excursion
-          (goto-char (org-babel-where-is-src-block-head))
-          (car (org-babel-parse-src-block-match)))))))
+  (let ((element (save-match-data (org-element-at-point))))
+    (and (eq (org-element-type element) 'src-block)
+	 (>= (line-beginning-position)
+	     (org-element-property :post-affiliated element))
+	 (<=
+	  (line-end-position)
+	  (org-with-wide-buffer
+	   (goto-char (org-element-property :end element))
+	   (skip-chars-backward " \t\n")
+	   (line-end-position)))
+	 (org-element-property :language element))))
 
 (defvar org-eldoc-local-functions-cache (make-hash-table :size 40 :test 'equal)
   "Cache of major-mode's eldoc-documentation-functions,

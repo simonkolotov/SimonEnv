@@ -1,6 +1,6 @@
 ;;; org-mairix.el - Support for hooking mairix search into Org for different MUAs
 ;;
-;; Copyright (C) 2007-2013 Georg C. F. Greve
+;; Copyright (C) 2007-2014 Georg C. F. Greve
 ;; mutt support by Adam Spiers <orgmode at adamspiers dot org>
 ;;
 ;; This file is not part of GNU Emacs.
@@ -8,7 +8,7 @@
 ;; Author: Georg C. F. Greve <greve at fsfeurope dot org>
 ;; Keywords: outlines, hypermedia, calendar, wp, email, mairix
 ;; Purpose: Integrate mairix email searching into Org mode
-;; See http://orgmode.org and http://www.rpcurnow.force9.co.uk/mairix/
+;; See https://orgmode.org and http://www.rpcurnow.force9.co.uk/mairix/
 ;; Version: 0.5
 ;;
 ;; This file is Free Software; you can redistribute it and/or modify
@@ -82,8 +82,9 @@ correctly, you should not need to change this.
 
 ;;; The hooks to integrate mairix into org
 
-(org-add-link-type "mairix" 'org-mairix-open)
-(add-hook 'org-store-link-functions 'org-mairix-store-gnus-link)
+(org-link-set-parameters "mairix"
+			 :follow #'org-mairix-open
+			 :store #'org-mairix-store-gnus-link)
 
 ;;; Generic org-mairix functions
 
@@ -93,7 +94,7 @@ correctly, you should not need to change this.
           (if org-mairix-threaded-links "t:")
           (if org-mairix-augmented-links "a:")
           "@@"
-          (org-remove-angle-brackets message-id)))
+          (org-unbracket-string "<" ">" message-id)))
 
 (defun org-store-mairix-link-props (&rest plist)
   "Take a property list describing a mail, and add mairix link

@@ -2,7 +2,77 @@
 ;;
 ;;; Code:
 
-;;;### (autoloads nil "ob-core" "ob-core.el" (22413 4776 840319 838000))
+;;;### (autoloads nil "ob-C" "ob-C.el" (0 0 0 0))
+;;; Generated autoloads from ob-C.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-C" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-J" "ob-J.el" (0 0 0 0))
+;;; Generated autoloads from ob-J.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-J" '("obj-" "org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-R" "ob-R.el" (0 0 0 0))
+;;; Generated autoloads from ob-R.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-R" '("ob-R-" "org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-abc" "ob-abc.el" (0 0 0 0))
+;;; Generated autoloads from ob-abc.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-abc" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-asymptote" "ob-asymptote.el" (0 0 0 0))
+;;; Generated autoloads from ob-asymptote.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-asymptote" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-awk" "ob-awk.el" (0 0 0 0))
+;;; Generated autoloads from ob-awk.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-awk" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-calc" "ob-calc.el" (0 0 0 0))
+;;; Generated autoloads from ob-calc.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-calc" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-clojure" "ob-clojure.el" (0 0 0 0))
+;;; Generated autoloads from ob-clojure.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-clojure" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-comint" "ob-comint.el" (0 0 0 0))
+;;; Generated autoloads from ob-comint.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-comint" '("org-babel-comint-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-coq" "ob-coq.el" (0 0 0 0))
+;;; Generated autoloads from ob-coq.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-coq" '("org-babel-" "coq-program-name")))
+
+;;;***
+
+;;;### (autoloads nil "ob-core" "ob-core.el" (0 0 0 0))
 ;;; Generated autoloads from ob-core.el
 
 (autoload 'org-babel-execute-safely-maybe "ob-core" "\
@@ -24,21 +94,21 @@ a window into the `org-babel-get-src-block-info' function.
 
 (autoload 'org-babel-expand-src-block-maybe "ob-core" "\
 Conditionally expand a source block.
-Detect if this is context for a org-babel src-block and if so
+Detect if this is context for an org-babel src-block and if so
 then run `org-babel-expand-src-block'.
 
 \(fn)" t nil)
 
 (autoload 'org-babel-load-in-session-maybe "ob-core" "\
 Conditionally load a source block in a session.
-Detect if this is context for a org-babel src-block and if so
+Detect if this is context for an org-babel src-block and if so
 then run `org-babel-load-in-session'.
 
 \(fn)" t nil)
 
 (autoload 'org-babel-pop-to-session-maybe "ob-core" "\
 Conditionally pop to a session.
-Detect if this is context for a org-babel src-block and if so
+Detect if this is context for an org-babel src-block and if so
 then run `org-babel-switch-to-session'.
 
 \(fn)" t nil)
@@ -114,10 +184,12 @@ Return t if a code block was found at point, nil otherwise.
 \(fn &rest BODY)" nil t)
 
 (autoload 'org-babel-open-src-block-result "ob-core" "\
-If `point' is on a src block then open the results of the
-source code block, otherwise return nil.  With optional prefix
-argument RE-RUN the source-code block is evaluated even if
-results already exist.
+Open results of source block at point.
+
+If `point' is on a source block then open the results of the source
+code block, otherwise return nil.  With optional prefix argument
+RE-RUN the source-code block is evaluated even if results already
+exist.
 
 \(fn &optional RE-RUN)" t nil)
 
@@ -189,9 +261,11 @@ the current subtree.
 \(fn &optional ARG)" t nil)
 
 (autoload 'org-babel-sha1-hash "ob-core" "\
-Generate an sha1 hash based on the value of info.
+Generate a sha1 hash based on the value of INFO.
+CONTEXT specifies the context of evaluation.  It can be `:eval',
+`:export', `:tangle'.  A nil value means `:eval'.
 
-\(fn &optional INFO)" t nil)
+\(fn &optional INFO CONTEXT)" t nil)
 
 (autoload 'org-babel-hide-result-toggle-maybe "ob-core" "\
 Toggle visibility of result at point.
@@ -230,10 +304,123 @@ Mark current src block.
 
 \(fn)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-core" '("org-")))
+
 ;;;***
 
-;;;### (autoloads nil "ob-keys" "ob-keys.el" (22393 20522 568274
-;;;;;;  887000))
+;;;### (autoloads nil "ob-css" "ob-css.el" (0 0 0 0))
+;;; Generated autoloads from ob-css.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-css" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-ditaa" "ob-ditaa.el" (0 0 0 0))
+;;; Generated autoloads from ob-ditaa.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-ditaa" '("org-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-dot" "ob-dot.el" (0 0 0 0))
+;;; Generated autoloads from ob-dot.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-dot" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-ebnf" "ob-ebnf.el" (0 0 0 0))
+;;; Generated autoloads from ob-ebnf.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-ebnf" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-emacs-lisp" "ob-emacs-lisp.el" (0 0 0 0))
+;;; Generated autoloads from ob-emacs-lisp.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-emacs-lisp" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-eval" "ob-eval.el" (0 0 0 0))
+;;; Generated autoloads from ob-eval.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-eval" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-exp" "ob-exp.el" (0 0 0 0))
+;;; Generated autoloads from ob-exp.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-exp" '("org-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-forth" "ob-forth.el" (0 0 0 0))
+;;; Generated autoloads from ob-forth.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-forth" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-fortran" "ob-fortran.el" (0 0 0 0))
+;;; Generated autoloads from ob-fortran.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-fortran" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-gnuplot" "ob-gnuplot.el" (0 0 0 0))
+;;; Generated autoloads from ob-gnuplot.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-gnuplot" '("org-babel-" "*org-babel-gnuplot-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-groovy" "ob-groovy.el" (0 0 0 0))
+;;; Generated autoloads from ob-groovy.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-groovy" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-haskell" "ob-haskell.el" (0 0 0 0))
+;;; Generated autoloads from ob-haskell.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-haskell" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-hledger" "ob-hledger.el" (0 0 0 0))
+;;; Generated autoloads from ob-hledger.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-hledger" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-io" "ob-io.el" (0 0 0 0))
+;;; Generated autoloads from ob-io.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-io" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-java" "ob-java.el" (0 0 0 0))
+;;; Generated autoloads from ob-java.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-java" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-js" "ob-js.el" (0 0 0 0))
+;;; Generated autoloads from ob-js.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-js" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-keys" "ob-keys.el" (0 0 0 0))
 ;;; Generated autoloads from ob-keys.el
 
 (autoload 'org-babel-describe-bindings "ob-keys" "\
@@ -241,9 +428,39 @@ Describe all keybindings behind `org-babel-key-prefix'.
 
 \(fn)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-keys" '("org-babel-")))
+
 ;;;***
 
-;;;### (autoloads nil "ob-lob" "ob-lob.el" (22393 20522 568274 887000))
+;;;### (autoloads nil "ob-latex" "ob-latex.el" (0 0 0 0))
+;;; Generated autoloads from ob-latex.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-latex" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-ledger" "ob-ledger.el" (0 0 0 0))
+;;; Generated autoloads from ob-ledger.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-ledger" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-lilypond" "ob-lilypond.el" (0 0 0 0))
+;;; Generated autoloads from ob-lilypond.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-lilypond" '("org-babel-" "lilypond-mode")))
+
+;;;***
+
+;;;### (autoloads nil "ob-lisp" "ob-lisp.el" (0 0 0 0))
+;;; Generated autoloads from ob-lisp.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-lisp" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-lob" "ob-lob.el" (0 0 0 0))
 ;;; Generated autoloads from ob-lob.el
 
 (autoload 'org-babel-lob-execute-maybe "ob-lob" "\
@@ -255,16 +472,188 @@ if so then run the appropriate source block from the Library.
 
 (autoload 'org-babel-lob-get-info "ob-lob" "\
 Return internal representation for Library of Babel function call.
-Consider DATUM, when provided, or element at point.  Return nil
-when not on an appropriate location.  Otherwise return a list
-compatible with `org-babel-get-src-block-info', which see.
+
+Consider DATUM, when provided, or element at point otherwise.
+
+Return nil when not on an appropriate location.  Otherwise return
+a list compatible with `org-babel-get-src-block-info', which
+see.
 
 \(fn &optional DATUM)" nil nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-lob" '("org-babel-")))
+
 ;;;***
 
-;;;### (autoloads nil "ob-tangle" "ob-tangle.el" (22393 20522 569274
-;;;;;;  867000))
+;;;### (autoloads nil "ob-lua" "ob-lua.el" (0 0 0 0))
+;;; Generated autoloads from ob-lua.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-lua" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-makefile" "ob-makefile.el" (0 0 0 0))
+;;; Generated autoloads from ob-makefile.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-makefile" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-maxima" "ob-maxima.el" (0 0 0 0))
+;;; Generated autoloads from ob-maxima.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-maxima" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-mscgen" "ob-mscgen.el" (0 0 0 0))
+;;; Generated autoloads from ob-mscgen.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-mscgen" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-ocaml" "ob-ocaml.el" (0 0 0 0))
+;;; Generated autoloads from ob-ocaml.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-ocaml" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-octave" "ob-octave.el" (0 0 0 0))
+;;; Generated autoloads from ob-octave.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-octave" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-org" "ob-org.el" (0 0 0 0))
+;;; Generated autoloads from ob-org.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-org" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-perl" "ob-perl.el" (0 0 0 0))
+;;; Generated autoloads from ob-perl.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-perl" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-picolisp" "ob-picolisp.el" (0 0 0 0))
+;;; Generated autoloads from ob-picolisp.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-picolisp" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-plantuml" "ob-plantuml.el" (0 0 0 0))
+;;; Generated autoloads from ob-plantuml.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-plantuml" '("org-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-processing" "ob-processing.el" (0 0 0 0))
+;;; Generated autoloads from ob-processing.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-processing" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-python" "ob-python.el" (0 0 0 0))
+;;; Generated autoloads from ob-python.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-python" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-ref" "ob-ref.el" (0 0 0 0))
+;;; Generated autoloads from ob-ref.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-ref" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-ruby" "ob-ruby.el" (0 0 0 0))
+;;; Generated autoloads from ob-ruby.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-ruby" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-sass" "ob-sass.el" (0 0 0 0))
+;;; Generated autoloads from ob-sass.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-sass" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-scheme" "ob-scheme.el" (0 0 0 0))
+;;; Generated autoloads from ob-scheme.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-scheme" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-screen" "ob-screen.el" (0 0 0 0))
+;;; Generated autoloads from ob-screen.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-screen" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-sed" "ob-sed.el" (0 0 0 0))
+;;; Generated autoloads from ob-sed.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-sed" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-shell" "ob-shell.el" (0 0 0 0))
+;;; Generated autoloads from ob-shell.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-shell" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-shen" "ob-shen.el" (0 0 0 0))
+;;; Generated autoloads from ob-shen.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-shen" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-sql" "ob-sql.el" (0 0 0 0))
+;;; Generated autoloads from ob-sql.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-sql" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-sqlite" "ob-sqlite.el" (0 0 0 0))
+;;; Generated autoloads from ob-sqlite.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-sqlite" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-stan" "ob-stan.el" (0 0 0 0))
+;;; Generated autoloads from ob-stan.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-stan" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-table" "ob-table.el" (0 0 0 0))
+;;; Generated autoloads from ob-table.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-table" '("org-")))
+
+;;;***
+
+;;;### (autoloads nil "ob-tangle" "ob-tangle.el" (0 0 0 0))
 ;;; Generated autoloads from ob-tangle.el
 
 (autoload 'org-babel-tangle-file "ob-tangle" "\
@@ -290,10 +679,18 @@ used to limit the exported source code blocks by language.
 
 \(fn &optional ARG TARGET-FILE LANG)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-tangle" '("org-babel-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-agenda" "org-agenda.el" (22393 20522 571274
-;;;;;;  826000))
+;;;### (autoloads nil "ob-vala" "ob-vala.el" (0 0 0 0))
+;;; Generated autoloads from ob-vala.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ob-vala" '("org-babel-")))
+
+;;;***
+
+;;;### (autoloads nil "org-agenda" "org-agenda.el" (0 0 0 0))
 ;;; Generated autoloads from org-agenda.el
 
 (autoload 'org-toggle-sticky-agenda "org-agenda" "\
@@ -313,7 +710,6 @@ T     Call `org-todo-list' to display the global todo list, select only
 m     Call `org-tags-view' to display headlines with tags matching
       a condition  (the user is prompted for the condition).
 M     Like `m', but select only TODO entries, no ordinary headlines.
-L     Create a timeline for the current buffer.
 e     Export views to associated files.
 s     Search entries for keywords.
 S     Search entries for keywords, only with TODO keywords.
@@ -330,9 +726,9 @@ More commands can be added by configuring the variable
 `org-agenda-custom-commands'.  In particular, specific tags and TODO keyword
 searches can be pre-defined in this way.
 
-If the current buffer is in Org-mode and visiting a file, you can also
+If the current buffer is in Org mode and visiting a file, you can also
 first press `<' once to indicate that the agenda should be temporarily
-\(until the next use of \\[org-agenda]) restricted to the current file.
+\(until the next use of `\\[org-agenda]') restricted to the current file.
 Pressing `<' twice means to restrict to the current subtree or region
 \(if active).
 
@@ -453,15 +849,16 @@ as a whole, to include whitespace.
   with a colon, this will mean that the (non-regexp) snippets of the
   Boolean search must match as full words.
 
-This command searches the agenda files, and in addition the files listed
-in `org-agenda-text-search-extra-files'.
+This command searches the agenda files, and in addition the files
+listed in `org-agenda-text-search-extra-files' unless a restriction lock
+is active.
 
 \(fn &optional TODO-ONLY STRING EDIT-AT)" t nil)
 
 (autoload 'org-todo-list "org-agenda" "\
 Show all (not done) TODO entries from all agenda file in a single list.
 The prefix arg can be used to select a specific TODO keyword and limit
-the list to these.  When using \\[universal-argument], you will be prompted
+the list to these.  When using `\\[universal-argument]', you will be prompted
 for a keyword.  A numeric prefix directly selects the Nth keyword in
 `org-todo-keywords-1'.
 
@@ -516,23 +913,26 @@ Do we have a reason to ignore this TODO entry because it has a time stamp?
 \(fn &optional END)" nil nil)
 
 (autoload 'org-agenda-set-restriction-lock "org-agenda" "\
-Set restriction lock for agenda, to current subtree or file.
-Restriction will be the file if TYPE is `file', or if type is the
-universal prefix \\='(4), or if the cursor is before the first headline
-in the file.  Otherwise, restriction will be to the current subtree.
+Set restriction lock for agenda to current subtree or file.
+When in a restricted subtree, remove it.
+
+The restriction will span over the entire file if TYPE is `file',
+or if type is '(4), or if the cursor is before the first headline
+in the file. Otherwise, only apply the restriction to the current
+subtree.
 
 \(fn &optional TYPE)" t nil)
 
 (autoload 'org-calendar-goto-agenda "org-agenda" "\
-Compute the Org-mode agenda for the calendar date displayed at the cursor.
+Compute the Org agenda for the calendar date displayed at the cursor.
 This is a command that has to be installed in `calendar-mode-map'.
 
 \(fn)" t nil)
 
 (autoload 'org-agenda-to-appt "org-agenda" "\
 Activate appointments found in `org-agenda-files'.
-With a \\[universal-argument] prefix, refresh the list of
-appointments.
+
+With a `\\[universal-argument]' prefix, refresh the list of appointments.
 
 If FILTER is t, interactively prompt the user for a regular
 expression, and filter out entries that don't match it.
@@ -564,10 +964,11 @@ to override `appt-message-warning-time'.
 
 \(fn &optional REFRESH FILTER &rest ARGS)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-agenda" '("org-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-archive" "org-archive.el" (22393 20522
-;;;;;;  571274 826000))
+;;;### (autoloads nil "org-archive" "org-archive.el" (0 0 0 0))
 ;;; Generated autoloads from org-archive.el
 
 (autoload 'org-add-archive-files "org-archive" "\
@@ -579,25 +980,30 @@ archive file is.
 
 (autoload 'org-archive-subtree "org-archive" "\
 Move the current subtree to the archive.
-The archive can be a certain top-level heading in the current file, or in
-a different file.  The tree will be moved to that location, the subtree
-heading be marked DONE, and the current time will be added.
+The archive can be a certain top-level heading in the current
+file, or in a different file.  The tree will be moved to that
+location, the subtree heading be marked DONE, and the current
+time will be added.
 
-When called with a single prefix argument FIND-DONE, find whole trees without any
-open TODO items and archive them (after getting confirmation from the user).
-When called with a double prefix argument, find whole trees with timestamps before
-today and archive them (after getting confirmation from the user).
-If the cursor is not at a headline when these commands are called, try all level
-1 trees.  If the cursor is on a headline, only try the direct children of
-this heading.
+When called with a single prefix argument FIND-DONE, find whole
+trees without any open TODO items and archive them (after getting
+confirmation from the user).  When called with a double prefix
+argument, find whole trees with timestamps before today and
+archive them (after getting confirmation from the user).  If the
+cursor is not at a headline when these commands are called, try
+all level 1 trees.  If the cursor is on a headline, only try the
+direct children of this heading.
 
 \(fn &optional FIND-DONE)" t nil)
 
 (autoload 'org-archive-to-archive-sibling "org-archive" "\
 Archive the current heading by moving it under the archive sibling.
+
 The archive sibling is a sibling of the heading with the heading name
 `org-archive-sibling-heading' and an `org-archive-tag' tag.  If this
 sibling does not exist, it will be created at the end of the subtree.
+
+Archiving time is retained in the ARCHIVE_TIME node property.
 
 \(fn)" t nil)
 
@@ -620,10 +1026,11 @@ This command is set with the variable `org-archive-default-command'.
 
 \(fn)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-archive" '("org-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-attach" "org-attach.el" (22393 20522 571274
-;;;;;;  826000))
+;;;### (autoloads nil "org-attach" "org-attach.el" (0 0 0 0))
 ;;; Generated autoloads from org-attach.el
 
 (autoload 'org-attach "org-attach" "\
@@ -632,10 +1039,11 @@ Shows a list of commands and prompts for another key to execute a command.
 
 \(fn)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-attach" '("org-attach-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-bbdb" "org-bbdb.el" (22393 20522 571274
-;;;;;;  826000))
+;;;### (autoloads nil "org-bbdb" "org-bbdb.el" (0 0 0 0))
 ;;; Generated autoloads from org-bbdb.el
 
 (autoload 'org-bbdb-anniversaries "org-bbdb" "\
@@ -643,15 +1051,18 @@ Extract anniversaries from BBDB for display in the agenda.
 
 \(fn)" nil nil)
 
-(autoload 'org-bbdb-anniversaries-future "org-bbdb" "\
-Return list of anniversaries for today and the next n-1 days (default n=7).
-
-\(fn &optional N)" nil nil)
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-bbdb" '("org-bbdb-")))
 
 ;;;***
 
-;;;### (autoloads nil "org-capture" "org-capture.el" (22393 20522
-;;;;;;  572274 805000))
+;;;### (autoloads nil "org-bibtex" "org-bibtex.el" (0 0 0 0))
+;;; Generated autoloads from org-bibtex.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-bibtex" '("org-")))
+
+;;;***
+
+;;;### (autoloads nil "org-capture" "org-capture.el" (0 0 0 0))
 ;;; Generated autoloads from org-capture.el
 
 (autoload 'org-capture-string "org-capture" "\
@@ -662,18 +1073,22 @@ Capture STRING with the template selected by KEYS.
 (autoload 'org-capture "org-capture" "\
 Capture something.
 \\<org-capture-mode-map>
-This will let you select a template from `org-capture-templates', and then
-file the newly captured information.  The text is immediately inserted
-at the target location, and an indirect buffer is shown where you can
-edit it.  Pressing \\[org-capture-finalize] brings you back to the previous state
-of Emacs, so that you can continue your work.
+This will let you select a template from `org-capture-templates', and
+then file the newly captured information.  The text is immediately
+inserted at the target location, and an indirect buffer is shown where
+you can edit it.  Pressing `\\[org-capture-finalize]' brings you back to the previous
+state of Emacs, so that you can continue your work.
 
-When called interactively with a \\[universal-argument] prefix argument GOTO, don't capture
-anything, just go to the file/headline where the selected template
-stores its notes.  With a double prefix argument \\[universal-argument] \\[universal-argument], go to the last note
-stored.
+When called interactively with a `\\[universal-argument]' prefix argument GOTO, don't
+capture anything, just go to the file/headline where the selected
+template stores its notes.
+
+With a `\\[universal-argument] \\[universal-argument]' prefix argument, go to the last note stored.
 
 When called with a `C-0' (zero) prefix, insert a template at point.
+
+When called with a `C-1' (one) prefix, force prompting for a date when
+a datetree entry is made.
 
 ELisp programs can set KEYS to a string associated with a template
 in `org-capture-templates'.  In this case, interactive selection
@@ -691,14 +1106,15 @@ Set `org-capture-templates' to be similar to `org-remember-templates'.
 
 \(fn)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-capture" '("org-capture-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-clock" "org-clock.el" (22393 20522 572274
-;;;;;;  805000))
+;;;### (autoloads nil "org-clock" "org-clock.el" (0 0 0 0))
 ;;; Generated autoloads from org-clock.el
 
 (autoload 'org-resolve-clocks "org-clock" "\
-Resolve all currently open org-mode clocks.
+Resolve all currently open Org clocks.
 If `only-dangling-p' is non-nil, only ask to resolve dangling
 \(i.e., not currently open and valid) clocks.
 
@@ -706,20 +1122,25 @@ If `only-dangling-p' is non-nil, only ask to resolve dangling
 
 (autoload 'org-clock-in "org-clock" "\
 Start the clock on the current item.
+
 If necessary, clock-out of the currently active clock.
-With a prefix argument SELECT (\\[universal-argument]), offer a list of recently clocked
-tasks to clock into.  When SELECT is \\[universal-argument] \\[universal-argument], clock into the current task
-and mark it as the default task, a special task that will always be offered
-in the clocking selection, associated with the letter `d'.
-When SELECT is \\[universal-argument] \\[universal-argument] \\[universal-argument], clock in by using the last clock-out
-time as the start time (see `org-clock-continuously' to
-make this the default behavior.)
+
+With a `\\[universal-argument]' prefix argument SELECT, offer a list of recently clocked
+tasks to clock into.
+
+When SELECT is `\\[universal-argument] \\[universal-argument]', clock into the current task and mark it as
+the default task, a special task that will always be offered in the
+clocking selection, associated with the letter `d'.
+
+When SELECT is `\\[universal-argument] \\[universal-argument] \\[universal-argument]', clock in by using the last clock-out
+time as the start time.  See `org-clock-continuously' to make this
+the default behavior.
 
 \(fn &optional SELECT START-TIME)" t nil)
 
 (autoload 'org-clock-in-last "org-clock" "\
 Clock in the last closed clocked item.
-When already clocking in, send an warning.
+When already clocking in, send a warning.
 With a universal prefix argument, select the task you want to
 clock in from the last clocked in tasks.
 With two universal prefix arguments, start clocking using the
@@ -749,6 +1170,11 @@ With prefix arg SELECT, offer recently clocked tasks for selection.
 
 \(fn &optional SELECT)" t nil)
 
+(autoload 'org-clock-sum-today "org-clock" "\
+Sum the times for each subtree for today.
+
+\(fn &optional HEADLINE-FILTER)" nil nil)
+
 (autoload 'org-clock-sum "org-clock" "\
 Sum the times for each subtree.
 Puts the resulting times in minutes as a text property on each headline.
@@ -764,12 +1190,15 @@ PROPNAME lets you set a custom text property instead of :org-clock-minutes.
 Show subtree times in the entire buffer.
 
 By default, show the total time for the range defined in
-`org-clock-display-default-range'.  With \\[universal-argument] prefix, show
-the total time for today instead.  With \\[universal-argument] \\[universal-argument] prefix, use
-a custom range, entered at the prompt.  With \\[universal-argument] \\[universal-argument] \\[universal-argument]
-prefix, display the total time in the echo area.
+`org-clock-display-default-range'.  With `\\[universal-argument]' prefix, show
+the total time for today instead.
 
-Use \\[org-clock-remove-overlays] to remove the subtree times.
+With `\\[universal-argument] \\[universal-argument]' prefix, use a custom range, entered at prompt.
+
+With `\\[universal-argument] \\[universal-argument] \\[universal-argument]' prefix, display the total time in the
+echo area.
+
+Use `\\[org-clock-remove-overlays]' to remove the subtree times.
 
 \(fn &optional ARG)" t nil)
 
@@ -788,14 +1217,19 @@ fontified, and then returned.
 \(fn &rest PROPS)" nil nil)
 
 (autoload 'org-clock-report "org-clock" "\
-Create a table containing a report about clocked time.
-If the cursor is inside an existing clocktable block, then the table
-will be updated.  If not, a new clocktable will be inserted.  The scope
-of the new clock will be subtree when called from within a subtree, and
-file elsewhere.
+Update or create a table containing a report about clocked time.
 
-When called with a prefix argument, move to the first clock table in the
-buffer and update it.
+If point is inside an existing clocktable block, update it.
+Otherwise, insert a new one.
+
+The new table inherits its properties from the variable
+`org-clock-clocktable-default-properties'.  The scope of the
+clocktable, when not specified in the previous variable, is
+`subtree' when the function is called from within a subtree, and
+`file' elsewhere.
+
+When called with a prefix argument, move to the first clock table
+in the buffer and update it.
 
 \(fn &optional ARG)" t nil)
 
@@ -822,10 +1256,11 @@ Otherwise, return nil.
 
 \(fn)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-clock" '("org-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-colview" "org-colview.el" (22393 20522
-;;;;;;  572274 805000))
+;;;### (autoloads nil "org-colview" "org-colview.el" (0 0 0 0))
 ;;; Generated autoloads from org-colview.el
 
 (autoload 'org-columns-remove-overlays "org-colview" "\
@@ -844,7 +1279,7 @@ Turn on column view on an Org mode file.
 Column view applies to the whole buffer if point is before the
 first headline.  Otherwise, it applies to the first ancestor
 setting \"COLUMNS\" property.  If there is none, it defaults to
-the current headline.  With a \\[universal-argument] prefix argument, turn on column
+the current headline.  With a `\\[universal-argument]' prefix argument, turn on column
 view for the whole buffer unconditionally.
 
 When COLUMNS-FMT-STRING is non-nil, use it as the column format.
@@ -874,9 +1309,9 @@ PARAMS is a property list of parameters:
 :indent   When non-nil, indent each ITEM field according to its level.
 :vlines   When t, make each column a colgroup to enforce vertical lines.
 :maxlevel When set to a number, don't capture headlines below this level.
+:match    When set to a string, use this as a tags/property match filter.
 :skip-empty-rows
 	  When t, skip rows where all specifiers other than ITEM are empty.
-:width    apply widths specified in columns format using <N> specifiers.
 :format   When non-nil, specify the column view format to use.
 
 \(fn PARAMS)" nil nil)
@@ -891,10 +1326,11 @@ Turn on or update column view in the agenda.
 
 \(fn)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-colview" '("org-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-compat" "org-compat.el" (22393 20522 572274
-;;;;;;  805000))
+;;;### (autoloads nil "org-compat" "org-compat.el" (0 0 0 0))
 ;;; Generated autoloads from org-compat.el
 
 (autoload 'org-check-version "org-compat" "\
@@ -902,17 +1338,33 @@ Try very hard to provide sensible version strings.
 
 \(fn)" nil t)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-compat" '("org-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-datetree" "org-datetree.el" (22393 20522
-;;;;;;  573274 785000))
+;;;### (autoloads nil "org-crypt" "org-crypt.el" (0 0 0 0))
+;;; Generated autoloads from org-crypt.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-crypt" '("org-")))
+
+;;;***
+
+;;;### (autoloads nil "org-ctags" "org-ctags.el" (0 0 0 0))
+;;; Generated autoloads from org-ctags.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-ctags" '("org-ctags-")))
+
+;;;***
+
+;;;### (autoloads nil "org-datetree" "org-datetree.el" (0 0 0 0))
 ;;; Generated autoloads from org-datetree.el
 
 (autoload 'org-datetree-find-date-create "org-datetree" "\
 Find or create an entry for date D.
 If KEEP-RESTRICTION is non-nil, do not widen the buffer.
 When it is nil, the buffer will be widened to make sure an existing date
-tree can be found.
+tree can be found.  If it is the symbol `subtree-at-point', then the tree
+will be built under the headline at point.
 
 \(fn D &optional KEEP-RESTRICTION)" nil nil)
 
@@ -920,16 +1372,80 @@ tree can be found.
 Find or create an ISO week entry for date D.
 Compared to `org-datetree-find-date-create' this function creates
 entries ordered by week instead of months.
-If KEEP-RESTRICTION is non-nil, do not widen the buffer.  When it
-is nil, the buffer will be widened to make sure an existing date
-tree can be found.
+When it is nil, the buffer will be widened to make sure an existing date
+tree can be found.  If it is the symbol `subtree-at-point', then the tree
+will be built under the headline at point.
 
 \(fn D &optional KEEP-RESTRICTION)" nil nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-datetree" '("org-datetree-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-element" "org-element.el" (22393 20522
-;;;;;;  574274 764000))
+;;;### (autoloads nil "org-docview" "org-docview.el" (0 0 0 0))
+;;; Generated autoloads from org-docview.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-docview" '("org-docview-")))
+
+;;;***
+
+;;;### (autoloads nil "org-duration" "org-duration.el" (0 0 0 0))
+;;; Generated autoloads from org-duration.el
+
+(autoload 'org-duration-set-regexps "org-duration" "\
+Set duration related regexps.
+
+\(fn)" t nil)
+
+(autoload 'org-duration-p "org-duration" "\
+Non-nil when string S is a time duration.
+
+\(fn S)" nil nil)
+
+(autoload 'org-duration-to-minutes "org-duration" "\
+Return number of minutes of DURATION string.
+
+When optional argument CANONICAL is non-nil, ignore
+`org-duration-units' and use standard time units value.
+
+A bare number is translated into minutes.  The empty string is
+translated into 0.0.
+
+Return value as a float.  Raise an error if duration format is
+not recognized.
+
+\(fn DURATION &optional CANONICAL)" nil nil)
+
+(autoload 'org-duration-from-minutes "org-duration" "\
+Return duration string for a given number of MINUTES.
+
+Format duration according to `org-duration-format' or FMT, when
+non-nil.
+
+When optional argument CANONICAL is non-nil, ignore
+`org-duration-units' and use standard time units value.
+
+Raise an error if expected format is unknown.
+
+\(fn MINUTES &optional FMT CANONICAL)" nil nil)
+
+(autoload 'org-duration-h:mm-only-p "org-duration" "\
+Non-nil when every duration in TIMES has \"H:MM\" or \"H:MM:SS\" format.
+
+TIMES is a list of duration strings.
+
+Return nil if any duration is expressed with units, as defined in
+`org-duration-units'.  Otherwise, if any duration is expressed
+with \"H:MM:SS\" format, return `h:mm:ss'.  Otherwise, return
+`h:mm'.
+
+\(fn TIMES)" nil nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-duration" '("org-duration-")))
+
+;;;***
+
+;;;### (autoloads nil "org-element" "org-element.el" (0 0 0 0))
 ;;; Generated autoloads from org-element.el
 
 (autoload 'org-element-update-syntax "org-element" "\
@@ -999,10 +1515,39 @@ Providing it allows for quicker computation.
 
 \(fn &optional ELEMENT)" nil nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-element" '("org-element-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-feed" "org-feed.el" (22393 20522 574274
-;;;;;;  764000))
+;;;### (autoloads nil "org-entities" "org-entities.el" (0 0 0 0))
+;;; Generated autoloads from org-entities.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-entities" '("org-entit")))
+
+;;;***
+
+;;;### (autoloads nil "org-eshell" "org-eshell.el" (0 0 0 0))
+;;; Generated autoloads from org-eshell.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-eshell" '("org-eshell-")))
+
+;;;***
+
+;;;### (autoloads nil "org-eww" "org-eww.el" (0 0 0 0))
+;;; Generated autoloads from org-eww.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-eww" '("org-eww-")))
+
+;;;***
+
+;;;### (autoloads nil "org-faces" "org-faces.el" (0 0 0 0))
+;;; Generated autoloads from org-faces.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-faces" '("org-")))
+
+;;;***
+
+;;;### (autoloads nil "org-feed" "org-feed.el" (0 0 0 0))
 ;;; Generated autoloads from org-feed.el
 
 (autoload 'org-feed-update-all "org-feed" "\
@@ -1027,10 +1572,11 @@ Show the raw feed buffer of a feed.
 
 \(fn FEED)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-feed" '("org-feed-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-footnote" "org-footnote.el" (22393 20522
-;;;;;;  574274 764000))
+;;;### (autoloads nil "org-footnote" "org-footnote.el" (0 0 0 0))
 ;;; Generated autoloads from org-footnote.el
 
 (autoload 'org-footnote-action "org-footnote" "\
@@ -1049,9 +1595,61 @@ offer additional commands in a menu.
 
 \(fn &optional SPECIAL)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-footnote" '("org-footnote-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-id" "org-id.el" (22393 20522 575274 744000))
+;;;### (autoloads nil "org-gnus" "org-gnus.el" (0 0 0 0))
+;;; Generated autoloads from org-gnus.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-gnus" '("org-gnus-")))
+
+;;;***
+
+;;;### (autoloads nil "org-goto" "org-goto.el" (0 0 0 0))
+;;; Generated autoloads from org-goto.el
+
+(autoload 'org-goto-location "org-goto" "\
+Let the user select a location in current buffer.
+This function uses a recursive edit.  It returns the selected
+position or nil.
+
+\(fn &optional BUF HELP)" nil nil)
+
+(autoload 'org-goto "org-goto" "\
+Look up a different location in the current file, keeping current visibility.
+
+When you want look-up or go to a different location in a
+document, the fastest way is often to fold the entire buffer and
+then dive into the tree.  This method has the disadvantage, that
+the previous location will be folded, which may not be what you
+want.
+
+This command works around this by showing a copy of the current
+buffer in an indirect buffer, in overview mode.  You can dive
+into the tree in that copy, use org-occur and incremental search
+to find a location.  When pressing RET or `Q', the command
+returns to the original buffer in which the visibility is still
+unchanged.  After RET it will also jump to the location selected
+in the indirect buffer and expose the headline hierarchy above.
+
+With a prefix argument, use the alternative interface: e.g., if
+`org-goto-interface' is `outline' use `outline-path-completion'.
+
+\(fn &optional ALTERNATIVE-INTERFACE)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-goto" '("org-goto-")))
+
+;;;***
+
+;;;### (autoloads nil "org-habit" "org-habit.el" (0 0 0 0))
+;;; Generated autoloads from org-habit.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-habit" '("org-")))
+
+;;;***
+
+;;;### (autoloads nil "org-id" "org-id.el" (0 0 0 0))
 ;;; Generated autoloads from org-id.el
 
 (autoload 'org-id-get-create "org-id" "\
@@ -1088,7 +1686,7 @@ If necessary, the ID is created.
 
 (autoload 'org-id-get-with-outline-drilling "org-id" "\
 Use an outline-cycling interface to retrieve the ID of an entry.
-This only finds entries in the current buffer, using `org-get-location'.
+This only finds entries in the current buffer, using `org-goto-location'.
 It returns the ID of the entry.  If necessary, the ID is created.
 
 \(fn)" nil nil)
@@ -1128,7 +1726,6 @@ Store the relation between files and corresponding IDs.
 This will scan all agenda files, all associated archives, and all
 files currently mentioned in `org-id-locations'.
 When FILES is given, scan these files instead.
-When CHECK is given, prepare detailed information about duplicate IDs.
 
 \(fn &optional FILES SILENT)" t nil)
 
@@ -1142,10 +1739,11 @@ Store a link to the current entry, using its ID.
 
 \(fn)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-id" '("org-id-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-indent" "org-indent.el" (22393 20522 575274
-;;;;;;  744000))
+;;;### (autoloads nil "org-indent" "org-indent.el" (0 0 0 0))
 ;;; Generated autoloads from org-indent.el
 
 (autoload 'org-indent-mode "org-indent" "\
@@ -1160,10 +1758,26 @@ during idle time.
 
 \(fn &optional ARG)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-indent" '("org-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-irc" "org-irc.el" (22393 20522 575274
-;;;;;;  744000))
+;;;### (autoloads nil "org-info" "org-info.el" (0 0 0 0))
+;;; Generated autoloads from org-info.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-info" '("org-info-")))
+
+;;;***
+
+;;;### (autoloads nil "org-inlinetask" "org-inlinetask.el" (0 0 0
+;;;;;;  0))
+;;; Generated autoloads from org-inlinetask.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-inlinetask" '("org-inlinetask-")))
+
+;;;***
+
+;;;### (autoloads nil "org-irc" "org-irc.el" (0 0 0 0))
 ;;; Generated autoloads from org-irc.el
 
 (autoload 'org-irc-store-link "org-irc" "\
@@ -1171,27 +1785,43 @@ Dispatch to the appropriate function to store a link to an IRC session.
 
 \(fn)" nil nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-irc" '("org-irc-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-lint" "org-lint.el" (22393 20522 575274
-;;;;;;  744000))
+;;;### (autoloads nil "org-lint" "org-lint.el" (0 0 0 0))
 ;;; Generated autoloads from org-lint.el
 
 (autoload 'org-lint "org-lint" "\
 Check current Org buffer for syntax mistakes.
 
-By default, run all checkers.  With a single prefix ARG \\[universal-argument],
-select one category of checkers only.  With a double prefix
-\\[universal-argument] \\[universal-argument], select one precise checker by its name.
+By default, run all checkers.  With a `\\[universal-argument]' prefix ARG, select one
+category of checkers only.  With a `\\[universal-argument] \\[universal-argument]' prefix, run one precise
+checker by its name.
 
 ARG can also be a list of checker names, as symbols, to run.
 
 \(fn &optional ARG)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-lint" '("org-lint-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-macs" "org-macs.el" (22393 20522 576274
-;;;;;;  723000))
+;;;### (autoloads nil "org-list" "org-list.el" (0 0 0 0))
+;;; Generated autoloads from org-list.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-list" '("org-")))
+
+;;;***
+
+;;;### (autoloads nil "org-macro" "org-macro.el" (0 0 0 0))
+;;; Generated autoloads from org-macro.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-macro" '("org-macro-")))
+
+;;;***
+
+;;;### (autoloads nil "org-macs" "org-macs.el" (0 0 0 0))
 ;;; Generated autoloads from org-macs.el
 
 (autoload 'org-load-noerror-mustsuffix "org-macs" "\
@@ -1199,10 +1829,18 @@ Load FILE with optional arguments NOERROR and MUSTSUFFIX.
 
 \(fn FILE)" nil t)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-macs" '("org-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-mobile" "org-mobile.el" (22393 20522 576274
-;;;;;;  723000))
+;;;### (autoloads nil "org-mhe" "org-mhe.el" (0 0 0 0))
+;;; Generated autoloads from org-mhe.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-mhe" '("org-mhe-")))
+
+;;;***
+
+;;;### (autoloads nil "org-mobile" "org-mobile.el" (0 0 0 0))
 ;;; Generated autoloads from org-mobile.el
 
 (autoload 'org-mobile-push "org-mobile" "\
@@ -1219,10 +1857,25 @@ agenda view showing the flagged items.
 
 \(fn)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-mobile" '("org-mobile-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-plot" "org-plot.el" (22393 20522 576274
-;;;;;;  723000))
+;;;### (autoloads nil "org-mouse" "org-mouse.el" (0 0 0 0))
+;;; Generated autoloads from org-mouse.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-mouse" '("org-mouse-")))
+
+;;;***
+
+;;;### (autoloads nil "org-pcomplete" "org-pcomplete.el" (0 0 0 0))
+;;; Generated autoloads from org-pcomplete.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-pcomplete" '("org-" "pcomplete/org-mode/")))
+
+;;;***
+
+;;;### (autoloads nil "org-plot" "org-plot.el" (0 0 0 0))
 ;;; Generated autoloads from org-plot.el
 
 (autoload 'org-plot/gnuplot "org-plot" "\
@@ -1232,15 +1885,37 @@ line directly before or after the table.
 
 \(fn &optional PARAMS)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-plot" '("org-plot")))
+
 ;;;***
 
-;;;### (autoloads nil "org-table" "org-table.el" (22393 20522 577274
-;;;;;;  702000))
+;;;### (autoloads nil "org-protocol" "org-protocol.el" (0 0 0 0))
+;;; Generated autoloads from org-protocol.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-protocol" '("org-protocol-")))
+
+;;;***
+
+;;;### (autoloads nil "org-rmail" "org-rmail.el" (0 0 0 0))
+;;; Generated autoloads from org-rmail.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-rmail" '("org-rmail-")))
+
+;;;***
+
+;;;### (autoloads nil "org-src" "org-src.el" (0 0 0 0))
+;;; Generated autoloads from org-src.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-src" '("org-")))
+
+;;;***
+
+;;;### (autoloads nil "org-table" "org-table.el" (0 0 0 0))
 ;;; Generated autoloads from org-table.el
 
 (autoload 'org-table-create-with-table\.el "org-table" "\
 Use the table.el package to insert a new table.
-If there is already a table at point, convert between Org-mode tables
+If there is already a table at point, convert between Org tables
 and table.el tables.
 
 \(fn)" t nil)
@@ -1263,6 +1938,7 @@ SIZE is a string Columns x Rows like for example \"3x2\".
 
 (autoload 'org-table-convert-region "org-table" "\
 Convert region to a table.
+
 The region goes from BEG0 to END0, but these borders will be moved
 slightly, to make sure a beginning of line in the first line is included.
 
@@ -1272,7 +1948,7 @@ following values:
 \(4)     Use the comma as a field separator
 \(16)    Use a TAB as field separator
 \(64)    Prompt for a regular expression as field separator
-integer  When a number, use that many spaces as field separator
+integer  When a number, use that many spaces, or a TAB, as field separator
 regexp   When a regular expression, use it to match the separator
 nil      When nil, the command tries to be smart and figure out the
          separator in the following way:
@@ -1284,11 +1960,24 @@ nil      When nil, the command tries to be smart and figure out the
 
 (autoload 'org-table-import "org-table" "\
 Import FILE as a table.
-The file is assumed to be tab-separated.  Such files can be produced by most
-spreadsheet and database applications.  If no tabs (at least one per line)
-are found, lines will be split on whitespace into fields.
 
-\(fn FILE ARG)" t nil)
+The command tries to be smart and figure out the separator in the
+following way:
+
+  - when each line contains a TAB, assume TAB-separated material
+  - when each line contains a comma, assume CSV material
+  - else, assume one or more SPACE characters as separator.
+
+When non-nil, SEPARATOR specifies the field separator in the
+lines.  It can have the following values:
+
+\(4)     Use the comma as a field separator
+\(16)    Use a TAB as field separator
+\(64)    Prompt for a regular expression as field separator
+integer When a number, use that many spaces, or a TAB, as field separator
+regexp  When a regular expression, use it to match the separator.
+
+\(fn FILE SEPARATOR)" t nil)
 
 (autoload 'org-table-export "org-table" "\
 Export table to a file, with configurable format.
@@ -1382,12 +2071,6 @@ Show info about the current field, and highlight any reference at point.
 
 \(fn ARG)" t nil)
 
-(autoload 'org-table-current-dline "org-table" "\
-Find out what table data line we are in.
-Only data lines count for this.
-
-\(fn)" t nil)
-
 (autoload 'org-table-goto-column "org-table" "\
 Move the cursor to the Nth column in the current table line.
 With optional argument ON-DELIM, stop with point before the left delimiter
@@ -1475,7 +2158,8 @@ alphabetically, numerically, or by time (as given in a time stamp
 in the field, or as a HH:MM value).  Sorting in reverse order is
 also possible.
 
-With prefix argument WITH-CASE, alphabetic sorting will be case-sensitive.
+With prefix argument WITH-CASE, alphabetic sorting will be case-sensitive
+if the locale allows for it.
 
 If SORTING-TYPE is specified when this function is called from a Lisp
 program, no prompting will take place.  SORTING-TYPE must be a character,
@@ -1483,13 +2167,14 @@ any of (?a ?A ?n ?N ?t ?T ?f ?F) where the capital letters indicate that
 sorting should be done in reverse order.
 
 If the SORTING-TYPE is ?f or ?F, then GETKEY-FUNC specifies
-a function to be called to extract the key.  It must return either
-a string or a number that should serve as the sorting key for that
-row.  It will then use COMPARE-FUNC to compare entries.  If GETKEY-FUNC
-is specified interactively, the comparison will be either a string or
-numeric compare based on the type of the first key in the table.
+a function to be called to extract the key.  It must return a value
+that is compatible with COMPARE-FUNC, the function used to compare
+entries.
 
-\(fn WITH-CASE &optional SORTING-TYPE GETKEY-FUNC COMPARE-FUNC)" t nil)
+A non-nil value for INTERACTIVE? is used to signal that this
+function is being called interactively.
+
+\(fn &optional WITH-CASE SORTING-TYPE GETKEY-FUNC COMPARE-FUNC INTERACTIVE\\=\\?)" t nil)
 
 (autoload 'org-table-cut-region "org-table" "\
 Copy region in table to the clipboard and blank all relevant fields.
@@ -1499,8 +2184,9 @@ If there is no active region, use just the field at point.
 
 (autoload 'org-table-copy-region "org-table" "\
 Copy rectangular region in table to clipboard.
-A special clipboard is used which can only be accessed
-with `org-table-paste-rectangle'.
+A special clipboard is used which can only be accessed with
+`org-table-paste-rectangle'.  Return the region copied, as a list
+of lists of fields.
 
 \(fn BEG END &optional CUT)" t nil)
 
@@ -1515,13 +2201,13 @@ lines.
 
 (autoload 'org-table-convert "org-table" "\
 Convert from `org-mode' table to table.el and back.
-Obviously, this only works within limits.  When an Org-mode table is
-converted to table.el, all horizontal separator lines get lost, because
-table.el uses these as cell boundaries and has no notion of horizontal lines.
-A table.el table can be converted to an Org-mode table only if it does not
-do row or column spanning.  Multiline cells will become multiple cells.
-Beware, Org-mode does not test if the table can be successfully converted - it
-blindly applies a recipe that works for simple tables.
+Obviously, this only works within limits.  When an Org table is converted
+to table.el, all horizontal separator lines get lost, because table.el uses
+these as cell boundaries and has no notion of horizontal lines.  A table.el
+table can be converted to an Org table only if it does not do row or column
+spanning.  Multiline cells will become multiple cells.  Beware, Org mode
+does not test if the table can be successfully converted - it blindly
+applies a recipe that works for simple tables.
 
 \(fn)" t nil)
 
@@ -1553,8 +2239,11 @@ blank, and the content is appended to the field above.
 (autoload 'org-table-edit-field "org-table" "\
 Edit table field in a different window.
 This is mainly useful for fields that contain hidden parts.
-When called with a \\[universal-argument] prefix, just make the full field visible so that
-it can be edited in place.
+
+When called with a `\\[universal-argument]' prefix, just make the full field
+visible so that it can be edited in place.
+
+When called with a `\\[universal-argument] \\[universal-argument]' prefix, toggle `org-table-follow-field-mode'.
 
 \(fn ARG)" t nil)
 
@@ -1646,14 +2335,21 @@ For details, see the Org mode manual.
 
 This function can also be called from Lisp programs and offers
 additional arguments: EQUATION can be the formula to apply.  If this
-argument is given, the user will not be prompted.  SUPPRESS-ALIGN is
-used to speed-up recursive calls by by-passing unnecessary aligns.
+argument is given, the user will not be prompted.
+
+SUPPRESS-ALIGN is used to speed-up recursive calls by by-passing
+unnecessary aligns.
+
 SUPPRESS-CONST suppresses the interpretation of constants in the
-formula, assuming that this has been done already outside the function.
-SUPPRESS-STORE means the formula should not be stored, either because
-it is already stored, or because it is a modified equation that should
-not overwrite the stored one.  SUPPRESS-ANALYSIS prevents any call to
-`org-table-analyze'.
+formula, assuming that this has been done already outside the
+function.
+
+SUPPRESS-STORE means the formula should not be stored, either
+because it is already stored, or because it is a modified
+equation that should not overwrite the stored one.
+
+SUPPRESS-ANALYSIS prevents analyzing the table and checking
+location of point.
 
 \(fn &optional ARG EQUATION SUPPRESS-ALIGN SUPPRESS-CONST SUPPRESS-STORE SUPPRESS-ANALYSIS)" t nil)
 
@@ -1693,6 +2389,50 @@ Edit the formulas of the current table in a separate buffer.
 
 \(fn)" t nil)
 
+(autoload 'org-table-toggle-column-width "org-table" "\
+Shrink or expand current column in an Org table.
+
+If a width cookie specifies a width W for the column, the first
+W visible characters are displayed.  Otherwise, the column is
+shrunk to a single character.
+
+When point is before the first column or after the last one, ask
+for the columns to shrink or expand, as a list of ranges.
+A column range can be one of the following patterns:
+
+  N    column N only
+  N-M  every column between N and M (both inclusive)
+  N-   every column between N (inclusive) and the last column
+  -M   every column between the first one and M (inclusive)
+  -    every column
+
+When optional argument ARG is a string, use it as white space
+separated list of column ranges.
+
+When called with `\\[universal-argument]' prefix, call `org-table-shrink', i.e.,
+shrink columns with a width cookie and expand the others.
+
+When called with `\\[universal-argument] \\[universal-argument]' prefix, expand all columns.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'org-table-shrink "org-table" "\
+Shrink all columns with a width cookie in the table at point.
+
+Columns without a width cookie are expanded.
+
+Optional arguments BEGIN and END, when non-nil, specify the
+beginning and end position of the current table.
+
+\(fn &optional BEGIN END)" t nil)
+
+(autoload 'org-table-expand "org-table" "\
+Expand all columns in the table at point.
+Optional arguments BEGIN and END, when non-nil, specify the
+beginning and end position of the current table.
+
+\(fn &optional BEGIN END)" t nil)
+
 (autoload 'org-table-toggle-coordinate-overlays "org-table" "\
 Toggle the display of Row/Column numbers in tables.
 
@@ -1704,7 +2444,7 @@ Toggle the formula debugger in tables.
 \(fn)" t nil)
 
 (autoload 'orgtbl-mode "org-table" "\
-The `org-mode' table editor as a minor mode for use in other modes.
+The Org mode table editor as a minor mode for use in other modes.
 
 \(fn &optional ARG)" t nil)
 
@@ -1901,19 +2641,29 @@ be set to provide ORGTBL directives for the generated table.
 \(fn TABLE PARAMS)" nil nil)
 
 (autoload 'orgtbl-ascii-plot "org-table" "\
-Draw an ascii bar plot in a column.
-With cursor in a column containing numerical values, this
-function will draw a plot in a new column.
+Draw an ASCII bar plot in a column.
+
+With cursor in a column containing numerical values, this function
+will draw a plot in a new column.
+
 ASK, if given, is a numeric prefix to override the default 12
-characters width of the plot.  ASK may also be the
-\\[universal-argument] prefix, which will prompt for the width.
+characters width of the plot.  ASK may also be the `\\[universal-argument]' prefix,
+which will prompt for the width.
 
 \(fn &optional ASK)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-table" '("org")))
+
 ;;;***
 
-;;;### (autoloads nil "org-timer" "org-timer.el" (22393 20522 577274
-;;;;;;  702000))
+;;;### (autoloads nil "org-tempo" "org-tempo.el" (0 0 0 0))
+;;; Generated autoloads from org-tempo.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-tempo" '("org-tempo-")))
+
+;;;***
+
+;;;### (autoloads nil "org-timer" "org-timer.el" (0 0 0 0))
 ;;; Generated autoloads from org-timer.el
 
 (autoload 'org-timer-start "org-timer" "\
@@ -1929,18 +2679,31 @@ the region 0:00:00.
 
 \(fn &optional OFFSET)" t nil)
 
+(autoload 'org-timer-pause-or-continue "org-timer" "\
+Pause or continue the relative or countdown timer.
+With prefix arg STOP, stop it entirely.
+
+\(fn &optional STOP)" t nil)
+
+(autoload 'org-timer-stop "org-timer" "\
+Stop the relative or countdown timer.
+
+\(fn)" t nil)
+
 (autoload 'org-timer "org-timer" "\
 Insert a H:MM:SS string from the timer into the buffer.
-The first time this command is used, the timer is started.  When used with
-a \\[universal-argument] prefix, force restarting the timer.
-When used with a double prefix argument \\[universal-argument], change all the timer string
-in the region by a fixed amount.  This can be used to recalibrate a timer
-that was not started at the correct moment.
+The first time this command is used, the timer is started.
 
-If NO-INSERT-P is non-nil, return the string instead of inserting
+When used with a `\\[universal-argument]' prefix, force restarting the timer.
+
+When used with a `\\[universal-argument] \\[universal-argument]' prefix, change all the timer strings
+in the region by a fixed amount.  This can be used to re-calibrate
+a timer that was not started at the correct moment.
+
+If NO-INSERT is non-nil, return the string instead of inserting
 it in the buffer.
 
-\(fn &optional RESTART NO-INSERT-P)" t nil)
+\(fn &optional RESTART NO-INSERT)" t nil)
 
 (autoload 'org-timer-change-times-in-region "org-timer" "\
 Change all h:mm:ss time in region by a DELTA.
@@ -1975,21 +2738,22 @@ using three `C-u' prefix arguments.
 
 \(fn &optional OPT)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-timer" '("org-timer-")))
+
 ;;;***
 
-;;;### (autoloads nil "org-version" "org-version.el" (22413 4997
-;;;;;;  574894 648000))
+;;;### (autoloads nil "org-version" "org-version.el" (0 0 0 0))
 ;;; Generated autoloads from org-version.el
 
 (autoload 'org-release "org-version" "\
-The release version of org-mode.
-  Inserted by installing org-mode or when a release is made.
+The release version of Org.
+Inserted by installing Org mode or when a release is made.
 
 \(fn)" nil nil)
 
 (autoload 'org-git-version "org-version" "\
-The Git version of org-mode.
-  Inserted by installing org-mode or when a release is made.
+The Git version of Org mode.
+Inserted by installing Org or when a release is made.
 
 \(fn)" nil nil)
 
@@ -1998,7 +2762,14 @@ The location of ODT styles.")
 
 ;;;***
 
-;;;### (autoloads nil "org" "org.el" (22413 4776 860319 432000))
+;;;### (autoloads nil "org-w3m" "org-w3m.el" (0 0 0 0))
+;;; Generated autoloads from org-w3m.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org-w3m" '("org-w3m-")))
+
+;;;***
+
+;;;### (autoloads nil "org" "org.el" (0 0 0 0))
 ;;; Generated autoloads from org.el
 
 (autoload 'org-babel-do-load-languages "org" "\
@@ -2007,7 +2778,7 @@ Load the languages defined in `org-babel-load-languages'.
 \(fn SYM VALUE)" nil nil)
 
 (autoload 'org-babel-load-file "org" "\
-Load Emacs Lisp source code blocks in the Org-mode FILE.
+Load Emacs Lisp source code blocks in the Org FILE.
 This function exports the source code using `org-babel-tangle'
 and then loads the resulting file using `load-file'.  With prefix
 arg (noninteractively: 2nd arg) COMPILE the tangled Emacs Lisp
@@ -2016,7 +2787,7 @@ file to byte-code before it is loaded.
 \(fn FILE &optional COMPILE)" t nil)
 
 (autoload 'org-version "org" "\
-Show the org-mode version.
+Show the Org version.
 Interactively, or when MESSAGE is non-nil, show it in echo area.
 With prefix argument, or when HERE is non-nil, insert it at point.
 In non-interactive uses, a reduced version string is output unless
@@ -2038,15 +2809,15 @@ Set up hooks for clock persistence.
 Outline-based notes management and organizer, alias
 \"Carsten's outline-mode for keeping track of everything.\"
 
-Org-mode develops organizational tasks around a NOTES file which
-contains information about projects as plain text.  Org-mode is
-implemented on top of outline-mode, which is ideal to keep the content
+Org mode develops organizational tasks around a NOTES file which
+contains information about projects as plain text.  Org mode is
+implemented on top of Outline mode, which is ideal to keep the content
 of large files well structured.  It supports ToDo items, deadlines and
 time stamps, which magically appear in the diary listing of the Emacs
 calendar.  Tables are easily created with a built-in table editor.
 Plain text URL-like links connect to websites, emails (VM), Usenet
 messages (Gnus), BBDB entries, and any files related to the project.
-For printing and sharing of notes, an Org-mode file (or a part of it)
+For printing and sharing of notes, an Org file (or a part of it)
 can be exported as a structured ASCII or HTML file.
 
 The following commands are available:
@@ -2056,132 +2827,120 @@ The following commands are available:
 \(fn)" t nil)
 
 (autoload 'org-cycle "org" "\
-TAB-action and visibility cycling for Org-mode.
+TAB-action and visibility cycling for Org mode.
 
-This is the command invoked in Org-mode by the TAB key.  Its main purpose
-is outline visibility cycling, but it also invokes other actions
+This is the command invoked in Org mode by the `TAB' key.  Its main
+purpose is outline visibility cycling, but it also invokes other actions
 in special contexts.
 
-- When this function is called with a prefix argument, rotate the entire
-  buffer through 3 states (global cycling)
+When this function is called with a `\\[universal-argument]' prefix, rotate the entire
+buffer through 3 states (global cycling)
   1. OVERVIEW: Show only top-level headlines.
   2. CONTENTS: Show all headlines of all levels, but no body text.
   3. SHOW ALL: Show everything.
-  With a double \\[universal-argument] prefix argument, switch to the startup visibility,
-  determined by the variable `org-startup-folded', and by any VISIBILITY
-  properties in the buffer.
-  With a triple \\[universal-argument] prefix argument, show the entire buffer, including any drawers.
 
-- When inside a table, re-align the table and move to the next field.
+With a `\\[universal-argument] \\[universal-argument]' prefix argument, switch to the startup visibility,
+determined by the variable `org-startup-folded', and by any VISIBILITY
+properties in the buffer.
 
-- When point is at the beginning of a headline, rotate the subtree started
-  by this line through 3 different states (local cycling)
+With a `\\[universal-argument] \\[universal-argument] \\[universal-argument]' prefix argument, show the entire buffer, including
+any drawers.
+
+When inside a table, re-align the table and move to the next field.
+
+When point is at the beginning of a headline, rotate the subtree started
+by this line through 3 different states (local cycling)
   1. FOLDED:   Only the main headline is shown.
   2. CHILDREN: The main headline and the direct children are shown.
                From this state, you can move to one of the children
                and zoom in further.
   3. SUBTREE:  Show the entire subtree, including body text.
-  If there is no subtree, switch directly from CHILDREN to FOLDED.
+If there is no subtree, switch directly from CHILDREN to FOLDED.
 
-- When point is at the beginning of an empty headline and the variable
-  `org-cycle-level-after-item/entry-creation' is set, cycle the level
-  of the headline by demoting and promoting it to likely levels.  This
-  speeds up creation document structure by pressing TAB once or several
-  times right after creating a new headline.
+When point is at the beginning of an empty headline and the variable
+`org-cycle-level-after-item/entry-creation' is set, cycle the level
+of the headline by demoting and promoting it to likely levels.  This
+speeds up creation document structure by pressing `TAB' once or several
+times right after creating a new headline.
 
-- When there is a numeric prefix, go up to a heading with level ARG, do
-  a `show-subtree' and return to the previous cursor position.  If ARG
-  is negative, go up that many levels.
+When there is a numeric prefix, go up to a heading with level ARG, do
+a `show-subtree' and return to the previous cursor position.  If ARG
+is negative, go up that many levels.
 
-- When point is not at the beginning of a headline, execute the global
-  binding for TAB, which is re-indenting the line.  See the option
-  `org-cycle-emulate-tab' for details.
+When point is not at the beginning of a headline, execute the global
+binding for `TAB', which is re-indenting the line.  See the option
+`org-cycle-emulate-tab' for details.
 
-- Special case: if point is at the beginning of the buffer and there is
-  no headline in line 1, this function will act as if called with prefix arg
-  (\\[universal-argument] TAB, same as S-TAB) also when called without prefix arg.
-  But only if also the variable `org-cycle-global-at-bob' is t.
+As a special case, if point is at the beginning of the buffer and there is
+no headline in line 1, this function will act as if called with prefix arg
+\(`\\[universal-argument] TAB', same as `S-TAB') also when called without prefix arg, but only
+if the variable `org-cycle-global-at-bob' is t.
 
 \(fn &optional ARG)" t nil)
 
 (autoload 'org-global-cycle "org" "\
 Cycle the global visibility.  For details see `org-cycle'.
-With \\[universal-argument] prefix arg, switch to startup visibility.
+With `\\[universal-argument]' prefix ARG, switch to startup visibility.
 With a numeric prefix, show all headlines up to that level.
 
 \(fn &optional ARG)" t nil)
-(put 'orgstruct-heading-prefix-regexp 'safe-local-variable 'stringp)
-
-(autoload 'orgstruct-mode "org" "\
-Toggle the minor mode `orgstruct-mode'.
-This mode is for using Org-mode structure commands in other
-modes.  The following keys behave as if Org-mode were active, if
-the cursor is on a headline, or on a plain list item (both as
-defined by Org-mode).
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'turn-on-orgstruct "org" "\
-Unconditionally turn on `orgstruct-mode'.
-
-\(fn)" nil nil)
-
-(autoload 'turn-on-orgstruct++ "org" "\
-Unconditionally turn on `orgstruct++-mode'.
-
-\(fn)" nil nil)
 
 (autoload 'org-run-like-in-org-mode "org" "\
-Run a command, pretending that the current buffer is in Org-mode.
+Run a command, pretending that the current buffer is in Org mode.
 This will temporarily bind local variables that are typically bound in
-Org-mode to the values they have in Org-mode, and then interactively
+Org mode to the values they have in Org mode, and then interactively
 call CMD.
 
 \(fn CMD)" nil nil)
 
 (autoload 'org-store-link "org" "\
-\\<org-mode-map>Store an org-link to the current location.
+Store a link to the current location.
+\\<org-mode-map>
 This link is added to `org-stored-links' and can later be inserted
-into an Org buffer with \\[org-insert-link].
+into an Org buffer with `org-insert-link' (`\\[org-insert-link]').
 
-For some link types, a prefix ARG is interpreted.
-For links to Usenet articles, ARG negates `org-gnus-prefer-web-links'.
-For file links, ARG negates `org-context-in-file-links'.
+For some link types, a `\\[universal-argument]' prefix ARG is interpreted.  A single
+`\\[universal-argument]' negates `org-context-in-file-links' for file links or
+`org-gnus-prefer-web-links' for links to Usenet articles.
 
-A double prefix ARG force skipping storing functions that are not
-part of Org's core.
+A `\\[universal-argument] \\[universal-argument]' prefix ARG forces skipping storing functions that are not
+part of Org core.
 
-A triple prefix ARG force storing a link for each line in the
+A `\\[universal-argument] \\[universal-argument] \\[universal-argument]' prefix ARG forces storing a link for each line in the
 active region.
 
-\(fn ARG)" t nil)
+Assume the function is called interactively if INTERACTIVE? is
+non-nil.
+
+\(fn ARG &optional INTERACTIVE\\=\\?)" t nil)
 
 (autoload 'org-insert-link-global "org" "\
-Insert a link like Org-mode does.
-This command can be called in any mode to insert a link in Org-mode syntax.
+Insert a link like Org mode does.
+This command can be called in any mode to insert a link in Org syntax.
 
 \(fn)" t nil)
 
 (autoload 'org-open-at-point-global "org" "\
-Follow a link or time-stamp like Org mode does.
-This command can be called in any mode to follow an external link
-or a time-stamp that has Org mode syntax.  Its behavior is
-undefined when called on internal links (e.g., fuzzy links).
-Raise an error when there is nothing to follow.  
+Follow a link or a time-stamp like Org mode does.
+Also follow links and emails as seen by `thing-at-point'.
+This command can be called in any mode to follow an external
+link or a time-stamp that has Org mode syntax.  Its behavior
+is undefined when called on internal links like fuzzy links.
+Raise a user error when there is nothing to follow.
 
 \(fn)" t nil)
 
 (autoload 'org-open-link-from-string "org" "\
-Open a link in the string S, as if it was in Org-mode.
+Open a link in the string S, as if it was in Org mode.
 
 \(fn S &optional ARG REFERENCE-BUFFER)" t nil)
 
 (autoload 'org-switchb "org" "\
 Switch between Org buffers.
 
-With \\[universal-argument] prefix, restrict available buffers to files.
+With `\\[universal-argument]' prefix, restrict available buffers to files.
 
-With \\[universal-argument] \\[universal-argument] prefix, restrict available buffers to agenda files.
+With `\\[universal-argument] \\[universal-argument]' prefix, restrict available buffers to agenda files.
 
 \(fn &optional ARG)" t nil)
 
@@ -2193,18 +2952,18 @@ If the current buffer does not, find the first agenda file.
 \(fn)" t nil)
 
 (autoload 'org-submit-bug-report "org" "\
-Submit a bug report on Org-mode via mail.
+Submit a bug report on Org via mail.
 
 Don't hesitate to report any problems or inaccurate documentation.
 
 If you don't have setup sending mail from (X)Emacs, please copy the
 output buffer into your mail program, as it gives us important
-information about your Org-mode version and configuration.
+information about your Org version and configuration.
 
 \(fn)" t nil)
 
 (autoload 'org-reload "org" "\
-Reload all org lisp files.
+Reload all Org Lisp files.
 With prefix arg UNCOMPILED, load the uncompiled versions.
 
 \(fn &optional UNCOMPILED)" t nil)
@@ -2214,10 +2973,11 @@ Call the customize function with org as argument.
 
 \(fn)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "org" '("org-" "turn-on-org-cdlatex")))
+
 ;;;***
 
-;;;### (autoloads nil "ox-ascii" "ox-ascii.el" (22393 20522 582274
-;;;;;;  600000))
+;;;### (autoloads nil "ox-ascii" "ox-ascii.el" (0 0 0 0))
 ;;; Generated autoloads from ox-ascii.el
 
 (autoload 'org-ascii-export-as-ascii "ox-ascii" "\
@@ -2315,10 +3075,11 @@ Return output file name.
 
 \(fn PLIST FILENAME PUB-DIR)" nil nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ox-ascii" '("org-ascii-")))
+
 ;;;***
 
-;;;### (autoloads nil "ox-beamer" "ox-beamer.el" (22393 20522 582274
-;;;;;;  600000))
+;;;### (autoloads nil "ox-beamer" "ox-beamer.el" (0 0 0 0))
 ;;; Generated autoloads from ox-beamer.el
 
 (autoload 'org-beamer-mode "ox-beamer" "\
@@ -2451,10 +3212,11 @@ Return output file name.
 
 \(fn PLIST FILENAME PUB-DIR)" nil nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ox-beamer" '("org-beamer-")))
+
 ;;;***
 
-;;;### (autoloads nil "ox-html" "ox-html.el" (22393 20522 583274
-;;;;;;  579000))
+;;;### (autoloads nil "ox-html" "ox-html.el" (0 0 0 0))
 ;;; Generated autoloads from ox-html.el
 
 (put 'org-html-head-include-default-style 'safe-local-variable 'booleanp)
@@ -2510,10 +3272,10 @@ is non-nil.
 \(fn &optional ASYNC SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)" t nil)
 
 (autoload 'org-html-convert-region-to-html "ox-html" "\
-Assume the current region has org-mode syntax, and convert it to HTML.
+Assume the current region has Org syntax, and convert it to HTML.
 This can be used in any buffer.  For example, you can write an
-itemized list in org-mode syntax in an HTML buffer and use this
-command to convert it.
+itemized list in Org syntax in an HTML buffer and use this command
+to convert it.
 
 \(fn)" t nil)
 
@@ -2558,10 +3320,11 @@ Return output file name.
 
 \(fn PLIST FILENAME PUB-DIR)" nil nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ox-html" '("org-html-")))
+
 ;;;***
 
-;;;### (autoloads nil "ox-icalendar" "ox-icalendar.el" (22393 20522
-;;;;;;  583274 579000))
+;;;### (autoloads nil "ox-icalendar" "ox-icalendar.el" (0 0 0 0))
 ;;; Generated autoloads from ox-icalendar.el
 
 (autoload 'org-icalendar-export-to-ics "ox-icalendar" "\
@@ -2609,11 +3372,23 @@ The file is stored under the name chosen in
 
 \(fn &optional ASYNC)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ox-icalendar" '("org-icalendar-")))
+
 ;;;***
 
-;;;### (autoloads nil "ox-latex" "ox-latex.el" (22393 20522 584274
-;;;;;;  559000))
+;;;### (autoloads nil "ox-latex" "ox-latex.el" (0 0 0 0))
 ;;; Generated autoloads from ox-latex.el
+
+(autoload 'org-latex-make-preamble "ox-latex" "\
+Return a formatted LaTeX preamble.
+INFO is a plist used as a communication channel.  Optional
+argument TEMPLATE, when non-nil, is the header template string,
+as expected by `org-splice-latex-header'.  When SNIPPET? is
+non-nil, only includes packages relevant to image generation, as
+specified in `org-latex-default-packages-alist' or
+`org-latex-packages-alist'.
+
+\(fn INFO &optional TEMPLATE SNIPPET\\=\\?)" nil nil)
 
 (autoload 'org-latex-export-as-latex "ox-latex" "\
 Export current buffer as a LaTeX buffer.
@@ -2648,9 +3423,9 @@ is non-nil.
 \(fn &optional ASYNC SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)" t nil)
 
 (autoload 'org-latex-convert-region-to-latex "ox-latex" "\
-Assume the current region has org-mode syntax, and convert it to LaTeX.
+Assume the current region has Org syntax, and convert it to LaTeX.
 This can be used in any buffer.  For example, you can write an
-itemized list in org-mode syntax in an LaTeX buffer and use this
+itemized list in Org syntax in an LaTeX buffer and use this
 command to convert it.
 
 \(fn)" t nil)
@@ -2735,9 +3510,18 @@ Return output file name.
 
 \(fn PLIST FILENAME PUB-DIR)" nil nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ox-latex" '("org-latex-")))
+
 ;;;***
 
-;;;### (autoloads nil "ox-md" "ox-md.el" (22393 20522 584274 559000))
+;;;### (autoloads nil "ox-man" "ox-man.el" (0 0 0 0))
+;;; Generated autoloads from ox-man.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ox-man" '("org-man-")))
+
+;;;***
+
+;;;### (autoloads nil "ox-md" "ox-md.el" (0 0 0 0))
 ;;; Generated autoloads from ox-md.el
 
 (autoload 'org-md-export-as-markdown "ox-md" "\
@@ -2766,9 +3550,9 @@ non-nil.
 \(fn &optional ASYNC SUBTREEP VISIBLE-ONLY)" t nil)
 
 (autoload 'org-md-convert-region-to-md "ox-md" "\
-Assume the current region has org-mode syntax, and convert it to Markdown.
+Assume the current region has Org syntax, and convert it to Markdown.
 This can be used in any buffer.  For example, you can write an
-itemized list in org-mode syntax in a Markdown buffer and use
+itemized list in Org syntax in a Markdown buffer and use
 this command to convert it.
 
 \(fn)" t nil)
@@ -2807,9 +3591,11 @@ Return output file name.
 
 \(fn PLIST FILENAME PUB-DIR)" nil nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ox-md" '("org-md-")))
+
 ;;;***
 
-;;;### (autoloads nil "ox-odt" "ox-odt.el" (22393 20522 585274 538000))
+;;;### (autoloads nil "ox-odt" "ox-odt.el" (0 0 0 0))
 ;;; Generated autoloads from ox-odt.el
 
 (put 'org-odt-preferred-output-format 'safe-local-variable 'stringp)
@@ -2869,9 +3655,11 @@ is non-nil then the newly converted file is opened using
 
 \(fn &optional IN-FILE OUT-FMT OPEN)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ox-odt" '("org-odt-")))
+
 ;;;***
 
-;;;### (autoloads nil "ox-org" "ox-org.el" (22393 20522 585274 538000))
+;;;### (autoloads nil "ox-org" "ox-org.el" (0 0 0 0))
 ;;; Generated autoloads from ox-org.el
 
 (autoload 'org-org-export-as-org "ox-org" "\
@@ -2947,10 +3735,11 @@ Return output file name.
 
 \(fn PLIST FILENAME PUB-DIR)" nil nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ox-org" '("org-org-")))
+
 ;;;***
 
-;;;### (autoloads nil "ox-publish" "ox-publish.el" (22393 20522 585274
-;;;;;;  538000))
+;;;### (autoloads nil "ox-publish" "ox-publish.el" (0 0 0 0))
 ;;; Generated autoloads from ox-publish.el
 
 (defalias 'org-publish-project 'org-publish)
@@ -2991,11 +3780,75 @@ the project.
 
 \(fn &optional FORCE ASYNC)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ox-publish" '("org-publish-")))
+
 ;;;***
 
-;;;### (autoloads nil "ox-texinfo" "ox-texinfo.el" (22393 20522 585274
-;;;;;;  538000))
+;;;### (autoloads nil "ox-texinfo" "ox-texinfo.el" (0 0 0 0))
 ;;; Generated autoloads from ox-texinfo.el
+
+(autoload 'org-texinfo-export-to-texinfo "ox-texinfo" "\
+Export current buffer to a Texinfo file.
+
+If narrowing is active in the current buffer, only export its
+narrowed part.
+
+If a region is active, export that region.
+
+A non-nil optional argument ASYNC means the process should happen
+asynchronously.  The resulting file should be accessible through
+the `org-export-stack' interface.
+
+When optional argument SUBTREEP is non-nil, export the sub-tree
+at point, extracting information from the headline properties
+first.
+
+When optional argument VISIBLE-ONLY is non-nil, don't export
+contents of hidden elements.
+
+When optional argument BODY-ONLY is non-nil, only write code
+between \"\\begin{document}\" and \"\\end{document}\".
+
+EXT-PLIST, when provided, is a property list with external
+parameters overriding Org default settings, but still inferior to
+file-local settings.
+
+Return output file's name.
+
+\(fn &optional ASYNC SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)" t nil)
+
+(autoload 'org-texinfo-export-to-info "ox-texinfo" "\
+Export current buffer to Texinfo then process through to INFO.
+
+If narrowing is active in the current buffer, only export its
+narrowed part.
+
+If a region is active, export that region.
+
+A non-nil optional argument ASYNC means the process should happen
+asynchronously.  The resulting file should be accessible through
+the `org-export-stack' interface.
+
+When optional argument SUBTREEP is non-nil, export the sub-tree
+at point, extracting information from the headline properties
+first.
+
+When optional argument VISIBLE-ONLY is non-nil, don't export
+contents of hidden elements.
+
+When optional argument BODY-ONLY is non-nil, only write code
+between \"\\begin{document}\" and \"\\end{document}\".
+
+EXT-PLIST, when provided, is a property list with external
+parameters overriding Org default settings, but still inferior to
+file-local settings.
+
+When optional argument PUB-DIR is set, use it as the publishing
+directory.
+
+Return INFO file's name.
+
+\(fn &optional ASYNC SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)" t nil)
 
 (autoload 'org-texinfo-publish-to-texinfo "ox-texinfo" "\
 Publish an org file to Texinfo.
@@ -3009,17 +3862,40 @@ Return output file name.
 \(fn PLIST FILENAME PUB-DIR)" nil nil)
 
 (autoload 'org-texinfo-convert-region-to-texinfo "ox-texinfo" "\
-Assume the current region has org-mode syntax, and convert it to Texinfo.
+Assume the current region has Org syntax, and convert it to Texinfo.
 This can be used in any buffer.  For example, you can write an
-itemized list in org-mode syntax in an Texinfo buffer and use
-this command to convert it.
+itemized list in Org syntax in an Texinfo buffer and use this
+command to convert it.
 
 \(fn)" t nil)
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ox-texinfo" '("org-texinfo-")))
+
 ;;;***
 
-;;;### (autoloads nil "ox" "ox.el" (22393 20522 586274 517000))
+;;;### (autoloads nil "ox" "ox.el" (0 0 0 0))
 ;;; Generated autoloads from ox.el
+
+(autoload 'org-export-get-backend "ox" "\
+Return export back-end named after NAME.
+NAME is a symbol.  Return nil if no such back-end is found.
+
+\(fn NAME)" nil nil)
+
+(autoload 'org-export-get-environment "ox" "\
+Collect export options from the current buffer.
+
+Optional argument BACKEND is an export back-end, as returned by
+`org-export-create-backend'.
+
+When optional argument SUBTREEP is non-nil, assume the export is
+done against the current sub-tree.
+
+Third optional argument EXT-PLIST is a property list with
+external parameters overriding Org default settings, but still
+inferior to file-local settings.
+
+\(fn &optional BACKEND SUBTREEP EXT-PLIST)" nil nil)
 
 (autoload 'org-export-as "ox" "\
 Transcode current Org buffer into BACKEND code.
@@ -3177,12 +4053,14 @@ SPC and DEL (resp. C-n and C-p) keys.
 Set variable `org-export-dispatch-use-expert-ui' to switch to one
 flavor or the other.
 
-When ARG is \\[universal-argument], repeat the last export action, with the same set
-of options used back then, on the current buffer.
+When ARG is `\\[universal-argument]', repeat the last export action, with the same
+set of options used back then, on the current buffer.
 
-When ARG is \\[universal-argument] \\[universal-argument], display the asynchronous export stack.
+When ARG is `\\[universal-argument] \\[universal-argument]', display the asynchronous export stack.
 
 \(fn &optional ARG)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ox" '("org-export-")))
 
 ;;;***
 

@@ -11,8 +11,8 @@ INSTSUB       = $(SUBDIRS:%=install-%)
 ORG_MAKE_DOC ?= info html pdf
 
 ifneq ($(wildcard .git),)
-  GITVERSION ?= $(shell git describe --abbrev=6 HEAD)
-  ORGVERSION ?= $(subst release_,,$(shell git describe --abbrev=0 HEAD))
+  GITVERSION ?= $(shell git describe --match release\* --abbrev=6 HEAD)
+  ORGVERSION ?= $(subst release_,,$(shell git describe --match release\* --abbrev=0 HEAD))
   GITSTATUS  ?= $(shell git status -uno --porcelain)
 else
  -include mk/version.mk
@@ -20,6 +20,7 @@ else
   ORGVERSION ?= N/A
 endif
 DATE          = $(shell date +%Y-%m-%d)
+YEAR          = $(shell date +%Y)
 ifneq ($(GITSTATUS),)
   GITVERSION := $(GITVERSION:.dirty=).dirty
 endif
@@ -31,13 +32,14 @@ endif
 	clean-install cleanelc cleandirs cleanaddcontrib \
 	cleanlisp cleandoc cleandocs cleantest \
 	compile compile-dirty uncompiled \
-	config config-test config-exe config-all config-eol config-version
+	config config-test config-exe config-all config-eol config-version \
+	vanilla
 
 CONF_BASE = EMACS DESTDIR ORGCM ORG_MAKE_DOC
 CONF_DEST = lispdir infodir datadir testdir
-CONF_TEST = BTEST_PRE BTEST_POST BTEST_OB_LANGUAGES BTEST_EXTRA
-CONF_EXEC = CP MKDIR RM RMR FIND SUDO PDFTEX TEXI2PDF TEXI2HTML MAKEINFO INSTALL_INFO
-CONF_CALL = BATCH BATCHL ELC ELCDIR BTEST MAKE_LOCAL_MK MAKE_ORG_INSTALL MAKE_ORG_VERSION
+CONF_TEST = BTEST_PRE BTEST_POST BTEST_OB_LANGUAGES BTEST_EXTRA BTEST_RE
+CONF_EXEC = CP MKDIR RM RMR FIND CHMOD SUDO PDFTEX TEXI2PDF TEXI2HTML MAKEINFO INSTALL_INFO
+CONF_CALL = BATCH BATCHL ELC ELCDIR NOBATCH BTEST MAKE_LOCAL_MK MAKE_ORG_INSTALL MAKE_ORG_VERSION
 config-eol:: EOL = \#
 config-eol:: config-all
 config config-all::
@@ -66,7 +68,7 @@ config-cmd config-all::
 	$(foreach var,$(CONF_CALL),$(info $(var)	= $($(var))$(EOL)))
 config config-test config-exe config-all config-version::
 	$(info ========= Org version)
-	$(info make:  Org-mode version $(ORGVERSION) ($(GITVERSION) => $(lispdir)))
+	$(info make:  Org mode version $(ORGVERSION) ($(GITVERSION) => $(lispdir)))
 	@echo ""
 
 oldorg:	compile info	# what the old makefile did when no target was specified
@@ -94,21 +96,20 @@ compile compile-dirty::
 all clean-install::
 	$(foreach dir, $(SUBDIRS), $(MAKE) -C $(dir) $@;)
 
-check test single-test::	compile
+vanilla:
+	-@$(NOBATCH) &
+
+check test::	compile
 check test test-dirty::
 	-$(MKDIR) $(testdir)
-	TMPDIR=$(testdir) $(BTEST) -f org-test-run-batch-tests
-
-single-test single-test-dirty::
-	-$(MKDIR) $(testdir)
-	TMPDIR=$(testdir) $(BTEST) --eval "(org-test-load)" --eval "(ert '$(TEST))"
-
+	TMPDIR=$(testdir) $(BTEST)
 ifeq ($(TEST_NO_AUTOCLEAN),) # define this variable to leave $(testdir) around for inspection
 	$(MAKE) cleantest
 endif
 
 up0::	cleanaddcontrib
 up0 up1 up2::
+	git checkout $(GIT_BRANCH)
 	git remote update
 	git pull
 up1 up2::	all
@@ -137,11 +138,11 @@ cleandirs:
 clean:	cleanlisp cleandoc
 
 cleanall: cleandirs cleantest cleanaddcontrib
-	-$(FIND) . \( -name \*~ -o -name \*# -o -name .#\* \) -exec $(RM) {} \;
-	-$(FIND) $(CLEANDIRS) \( -name \*~ -o -name \*.elc \) -exec $(RM) {} \;
+	-$(FIND) . \( -name \*~ -o -name \*# -o -name .#\* \) -exec $(RM) {} +
+	-$(FIND) $(CLEANDIRS) \( -name \*~ -o -name \*.elc \) -exec $(RM) {} +
 
 $(CLEANDIRS:%=clean%):
-	-$(FIND) $(@:clean%=%) \( -name \*~ -o -name \*.elc \) -exec $(RM) {} \;
+	-$(FIND) $(@:clean%=%) \( -name \*~ -o -name \*.elc \) -exec $(RM) {} +
 
 cleanelc:
 	$(MAKE) -C lisp $@
@@ -158,4 +159,10 @@ cleandocs:
 	-$(FIND) doc -name \*~ -exec $(RM) {} \;
 
 cleantest:
-	$(RMR) $(testdir)
+# git-annex creates non-writable directories so that the files within
+# them can't be removed; if rm fails, try to recover by making all
+# directories writable
+	-$(RMR) $(testdir) || { \
+	  $(FIND) $(testdir) -type d -exec $(CHMOD) u+w {} + && \
+	  $(RMR) $(testdir) ; \
+	}

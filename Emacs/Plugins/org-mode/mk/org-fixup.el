@@ -2,7 +2,7 @@
 ;;
 ;; Author: Achim Gratz
 ;; Keywords: orgmode
-;; Homepage: http://orgmode.org
+;; Homepage: https://orgmode.org
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
@@ -27,11 +27,18 @@
 (require 'autoload)
 (require 'org-compat "org-compat.el")
 
+(defun org-make-manuals ()
+  "Generate the Texinfo files out of Org manuals."
+  (require 'ox-texinfo)
+  (dolist (manual '("../doc/org-manual.org"))
+    (find-file manual)
+    (org-texinfo-export-to-texinfo)))
+
 (defun org-make-org-version (org-release org-git-version odt-dir)
   "Make the file org-version.el in the current directory.
 This function is internally used by the build system and should
 be used by foreign build systems or installers to produce this
-file in the installation directory of org-mode.  Org will not
+file in the installation directory of Org mode.  Org will not
 work correctly if this file is not present (except directly from
 the Git work tree)."
   (with-temp-buffer
@@ -41,14 +48,14 @@ the Git work tree)."
 ;;; Code:
 ;;;\#\#\#autoload
 \(defun org-release ()
-  \"The release version of org-mode.
-  Inserted by installing org-mode or when a release is made.\"
+  \"The release version of Org.
+Inserted by installing Org mode or when a release is made.\"
    (let ((org-release \"" org-release "\"))
      org-release))
 ;;;\#\#\#autoload
 \(defun org-git-version ()
-  \"The Git version of org-mode.
-  Inserted by installing org-mode or when a release is made.\"
+  \"The Git version of Org mode.
+Inserted by installing Org or when a release is made.\"
    (let ((org-git-version \"" org-git-version "\"))
      org-git-version))
 ;;;\#\#\#autoload
@@ -58,14 +65,14 @@ the Git work tree)."
 \f\n;; Local Variables:\n;; version-control: never
 ;; no-byte-compile: t
 ;; coding: utf-8\n;; End:\n;;; org-version.el ends here\n")
-    (toggle-read-only 0)
-    (write-file "org-version.el")))
+    (let ((inhibit-read-only t))
+      (write-file "org-version.el"))))
 
 (defun org-make-org-loaddefs ()
   "Make the file org-loaddefs.el in the current directory.
 This function is internally used by the build system and should
 be used by foreign build systems or installers to produce this
-file in the installation directory of org-mode.  Org will not
+file in the installation directory of Org mode.  Org will not
 work correctly if this file is not up-to-date."
   (with-temp-buffer
     (set-visited-file-name "org-loaddefs.el")
@@ -77,8 +84,8 @@ work correctly if this file is not up-to-date."
     (insert "\f\n;; Local Variables:\n;; version-control: never\n")
     (insert ";; no-byte-compile: t\n;; no-update-autoloads: t\n")
     (insert ";; coding: utf-8\n;; End:\n;;; org-loaddefs.el ends here\n")
-    (toggle-read-only 0)
-    (save-buffer)))
+    (let ((inhibit-read-only t))
+      (save-buffer))))
 
 (defun org-make-autoloads (&optional compile force)
   "Make the files org-loaddefs.el and org-version.el in the install directory.
@@ -140,8 +147,8 @@ oldorg:	# do what the old Makefile did by default.
 	  (insert "\
 # See default.mk for further configuration options.
 ")
-	  (toggle-read-only 0)
-	  (write-file local))
+	  (let ((inhibit-read-only t))
+	    (write-file local)))
       nil)))
 
 (defun org-make-letterformat (a4name lettername)
@@ -152,8 +159,8 @@ oldorg:	# do what the old Makefile did by default.
 	(goto-char (point-min))
 	(while (search-forward "\\pdflayout=(0l)" nil t)
 	  (replace-match "\\pdflayout=(1l)" nil t))
-	(toggle-read-only 0)
-	(write-file lettername))
+	  (let ((inhibit-read-only t))
+	    (write-file lettername)))
     nil))
 
 ;; redefine version functions

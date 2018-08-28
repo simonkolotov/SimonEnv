@@ -1,11 +1,11 @@
 ;;; org-collector --- collect properties into tables
 
-;; Copyright (C) 2008-2013 Free Software Foundation, Inc.
+;; Copyright (C) 2008-2018 Free Software Foundation, Inc.
 
 ;; Author: Eric Schulte <schulte dot eric at gmail dot com>
 ;; Keywords: outlines, hypermedia, calendar, wp, experimentation,
 ;;           organization, properties
-;; Homepage: http://orgmode.org
+;; Homepage: https://orgmode.org
 ;; Version: 0.01
 
 ;; This file is not yet part of GNU Emacs.
@@ -121,6 +121,7 @@ preceeding the dblock, then update the contents of the dblock."
 	    (scope (plist-get params :scope))
 	    (noquote (plist-get params :noquote))
 	    (colnames (plist-get params :colnames))
+	    (defaultval (plist-get params :defaultval))
 	    (content-lines (org-split-string (plist-get params :content) "\n"))
 	    id table line pos)
 	(save-excursion
@@ -133,9 +134,10 @@ preceeding the dblock, then update the contents of the dblock."
 		  (t (error "Cannot find entry with :ID: %s" id))))
 	  (unless (eq id 'global) (org-narrow-to-subtree))
 	  (setq stringformat (if noquote "%s" "%S"))
-	  (setq table (org-propview-to-table
-		       (org-propview-collect cols stringformat conds match scope inherit
-					     (if colnames colnames cols)) stringformat))
+	  (let ((org-propview-default-value (if defaultval defaultval org-propview-default-value)))
+	    (setq table (org-propview-to-table
+			 (org-propview-collect cols stringformat conds match scope inherit
+					       (if colnames colnames cols)) stringformat)))
 	  (widen))
 	(setq pos (point))
 	(when content-lines
@@ -184,7 +186,8 @@ variables and values specified in props"
 	 (header-props
 	  (mapcar (lambda (props)
 		    (mapcar (lambda (pair)
-			      (cons (car pair) (org-babel-read (cdr pair))))
+			      (let ((inhibit-lisp-eval (string= (car pair) "ITEM")))
+				(cons (car pair) (org-babel-read (cdr pair) inhibit-lisp-eval))))
 			    props))
 		  header-props))
 	 ;; collect all property names

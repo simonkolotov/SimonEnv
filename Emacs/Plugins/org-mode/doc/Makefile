@@ -27,11 +27,24 @@ guide::		orgguide.texi org-version.inc
 	../mk/guidesplit.pl $@/*
 endif
 
+org.texi:	org-manual.org
+	$(BATCH) \
+	  --eval '(add-to-list '"'"'load-path "../lisp")' \
+	  --eval '(load "../mk/org-fixup.el")' \
+	  --eval '(org-make-manuals)'
+
 org-version.inc:	org.texi
 	@echo "org-version: $(ORGVERSION) ($(GITVERSION))"
 	@echo "@c automatically generated, do not edit"  > org-version.inc
 	@echo "@set VERSION $(ORGVERSION) ($(GITVERSION))" >> org-version.inc
 	@echo "@set DATE $(DATE)" >> org-version.inc
+
+org-version.tex:	orgcard.tex
+	@printf "org-version: $(ORGVERSION) ($(GITVERSION))\n"
+	@printf "%% automatically generated, do not edit\n" > org-version.tex
+	@printf "\def\orgversionnumber{$(ORGVERSION)}\n" >> org-version.tex
+	@printf "\def\\\\versionyear{$(YEAR)}\n" >> org-version.tex
+	@printf "\def\year{$(YEAR)}\n" >> org-version.tex
 
 install:	org
 	if [ ! -d $(DESTDIR)$(infodir) ]; then $(MKDIR) $(DESTDIR)$(infodir); else true; fi ;
@@ -39,7 +52,7 @@ install:	org
 	$(INSTALL_INFO) --infodir=$(DESTDIR)$(infodir) org
 
 clean:
-	$(RM) org *.pdf *.html *_letter.tex org-version.inc \
+	$(RM) org *.pdf *.html *_letter.tex org-version.inc org-version.tex \
 	      *.aux *.cp *.cps *.dvi *.fn *.fns *.ky *.kys *.pg *.pgs \
 	      *.toc *.tp *.tps *.vr *.vrs *.log *.html *.ps
 cleanall:	clean
@@ -59,7 +72,7 @@ clean-install:
 %.pdf:		LANG=C
 %.pdf:		%.texi org-version.inc
 	$(TEXI2PDF) $<
-%.pdf:		%.tex
+%.pdf:		%.tex org-version.tex
 	PDFLATEX=$(PDFTEX) $(TEXI2PDF) $<
 
 %.html:		%.texi org-version.inc
