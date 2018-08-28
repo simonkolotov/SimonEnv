@@ -4,10 +4,9 @@
 #+OPTIONS: TOC:nil
 
 * TODO:
+** Test on Windows and make it work
 ** Something not working in [[ox-slidy]] and [[ox-latex]] → fix it
-** Env vars according to bashrc (under [[Emacs Env Vars]])
 ** python indents (test it) - [[Python Mode]]
-** check out latest magit
 ** IPython? Jupyter?
 *** IPython
     TODO: make this work
@@ -29,26 +28,8 @@
      ;;(setq py-split-windows-on-execute-p nil)
    #+END_SRC
   - [ ] Annotate TODO markers?
-** Annotate TODO markers
-    TODO: make this work?
-    #+BEGIN_SRC emacs-lisp
-      ;;TODO: Make this work?
-      ;;(defun annotate-todo ()
-      ;;  "put fringe marker on TODO: lines in the curent buffer"
-      ;;  (interactive)
-      ;;  (save-excursion
-      ;;    (goto-char (point-min))
-      ;;    (while (re-search-forward "TODO:" nil t)
-      ;;      (let ((overlay (make-overlay (- (point) 5) (point))))
-      ;;        (overlay-put overlay 'before-string (propertize "A"
-      ;;                                                        'display '(left-fringe right-triangle)))))))
-      ;;
-      ;;(add-hook 'python-mode-hook 'annotate-todo)
-    #+END_SRC
 ** Hide passwords in shell mode
 ** prompts etc in shell-mode
-** root under ido-mode
-   Zamansky mentions the possibility of opening file as sudo by opening sudo::FILENAME (*Double Colon!*)
 ** Path in status bar?
 ** test image opener on Windows
 ** Check out WinUtils.el (under [[Windows vs Linux Settings]])
