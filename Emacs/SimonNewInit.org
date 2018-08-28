@@ -5,7 +5,6 @@
 
 * TODO:
 ** Test on Windows and make it work
-** Something not working in [[ox-slidy]] and [[ox-latex]] → fix it
 ** python indents (test it) - [[Python Mode]]
 ** IPython? Jupyter?
 *** IPython
@@ -29,7 +28,7 @@
    #+END_SRC
   - [ ] Annotate TODO markers?
 ** Hide passwords in shell mode
-** prompts etc in shell-mode
+** prompts and titles etc in shell-mode
 ** Path in status bar?
 ** test image opener on Windows
 ** Check out WinUtils.el (under [[Windows vs Linux Settings]])
@@ -460,7 +459,7 @@
     Based on .git or similar files
     #+BEGIN_SRC emacs-lisp
       (require 'counsel-projectile)
-      (projectile-global-mode)
+      (projectile-mode)
       (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
     #+END_SRC
 *** Atomic chrome for editing chrome text boxes from within emacs
@@ -509,6 +508,12 @@
       (require 'pdf-virtual)
 
       (pdf-tools-install)
+    #+END_SRC
+*** org-export
+    #+BEGIN_SRC emacs-lisp
+    (require 'ox-reveal)
+    (setq org-reveal-root (concat emacs-git "Plugins/reveal.js-3.7.0/"))
+    (setq org-reveal-title-slide nil)
     #+END_SRC
 * GUI and Visuals
 ** Misc small things
@@ -979,9 +984,6 @@
 * Modes
   TL;DR:
   F10    → shell mode
-  C-M-p → python mode
-  C-M-t → text mode
-  C-M-c → c++ mode
 ** Python Mode
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-M-p") 'python-mode)
@@ -1206,18 +1208,10 @@
      ;;disable yas-mode in org-mode
      (add-hook 'org-mode-hook (lambda () (yas-minor-mode -1)))
    #+END_SRC
-*** ox-slidy
-    NB: for some reason this has to go *after* the previous org hooks...
-   #+BEGIN_SRC emacs-lisp
-     ;;Something NOT WORKING HERE
-     ;;export to html-slidy
-     ;;(require 'ox-slidy)
-   #+END_SRC
 *** ox-latex
     #+BEGIN_SRC emacs-lisp
-      ;;Something NOT WORKING HERE
-      ;;(require 'ox-latex)
-      ;;(setq org-latex-create-formula-image-program 'dvipng)
+      (require 'ox-latex)
+      (setq org-latex-create-formula-image-program 'dvipng)
     #+END_SRC
 *** plantuml
     #+BEGIN_SRC emacs-lisp
@@ -1229,7 +1223,7 @@
       ;; Source Languages
       (org-babel-do-load-languages
        'org-babel-load-languages
-       '((sh . t)
+       '((shell . t)
          (perl . t)
          (emacs-lisp . t)
          (python . t)
