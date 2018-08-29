@@ -5,7 +5,6 @@
 
 * TODO:
 ** Test on Windows and make it work
-** python indents (test it) - [[Python Mode]]
 ** IPython? Jupyter?
 *** IPython
     TODO: make this work
@@ -35,6 +34,7 @@
 ** Go over the rest of scott.emacs.el and delete it
 ** before-save-hook
 ** Cheat-sheet
+** go over the init file and clean it up + move to other headers
 * Introduction
 ** General
   This is my emacs configuration file, to which I constantly add stuff shamelessly stolen from others.
@@ -515,6 +515,12 @@
     (setq org-reveal-root (concat emacs-git "Plugins/reveal.js-3.7.0/"))
     (setq org-reveal-title-slide nil)
     #+END_SRC
+*** ag
+    #+BEGIN_SRC emacs-lisp
+    (require 'ag)
+
+     (global-set-key (kbd "C-c C-f") 'counsel-projectile-ag)
+    #+END_SRC
 * GUI and Visuals
 ** Misc small things
    #+BEGIN_SRC emacs-lisp
@@ -986,8 +992,6 @@
   F10    → shell mode
 ** Python Mode
    #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "C-M-p") 'python-mode)
-
      (add-hook 'python-mode-hook
        (lambda ()
          (my-indent-mode))
@@ -1015,21 +1019,9 @@
        )
 
      (global-set-key [f10] 'open-shell)
-
-     ;;??
-     (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
-     ;; Allow sudo in shell command  !!!
-     ;;TODO: make this work?
-     ;;(defun sudo-shell-command (command)
-     ;;  (shell-command (concat "echo " (read-passwd "Password: ") " | sudo -S " command)))
-     ;;
-     ;;(global-set-key (kbd "C-M-!") 'sudo-shell-command(command))
    #+END_SRC
 ** Text Mode
    #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "C-M-t") 'text-mode)
-
      ;;Text mode indent
      (defun newline-and-indent-relative()
      "Do a newline and a relative indent."
@@ -1042,8 +1034,6 @@
 ** c++ Mode
 *** general
    #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "C-M-C") 'c++-mode)
-
      (global-set-key (kbd "C-M-{") 'c-beginning-of-defun) ; something like matching function
      (global-set-key (kbd "C-M-}") 'c-end-of-defun)
 
@@ -1170,6 +1160,7 @@
        (local-set-key (kbd "C-c C-p p") 'org-toggle-pretty-entities)
        (local-set-key (kbd "C-<tab>") 'next-buffer) ; C-Tab: Next Buffer
        (local-unset-key (kbd "C-'"))
+       (local-unset-key (kbd "C-c C-f"))
 
        (setq org-export-with-sub-superscripts "{}") ;use only {} for sub and super script
 
