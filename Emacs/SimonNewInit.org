@@ -927,6 +927,10 @@
      ;; copy it if that's what you want.
      (define-key ctl-x-map "n" #'narrow-or-widen-dwim)
    #+END_SRC
+** Full path in the title bar
+   #+BEGIN_SRC emacs-lisp
+   (setq-default frame-title-format "%b (%f)")
+   #+END_SRC
 * Indentations
   #+BEGIN_SRC emacs-lisp
     (defun update-indent-mode ()
