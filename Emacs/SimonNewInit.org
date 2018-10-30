@@ -517,9 +517,12 @@
     #+END_SRC
 *** ag
     #+BEGIN_SRC emacs-lisp
-    (require 'ag)
-
-     (global-set-key (kbd "C-c C-f") 'counsel-projectile-ag)
+      (require 'ag)
+      (global-set-key (kbd "C-c C-f") 'counsel-projectile-ag)
+    #+END_SRC
+*** PowerShell
+    #+BEGIN_SRC emacs-lisp
+      (require 'powershell-mode)
     #+END_SRC
 * GUI and Visuals
 ** Misc small things
@@ -1255,7 +1258,7 @@
                   (append
                   '(("png" . "\"c:/Program Files (x86)/giv/bin/giv.exe\" %s"))
                   '(("doc" . "\"c:/Program Files (x86)/Microsoft Office/root/Office16/WINWORD.EXE\" %s"))
-
+                  '(("svg" . "\"c:/Program Files (x86)/Microsoft Office/root/Office16/c:/Program Files/Inkscape/inskscape.exe\" %s"))
                    org-file-apps
                    ))
             )
@@ -1653,6 +1656,8 @@
            (list (cons "\\.nsi" 'nsis-mode))
 
            (list (cons "\\.bat" 'bat-mode))
+
+           (list (cons "\\.ps1" 'powershell-mode))
 
            (list (cons "\\.txt" 'text-mode))
 
