@@ -462,6 +462,17 @@
       (projectile-mode)
       (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
     #+END_SRC
+*** git gutter for marking git changes
+    #+BEGIN_SRC emacs-lisp
+      (require 'git-gutter)
+      (global-git-gutter-mode +1)
+
+      ;;later think about git-gutter-hydra here
+    #+END_SRC
+*** git-timemachine for previewing file history
+    #+BEGIN_SRC emacs-lisp
+      (require 'git-timemachine)
+    #+END_SRC
 *** Atomic chrome for editing chrome text boxes from within emacs
     #+BEGIN_SRC emacs-lisp
       (require 'atomic-chrome)
@@ -478,19 +489,8 @@
       ;;how to open the text windows
       (setq atomic-chrome-buffer-open-style 'frame)
     #+END_SRC
-*** git gutter for marking git changes
-    #+BEGIN_SRC emacs-lisp
-      (require 'git-gutter)
-      (global-git-gutter-mode +1)
-
-      ;;later think about git-gutter-hydra here
-    #+END_SRC
-*** git-timemachine for previewing file history
-    #+BEGIN_SRC emacs-lisp
-      (require 'git-timemachine)
-    #+END_SRC
 *** pdf-tools
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC ;emacs-lisp
       (require 'pdf-annot)
       (require 'pdf-cache)
       (require 'pdf-dev)
@@ -619,7 +619,7 @@
              )
          ))
 
-     (setq my-height-fraction 1) ;use the entire screen height
+     (setq my-height-fraction 0.93) ;use the entire screen height
 
      ;;For one monitor
      (setq left-two-thirds-screen-pos (list 0.6 my-height-fraction 0 0))    ;last two: 0 from left, 0 from top

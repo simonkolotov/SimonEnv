@@ -183,7 +183,10 @@ fi
 ###########
 # git completion in Bash
 ###########
-source /usr/share/bash-completion/completions/git
+if [ -f $SimonEnvBashPath"GitAutoComplete" ]; then
+    source $SimonEnvBashPath"GitAutoComplete"
+    #source /usr/share/bash-completion/completions/git
+fi
 
 ##########
 #virtualbox Autocomplete in bash
