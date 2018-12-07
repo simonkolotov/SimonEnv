@@ -78,6 +78,11 @@
          (setq emacs-persistance-dir "/home/simon/.emacs.d")
        )
 
+     ;;load the correct org
+     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode"))
+     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/lisp"))
+     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/contrib/lisp"))
+
      ;;Loading the rest of the configuration from my environment
      (if (string-equal (file-name-extension default-init-file) "org")
          ;;The new way: via org mode
@@ -975,6 +980,9 @@
       (setq my-access-label 0)
       (setq my-topmost-intro 0)
 
+      (setq-default tab-width 16) ;I never use tabs. but if present they should be very visible
+
+
       (update-indent-mode)
       )
 
@@ -988,6 +996,25 @@
       (setq my-access-label 0)
       (setq my-topmost-intro 0)
       (update-indent-mode)
+
+      (setq-default tab-width 16) ;I never use tabs. but if present they should be very visible
+
+      ;; Python - override
+      (setq python-indent-offset 2)
+      )
+
+    (defun my-indent-mode-bruker ()
+      "Set indent tabs to the xjet indent mode"
+      (interactive)
+      ;; C++
+      (setq my-indent 4)
+      (setq my-substatement 4)
+      (setq my-substatement-open 0)
+      (setq my-access-label 0)
+      (setq my-topmost-intro 0)
+      (update-indent-mode)
+
+      (setq-default tab-width 4) ;tabs are sometimes used by other people
 
       ;; Python - override
       (setq python-indent-offset 2)
@@ -1208,7 +1235,7 @@
    #+END_SRC
 *** ox-latex
     #+BEGIN_SRC emacs-lisp
-      (require 'ox-latex)
+      ;(require 'ox-latex)
       (setq org-latex-create-formula-image-program 'dvipng)
     #+END_SRC
 *** plantuml
@@ -1570,7 +1597,6 @@
      (global-set-key (kbd "C-x t") 'toggle-truncate-lines)
      (set-default 'truncate-lines nil)
 
-     (setq-default tab-width 16) ;I never use tabs. but if present they should be very visible
      (setq-default indent-tabs-mode nil) ; never use tabs when auto-indenting
 
      ;(electric-pair-mode f) ;Automatic Parentheses completion, should I ever want it for some reason
