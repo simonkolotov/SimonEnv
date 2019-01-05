@@ -495,7 +495,7 @@
       (setq atomic-chrome-buffer-open-style 'frame)
     #+END_SRC
 *** pdf-tools
-    #+BEGIN_SRC ;emacs-lisp
+    #+BEGIN_SRC emacs-lisp1
       (require 'pdf-annot)
       (require 'pdf-cache)
       (require 'pdf-dev)
@@ -527,6 +527,7 @@
     #+END_SRC
 *** PowerShell
     #+BEGIN_SRC emacs-lisp
+      (load "PowerShell-Mode.el")
       (require 'powershell-mode)
     #+END_SRC
 * GUI and Visuals
