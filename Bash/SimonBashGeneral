@@ -48,6 +48,10 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "dumb" || $TERM 
     #Aliases and Functions
     ######################
 
+    if hash bat 2> /dev/null; then
+       alias cat='bat'
+    fi
+
     alias ..="cd .."
 
     alias pg="ps aux | grep -v grep | grep -i -e VSZ -e"
@@ -58,7 +62,9 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "dumb" || $TERM 
         cd $1
     }
 
-    alias df="pydf"
+    if hash pydf 2> /dev/null; then
+        alias df="pydf"
+    fi
 
     alias gitExtensions='mono /home/simon/github/GitExtensions/GitExtensions.exe &'
 

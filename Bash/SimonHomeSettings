@@ -12,6 +12,3 @@ export DROPBOX=/home/simon/Dropbox
 
 export SEAGATE=/run/media/simon/Seagate\ Backup\ Plus\ Drive
 export TRANSCEND=/run/media/simon/Transcend
-
-#Aliases
-alias cat='bat'
