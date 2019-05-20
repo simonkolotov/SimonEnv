@@ -1199,6 +1199,10 @@
 
        (setq org-export-with-sub-superscripts "{}") ;use only {} for sub and super script
 
+       (setq org-catch-invisible-edits 'show-and-error) ;when trying to edit hidden paragraphs open them and show error
+
+       (setq org-cycle-separator-lines 0)
+
        (org-bullets-mode)
        (setq org-bullets-bullet-list
              '("▸"
