@@ -293,7 +293,11 @@
     #+BEGIN_SRC emacs-lisp
       (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
       (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
-
+    #+END_SRC
+*** QML
+    #+BEGIN_SRC emacs-lisp
+      (autoload 'qml-mode "qml-mode" "Qml editing mode." t)
+      (add-to-list 'interpreter-mode-alist '("qml" . qml-mode))
     #+END_SRC
 *** XMSI
     This allows to replace sequences of characters for symbols
@@ -516,7 +520,7 @@
     #+END_SRC
 *** org-export
     #+BEGIN_SRC emacs-lisp
-    (require 'ox-reveal)
+    ;;(require 'ox-reveal)
     (setq org-reveal-root (concat emacs-git "Plugins/reveal.js-3.7.0/"))
     (setq org-reveal-title-slide nil)
     #+END_SRC
@@ -862,6 +866,7 @@
                                     (mode . c-mode)
                                     (mode . c++-mode)
                                     (mode . lua-mode)
+                                    (mode . qml-mode)
                                     (mode . c++-mode)
                                     ))
                     ("emacs" (or
@@ -988,7 +993,7 @@
       )
 
     (defun my-indent-mode-cree ()
-      "Set indent tabs to the xjet indent mode"
+      "Set indent tabs to the cree indent mode"
       (interactive)
       ;; C++
       (setq my-indent 4)
@@ -1003,9 +1008,26 @@
       ;; Python - override
       (setq python-indent-offset 2)
       )
+      
+    (defun my-indent-mode-nano ()
+      "Set indent tabs to the nano indent mode"
+      (interactive)
+      ;; C++
+      (setq my-indent 2)
+      (setq my-substatement 2)
+      (setq my-substatement-open 0)
+      (setq my-access-label 0)
+      (setq my-topmost-intro 0)
+      (update-indent-mode)
+
+      (setq-default tab-width 8) ;tabs are sometimes used by other people
+
+      ;; Python - override
+      (setq python-indent-offset 4)
+      )      
 
     (defun my-indent-mode-bruker ()
-      "Set indent tabs to the xjet indent mode"
+      "Set indent tabs to the bruker indent mode"
       (interactive)
       ;; C++
       (setq my-indent 4)
@@ -1699,6 +1721,8 @@
            (list (cons "\\.conf$" 'bb-mode))
 
            (list (cons "\\.lua$" 'lua-mode))
+           
+           (list (cons "\\.qml$" 'qml-mode))
 
            (list (cons "\\.\\([Nn][Ss][Ii]\\)$" 'nsis-mode))
            (list (cons "\\.\\([Nn][Ss][Hh]\\)$" 'nsis-mode))
