@@ -241,7 +241,7 @@
      ;;websocket for atomic chrome
      (add-to-list 'load-path (concat emacs-git "Plugins/websocket"))
 
-     (add-to-list 'load-path (concat emacs-git "Plugins/pdf-tools"))
+     ;(add-to-list 'load-path (concat emacs-git "Plugins/pdf-tools"))
    #+END_SRC
 ** Loading the plugins
 *** Move-Border for window resizing
@@ -499,25 +499,25 @@
       (setq atomic-chrome-buffer-open-style 'frame)
     #+END_SRC
 *** pdf-tools
-    #+BEGIN_SRC emacs-lisp1
-      (require 'pdf-annot)
-      (require 'pdf-cache)
-      (require 'pdf-dev)
-      (require 'pdf-history)
-      (require 'pdf-info)
-      (require 'pdf-isearch)
-      (require 'pdf-links)
-      (require 'pdf-misc)
-      (require 'pdf-occur)
-      (require 'pdf-outline)
-      (require 'pdf-sync)
-      (require 'pdf-tools)
-      (require 'pdf-util)
-      (require 'pdf-view)
-      (require 'pdf-virtual)
-
-      (pdf-tools-install)
-    #+END_SRC
+;;    #+BEGIN_SRC emacs-lisp
+;;      (require 'pdf-annot)
+;;      (require 'pdf-cache)
+;;      (require 'pdf-dev)
+;;      (require 'pdf-history)
+;;      (require 'pdf-info)
+;;      (require 'pdf-isearch)
+;;      (require 'pdf-links)
+;;      (require 'pdf-misc)
+;;      (require 'pdf-occur)
+;;      (require 'pdf-outline)
+;;      (require 'pdf-sync)
+;;      (require 'pdf-tools)
+;;      (require 'pdf-util)
+;;      (require 'pdf-view)
+;;      (require 'pdf-virtual)
+;;
+;;      (pdf-tools-install)
+;;    #+END_SRC
 *** org-export
     #+BEGIN_SRC emacs-lisp
     ;;(require 'ox-reveal)
