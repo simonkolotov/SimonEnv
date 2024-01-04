@@ -1,6 +1,0 @@
-"c29c74c3aab0ffcd354f492004941044c38ce491"
-[cl-struct-undo-tree #1=[nil ([nil ([nil ([nil ([nil ([nil nil ((#("d" 0 1 (fontified t)) . -347) (undo-tree-id0 . -1) (undo-tree-id1 . -1) (undo-tree-id2 . -1) (undo-tree-id3 . -1) (undo-tree-id4 . -1)) ((347 . 348)) (22246 32365 119216 605000) 0 nil]) ((#("/" 0 1 (fontified t face (italic) font-lock-multiline t org-emphasis t)) . -348) (undo-tree-id5 . -1) (undo-tree-id6 . -1) (undo-tree-id7 . -1) (undo-tree-id8 . 1) (undo-tree-id9 . -1) (undo-tree-id10 . -1) (undo-tree-id11 . -1)) ((348 . 349) (t 22246 32366 563861 788000)) (22246 32365 119580 796000) 0 nil]) ((#("
-" 0 1 (fontified t)) . -349)) ((349 . 350)) (22246 32367 551836 983000) 0 nil]) ((349 . 350)) ((#("
-" 0 1 (fontified t)) . 349)) (22246 32367 839589 518000) 0 nil]) ((#("
-" 0 1 (fontified t)) . 190) (undo-tree-id12 . -1) (t 22162 21141 41118 576000)) ((190 . 191)) (22246 32368 367402 704000) 0 nil] [nil nil ((349 . 350) (t 22162 21141 41118 576000)) ((#(" " 0 1 (fontified t)) . 349)) (22246 32357 167125 522000) 0 nil] [nil nil ((349 . 350) (t 22162 21141 41118 576000)) ((#("
-" 0 1 (fontified t)) . 349)) (22246 32343 823212 335000) 0 nil]) nil nil (22246 32368 783476 984000) 0 nil] #1# 255 7 nil]

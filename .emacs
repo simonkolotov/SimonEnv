@@ -6,12 +6,8 @@
   "/home/simon/github/SimonEnv/Emacs/"
   "The location of my Emacs environment settings")
 
-(defvar default-work-notes-file
-  "/home/simon/github/XJetWorkNotes/WorkNoteBook.org"
-  "The location of my Work Notebook (somewhere on the work server?)")
-
 (defvar default-personal-notes-file
-  "/home/simon/Notebook/NoteBook.org"
+  "/home/simon/Notebook/Notebook.org"
   "The location of my personal notebook (mounted from EncFS)")
 
 (defvar default-init-file 
