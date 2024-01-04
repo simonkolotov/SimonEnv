@@ -79,9 +79,9 @@
        )
 
      ;;load the correct org
-     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode"))
-     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/lisp"))
-     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode/contrib/lisp"))
+     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode-mirror"))
+     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode-mirror/lisp"))
+     (add-to-list 'load-path (concat emacs-git "Plugins/org-mode-mirror/contrib/lisp"))
 
      ;;Loading the rest of the configuration from my environment
      (if (string-equal (file-name-extension default-init-file) "org")
@@ -1205,7 +1205,7 @@
    #+END_SRC
 *** Bullets
    #+BEGIN_SRC emacs-lisp
-     (load "org-bullets.el")
+ ;    (load "org-bullets.el")
 
      ;; This is a bug work around
      (defun org-element-cache-reset (&optional all) (interactive))
@@ -1225,19 +1225,19 @@
 
        (setq org-cycle-separator-lines 0)
 
-       (org-bullets-mode)
-       (setq org-bullets-bullet-list
-             '("▸"
-               "•"
-               "•"
-               "•"
-               "•"
-               "•"
-               "•"
-               ;; ♥ ● ◇ ✚ ✜ ☯ ◆ ♠ ♣ ♦ ☢ ❀ ◆ ◖ ▶
-               ;;; Small
-               ;; ► • ★ ▸
-               ))
+;       (org-bullets-mode)
+;       (setq org-bullets-bullet-list
+;             '("▸"
+;               "•"
+;               "•"
+;               "•"
+;               "•"
+;               "•"
+;               "•"
+;               ;; ♥ ● ◇ ✚ ✜ ☯ ◆ ♠ ♣ ♦ ☢ ❀ ◆ ◖ ▶
+;               ;;; Small
+;               ;; ► • ★ ▸
+;               ))
 
        (setq org-hide-emphasis-markers nil)
        (setq org-confirm-babel-evaluate nil)
@@ -1757,3 +1757,10 @@
      (require 'bash-completion)
      (bash-completion-setup)
    #+END_SRC
+* Encoding
+** Prevent encoding issues when saving files
+   This prevents errors like
+   _"These default coding systems were tried to encode text in the buffer ‘ *temp*’:"_
+   #+BEGIN_SRC emacs-lisp
+      (prefer-coding-system 'utf-8)
+    #+END_SRC

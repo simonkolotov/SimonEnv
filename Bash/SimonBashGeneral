@@ -66,7 +66,7 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "dumb" || $TERM 
         alias df="pydf"
     fi
 
-    alias gitExtensions='mono /home/simon/github/GitExtensions/GitExtensions.exe &'
+    alias gitExtensions='mono /home/simonk/github/GitExtensions/GitExtensions.exe &'
 
     #####################
     #Multi-Type Extractor
@@ -166,8 +166,8 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "dumb" || $TERM 
     ##########
     #Shortcuts
     ##########
-    export NOTEBOOK=/home/simon/Notebook
-    alias MountNotebook='encfs $DROPBOX/Notebook/ $NOTEBOOK; (cd $NOTEBOOK; git status)t'
+    export NOTEBOOK=/home/simonk/Notebook
+    alias MountNotebook='encfs $DRIVE/Notebook/ $NOTEBOOK; (cd $NOTEBOOK; git status)'
     alias UnmountNotebook='fusermount -u $NOTEBOOK'  
 
     export GALAXY=/home/simon/Galaxy
@@ -178,11 +178,11 @@ if [[ $TERM == "xterm" || $TERM == "xterm-256color" || $TERM == "dumb" || $TERM 
     alias PhoneBook='openoffice.org $DECRYPTED/Telephones/Phonebook.xls'
     alias PhoneBookAK='openoffice.org $DECRYPTED/Telephones/AK\ telephon_book.doc'
 
-    export DECRYPTED=/home/simon/Decrypted
-    alias MountDropBoxEncrypted='encfs $DROPBOX/ASK/Personal/ $DECRYPTED; (cd $DECRYPTED; git status); caja $DECRYPTED&'
+    export DECRYPTED=/home/simonk/Decrypted
+    alias MountDropBoxEncrypted='encfs $DRIVE/ASK/Personal/ $DECRYPTED; (cd $DECRYPTED; git status); caja $DECRYPTED&'
     alias UnmountDecrypted='fusermount -u $DECRYPTED'
 
-    export INCOMING=/home/simon/Incoming
+    export INCOMING=/home/simonk/Incoming
 
 fi
 

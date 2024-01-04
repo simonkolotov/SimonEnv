@@ -4,15 +4,14 @@
 
 export PATH=$PATH:/home/simon/scripts
 
-export PYTHONPATH="usr/local/lib/python2.7/site-packages"
-export PYTHONPATH="$PYTHONPATH:/usr/local/lib64/python2.7/site-packages"
 export PYTHONPATH="$PYTHONPATH:/home/simon/scripts"
-
-export QTDIR=/usr
-export QMAKE=qmake-qt5
 
 export VISUAL=emacs
 export BROWSER=google-chrome
+
+export DRIVE=/home/simonk/GoogleDrive
+
+export LD_LIBRARY_PATH=/usr/local/lib
 
 ###########
 # Shortcuts
